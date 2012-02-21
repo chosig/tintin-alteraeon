@@ -1,3 +1,4 @@
+#act {%1 {kicks|kick} %2 but barely {makes|make} contact.$} {play kick} {9}
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}
@@ -2571,7 +2572,7 @@
 
 #ALIAS {id %1} {#if {"$identify" == "true"} {c identify %1};#else {#send {identify %1}}} {5}
 
-#ACTION {^%sidentify%s%1}
+#ACTION {^ %sidentify%s%1}
 {
 	#variable {identify} {true}
 }
