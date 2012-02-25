@@ -1,4 +1,3 @@
-#act {%1 {kicks|kick} %2 but barely {makes|make} contact.$} {play kick} {9}
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}
@@ -50,21 +49,6 @@
 #ACTION {%1's %2 $rescue{!|.}$}
 {
 	r $rescue
-}
-{1}
-
-#ACTION {^   {0|1|2|3|4|5|6|7|8|9}     { 0| 1| 2| 3| 4| 5| 6| 7| 8| 9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60}  %1}
-{
-	#if {"$getLastQuest" == "true"}
-	{
-		#line {gag};
-		#variable {lastQuest} {%1};
-		#unvariable {getLastQuest};
-		#if {!&{lastTweet}}
-		{
-			#variable {lastTweet} {%1}
-		}
-	}
 }
 {1}
 
@@ -174,6 +158,12 @@
 }
 {2}
 
+#ACTION {^Gender:  %1}
+{
+	#variable {playerSex} {%1}
+}
+{2}
+
 #ACTION {^You fail to {channel|cast} the spel%1.$}
 {
 	#if {!&{recast}}
@@ -211,28 +201,22 @@
 	};
 	#if {"$autowoad" == "true"}
 	{
-		#send {get $woadMaterial $container};
+		get $woadMaterial $container;
 		drop $woadMaterial;
 		c wood $woadMaterial
 	};
 	#if {"$autobone" == "true"}
 	{
-		#send {get $boneMaterial $container};
+		get $boneMaterial $container;
 		drop $boneMaterial;
 		c bone guardian $boneMaterial
 	};
 	#if {"$autometal" == "true"}
 	{
-		#send {get $metalMaterial $container};
+		get $metalMaterial $container;
 		drop $metalMaterial;
 		c metal construct $metalMaterial
 	}
-}
-{4}
-
-#ACTION {^Gender:  %1}
-{
-	#variable {playerSex} {%1}
 }
 {4}
 
@@ -275,7 +259,7 @@
 
 #ACTION {^ %1 bone guardian%2}
 {
-	#macro {\eb} {#send {get $boneMaterial $container};drop $boneMaterial;c bone guardian $boneMaterial}
+	#macro {\eb} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
 }
 {5}
 
@@ -359,7 +343,7 @@
 
 #ACTION {^ %1 wood woad%2}
 {
-	#macro {\ew} {#send {get $woadMaterial $container};drop $woadMaterial;c wood $woadMaterial}
+	#macro {\ew} {get $woadMaterial $container;drop $woadMaterial;c wood $woadMaterial}
 }
 {5}
 
@@ -488,7 +472,7 @@
 
 #ACTION {^ %1knife throwing%2}
 {
-	#alias {^{t|th|thr|thro|throw}$}{#send {throw $throwWeapon;get $throwWeapon}}
+	#alias {^{t|th|thr|thro|throw}$}{throw $throwWeapon;get $throwWeapon}
 }
 {5}
 
@@ -551,6 +535,12 @@
 {
 	#variable {wordOfRecall} {true};
 	#alias {.} {c word of recall} {1}
+}
+{5}
+
+#ACTION {^ %sidentify%s%1}
+{
+	#variable {identify} {true}
 }
 {5}
 
@@ -1269,6 +1259,12 @@
 #ACTION {%1 {is|are} on fire!$}
 {
 	play on-fire
+}
+{9}
+
+#ACTION {%1 {kicks|kick} %2 but barely {makes|make} contact.$}
+{
+	play kick
 }
 {9}
 
@@ -2271,7 +2267,7 @@
 {
 	#if {&{lastReceivedExp}}
 	{
-		#send {get all.$throwWeapon corpse};
+		get all.$throwWeapon corpse;
 		#if {&{lastSoulSteal}}
 		{
 			#unvariable {lastSoulSteal}
@@ -2309,10 +2305,6 @@
 				{
 					taunt
 				}
-			};
-			#if {$lastReceivedExp >= $cap}
-			{
-				tweetQuest
 			};
 			#if {&{lastReceivedExp}}
 			{
@@ -2388,6 +2380,15 @@
 	{
 		#showme {Attacking %1};
 		k %1
+	}
+}
+{9}
+
+#ACTION {kxwt_event quest %1}
+{
+	#if {"$twitter" == "true"}
+	{
+		tweet $name completed quest: %1 #AlterAeon
 	}
 }
 {9}
@@ -2570,11 +2571,16 @@
 }
 {5}
 
-#ALIAS {id %1} {#if {"$identify" == "true"} {c identify %1};#else {#send {identify %1}}} {5}
-
-#ACTION {^ %sidentify%s%1}
+#ALIAS {id %1}
 {
-	#variable {identify} {true}
+	#if {"$identify" == "true"}
+	{
+		c identify %1
+	};
+	#else
+	{
+		#send {identify %1}
+	}
 }
 {5}
 
@@ -2662,13 +2668,6 @@
 }
 {5}
 
-#ALIAS {{ge|get|tak|take} %1}
-{
-	tweetQuest;
-	\get %1
-}
-{5}
-
 #ALIAS {{muh|muha|muhah|muhaha|muhahah|muhahahaha}}
 {
 	#if {"$sex" == "female"}
@@ -2693,13 +2692,6 @@
 {
 	#variable {stabWeapon} {%1};
 	#showme {You will now use the %1 for backstabs.}
-}
-{5}
-
-#ALIAS {{ta|tal|talk} %1}
-{
-	#send {talk %1};
-	#delay {10} {tweetQuest}
 }
 {5}
 
@@ -3107,14 +3099,12 @@
 
 #ALIAS {^{loa|load}$}
 {
-	#variable {getLastQuest} {true};
 	cap;
 	spells;
 	#cr;
 	#cr;
 	#cr;
 	#cr;
-	deed | head -3 | grep -v deed;
 	experience lost | grep -i you have lost;
 	whoami | grep -i tall.;
 	skills;
@@ -3341,19 +3331,6 @@
 }
 {9}
 
-#ALIAS {tweetQuest}
-{
-	#variable {getLastQuest} {true};
-	#line {gag};
-	deed | head -3 | grep -v deed;
-	#if {"$lastQuest" != "$lastTweet" && "$twitter" == "true"}
-	{
-		tweet $name completed quest: $lastQuest #AlterAeon
-	};
-	#variable {lastTweet} {$lastQuest}
-}
-{9}
-
 #ALIAS {twitter}
 {
 	#variable {twitter} {true};
@@ -3363,7 +3340,7 @@
 
 #ALIAS {x}
 {
-	#send {get coins corpse};
+	get coins corpse;
 	#if {"$consume" == "true"}
 	{
 		control all consume corpse
