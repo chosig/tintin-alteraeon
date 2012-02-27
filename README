@@ -5,10 +5,11 @@ License LGPL
 
 NOTES:
 If you turn off line invertion, tintin++ seems to work better - fewer blank lines etc. To do so, in the game type invert and you should get the message that line invertion mode has been disabled.
-A first attempt at tweeting quest completion has been added. It is likely to be buggy, so please let me know. This is a particularly difficult bit of code to write because there is no uniform quest completion message. So, if you have completed a quest and you have twitter enabled, don't fret if the quest isn't posted right away. There are several actions that trigger it, getting/taking stuff, talking to mobs, killing mobs all cause a check to see if your last completed quest has changed, if so it wil tweet the quest.
+Quest code works great now. The code now uses the newly added kxwt_event quest feature. In short, this means quests are posted right away, no odd hacks needed.
 Finally switched over to ogg123for sounds, so now the requirement of vorbis-tools is more necessary. If for some reason you can not use vorbis tools though just change the soundCommand variable in aa.tin.
 To counter the bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
-If you don't need this and want to get rid of it, delete the one substitute in the aa.tin file. Do a search for the line starting with #SUBSTITUTE
+If you don't need this and want to get rid of it, delete the line:
+#SUBSTITUTE       {%*}  { %0}  {1}
 Work has started on background music/sound effects. If you happen to notice a lot of blank lines and the screen is hard to read type:
 set ctrigger off
 There are no sound effects for backgrounds yet. If you want to make some read help wxkt_terrain in the game. the terrain files should be terrain-number.ogg where number is the number corrisponding to the terrain type. For example, terain-2.ogg would be for towns. Until work is finished on terrain sounds music will be off by default.
@@ -97,14 +98,17 @@ You will not autostore yellow and red soulstones. If you are botting you will dr
 If you have the skill shadow fiend, you will try to stop battling long enough to get a pale blue souldstone from your container and summon a shadow fiend.
 
 Botting:
-To start botting type bot. To turn it off type nobot. To move while botting type automove, to stop moving type noautomove. If you have the taunt skill you will use it each time you enter a new room. Botting will try and autouse the best heal spell you have. Botting will try to not get you killed and try to recall you out if things get too bad. You can, of course, still die while botting.
-If you trust the people you are grouping with type grbot to turn on group botting. nogrbot will turn it off. In game help is available while grbot is on by telling the group gt :help.
+Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:
+#class bot read bot.tin
+and when you are finished close it with:
+#class bot kill
+Some bots that are not combat based will be added as they are written.
 Woadbot
 If you have deanimate and wood woad spells you can create woads automatically and deanimate them for future use. To do this, go to the boat shop in Zin, n from wp, e to the bridge, s, s, e, s, s, s, w, n and then type:
 buildwoads number
 where number is the amount of woads you want to create for example:
 buildwoads 20
-will make 20 wood woads, deanimate them, and store them in your container. Each woad currently costs 12 gold. It is best to do this while afk, because there is a 30 second regen time between each woad. You will get a message when the process starts and completes.
+will make 20 wood woads, deanimate them, and store them in your container. Each woad currently costs 12 gold. It is best to do this while afk, because there is a 30 second regen time between each woad. You will get a message when the process starts and completes. If you are using tensor's floating disk and it gets full the bot will automatically cast a new one for you. You can not create an infinite number of woads though because the disks only last a short time.
 
 Contributing
 If you make triggers or edit the aa.tin file in any way, please load it with tintin++ and save it with #write

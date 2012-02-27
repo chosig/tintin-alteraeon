@@ -17,32 +17,9 @@
 }
 {1}
 
-#ACTION {%1 tells the group, ':help'$}
+#ACTION {%1 resists the spell.$}
 {
-	#if {"$grbot" == "true"}
-	{
-		gt For any of this to work group botting must be enabled.;
-		gt All of my commands start with :. e.g. :/ or :recall will make me recall.;
-		gt You can do :c or :cast spell and I will try to cast the spell, you can include a target as well or use the keyword me to have to spell cast on yourself.
-	}
-}
-{1}
-
-#ACTION {%1 tells the group, ':{/|r|re|rec|reca|recal|recall}'$}
-{
-	#if {"$grbot" == "true"}
-	{
-		/
-	}
-}
-{1}
-
-#ACTION {%1 tells the group, ':{c|ca|cas|cast}%2me'$}
-{
-	#if {"$grbot" == "true"}
-	{
-		c %2 %1
-	}
+	#unvariable {lastSoulSteal}
 }
 {1}
 
@@ -149,15 +126,6 @@
 }
 {1}
 
-#ACTION {%1 tells the group, ':{c|ca|cas|cast}%2'$}
-{
-	#if {"$grbot" == "true"}
-	{
-		c %2
-	}
-}
-{2}
-
 #ACTION {^Gender:  %1}
 {
 	#variable {playerSex} {%1}
@@ -189,7 +157,8 @@
 
 #ACTION {^A clay man forms from nearby dirt and clay to serve you.$}
 {
-	play clay-man-rises
+	play clay-man-rises;
+	#unvariable {lastSpell}
 }
 {3}
 
@@ -392,7 +361,7 @@
 #ACTION {^ %1consume%2}
 {
 	#variable {consume} {true};
-	#alias {{fe|fee|feed}} {control all consume corpse}
+	#macro {\eOS} {control all consume corpse}
 }
 {5}
 
@@ -485,7 +454,7 @@
 
 #ACTION {^ %1shadow fiend%2}
 {
-	#alias {^f$} {#if {&{position}} {getup};get blue soulstone $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
+	#alias {^f$} {#if {&{position}} {getup};get deep blue soulstone from $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
 }
 {5}
 
@@ -1646,6 +1615,12 @@
 }
 {9}
 
+#ACTION {^A beautiful web of blazing %1 fire suddenly appears and wraps around %2, setting {her|him|it} on fire!$}
+{
+	play fireweb
+}
+{9}
+
 #ACTION {^A beautiful web of blazing %1 fire suddenly appears and wraps around you, setting you on fire!$}
 {
 	play fireweb
@@ -1694,6 +1669,12 @@
 #ACTION {^A pale red glow suddenly surrounds %1 hands.}
 {
 	play burning-hands
+}
+{9}
+
+#ACTION {^A raging magical blizzard turns all you see to ice!$}
+{
+	play blizzard
 }
 {9}
 
@@ -1836,6 +1817,12 @@
 }
 {9}
 
+#ACTION {^The air stirs as %1 starts casting a powerful spell...$}
+{
+	play shardstorm
+}
+{9}
+
 #ACTION {^The blade splits down the red lines and shatters, leaving behind oddly bloody fragments that seem to vanish when %1 not looking at them. (worn by you)$}
 {
 	#if {"$boneBlade" == "true"}
@@ -1877,8 +1864,7 @@
 	#if {"%1" == "zombie" || "%1" == "ghoul" || "%1" == "mummy" || "%1" == "vampire"}
 	{
 		#macro {\eOQ} {control %1 protect};
-		#macro {\eOR} {control %1 assist};
-		#macro {\eOS} {control all consume corpse}
+		#macro {\eOR} {control %1 assist}
 	}
 }
 {9}
@@ -1940,18 +1926,11 @@
 #ACTION {^You cast the spell to separate soul from body, and pull %1's essence into a %2 soulstone!$}
 {
 	play soulsteal;
-	#if {"$bot" == "true" || "$autostore" == "true"}
+	#if {"$autostore" == "true"}
 	{
 		#if {"%2" == "pale blue" || "%2" == "deep blue" || "%2" == "green" || "%2" == "purple" || "%2" == "white"}
 		{
 			put soulstone $container
-		};
-		#else
-		{
-			#if {"$autostore" != "true"}
-			{
-				junk stone
-			}
 		}
 	}
 }
@@ -2107,6 +2086,12 @@
 }
 {9}
 
+#ACTION {^You raise your hands and start casting the spell...$}
+{
+	play shardstorm
+}
+{9}
+
 #ACTION {^You receive %1 gold coins for your sacrifice.}
 {
 	split %1
@@ -2130,14 +2115,14 @@
 
 #ACTION {^You stand in the center of a raging blizzard created by your own magic.$}
 {
-	play blizard
+	play blizzard
 }
 {9}
 
 #ACTION {^You struggle to pull %1 essence into a %2 soulstone!$}
 {
 	play soulsteal;
-	#if {"$bot" == "true" || "$autostore" == "true"}
+	#if {"$autostore" == "true"}
 	{
 		put soulstone $container
 	}
@@ -2290,21 +2275,9 @@
 			{
 				harvest components corpse
 			};
-			#if {"$harvestTeeth" == "true" && "$bot" != "true"}
+			#if {"$harvestTeeth" == "true"}
 			{
 				harvest teeth corpse
-			};
-			#if {"$bot" == "true"}
-			{
-				x
-			};
-			#if {"$automove" == "true" && "$bot" == "true"}
-			{
-				wander;
-				#if {"$taunt" == "true"}
-				{
-					taunt
-				}
 			};
 			#if {&{lastReceivedExp}}
 			{
@@ -2371,16 +2344,6 @@
 #ACTION {^{Something REALLY big catches your line, and breaks it!|Your hook gets stuck on something, and you have to break the line.}$}
 {
 	play fish-line-break
-}
-{9}
-
-#ACTION {^{The hideous|One of the|A fisherman's|An old|A strange|A small|A large|An obnoxious|A|An|The} %1 has arrived.$}
-{
-	#if {"$bot" == "true"}
-	{
-		#showme {Attacking %1};
-		k %1
-	}
 }
 {9}
 
@@ -2520,13 +2483,6 @@
 }
 {5}
 
-#ALIAS {automove}
-{
-	#variable {automove} {true};
-	#showme {You will now automove while botting.}
-}
-{5}
-
 #ALIAS {autorefresh}
 {
 	#variable {autorefresh} {true};
@@ -2554,20 +2510,6 @@
 	#variable {autoclay} {false};
 	#variable {autobone} {false};
 	#showme {You will now attempt to make a new wood woad automatically.}
-}
-{5}
-
-#ALIAS {bot}
-{
-	#variable {bot} {true};
-	#showme {You are now botting.}
-}
-{5}
-
-#ALIAS {grbot}
-{
-	#variable {grbot} {true};
-	warn "Awwwww yih! Group botting is now on! (gt :help for info)
 }
 {5}
 
@@ -2619,13 +2561,6 @@
 }
 {5}
 
-#ALIAS {noautomove}
-{
-	#unvariable {automove};
-	#showme {You will not automove while botting.}
-}
-{5}
-
 #ALIAS {noautorefresh}
 {
 	#variable {autorefresh} {false};
@@ -2651,20 +2586,6 @@
 {
 	#variable {autowoad} {false};
 	#showme {Wood Woad will no longer autocast.}
-}
-{5}
-
-#ALIAS {nobot}
-{
-	#variable {bot} {false};
-	#showme {You are no longer botting.}
-}
-{5}
-
-#ALIAS {nogrbot}
-{
-	#unvariable {grbot};
-	warn "Group botting has been disabled.
 }
 {5}
 
