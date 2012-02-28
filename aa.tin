@@ -29,6 +29,13 @@
 }
 {1}
 
+#ACTION {^%s1)  Enter Alter Aeon$}
+{
+	set ctrigger on;
+	set msp on
+}
+{1}
+
 #ACTION {^PANIC!!  You couldn't escape!$}
 {
 	run
@@ -745,7 +752,8 @@
 
 #ACTION {^You turn %1 years old today!$}
 {
-	tweet $name turned %1 years old today! Happy birthday! #AlterAeon
+	tweet $name turned %1 years old today! Happy birthday! #AlterAeon;
+	fbpost $name turned %1 years old today! Happy birthday!
 }
 {5}
 
@@ -753,6 +761,7 @@
 {
 	#math {lostExp} {$lostExp + %1};
 	tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;
+	fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.;
 	play death;
 	#line {gag};
 	experience lost | grep -i you have lost
@@ -1471,7 +1480,8 @@
 
 #ACTION {^ %1You are now level %2 %3, with %4 total levels!$}
 {
-	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon
+	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon;
+	fbpost $name just gained the official rank of level %2 #%3 and now has %4 total levels!
 }
 {9}
 
@@ -1554,7 +1564,8 @@
 
 #ACTION {^(notify) $name%1}
 {
-	tweet $name %1 #AlterAeon
+	tweet $name %1 #AlterAeon;
+	tweet $name %1
 }
 {9}
 
@@ -1759,12 +1770,6 @@
 }
 {9}
 
-#ACTION {^Logging in character '%1'$}
-{
-	#line {gag}set ctrigger on
-}
-{9}
-
 #ACTION {^Neebla encourages you to consider converting to Os.$}
 {
 	#if {1d2 == 2}
@@ -1850,12 +1855,6 @@
 	{
 		c infravision
 	}
-}
-{9}
-
-#ACTION {^Url for this character is:  %1}
-{
-	#line {gag}set ctrigger on
 }
 {9}
 
@@ -2010,7 +2009,7 @@
 {
 	#if {"$soulbind" == "true"}
 	{
-		#send {stand;get blue soulstone $container};
+		#send {stand;get pale blue soulstone from $container};
 		soulbind armor
 	};
 	#if {&{position}}
@@ -2049,13 +2048,8 @@
 
 #ACTION {^You have completed the achievement:%1}
 {
-	tweet $name has completed the achievement %1! #AlterAeon
-}
-{9}
-
-#ACTION {^You have no url set for this character (use 'set url' if wanted)$}
-{
-	#line {gag}set ctrigger on
+	tweet $name has completed the achievement %1! #AlterAeon;
+	fbpost $name has completed the achievement %1!
 }
 {9}
 
@@ -2349,10 +2343,8 @@
 
 #ACTION {kxwt_event quest %1}
 {
-	#if {"$twitter" == "true"}
-	{
-		tweet $name completed quest: %1 #AlterAeon
-	}
+	tweet $name completed quest: %1 #AlterAeon;
+	fbpost $name completed quest: %1
 }
 {9}
 
@@ -2410,13 +2402,12 @@
 }
 {1}
 
-#ALIAS {^1$}
+#ALIAS {^fbpost %1}
 {
-	#send {1};
-	#line {gag};
-	set msp on;
-	#line {gag};
-	set ctrigger on
+	#if {"$facebook" == "true"}
+	{
+		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null}
+	}
 }
 {5}
 
@@ -3051,7 +3042,7 @@
 }
 {9}
 
-#ALIAS {^{rest|si|sit}}
+#ALIAS {^{rest|si|sit}$}
 {
 	#variable {position} {rest};
 	\rest
@@ -3162,6 +3153,13 @@
 }
 {9}
 
+#ALIAS {facebook}
+{
+	#variable {facebook} {true};
+	#showme {Achievements will now be posted to Facebook.}
+}
+{9}
+
 #ALIAS {g}
 {
 	get all corpse
@@ -3188,6 +3186,13 @@
 	#line {gag};
 	#zap {backgroundMusic};
 	#showme {Background music is now off.}
+}
+{9}
+
+#ALIAS {nofacebook}
+{
+	#unvariable {facebook};
+	#showme {Achievements will no longer be posted to Facebook.}
 }
 {9}
 
