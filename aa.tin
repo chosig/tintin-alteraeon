@@ -1,3 +1,15 @@
+#ACTION {^You start following %1.}
+{
+	#variable {groupLeader} {%1}
+}
+{(9)}
+
+#ACTION {^You stop following %1.}
+{
+	#unvariable {groupLeader}
+}
+{(9)}
+
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}
@@ -988,6 +1000,15 @@
 #ACTION {%1 begins casting a dark and profane spell...$}
 {
 	play rotting-sphere-launch
+}
+{9}
+
+#ACTION {%1 begins {her|his|its} climb %2ward.}
+{
+	#if {"%1" == "$groupLeader"}
+	{
+		climb %2
+	}
 }
 {9}
 
