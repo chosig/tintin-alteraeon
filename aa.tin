@@ -1069,9 +1069,16 @@
 }
 {9}
 
-#ACTION {%1 enters a huge portal and disappears.$}
+#ACTION {%1 enters {an|a|the} %2 %3 and disappears.$}
 {
-	play portal
+	#if {"%3" == "portal"}
+	{
+		play portal
+	};
+	#if {"%1" == "$groupLeader"}
+	{
+		enter %3
+	}
 }
 {9}
 
