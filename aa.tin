@@ -75,20 +75,6 @@
 		{
 			/
 		}
-	};
-	#if {"$bot" == "true"}
-	{
-		nobot;
-		flee;
-		#if {"$wordOfRecall" == "true"}
-		{
-			c word of recall;
-			/
-		};
-		#else
-		{
-			/
-		}
 	}
 }
 {1}
@@ -991,7 +977,7 @@
 }
 {9}
 
-#ACTION {%1 arrives from a huge portal.$}
+#ACTION {%1 arrives from%2portal%3}
 {
 	play portal
 }
@@ -1069,15 +1055,25 @@
 }
 {9}
 
-#ACTION {%1 enters {an|a|the} %2 %3 and disappears.$}
+#ACTION {%1 enters {an|a|the} %2 and disappears.$}
 {
-	#if {"%3" == "portal"}
+	#script {isPortal} {echo "%2" | grep -i portal};
+	#if {&{isPortal[1]}}
 	{
 		play portal
 	};
+	#unvariable {isPortal};
 	#if {"%1" == "$groupLeader"}
 	{
-		enter %3
+		#if {&{position}}
+		{
+			#send {stand}
+		};
+		#regexp {%2} {{.*} %*} {enter &2};
+		#if {&{position}}
+		{
+			$position
+		}
 	}
 }
 {9}
@@ -1502,7 +1498,7 @@
 
 #ACTION {^       You receive a combat point!$}
 {
-	gt I am Cornholio! I got CP for my bunghole!
+	#script {shuf -e -n 1 "gt I am Cornholio! I got CP for my bunghole!" "gt cp!" "gt I am Cornholio! My people they have much CP!" "gt Een thees battle, there was CP for my bunghole!"}
 }
 {9}
 
@@ -1955,7 +1951,7 @@
 	play soulsteal;
 	#if {"$autostore" == "true"}
 	{
-		#if {"%2" == "pale blue" || "%2" == "deep blue" || "%2" == "green" || "%2" == "purple" || "%2" == "white"}
+		#if {"%2" == "pale blue" || "%2" == "deep blue" || "%2" == "purple" || "%2" == "white" || "%2" == "black" || "%2" == "clear"}
 		{
 			put soulstone $container
 		}
@@ -3024,6 +3020,12 @@
 }
 {9}
 
+#ALIAS {^{forg|forge} %1}
+{
+	c soulforge %1 2.%1
+}
+{9}
+
 #ALIAS {^{ib|iceb|icebo|icebol|icebolt}$}
 {
 	#if {"$icebolt" == "true"}
@@ -3334,6 +3336,14 @@
 #CONFIG           {VERBATIM CHAR}  {\}
 #CONFIG           {VERBOSE}  {OFF}
 #CONFIG           {WORDWRAP}  {ON}
+#GAG              {%1 asks you, 'Have you heard of the Jehovas Witnesses?  May I come in?!! DO YOU WANT A PAMPHLET??!!!$}
+#GAG              {%1 looks about suspiciously and says, 'multiplaying?  I have no other characters!!! Leave me alone!!! Get away!!!$}
+#GAG              {%1 tells you, 'Are you threatening me?!! I need cappuccino for my bunghole!!!' and then proceeds to wander off.$}
+#GAG              {%1 yells, 'My name is Inigo Cappuchino!!! You keel my father! prepare to die!!!$}
+#GAG              {%1 {begins|begin} singing the 'lumberjack' song.  A dozen canadian mounties abruptly appear and form a chorus.$}
+#GAG              {%1 {hollers|holler}, 'I dont want to go on the cart!!! I feel fine!! I feel.... HAPPEEEEE!!!!$}
+#GAG              {%1 {runs|run} about the room and shouts, 'TP!!! I need TP for my bunghole!!!'$}
+#GAG              {%1 {yells|yell}, 'Nobody expects the SPANISH INQUISITION!!!  Bring forth..... the COMFY CHAIR!!!!!$}
 #GAG              {A ball of light flies idly in circles around your head.}
 #GAG              {You don't see any of your group members here to split the gold with}
 #GAG              {You don't see anything by that name here.}
@@ -3351,11 +3361,17 @@
 #GAG              {^None of your minions seem hungry at the moment.$}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
+#GAG              {^You begin to feel very inadequate and start thinking about trees.$}
 #GAG              {^You can only blood sacrifice corpses with blood in them.$}
+#GAG              {^You convince yourself that you are being hunted....$}
 #GAG              {^You didn't find anything by that name.}
+#GAG              {^You discover the meaning of life, just as someone knocks you out with a brick.$}
 #GAG              {^You emote: %1 grabs a ball of light and quickly stuffs it down {his pants|her shirt}.$}
 #GAG              {^You emote: %1 says, 'Dude check it out, they glow!'$}
+#GAG              {^You find a copy of the 'WatchTower' and your life is Changed!!$}
 #GAG              {^You haven't had a recent victory worth shouting about.$}
+#GAG              {^You run about the room shouting something about 'TP' and 'bungholes'.$}
+#GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
 #MACRO {\e,}

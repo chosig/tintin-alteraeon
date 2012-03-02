@@ -75,6 +75,7 @@ cfb or cfireball channelcast fireball
 cfb or cfireball target channelcast fireball on a specific target
 ff cast firefield
 cff channelcast firefield
+forge stone: This will cast soulforge on 2 stones in your inventory. You can sort of control it, for example forge blue will forge 2 blue soulstones. If you have a blue and  a purple, you should use forge soulstone.
 hands cast all available hand spells on yourself burning hands, shocking grasp, sacred and sickening touch
 hands target cast all available hand spells on someone else burning hands, shocking grasp, sacred and sickening touch
 icebolt and ib cast icebolt
