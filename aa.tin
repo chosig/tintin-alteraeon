@@ -3520,5 +3520,5 @@
 #VARIABLE         {name}  {Name}
 #VARIABLE         {password}  {password}
 #VARIABLE         {soundCommand}  {ogg123 -q}
-#VARIABLE         {speechRate}  {80}
+#VARIABLE         {speechRate}  {75}
 #VARIABLE         {woadMaterial}  {deanimate}
