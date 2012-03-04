@@ -3069,6 +3069,7 @@
 
 #ALIAS {^{quit|logoff}$}
 {
+	follow self;
 	#class {gameData} {write} {game_data.tin};
 	#class {gameData} {close};
 	#line {gag};
