@@ -35,12 +35,6 @@
 }
 {1}
 
-#ACTION {%1's %2 $rescue{!|.}$}
-{
-	r $rescue
-}
-{1}
-
 #ACTION {^%s1)  Enter Alter Aeon$}
 {
 	set ctrigger on;
@@ -93,7 +87,7 @@
 
 #ACTION {^You fail the rescue!}
 {
-	r $rescue
+	#send {!rescue}
 }
 {1}
 
@@ -2397,12 +2391,6 @@
 }
 {1}
 
-#ALIAS {r}
-{
-	rescue $rescue
-}
-{1}
-
 #ALIAS {{c|ca|cas|cast} %1}
 {
 	#variable {lastSpell} {%0};
@@ -2416,13 +2404,6 @@
 	{
 		#send {cast %1}
 	}
-}
-{1}
-
-#ALIAS {{r|re|res|resc|rescu|rescue} %1}
-{
-	#variable {rescue} {%1};
-	\rescue %1
 }
 {1}
 
