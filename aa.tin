@@ -1,3 +1,6 @@
+#event {SESSION CONNECTED} {#read {name.tin};#class {gameData} {read} {game_data.tin};#class {gameData} {open} {game_data.tin}}
+#alias {^{scro|scrol|scroll} %1} {#variable {battleScroll} {%1};#showme {You can now use alt+backslash to use get the %1 from your container and use it.}}
+#macro {\e\} {get $battleScroll $container;use $battleScroll}
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -3066,6 +3069,8 @@
 
 #ALIAS {^{quit|logoff}$}
 {
+	#class {gameData} {write} {game_data.tin};
+	#class {gameData} {close};
 	#line {gag};
 	set ctrigger off;
 	\quit
@@ -3511,14 +3516,3 @@
 #PATHDIR          {w}  {e}  {8}
 #SUBSTITUTE       {%*}  { %0}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
-#VARIABLE         {boneMaterial}  {boneguardian}
-#VARIABLE         {brewContainer}  {bowl}
-#VARIABLE         {combatsound}  {true}
-#VARIABLE         {harmSpell}  {cause light wounds}
-#VARIABLE         {healSpell}  {cure light wounds}
-#VARIABLE         {metalMaterial}  {metalconstruct}
-#VARIABLE         {name}  {Name}
-#VARIABLE         {password}  {password}
-#VARIABLE         {soundCommand}  {ogg123 -q}
-#VARIABLE         {speechRate}  {75}
-#VARIABLE         {woadMaterial}  {deanimate}

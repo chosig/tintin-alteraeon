@@ -1,0 +1,9 @@
+#VARIABLE         {boneMaterial}  {boneguardian}
+#VARIABLE         {brewContainer}  {bowl}
+#VARIABLE         {combatsound}  {true}
+#VARIABLE         {harmSpell}  {cause light wounds}
+#VARIABLE         {healSpell}  {cure light wounds}
+#VARIABLE         {metalMaterial}  {metalconstruct}
+#VARIABLE         {soundCommand}  {ogg123 -q}
+#VARIABLE         {speechRate}  {80}
+#VARIABLE         {woadMaterial}  {deanimate}
