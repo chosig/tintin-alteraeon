@@ -1,6 +1,3 @@
-#event {SESSION CONNECTED} {#read {name.tin};#class {gameData} {read} {game_data.tin};#class {gameData} {open} {game_data.tin}}
-#alias {^{scro|scrol|scroll} %1} {#variable {battleScroll} {%1};#showme {You can now use alt+backslash to use get the %1 from your container and use it.}}
-#macro {\e\} {get $battleScroll $container;use $battleScroll}
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -2452,6 +2449,13 @@
 }
 {5}
 
+#ALIAS {^{scro|scrol|scroll} %1}
+{
+	#variable {battleScroll} {%1};
+	#showme {You can now use alt+backslash to use get the %1 from your container and use it.}
+}
+{5}
+
 #ALIAS {^{t|th|thr|thro|throw} %1 %2}
 {
 	#variable {throwWeapon} {%1};
@@ -3342,6 +3346,13 @@
 #CONFIG           {VERBATIM CHAR}  {\}
 #CONFIG           {VERBOSE}  {OFF}
 #CONFIG           {WORDWRAP}  {ON}
+#EVENT {SESSION CONNECTED}
+{
+	#read {name.tin};
+	#class {gameData} {read} {game_data.tin};
+	#class {gameData} {open} {game_data.tin}
+}
+
 #GAG              {%1 asks you, 'Have you heard of the Jehovas Witnesses?  May I come in?!! DO YOU WANT A PAMPHLET??!!!$}
 #GAG              {%1 looks about suspiciously and says, 'multiplaying?  I have no other characters!!! Leave me alone!!! Get away!!!$}
 #GAG              {%1 tells you, 'Are you threatening me?!! I need cappuccino for my bunghole!!!' and then proceeds to wander off.$}
@@ -3363,8 +3374,11 @@
 #GAG              {^#SESSION 'backgroundMusic' DIED.$}
 #GAG              {^$}
 #GAG              {^(You can only split gold with players, not minions.)$}
+#GAG              {^Clantell replay$}
 #GAG              {^Looks like the corpse of %1 is too damaged for you to use.$}
 #GAG              {^None of your minions seem hungry at the moment.$}
+#GAG              {^Recent tells:$}
+#GAG              {^Sending activity for channel 'auction'$}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
 #GAG              {^You begin to feel very inadequate and start thinking about trees.$}
@@ -3393,7 +3407,14 @@
 #MACRO {\e0}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 10 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 10 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 10 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3401,7 +3422,14 @@
 #MACRO {\e1}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 1 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 1 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 1 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3409,7 +3437,14 @@
 #MACRO {\e2}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 2 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 2 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 2 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3417,7 +3452,14 @@
 #MACRO {\e3}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 3 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 3 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 3 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3425,7 +3467,14 @@
 #MACRO {\e4}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 4 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 4 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 4 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3433,7 +3482,14 @@
 #MACRO {\e5}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 5 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 5 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 5 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3441,7 +3497,14 @@
 #MACRO {\e6}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 6 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 6 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 6 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3449,7 +3512,14 @@
 #MACRO {\e7}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 7 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 7 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 7 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3457,7 +3527,14 @@
 #MACRO {\e8}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 8 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 8 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 8 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
 }
@@ -3465,9 +3542,48 @@
 #MACRO {\e9}
 {
 	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	replay 9 | head -2;
+	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
+	{
+		replay 9 | head -2
+	};
+	#else
+	{
+		replay $channelBuffer[$channelBufferIndex] 9 | head -2
+	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
+}
+
+#MACRO {\e[1;3C}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 3}
+	{
+		#variable {channelBufferIndex} {3}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex + 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
+
+#MACRO {\e[1;3D}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex - 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
+
+#MACRO {\e\}
+{
+	get $battleScroll $container;
+	use $battleScroll
 }
 
 #MACRO {\ei}
@@ -3517,3 +3633,4 @@
 #PATHDIR          {w}  {e}  {8}
 #SUBSTITUTE       {%*}  { %0}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
+#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{tells}}

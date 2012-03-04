@@ -48,6 +48,7 @@ alt+l east
 alt +, south
 alt+m southwest
 alt_. southeast
+alt+left or right arrow: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
 autoclay cast clay man automatically if your current clay man dies
 autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
 autowoad automatically try to create a new wood woad if the current woad dies.
