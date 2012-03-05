@@ -87,7 +87,7 @@
 
 #ACTION {^You fail the rescue!}
 {
-	#send {!rescue}
+	\!res
 }
 {1}
 
