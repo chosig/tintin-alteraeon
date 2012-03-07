@@ -3092,7 +3092,7 @@ replay | grep -i tells the group, | tail %3 | head -1
 	#class {gameData} {close};
 	#line {gag};
 	set ctrigger off;
-	#\quit
+	\quit
 }
 {9}
 
@@ -3363,8 +3363,8 @@ replay | grep -i tells the group, | tail %3 | head -1
 #EVENT {SESSION CONNECTED}
 {
 	#read {name.tin};
-	#class {gameData} {read} {game_data.tin};
-	#class {gameData} {open} {game_data.tin}
+	#class {gameData} {open} {game_data.tin};
+	#class {gameData} {read} {game_data.tin}
 }
 
 #GAG              {%1 asks you, 'Have you heard of the Jehovas Witnesses?  May I come in?!! DO YOU WANT A PAMPHLET??!!!$}
