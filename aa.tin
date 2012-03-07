@@ -1,3 +1,25 @@
+#alias {display_channel %1 %2 %3}
+{
+#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
+#if {%2 <= 0}
+{
+replay %3 | head -2
+};
+#elseif {%2 > 0 && %2 < 3 || %2 == 5}
+{
+replay %1 %3 | head -2
+};
+#elseif {%2 == 3}
+{
+replay | grep -i (friend) | tail %3 | head -1
+};
+#else
+{
+replay | grep -i tells the group, | tail %3 | head -1
+};
+	#variable {replaying} {true};
+	#delay {2} {#unvariable {replaying}}
+}
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -901,6 +923,12 @@
 }
 {8}
 
+#ACTION {^You now have %1 combat points you can spend.$}
+{
+	#variable {cp} {%1}
+}
+{8}
+
 #ACTION {^Your force shield slowly dissipates.$}
 {
 	#if {"$shield" == "true"}
@@ -1492,7 +1520,7 @@
 
 #ACTION {^       You receive a combat point!$}
 {
-	#script {shuf -e -n 1 "gt I am Cornholio! I got CP for my bunghole!" "gt cp!" "gt I am Cornholio! My people they have much CP!" "gt Een thees battle, there was CP for my bunghole!"}
+	#script {echo -n "gt "; shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!"}
 }
 {9}
 
@@ -2177,6 +2205,12 @@
 #ACTION {^You try to push beyond the boundries of your endurance, but nothing happens!$}
 {
 	second wind
+}
+{9}
+
+#ACTION {^You try, but the blood fever remains just out of your reach!$}
+{
+	berserk
 }
 {9}
 
@@ -3054,12 +3088,11 @@
 
 #ALIAS {^{quit|logoff}$}
 {
-	follow self;
-	#class {gameData} {write} {game_data.tin};
+#class {gameData} {write} {game_data.tin};
 	#class {gameData} {close};
 	#line {gag};
 	set ctrigger off;
-	\quit
+	#\quit
 }
 {9}
 
@@ -3387,159 +3420,59 @@
 
 #MACRO {\e0}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 10 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 10 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 10;
 }
 
 #MACRO {\e1}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 1 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 1 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 1;
 }
 
 #MACRO {\e2}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 2 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 2 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
-}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 2;
+	}
 
 #MACRO {\e3}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 3 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 3 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 3;
 }
 
 #MACRO {\e4}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 4 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 4 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 4;
 }
 
 #MACRO {\e5}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 5 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 5 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 5;
 }
 
 #MACRO {\e6}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 6 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 6 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 6;
 }
 
 #MACRO {\e7}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 7 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 7 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 7;
 }
 
 #MACRO {\e8}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 8 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 8 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 8;
 }
 
 #MACRO {\e9}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
-	#if {!&{channelBufferIndex} || $channelBufferIndex == 0}
-	{
-		replay 9 | head -2
-	};
-	#else
-	{
-		replay $channelBuffer[$channelBufferIndex] 9 | head -2
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
+	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 9;
 }
 
 #MACRO {\e[1;3C}
 {
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 3}
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
 	{
-		#variable {channelBufferIndex} {3}
+		#variable {channelBufferIndex} {5}
 	};
 	#else
 	{
@@ -3614,4 +3547,4 @@
 #PATHDIR          {w}  {e}  {8}
 #SUBSTITUTE       {%*}  { %0}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
-#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{tells}}
+#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{friends}{4}{grouptells}{5}{tells}}
