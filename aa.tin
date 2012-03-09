@@ -832,6 +832,22 @@
 }
 {5}
 
+#ACTION {^Your charmed companions or minions:$}
+{
+	#variable {controlPoints} {0}
+}
+{7}
+
+#ACTION {^silent_Your levels are:  Ma %1  Cl %2  Th %3  Wa %4  Nc %5}
+{
+	#variable {mageLevel} {%1};
+	#variable {clericLevel} {%2};
+	#variable {thiefLevel} {%3};
+	#variable {warriorLevel} {%4};
+	#variable {necromancerLevel} {%5}
+}
+{7}
+
 #ACTION {%1 {conjures|conjure} and {throws|throw} a %2 fireball at %3!$}
 {
 	play fireball
@@ -877,6 +893,84 @@
 	{
 		disarm
 	}
+}
+{8}
+
+#ACTION {^ %sA shadow fiend$}
+{
+	#math {controlPoints} {$controlPoints + 15}
+}
+{8}
+
+#ACTION {^ %sA skeletal mage$}
+{
+	#math {controlPoints} {$controlPoints + 5}
+}
+{8}
+
+#ACTION {^ %sA skeleton$}
+{
+	#math {controlPoints} {$controlPoints + 3}
+}
+{8}
+
+#ACTION {^ %sA {bone|clay|flesh|metal|wood} {beast|construct|guardian|man|woad}}
+{
+	#math {controlPoints} {$controlPoints + 1}
+}
+{8}
+
+#ACTION {^(charmed)%sA black, horned demon$}
+{
+	#math {controlPoints} {$controlPoints + 2}
+}
+{8}
+
+#ACTION {^(charmed)%sA ghoul$}
+{
+	#math {controlPoints} {$controlPoints + 13}
+}
+{8}
+
+#ACTION {^(charmed)%sA mummy$}
+{
+	#math {controlPoints} {$controlPoints + 19}
+}
+{8}
+
+#ACTION {^(charmed)%sA vampire$}
+{
+	#math {controlPoints} {$controlPoints + 24}
+}
+{8}
+
+#ACTION {^(charmed)%sA zombie$}
+{
+	#math {controlPoints} {$controlPoints + 9}
+}
+{8}
+
+#ACTION {^(charmed)%sAn azure blue demon$}
+{
+	#math {controlPoints} {$controlPoints + 2}
+}
+{8}
+
+#ACTION {^(charmed)%sAn ebony scaled demon$}
+{
+	#math {controlPoints} {$controlPoints + 2}
+}
+{8}
+
+#ACTION {^(charmed)%sAn energetic green demon$}
+{
+	#math {controlPoints} {$controlPoints + 2}
+}
+{8}
+
+#ACTION {^(charmed)%sa winged red imp$}
+{
+	#math {controlPoints} {$controlPoints + 2}
 }
 {8}
 
@@ -2092,6 +2186,15 @@
 }
 {9}
 
+#ACTION {^You practice %1(%2 percent gained).$}
+{
+	#gag {^  %*};
+	spell %1;
+	skill %1;
+	#ungag {^  %*}
+}
+{9}
+
 #ACTION {^You quickly place a hand on the inside of a bone shield to bind it to you.$}
 {
 	wear shield
@@ -2439,6 +2542,14 @@
 {
 	#variable {pkMode} {true};
 	#showme {PK mode activated.}
+}
+{5}
+
+#ALIAS {^{mi|min|mini|minio|minion|minions}$}
+{
+	score | grep -i Your levels are | prefix silent_;
+	#send {minions};
+	#delay {0.5} {dp}
 }
 {5}
 
@@ -2856,6 +2967,24 @@
 {
 	#variable {combatsound} {true};
 	#showme {Combat sound enabled.}
+}
+{9}
+
+#ALIAS {^dp$}
+{
+	#math {i} {$necromancerLevel - $controlPoints};
+	#if {$i > 1}
+	{
+		#showme {You have $i control points remaining.}
+	};
+	#elseif {$i == 1}
+	{
+		#showme {You have 1 control point remaining.}
+	};
+	#else
+	{
+		#showme {You have no control points remaining.}
+	}
 }
 {9}
 
@@ -3409,6 +3538,7 @@
 #GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
+#GAG              {^silent_%*}
 #MACRO {\e,}
 {
 	south
