@@ -1,4 +1,3 @@
-#act {(friend) %1 posted: %*} {#if {"%1" == "$name"} {play sendmsg};#else {play msg}} {9}
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -1573,6 +1572,19 @@
 }
 {9}
 
+#ACTION {(friend) %1 posted: %*}
+{
+	#if {"%1" == "$name"}
+	{
+		play sendmsg
+	};
+	#else
+	{
+		play msg
+	}
+}
+{9}
+
 #ACTION {Your flail %1 %2{.|!}$}
 {
 	#if {"%1" != "misses"}
@@ -2172,6 +2184,12 @@
 }
 {9}
 
+#ACTION {^You hold%*}
+{
+	show stats | prefix silent_
+}
+{9}
+
 #ACTION {^You let out a mighty roar as the blood fever takes hold of you!$}
 {
 	play berserk
@@ -2241,6 +2259,12 @@
 }
 {9}
 
+#ACTION {^You stop using%*}
+{
+	show stats | prefix silent_
+}
+{9}
+
 #ACTION {^You struggle to pull %1 essence into a %2 soulstone!$}
 {
 	play soulsteal;
@@ -2299,6 +2323,12 @@
 #ACTION {^You use your faith in %1 as a shield to protect you.$}
 {
 	play faith-shield
+}
+{9}
+
+#ACTION {^You wear%*}
+{
+	show stats | prefix silent_
 }
 {9}
 
@@ -2373,6 +2403,12 @@
 #ACTION {^Your skin tingles as you pass through the magical barrier.$}
 {
 	play ff-barrier
+}
+{9}
+
+#ACTION {^Your {chr|con|dex|int|str|wis} increases%*}
+{
+	show stats | prefix silent_
 }
 {9}
 
@@ -2454,6 +2490,47 @@
 	{
 		c bone armor $name
 	}
+}
+{9}
+
+#ACTION {^silent_You have %1/%2 str, %3/%4 int, %5/%6 wis, %7/%8 dex, %9/%10 con, and %11/%12 chr.$}
+{
+	#if {&{strBonus} && $strBonus != %1}
+	{
+		#showme {You now have %1 of %2 strength.}
+	};
+	#if {&{intBonus} && $intBonus != %3}
+	{
+		#showme {You now have %3 of %4 intelligence.}
+	};
+	#if {&{wisBonus} && $wisBonus != %5}
+	{
+		#showme {You now have %5 of %6 wisdom.}
+	};
+	#if {&{dexBonus} && $dexBonus != %7}
+	{
+		#showme {You now have %7 of %8 dexterity.}
+	};
+	#if {&{conBonus} && $conBonus != %9}
+	{
+		#showme {You now have %9 of %10 constitution.}
+	};
+	#if {&{chrBonus} && $chrBonus != %11}
+	{
+		#showme {You now have %11 of %12 charisma.}
+	};
+	#variable {strBonus} {%1};
+	#variable {str} {%2};
+	#variable {intBonus} {%3};
+	#variable {int} {%4};
+	#variable {wisBonus} {%5};
+	#variable {wis} {%6};
+	#variable {dexBonus} {%7};
+	#variable {dex} {%8};
+	#variable {conBonus} {%9};
+	#variable {con} {%10};
+	#variable {chrBonus} {%11};
+	#variable {chr} {%12}
 }
 {9}
 
@@ -3208,7 +3285,8 @@
 	#cr;
 	#cr;
 	#cr;
-	#cr
+	#cr;
+	show stats | prefix silent_
 }
 {9}
 
