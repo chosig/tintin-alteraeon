@@ -2171,7 +2171,7 @@
 }
 {9}
 
-#ACTION {^You have %1 new mudmail messages!$}
+#ACTION {^You have %1 new mudmail {messages|message}!$}
 {
 	play new-mail
 }
