@@ -2186,7 +2186,8 @@
 
 #ACTION {^You hold%*}
 {
-	show stats | prefix silent_
+	show stats | prefix silent_;
+	show clev | prefix silent_
 }
 {9}
 
@@ -2261,7 +2262,8 @@
 
 #ACTION {^You stop using%*}
 {
-	show stats | prefix silent_
+	show stats | prefix silent_;
+	show clev | prefix silent_
 }
 {9}
 
@@ -2328,7 +2330,15 @@
 
 #ACTION {^You wear%*}
 {
-	show stats | prefix silent_
+	show stats | prefix silent_;
+	show clev | prefix silent_
+}
+{9}
+
+#ACTION {^You wield%*}
+{
+	show stats | prefix silent_;
+	show clev | prefix silent_
 }
 {9}
 
@@ -2490,6 +2500,26 @@
 	{
 		c bone armor $name
 	}
+}
+{9}
+
+#ACTION {^silent_You are casting at level %1 mage, level %2 cleric, level %3 necromancer%*}
+{
+	#if {&{mageClev} && $mageClev != %1}
+	{
+		#showme {You are now casting at level %1 mage.}
+	};
+	#if {&{clericClev} && $clericClev != %2}
+	{
+		#showme {You are now casting at level %2 cleric.}
+	};
+	#if {&{necromancerClev} && $necromancerClev != %3}
+	{
+		#showme {You are now casting at level %3 necromancer.}
+	};
+	#variable {mageClev} {%1};
+	#variable {clericClev} {%2};
+	#variable {necromancerClev} {%3}
 }
 {9}
 
@@ -3286,7 +3316,8 @@
 	#cr;
 	#cr;
 	#cr;
-	show stats | prefix silent_
+	show stats | prefix silent_;
+	show clev | prefix silent_
 }
 {9}
 
