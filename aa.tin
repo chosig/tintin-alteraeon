@@ -704,7 +704,7 @@
 
 #ACTION {^You have {quite a few|big nasty} {wounds and scratches|wounds}.$}
 {
-	#if {"$bot" == "true" || "$autoheal" == "true"}
+	#if {"$autoheal" == "true"}
 	{
 		h
 	};
