@@ -8,7 +8,7 @@ License LGPL
 NOTES:
 If you turn off line invertion, tintin++ seems to work better - fewer blank lines etc. To do so, in the game type invert and you should get the message that line invertion mode has been disabled.
 Quest code works great now. The code now uses the newly added kxwt_event quest feature. In short, this means quests are posted right away, no odd hacks needed.
-Finally switched over to ogg123for sounds, so now the requirement of vorbis-tools is more necessary. If for some reason you can not use vorbis tools though just change the soundCommand variable in aa.tin.
+Sound now uses sox. Although you can still set a new player in sound variables it will most likely break the trigger pack. Sox is available for pretty much every distro though so there shouldn't be any problems.
 To counter the bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
 If you don't need this and want to get rid of it, delete the line:
 #SUBSTITUTE       {%*}  { %0}  {1}
@@ -36,6 +36,9 @@ You can have achievements like backstabs, levels, and achievements posted to Twi
 
 Commands:
 In most cases, for longer words, you can type part of the command. The exception to this is auto stuff like autoclay, autobone, autofiend, autostore, etc - You will have to experiment because the  commands start where mud commands end. For example, if you type fire, you will connect to the fire channel. If, however, you type fireb all the way through fireball, you will cast the spell fireball if you have it.
+F$: Controls all minions to consume any available corpse.
+F7: Sound volume down.
+F8: Sound volume up.
 alt+1 through alt+0 play last 1 through tenth message.
 alt+w makes a wood woad if you have the spell and woad material is in your container.
 alt+b makes a bone guardian if the requirements are met.

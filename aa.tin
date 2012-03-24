@@ -702,6 +702,13 @@
 }
 {5}
 
+#ACTION {^You have achieved the rank of '%1' in %2!$}
+{
+	tweet $name has achieved the rank of '%1' in %2!;
+	fbpost $name has achieved the rank of '%1' in %2!
+}
+{5}
+
 #ACTION {^You have {quite a few|big nasty} {wounds and scratches|wounds}.$}
 {
 	#if {"$autoheal" == "true"}
@@ -1624,7 +1631,25 @@
 
 #ACTION {^!!SOUND(move/%1)$}
 {
-	play footstep
+	#switch {"%1"}
+	{
+		#case {"waypoint.wav"}
+		{
+			play waypoint-travel
+		};
+		#case {"recall%d.wav"}
+		{
+			play recall
+		};
+		#case {"water%d.wav"}
+		{
+			play water-move
+		};
+		#default
+		{
+			play footstep
+		}
+	}
 }
 {9}
 
@@ -2026,12 +2051,6 @@
 		}
 	};
 	play pretty-hurt
-}
-{9}
-
-#ACTION {^You are surrounded by a flickering blue glow.  When it fades, you find yourself elsewhere...$}
-{
-	play waypoint-travel
 }
 {9}
 
@@ -3506,7 +3525,14 @@
 
 #ALIAS {play %1}
 {
-	#system {$soundCommand "$(shuf -n 1 -e sounds/%1*ogg)"&}
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*ogg)" &> /dev/null &}
+	};
+	#else
+	{
+		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*ogg)" gain $volume &> /dev/null &}
+	}
 }
 {9}
 
@@ -3708,6 +3734,32 @@
 #MACRO {\e9}
 {
 	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 9
+}
+
+#MACRO {\e[18~}
+{
+	#if {$volume <= -40}
+	{
+		#variable {volume} {-40}
+	};
+	#else
+	{
+		#math {volume} {$volume - 2}
+	};
+	play new-volume
+}
+
+#MACRO {\e[19~}
+{
+	#if {$volume >= 0}
+	{
+		#variable {volume} {0}
+	};
+	#else
+	{
+		#math {volume} {$volume + 2}
+	};
+	play new-volume
 }
 
 #MACRO {\e[1;3C}

@@ -1,9 +1,21 @@
+#CLASS {gameData} OPEN
+
 #VARIABLE         {boneMaterial}  {boneguardian}
 #VARIABLE         {brewContainer}  {bowl}
 #VARIABLE         {combatsound}  {true}
+#VARIABLE         {currentHp}  {601}
+#VARIABLE         {currentMana}  {139}
+#VARIABLE         {currentMv}  {320}
+#VARIABLE         {fighting}  {kxwt_fighting -1}
 #VARIABLE         {harmSpell}  {cause light wounds}
 #VARIABLE         {healSpell}  {cure light wounds}
+#VARIABLE         {maxHp}  {601}
+#VARIABLE         {maxMana}  {139}
+#VARIABLE         {maxMv}  {461}
 #VARIABLE         {metalMaterial}  {metalconstruct}
-#VARIABLE         {soundCommand}  {ogg123 -q}
+#VARIABLE         {soundCommand}  {play -q}
 #VARIABLE         {speechRate}  {80}
+#VARIABLE         {volume}  {0}
 #VARIABLE         {woadMaterial}  {deanimate}
+
+#CLASS {gameData} CLOSE
