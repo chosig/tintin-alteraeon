@@ -2497,11 +2497,11 @@
 	{
 		#if {%1 >= 3 && %1 <= 6}
 		{
-			#ticker {ambiance} {ambPlay wilderness} {10d2}
+			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay wilderness};#unvariable {ambNumber}} {2d10}
 		};
 		#elseif {%1 == 2}
 		{
-			#ticker {ambiance} {ambPlay town} {10d2}
+			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay town};#unvariable {ambNumber}} {2d10}
 		};
 		#else
 		{
