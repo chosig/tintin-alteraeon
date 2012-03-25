@@ -1629,6 +1629,12 @@
 }
 {9}
 
+#ACTION {^!!SOUND(misc/liquidempty.wav)$}
+{
+	play empty-liquid
+}
+{9}
+
 #ACTION {^!!SOUND(move/%1)$}
 {
 	#switch {"%1"}
@@ -2489,25 +2495,17 @@
 {
 	#if {"$bgmusic" == "true"}
 	{
-		#if {"$terrain" != "%1"}
+		#if {%1 >= 3 && %1 <= 6}
 		{
-			#if {&{terrain}}
-			{
-				#if {&{musicSession}}
-				{
-					#line {gag};
-					#zap {backgroundMusic};
-					#unvariable {musicSession}
-				}
-			};
-			#variable {terrain} {%1};
-			#script {fileName} {if [ -f sounds/terrain-%1.ogg ] ; then echo "true";fi};
-			#if {&{fileName[1]}}
-			{
-				#gts {#run {backgroundMusic} {ogg123 -r -q sounds/terrain-%1.ogg}};
-				#session {1};
-				#variable {musicSession} {true}
-			}
+			#ticker {ambiance} {ambPlay wilderness} {10d2}
+		};
+		#elseif {%1 == 2}
+		{
+			#ticker {ambiance} {ambPlay town} {10d2}
+		};
+		#else
+		{
+			#unticker {ambiance}
 		}
 	}
 }
@@ -2691,6 +2689,22 @@
 {
 	#variable {throwWeapon} {%1};
 	#send {throw %1 %2;get %1}
+}
+{5}
+
+#ALIAS {ambPlay %1}
+{
+	#script {ambFile} {shuf -n 1 -e $(ls sounds/ambiance/%1/*)};
+	#math {lChannel} {1d5};
+	#math {rChannel} {1d5};
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -q ${ambFile[1]} remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -q ${ambFile[1]} gain $volume remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
+	}
 }
 {5}
 
@@ -3734,6 +3748,16 @@
 #MACRO {\e9}
 {
 	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 9
+}
+
+#MACRO {\e<}
+{
+	down
+}
+
+#MACRO {\eI}
+{
+	up
 }
 
 #MACRO {\e[18~}
