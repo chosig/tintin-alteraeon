@@ -1,3 +1,17 @@
+#alias {autorecast}
+{
+#variable {autorecast} {true};
+#showme {Some spells will now automatically recast when they drop}
+}
+{9}
+
+#alias {noautorecast}
+{
+#unvariable {autorecast};
+#showme {Spells will no longer automatically recast.}
+}
+{9}
+
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -559,7 +573,7 @@
 
 #ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
 {
-	#if {"$boneShield" == "true"}
+	#if {"$boneShield" == "true" && "$autorecast" == "true"}
 	{
 		c bone shield
 	}
@@ -983,7 +997,7 @@
 
 #ACTION {^The air smells cleaner, and you realize your rancid flesh spell has expired.$}
 {
-	#if {"$rancidFlesh" == "true"}
+	#if {"$rancidFlesh" == "true" && "$autorecast" == "true"}
 	{
 		c rancid flesh
 	}
@@ -1010,7 +1024,7 @@
 
 #ACTION {^Your force shield slowly dissipates.$}
 {
-	#if {"$shield" == "true"}
+	#if {"$shield" == "true" && "$autorecast" == "true"}
 	{
 		c shield
 	}
@@ -1019,7 +1033,7 @@
 
 #ACTION {^Your muscles deflate as your strength spell wears out.}
 {
-	#if {"$strength" == "true"}
+	#if {"$strength" == "true" && "$autorecast" == "true"}
 	{
 		c strength;
 		c strength;
@@ -1832,7 +1846,7 @@
 
 #ACTION {^A magical hammer disappears in a blinding flash of light! (worn by you)}
 {
-	#if {"$spiritHammer" == "true"}
+	#if {"$spiritHammer" == "true" && "$autorecast" == "true"}
 	{
 		c spirit
 	}
@@ -2013,7 +2027,7 @@
 
 #ACTION {^The red in your vision disappears.$}
 {
-	#if {"$infravision" == "true"}
+	#if {"$infravision" == "true" && "$autorecast" == "true"}
 	{
 		c infravision
 	}
@@ -2130,7 +2144,7 @@
 
 #ACTION {^You feel a slight tingle and you feel somehow abandoned.}
 {
-	#if {"$bless" == "true"}
+	#if {"$bless" == "true" && "$autorecast" == "true"}
 	{
 		c bless
 	}
@@ -2145,7 +2159,7 @@
 
 #ACTION {^You feel less protected from evil.$}
 {
-	#if {"$protectionFromEvil" == "true"}
+	#if {"$protectionFromEvil" == "true" && "$autorecast" == "true"}
 	{
 		cast protection from evil
 	}
@@ -2154,7 +2168,7 @@
 
 #ACTION {^You feel less protected.}
 {
-	#if {"$armor" == "true"}
+	#if {"$armor" == "true" && "$autorecast" == "true"}
 	{
 		c armor
 	}
@@ -2177,7 +2191,7 @@
 
 #ACTION {^You feel the pent up vengeance in your blood dissipate.$}
 {
-	#if {"$dyingBreath" == "true"}
+	#if {"$dyingBreath" == "true" && "$autorecast" == "true"}
 	{
 		c dying breath
 	}
@@ -2224,7 +2238,7 @@
 
 #ACTION {^You notice that the foul taste in your mouth seems to be gone.$}
 {
-	#if {"$foulBlood" == "true"}
+	#if {"$foulBlood" == "true" && "$autorecast" == "true"}
 	{
 		c foulblood
 	}
@@ -2266,7 +2280,7 @@
 
 #ACTION {^You slowly float to the ground.$}
 {
-	#if {"$fly" == "true"}
+	#if {"$fly" == "true" && "$autorecast" == "true"}
 	{
 		c fly
 	}
@@ -2387,7 +2401,7 @@
 
 #ACTION {^Your displaced image rejoins your body.$}
 {
-	#if {"$displacement" == "true"}
+	#if {"$displacement" == "true" && "$autorecast" == "true"}
 	{
 		c displacement
 	}
@@ -2408,7 +2422,7 @@
 
 #ACTION {^Your magically induced dexterity abruptly disappears.}
 {
-	#if {"$dexterity" == "true"}
+	#if {"$dexterity" == "true" && "$autorecast" == "true"}
 	{
 		c dex;
 		c dex;
@@ -2419,7 +2433,7 @@
 
 #ACTION {^Your shield of faith dissipates, and you no longer feel as protected by your god.$}
 {
-	#if {"$faithShield" == "true"}
+	#if {"$faithShield" == "true" && "$autorecast" == "true"}
 	{
 		c faith shield
 	}
@@ -2428,7 +2442,7 @@
 
 #ACTION {^Your skin returns to its normal texture.$}
 {
-	#if {"$stoneSkin" == "true"}
+	#if {"$stoneSkin" == "true" && "$autorecast" == "true"}
 	{
 		c stone
 	}
@@ -2515,6 +2529,10 @@
 		#elseif {%1 == 2 || %1 == 28}
 		{
 			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay town};#unvariable {ambNumber}} {2d10}
+		};
+		#elseif {%1 == 14 || %1 == 18}
+		{
+			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay ocean};#unvariable {ambNumber}} {2d10}
 		};
 		#else
 		{
