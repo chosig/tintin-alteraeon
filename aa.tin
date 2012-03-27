@@ -1,17 +1,3 @@
-#alias {autorecast}
-{
-#variable {autorecast} {true};
-#showme {Some spells will now automatically recast when they drop}
-}
-{9}
-
-#alias {noautorecast}
-{
-#unvariable {autorecast};
-#showme {Spells will no longer automatically recast.}
-}
-{9}
-
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -3255,6 +3241,20 @@
 }
 {9}
 
+#ALIAS {^vote$}
+{
+	#if {&{browser}}
+	{
+		#showme {Launching $browser...};
+		#system {$browser 'http://www.mudconnect.com/cgi-bin/member/votelogin.cgi?mud=Alter+Aeon' &> /dev/null &}
+	};
+	#else
+	{
+		#showme {You do not have a browser command set, to do so please type browser followed by the browser command you would like to use,  E.G. browser firefox.}
+	}
+}
+{9}
+
 #ALIAS {^{ble|bles|bless}}
 {
 	#if {"$bless" == "true"}
@@ -3474,6 +3474,13 @@
 }
 {9}
 
+#ALIAS {autorecast}
+{
+	#variable {autorecast} {true};
+	#showme {Some spells will now automatically recast when they drop}
+}
+{9}
+
 #ALIAS {b %1}
 {
 	#if {"$faerieFire" == "true"}
@@ -3515,6 +3522,13 @@
 }
 {9}
 
+#ALIAS {browser %1}
+{
+	#variable {browser} {%1};
+	#showme {OK, browser is now set to $browser.}
+}
+{9}
+
 #ALIAS {buildwoa{ds|d} %1}
 {
 	noautobone;
@@ -3549,6 +3563,13 @@
 #ALIAS {lic}
 {
 	look in corpse
+}
+{9}
+
+#ALIAS {noautorecast}
+{
+	#unvariable {autorecast};
+	#showme {Spells will no longer automatically recast.}
 }
 {9}
 
