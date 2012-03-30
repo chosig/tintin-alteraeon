@@ -3851,7 +3851,7 @@
 	play new-volume
 }
 
-#MACRO {\e]}
+#MACRO {\ec}
 {
 	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
 	{
@@ -3864,7 +3864,7 @@
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
-#MACRO {\e[}
+#MACRO {\eC}
 {
 	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
 	{
