@@ -53,7 +53,7 @@ alt+, south
 alt+shift+< down
 alt+m southwest
 alt+. southeast
-alt+shift+left or right arrow: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
+alt+shift+[ or ]: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scrole item command, for example, scroll softdrink will set the item to softdrink.
 autoclay cast clay man automatically if your current clay man dies
 autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
