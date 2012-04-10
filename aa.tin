@@ -512,6 +512,12 @@
 }
 {5}
 
+#ACTION {^#SESSION 'Alter Aeon' DIED.^}
+{
+	#gts #delay {15} {aa}
+}
+{5}
+
 #ACTION {^%1 {lands|land} a textbook roundhouse kick squarely on %2!$}
 {
 	#if {"$combatsound" == "true"}
@@ -1878,6 +1884,12 @@
 }
 {9}
 
+#ACTION {^A skelet%1 suddenly breaks, crumbles, and turns to dust.$}
+{
+	play skeletal-death
+}
+{9}
+
 #ACTION {^A skeletal mage stops following you.$}
 {
 	#if {"$autoskeleton" == "true"}
@@ -1917,6 +1929,12 @@
 #ACTION {^After a big fight, %1 {reels|reel} in %2.$}
 {
 	play catch-fish
+}
+{9}
+
+#ACTION {^Alas, you cannot go that way.$}
+{
+	play bump
 }
 {9}
 
@@ -2447,6 +2465,12 @@
 }
 {9}
 
+#ACTION {^dust before your eyes.$}
+{
+	play skeletal-death
+}
+{9}
+
 #ACTION {^kxwt_mdeath$}
 {
 	#if {&{lastReceivedExp}}
@@ -2515,6 +2539,10 @@
 		#elseif {%1 == 2 || %1 == 28}
 		{
 			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay town};#unvariable {ambNumber}} {2d10}
+		};
+		#elseif {%1 == 7 || %1 == 29}
+		{
+			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay swamp};#unvariable {ambNumber}} {2d10}
 		};
 		#elseif {%1 == 14 || %1 == 18}
 		{
@@ -3750,6 +3778,7 @@
 #GAG              {^You emote: %1 says, 'Dude check it out, they glow!'$}
 #GAG              {^You find a copy of the 'WatchTower' and your life is Changed!!$}
 #GAG              {^You haven't had a recent victory worth shouting about.$}
+#GAG              {^You put on a hooded red robe and parade about hunting for heretics and witches.$}
 #GAG              {^You run about the room shouting something about 'TP' and 'bungholes'.$}
 #GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
@@ -3820,6 +3849,19 @@
 	down
 }
 
+#MACRO {\eC}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex - 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
+
 #MACRO {\eI}
 {
 	up
@@ -3851,6 +3893,12 @@
 	play new-volume
 }
 
+#MACRO {\e\}
+{
+	get $battleScroll $container;
+	use $battleScroll
+}
+
 #MACRO {\ec}
 {
 	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
@@ -3862,25 +3910,6 @@
 		#math {channelBufferIndex} {$channelBufferIndex + 1}
 	};
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
-#MACRO {\eC}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
-	{
-		#variable {channelBufferIndex} {0}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex - 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
-#MACRO {\e\}
-{
-	get $battleScroll $container;
-	use $battleScroll
 }
 
 #MACRO {\ei}
