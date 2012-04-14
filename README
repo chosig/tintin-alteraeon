@@ -102,6 +102,8 @@ clb or clightning target channel cast lightning bolt on specified target
 scroll item: Sets item as your battle scroll. When it is set, pressing alt+backslash will get the item from your container and use it.
 speech Uses speech-dispatcher to read tells and some other types of communication like clantell. You can change the rate with the speechrate command as in speechrate 80. Anything from -100 to 100 will work.
 nospeech turns off speech-dispatcher for tells, this is default.
+rsoc: Does a random social. (warning, there are some very interesting socials)
+rsoc name: Does a random social to name. (warning, there are some very interesting socials)
 twitter post achievements and deaths to Twitter requires the program TTYtter to be installed and properly configured. There is a how-to at: http://stormdragon.us/?p=131
 notwitter: Turn off posts to Twitter.
 To sac a corpse type x and press enter. You will use any skills you have like corpsecutter and/or bloodsacrifice.
