@@ -1592,7 +1592,7 @@
 }
 {9}
 
-#ACTION {%1{our|'s} {burning|flaming} {flail|thwack} %2 %3{.|!}$}
+#ACTION {%1{our|'s} {burning|fiery|flaming} {flail|thwack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
 	{
@@ -1604,7 +1604,7 @@
 }
 {9}
 
-#ACTION {%1{our|'s} {burning|flaming} {slash|slice|chop|hack} %2 %3{.|!}$}
+#ACTION {%1{our|'s} {burning|fiery|flaming} {slash|slice|chop|hack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
 	{
@@ -1616,7 +1616,7 @@
 }
 {9}
 
-#ACTION {%1{our|'s} {burning|flaming} {stab|pierce|bite|peck} %2 %3{.|!}$}
+#ACTION {%1{our|'s} {burning|fiery|flaming} {stab|pierce|bite|peck} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
 	{
