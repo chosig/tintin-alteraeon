@@ -1,7 +1,3 @@
-#variable {socials} {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
-#alias {rsoc$} {#script {shuf -n 1 -e $socials}} {9}
-#alias {rsoc %1} {#script {echo "$(shuf -n 1 -e $socials) %1"}} {9}
-#act {^A tall prison of jagged bone teeth cracks and shatters as you break free!$} {#if {&{position}} {stand}} {1}
 #ACTION {^You start following %1.}
 {
 	#variable {groupLeader} {%1}
@@ -43,6 +39,15 @@
 {
 	set ctrigger on;
 	set msp on
+}
+{1}
+
+#ACTION {^A tall prison of jagged bone teeth cracks and shatters as you break free!$}
+{
+	#if {&{position}}
+	{
+		stand
+	}
 }
 {1}
 
@@ -168,25 +173,33 @@
 {
 	#if {"$autoclay" == "true"}
 	{
-		#unvariable {autoclay};#delay {0.2} {c clay man};#delay {3} {#variable {autoclay} {true}}
+		#unvariable {autoclay};
+		#delay {0.2} {c clay man};
+		#delay {3} {#variable {autoclay} {true}}
 	};
 	#if {"$autowoad" == "true"}
 	{
 		get $woadMaterial $container;
 		drop $woadMaterial;
-		#unvariable {autowoad};#delay {0.2} {c wood $woadMaterial};#delay {3} {#variable {autowoad} {true}}
+		#unvariable {autowoad};
+		#delay {0.2} {c wood $woadMaterial};
+		#delay {3} {#variable {autowoad} {true}}
 	};
 	#if {"$autobone" == "true"}
 	{
 		get $boneMaterial $container;
 		drop $boneMaterial;
-		#unvariable {autobone};#delay {0.2} {c bone guardian $boneMaterial};#delay {3} {#variable {autobone} {true}}
+		#unvariable {autobone};
+		#delay {0.2} {c bone guardian $boneMaterial};
+		#delay {3} {#variable {autobone} {true}}
 	};
 	#if {"$autometal" == "true"}
 	{
 		get $metalMaterial $container;
 		drop $metalMaterial;
-		#unvariable {autometal};#delay {0.2} {c metal construct $metalMaterial};#delay {3} {#variable {autometal} {true}}
+		#unvariable {autometal};
+		#delay {0.2} {c metal construct $metalMaterial};
+		#delay {3} {#variable {autometal} {true}}
 	}
 }
 {4}
@@ -199,6 +212,54 @@
 		{
 			c soulsteal;
 			#variable {lastSoulSteal} {%1}
+		}
+	}
+}
+{5}
+
+#ACTION {%1{our|'s} {shocking|zapping} {flail|thwack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play flail lightning-focus
+		};
+		#else
+		{
+			9
+		}
+	}
+}
+{5}
+
+#ACTION {%1{our|'s} {shocking|zapping} {slash|slice|chop|hack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play slash lightning-focus
+		};
+		#else
+		{
+			9
+		}
+	}
+}
+{5}
+
+#ACTION {%1{our|'s} {shocking|zapping} {stab|pierce|bite|peck} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play stab lightning-focus
+		};
+		#else
+		{
+			9
 		}
 	}
 }
@@ -1531,13 +1592,97 @@
 }
 {9}
 
-#ACTION {%1{r|'s} flail %2 %3{.|!}$}
+#ACTION {%1{our|'s} {burning|flaming} {flail|thwack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
 	{
 		#if {"$combatsound" == "true"}
 		{
-			play flail
+			play flail fire-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {burning|flaming} {slash|slice|chop|hack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play slash fire-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {burning|flaming} {stab|pierce|bite|peck} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play stab fire-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {freezing|icy} {flail|thwack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play flail ice-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {freezing|icy} {slash|slice|chop|hack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play slash ice-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {freezing|icy} {stab|pierce|bite|peck} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play stab ice-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {slash|slice|chop|hack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play slash
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {stab|pierce|bite|peck} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play stab
 		}
 	}
 }
@@ -1564,25 +1709,13 @@
 }
 {9}
 
-#ACTION {%1{r|'s} {slash|slice|chop|hack} %2 %3{.|!}$}
+#ACTION {%1{r|'s} {flail|thwack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
 	{
 		#if {"$combatsound" == "true"}
 		{
-			play slash
-		}
-	}
-}
-{9}
-
-#ACTION {%1{r|'s} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab
+			play flail
 		}
 	}
 }
@@ -1621,7 +1754,7 @@
 
 #ACTION {^       You receive a combat point!$}
 {
-	#delay {0.2} {#script {echo -n "gt "; shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!"}}
+	#delay {0.2} {#script {echo -n "gt "; shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!" "CPwn!"}}
 }
 {9}
 
@@ -3633,7 +3766,20 @@
 }
 {9}
 
-#ALIAS {play %1}
+#ALIAS {play %1 %2}
+{
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*ogg)" "$(shuf -n 1 -e sounds/%2*ogg)" &> /dev/null &}
+	};
+	#else
+	{
+		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*ogg)" "$(shuf -n 1 -e sounds/%2*ogg)" gain $volume &> /dev/null &}
+	}
+}
+{9}
+
+#ALIAS {play %S}
 {
 	#if {!&{volume} || $volume == 0}
 	{
@@ -3649,6 +3795,18 @@
 #ALIAS {repeat %1}
 {
 	replay | grep -i %1
+}
+{9}
+
+#ALIAS {rsoc %1}
+{
+	#script {echo "$(shuf -n 1 -e $socials) %1"}
+}
+{9}
+
+#ALIAS {rsoc$}
+{
+	#script {shuf -n 1 -e $socials}
 }
 {9}
 
@@ -3963,3 +4121,4 @@
 #SUBSTITUTE       {%*}  { %0}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{friends}{4}{grouptells}{5}{tells}}
+#VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
