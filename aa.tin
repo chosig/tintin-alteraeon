@@ -217,54 +217,6 @@
 }
 {5}
 
-#ACTION {%1{our|'s} {shocking|zapping} {flail|thwack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail lightning-focus
-		};
-		#else
-		{
-			9
-		}
-	}
-}
-{5}
-
-#ACTION {%1{our|'s} {shocking|zapping} {slash|slice|chop|hack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play slash lightning-focus
-		};
-		#else
-		{
-			9
-		}
-	}
-}
-{5}
-
-#ACTION {%1{our|'s} {shocking|zapping} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab lightning-focus
-		};
-		#else
-		{
-			9
-		}
-	}
-}
-{5}
-
 #ACTION {^                          YOU GAIN A LEVEL!$}
 {
 	play levelup
@@ -1193,6 +1145,12 @@
 }
 {9}
 
+#ACTION {%1 cleaves through {its|her|his} enemies!$}
+{
+	play cleave
+}
+{9}
+
 #ACTION {%1 complet{es|e} the spell, and hur{ls|l} a ghastly looking ball of nether-energy at %2!$}
 {
 	play rotting-sphere-launch
@@ -1592,6 +1550,30 @@
 }
 {9}
 
+#ACTION {%1{our|'s} {burning|fiery|flaming} whip %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play whip fire-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {burning|fiery|flaming} {claw|scratch} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play claw fire-focus
+		}
+	}
+}
+{9}
+
 #ACTION {%1{our|'s} {burning|fiery|flaming} {flail|thwack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
@@ -1628,6 +1610,30 @@
 }
 {9}
 
+#ACTION {%1{our|'s} {freezing|icy} whip %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play whip ice-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {freezing|icy} {claw|scratch} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play claw ice-focus
+		}
+	}
+}
+{9}
+
 #ACTION {%1{our|'s} {freezing|icy} {flail|thwack} %2 %3{.|!}$}
 {
 	#if {"%2" != "misses"}
@@ -1659,6 +1665,66 @@
 		#if {"$combatsound" == "true"}
 		{
 			play stab ice-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {shocking|zapping} whip %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play whip lightning-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {shocking|zapping} {claw|scratch} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play claw lightning-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {shocking|zapping} {flail|thwack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play flail lightning-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {shocking|zapping} {slash|slice|chop|hack} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play slash lightning-focus
+		}
+	}
+}
+{9}
+
+#ACTION {%1{our|'s} {shocking|zapping} {stab|pierce|bite|peck} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play stab lightning-focus
 		}
 	}
 }
@@ -1704,6 +1770,18 @@
 		#if {"$combatsound" == "true"}
 		{
 			play whip
+		}
+	}
+}
+{9}
+
+#ACTION {%1{r|'s} {claw|scratch} %2 %3{.|!}$}
+{
+	#if {"%2" != "misses"}
+	{
+		#if {"$combatsound" == "true"}
+		{
+			play claw
 		}
 	}
 }
@@ -2030,7 +2108,9 @@
 {
 	#if {"$autoskeleton" == "true"}
 	{
-		c skeletal mage
+		#unvariable {autoskeleton};
+		#delay {0.2} {c skeletal mage};
+		#delay {2} {#variable {autoskeleton} {true}}
 	}
 }
 {9}
@@ -2039,7 +2119,9 @@
 {
 	#if {"$autoskeleton" == "true"}
 	{
-		c skeletal warrior
+		#unvariable {autoskeleton};
+		#delay {0.2} {c skeletal warrior};
+		#delay {2} {#variable {autoskeleton} {true}}
 	}
 }
 {9}
