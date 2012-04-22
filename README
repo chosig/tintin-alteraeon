@@ -71,6 +71,8 @@ autorecall automatically recalls you if you drop to pretty hurt or awful conditi
 noautorecall turns off autorecall. this is default.
 autorefresh will refresh you automatically if your mv is below a fifth. Requires ctrigger to be set to on. This is the default now.
 noautorefresh turns off autorefresh.
+beeps: Turn on enemy condition notifications using beeps.
+nobeeps: Turn off enemy condition beeps.
 bgmusic turn background music on
 nobgmusic turn background music off
 bless cast bless n yourself

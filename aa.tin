@@ -824,12 +824,6 @@
 }
 {5}
 
-#ACTION {^kxwt_fighting%*}
-{
-	#variable {fighting} {%0}
-}
-{5}
-
 #ACTION {^kxwt_prompt %1 %2 %3 %4 %5 %6}
 {
 	#variable {currentHp} {%1};
@@ -2689,6 +2683,54 @@
 }
 {9}
 
+#ACTION {^kxwt_fighting %1 %2 %3}
+{
+	#if {"$beeps" == "true"}
+	{
+		#if {%1 >= 90}
+		{
+			play enemy-condition-90
+		};
+		#elseif {%1 >= 80}
+		{
+			play enemy-condition-80
+		};
+		#elseif {%1 >= 70}
+		{
+			play enemy-condition-70
+		};
+		#elseif {%1 >= 60}
+		{
+			play enemy-condition-60
+		};
+		#elseif {%1 >= 50}
+		{
+			play enemy-condition-50
+		};
+		#elseif {%1 >= 40}
+		{
+			play enemy-condition-40
+		};
+		#elseif {%1 >= 30}
+		{
+			play enemy-condition-30
+		};
+		#elseif {%1 >= 20}
+		{
+			play enemy-condition-20
+		};
+		#elseif {%1 >= 10}
+		{
+			play enemy-condition-10
+		};
+		#else
+		{
+			play enemy-condition-0
+		}
+	}
+}
+{9}
+
 #ACTION {^kxwt_mdeath$}
 {
 	#if {&{lastReceivedExp}}
@@ -3337,6 +3379,20 @@
 {
 	#variable {autorecall} {true};
 	#showme {You will automatically recall if you are in awful or pretty hurt.}
+}
+{9}
+
+#ALIAS {^nobeeps$}
+{
+	#showme {beeps off};
+	#unvariable {beeps}
+}
+{9}
+
+#ALIAS {^beeps$}
+{
+	#showme {beeps on};
+	#variable {beeps} {true}
 }
 {9}
 
