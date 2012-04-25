@@ -1,10 +1,25 @@
-#ACTION {^You start following %1.}
+#act {%1 is surrounded by a strong force shield.$} {play shield} {9}
+#act {%1 is protected by %2.$} {play armor} {9}
+#act {%1 {attempts|attempt|try|tries} to heal some of %2{'s|r} %3 {wounds|injuries}.$} {play cure-wounds} {8}
+#act {^You feel%1better{.|!}$} {play cure-wounds} {9}
+#act {%1's image blurs and shifts to one side.$} {play displacement} {9}
+#act {%1 {heals|heal} %2.$} {play heal} {9}
+#act {^Your form shifts slightly, then separates from where your body actually is.$} {play displacement} {9}
+#act {^A warm feeling fills your body.$} {play heal} {9}
+#act {^You feel %1 protecting you.$} {play armor} {9}
+#ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
 }
 {(9)}
 
-#ACTION {^You stop following %1.}
+#ACTION {^You start following %1.$}
+{
+	#variable {groupLeader} {%1}
+}
+{(9)}
+
+#ACTION {^You stop following %1.$}
 {
 	#unvariable {groupLeader}
 }
@@ -220,6 +235,12 @@
 #ACTION {^                          YOU GAIN A LEVEL!$}
 {
 	play levelup
+}
+{5}
+
+#ACTION {^ %1  bash  %2}
+{
+	#macro {\ea} {bash}
 }
 {5}
 
@@ -573,12 +594,6 @@
 }
 {5}
 
-#ACTION {^A skele{tal mage|ton} rips a bone from the corpse of %1 as a replacement.$}
-{
-	play bone-rip
-}
-{5}
-
 #ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
 {
 	#if {"$boneShield" == "true" && "$autorecast" == "true"}
@@ -600,6 +615,12 @@
 	{
 		play bash
 	}
+}
+{5}
+
+#ACTION {^A {bone guardian|skeletal mage|skeleton} rips a bone from the corpse of %1 as a replacement.$}
+{
+	play bone-rip
 }
 {5}
 
@@ -1291,6 +1312,12 @@
 }
 {9}
 
+#ACTION {%1 seems to have dropped %2!  You'll surely return it later.$}
+{
+	play pickpocket
+}
+{9}
+
 #ACTION {%1 shield bash %2{!|.}$}
 {
 	#if {"$combatsound" == "true"}
@@ -1417,7 +1444,7 @@
 }
 {9}
 
-#ACTION {%1 {pulls|pull} out a dragon tooth, {casts|cast} a spell, and quickly {drops|drop} it.$}
+#ACTION {%1 {pulls|pull} out a dragon tooth, {casts|cast} a spell, and quickly {drops|drop} it. The tooth splits, unfolds, and grows into A %2.$}
 {
 	play create-skeleton
 }
@@ -2426,6 +2453,12 @@
 }
 {9}
 
+#ACTION {^You happen to find %d gold coins, how fortunate!$}
+{
+	play pickpocket
+}
+{9}
+
 #ACTION {^You have %1 new mudmail {messages|message}!$}
 {
 	play new-mail
@@ -3382,13 +3415,6 @@
 }
 {9}
 
-#ALIAS {^nobeeps$}
-{
-	#showme {beeps off};
-	#unvariable {beeps}
-}
-{9}
-
 #ALIAS {^beeps$}
 {
 	#showme {beeps on};
@@ -3496,6 +3522,13 @@
 }
 {9}
 
+#ALIAS {^nobeeps$}
+{
+	#showme {beeps off};
+	#unvariable {beeps}
+}
+{9}
+
 #ALIAS {^nocombatsound$}
 {
 	#unvariable {combatsound};
@@ -3553,6 +3586,18 @@
 	#else
 	{
 		#showme {You do not have a browser command set, to do so please type browser followed by the browser command you would like to use,  E.G. browser firefox.}
+	}
+}
+{9}
+
+#ALIAS {^{aa|login}$}
+{
+	#session {Alter Aeon} {dentinmud.org} {3010};
+	#if {"$name" != "Name"}
+	{
+		$name;
+		$password;
+		#cr
 	}
 }
 {9}
@@ -3764,15 +3809,6 @@
 {
 	#unvariable {position};
 	#send {%0}
-}
-{9}
-
-#ALIAS {aa}
-{
-	#session {Alter Aeon} {dentinmud.org} {3010};
-	$name;
-	$password;
-	#cr
 }
 {9}
 
