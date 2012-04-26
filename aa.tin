@@ -1,12 +1,3 @@
-#act {%1 is surrounded by a strong force shield.$} {play shield} {9}
-#act {%1 is protected by %2.$} {play armor} {9}
-#act {%1 {attempts|attempt|try|tries} to heal some of %2{'s|r} %3 {wounds|injuries}.$} {play cure-wounds} {8}
-#act {^You feel%1better{.|!}$} {play cure-wounds} {9}
-#act {%1's image blurs and shifts to one side.$} {play displacement} {9}
-#act {%1 {heals|heal} %2.$} {play heal} {9}
-#act {^Your form shifts slightly, then separates from where your body actually is.$} {play displacement} {9}
-#act {^A warm feeling fills your body.$} {play heal} {9}
-#act {^You feel %1 protecting you.$} {play armor} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -721,6 +712,20 @@
 }
 {5}
 
+#ACTION {^You do your best to explain to %1 that it was an honest mistake.$}
+{
+	#script {i} {rev %1 | cut -d " " -f 1 | rev};
+	#delay {0.1} {#script {echo "talk %i $(shuf -n 1 -3 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!'}}
+}
+{5}
+
+#ACTION {^You do your best to explain to %1 that you didn't do it.$}
+{
+	#script {i} {rev %1 | cut -d " " -f 1 | rev};
+	#delay {0.1} {#script {echo "talk %i $(shuf -n 1 -3 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!'}}
+}
+{5}
+
 #ACTION {^You enter a huge portal.$}
 {
 	play portal
@@ -891,6 +896,12 @@
 	#variable {necromancerLevel} {%5}
 }
 {7}
+
+#ACTION {%1 {attempts|attempt|try|tries} to heal some of %2{'s|r} %3 {wounds|injuries}.$}
+{
+	play cure-wounds
+}
+{8}
 
 #ACTION {%1 {conjures|conjure} and {throws|throw} a %2 fireball at %3!$}
 {
@@ -1160,6 +1171,12 @@
 }
 {9}
 
+#ACTION {%1 casts a spell, and you feel %2 breathe life back into your body!$}
+{
+	play breath-of-life
+}
+{9}
+
 #ACTION {%1 cleaves through {its|her|his} enemies!$}
 {
 	play cleave
@@ -1246,6 +1263,12 @@
 }
 {9}
 
+#ACTION {%1 is protected by %2.$}
+{
+	play armor
+}
+{9}
+
 #ACTION {%1 is ready to go, but you would be left behind!$}
 {
 	stand
@@ -1261,6 +1284,12 @@
 #ACTION {%1 is struck by bolts of ice from %2!$}
 {
 	play icebolt
+}
+{9}
+
+#ACTION {%1 is surrounded by a strong force shield.$}
+{
+	play shield
 }
 {9}
 
@@ -1378,6 +1407,12 @@
 }
 {9}
 
+#ACTION {%1 {casts|cast} {the|a} spell, and %2 breathes new life into %3!$}
+{
+	play breath-of-life
+}
+{9}
+
 #ACTION {%1 {enchants|enchant}, then brutally {twists|twist} and {molds|mold} %2 into A metal construct.$}
 {
 	play metal-construct-rises
@@ -1405,6 +1440,12 @@
 #ACTION {%1 {goes|go} berserk in battle!$}
 {
 	play berserk
+}
+{9}
+
+#ACTION {%1 {heals|heal} %2.$}
+{
+	play heal
 }
 {9}
 
@@ -1568,6 +1609,18 @@
 #ACTION {%1 {use|uses} magic to rip the bones and cartilage from the corpse of %2, then {reassembles|reassemble} them into A bone guardian.$}
 {
 	play bone-guardian-rises
+}
+{9}
+
+#ACTION {%1's image blurs and shifts to one side.$}
+{
+	play displacement
+}
+{9}
+
+#ACTION {%1's skin turns grey and granite-like.$}
+{
+	play stone-skin
 }
 {9}
 
@@ -2065,6 +2118,12 @@
 }
 {9}
 
+#ACTION {^A dark mist fills the room, and you suddenly can't breathe!$}
+{
+	play dying-breath-release
+}
+{9}
+
 #ACTION {^A fissure opens up in the ground beneath a %1 soulstone and swallows it up!$}
 {
 	play demonic-laughter
@@ -2150,6 +2209,12 @@
 #ACTION {^A small clawed hand reaches up through the ground, grabs a %1 soulstone, and vanishes.$}
 {
 	play demonic-laughter
+}
+{9}
+
+#ACTION {^A warm feeling fills your body.$}
+{
+	play heal
 }
 {9}
 
@@ -2335,6 +2400,12 @@
 }
 {9}
 
+#ACTION {^You cast the spell and feel %1 breathe new life into you!$}
+{
+	play breath-of-life
+}
+{9}
+
 #ACTION {^You cast the spell to separate soul from body, and pull %1's essence into a %2 soulstone!$}
 {
 	play soulsteal;
@@ -2385,6 +2456,12 @@
 }
 {9}
 
+#ACTION {^You feel %1 protecting you.$}
+{
+	play armor
+}
+{9}
+
 #ACTION {^You feel a slight tingle and you feel somehow abandoned.}
 {
 	#if {"$bless" == "true" && "$autorecast" == "true"}
@@ -2432,12 +2509,24 @@
 }
 {9}
 
+#ACTION {^You feel queasy as the spell takes root in your blood and bones.$}
+{
+	play dying-breath-cast
+}
+{9}
+
 #ACTION {^You feel the pent up vengeance in your blood dissipate.$}
 {
 	#if {"$dyingBreath" == "true" && "$autorecast" == "true"}
 	{
 		c dying breath
 	}
+}
+{9}
+
+#ACTION {^You feel%1better{.|!}$}
+{
+	play cure-wounds
 }
 {9}
 
@@ -2663,6 +2752,12 @@
 }
 {9}
 
+#ACTION {^Your form shifts slightly, then separates from where your body actually is.$}
+{
+	play displacement
+}
+{9}
+
 #ACTION {^Your lungs feel funny, kinda dry... water anyone?$}
 {
 	play water-breathing
@@ -2701,6 +2796,12 @@
 #ACTION {^Your skin tingles as you pass through the magical barrier.$}
 {
 	play ff-barrier
+}
+{9}
+
+#ACTION {^Your skin turns to a stone like substance.$}
+{
+	play stone-skin
 }
 {9}
 
