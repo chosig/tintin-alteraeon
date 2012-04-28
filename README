@@ -121,6 +121,17 @@ autostore put certain items in your container. For now just soulstones.
 noautostore turn autostorage off.
 You will not autostore yellow and red soulstones.
 
+Equipment Sets:
+There are built in change commands to wear equipment sets quickly. To use the speed switching you must name your eqset like so:
+cclev = cleric cast level
+mclev = mage cast level
+nclev = necromancer cast level
+tsklev = thief skill level
+wsklev = warrior skill level
+to change into a set simply type the first letter of the set you want followed by the word set. For example, to change into mage cast level you would type mset or for warrior skill level wset.
+To create an equipment set in the game, while wearing the equipment you want to include in the set, type eqset create name container. for example, to store mclev in your bag you would type:
+eqset create mclev bag
+
 Botting:
 Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:
 #class bot read bot.tin
