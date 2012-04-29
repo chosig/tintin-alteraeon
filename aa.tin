@@ -3025,6 +3025,27 @@
 }
 {9}
 
+#ACTION {^silent_You currently gain %1 hitpoints, %2 mana, and %3 movement while {standing|sleeping|sitting}.$}
+{
+	#math {hpRegenTime} {($maxHp - $currentHp) / 30};
+	#math {mnRegenTime} {($maxMana - $currentMana) / 30};
+	#math {mvRegenTime} {($maxMv - $currentMv) / 30};
+	#variable {regenTime} {$hpRegenTime};
+	#if {$mnRegenTime > $regenTime}
+	{
+		#variable {regenTime} {mnRegenTime}
+	};
+	#if {$mvRegenTime > $regenTime}
+	{
+		#variable {regenTime} {$mvRegenTime}
+	};
+	#if {$regenTime > 0}
+	{
+		#showme {Approximately $regenTime ticks until regeration is complete.}
+	}
+}
+{9}
+
 #ACTION {^silent_You have %1/%2 str, %3/%4 int, %5/%6 wis, %7/%8 dex, %9/%10 con, and %11/%12 chr.$}
 {
 	#if {&{strBonus} && $strBonus != %1}
@@ -3898,7 +3919,8 @@
 #ALIAS {^{rest|si|sit}$}
 {
 	#variable {position} {rest};
-	\rest
+	#send {rest};
+	show regen | prefix silent_
 }
 {9}
 
@@ -3941,7 +3963,8 @@
 #ALIAS {^{sl|sle|slee|sleep}$}
 {
 	#variable {position} {sleep};
-	\sleep
+	#send {sleep};
+	show regen | prefix silent_
 }
 {9}
 
