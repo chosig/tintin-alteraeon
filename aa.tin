@@ -210,6 +210,15 @@
 }
 {4}
 
+#ACTION {%1 begins trying to pick %2...$}
+{
+	#if {"%1" == "$groupLeader" && "$pickLocks" == "true"}
+	{
+		#script {echo -n "pick ";if [ "$(echo "%2" | tr "[ ]" "[\n]" | grep "door")" == "door" ] ; then echo "door";elif [ "$(echo "%2" | tr "[ ]" "[\n]" | grep "gates")" == "gates" ] ; then echo "gates";else echo "%2" | rev | cut -d " " -f 1 | rev;fi}
+	}
+}
+{5}
+
 #ACTION {%1is mortally wounded, and will die soon if not aided.$}
 {
 	#if {"$soulsteal" == "true"}
@@ -232,6 +241,12 @@
 #ACTION {^ %1  bash  %2}
 {
 	#macro {\ea} {bash}
+}
+{5}
+
+#ACTION {^ %1  pick locks%2}
+{
+	#variable {pickLocks} {true}
 }
 {5}
 
@@ -714,15 +729,15 @@
 
 #ACTION {^You do your best to explain to %1 that it was an honest mistake.$}
 {
-	#script {i} {rev %1 | cut -d " " -f 1 | rev};
-	#delay {0.1} {#script {echo "talk %i $(shuf -n 1 -3 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!'}}
+	#script {i} {echo "%1" | rev | cut -d " " -f 1 | rev};
+	#delay {0.1} {#script {echo "talk ${i[1]} $(shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
 }
 {5}
 
 #ACTION {^You do your best to explain to %1 that you didn't do it.$}
 {
-	#script {i} {rev %1 | cut -d " " -f 1 | rev};
-	#delay {0.1} {#script {echo "talk %i $(shuf -n 1 -3 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!'}}
+	#script {i} {echo "%1" | rev | cut -d " " -f 1 | rev};
+	#delay {0.1} {#script {echo "talk ${i[1]} $(shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
 }
 {5}
 
@@ -881,11 +896,11 @@
 }
 {5}
 
-#ACTION {^Your charmed companions or minions:$}
+#ACTION {^silent_Necromancer remaining: %1/%2}
 {
-	#variable {controlPoints} {0}
+	#showme {You have %1 of %2 control points remaining.}
 }
-{7}
+{5}
 
 #ACTION {^silent_Your levels are:  Ma %1  Cl %2  Th %3  Wa %4  Nc %5}
 {
@@ -1446,6 +1461,12 @@
 #ACTION {%1 {heals|heal} %2.$}
 {
 	play heal
+}
+{9}
+
+#ACTION {%1 {is|are} hit by a flamestrike from the heavens.$}
+{
+	play flamestrike
 }
 {9}
 
@@ -2130,6 +2151,18 @@
 }
 {9}
 
+#ACTION {^A golden glow surrounds %1, then flows outward to surround you.$}
+{
+	play area-refresh
+}
+{9}
+
+#ACTION {^A golden glow surrounds you, then flows outward.$}
+{
+	play area-refresh
+}
+{9}
+
 #ACTION {^A magical hammer disappears in a blinding flash of light! (worn by you)}
 {
 	#if {"$spiritHammer" == "true" && "$autorecast" == "true"}
@@ -2400,6 +2433,12 @@
 }
 {9}
 
+#ACTION {^You call upon %1 to strike down %2 with fire.$}
+{
+	play flamestrike
+}
+{9}
+
 #ACTION {^You cast the spell and feel %1 breathe new life into you!$}
 {
 	play breath-of-life
@@ -2492,6 +2531,12 @@
 	{
 		c armor
 	}
+}
+{9}
+
+#ACTION {^You feel less tired.$}
+{
+	play refresh
 }
 {9}
 
@@ -3112,9 +3157,8 @@
 
 #ALIAS {^{mi|min|mini|minio|minion|minions}$}
 {
-	score | grep -i Your levels are | prefix silent_;
 	#send {minions};
-	#delay {0.5} {dp}
+	control | grep -i necromancer | prefix silent_
 }
 {5}
 
@@ -3502,6 +3546,31 @@
 }
 {8}
 
+#ALIAS {%.set$}
+{
+	#if {"%1" == "c"}
+	{
+		eqset wear cclev
+	};
+	#if {"%1" == "m"}
+	{
+		eqset wear mclev
+	};
+	#if {"%1" == "n"}
+	{
+		eqset wear nclev
+	};
+	#if {"%1" == "t"}
+	{
+		eqset wear tsklev
+	};
+	#if {"%1" == "2"}
+	{
+		eqset wear wsklev
+	}
+}
+{9}
+
 #ALIAS {^autoheal$}
 {
 	#variable {autoheal} {true};
@@ -3545,34 +3614,10 @@
 }
 {9}
 
-#ALIAS {^clev$}
-{
-	eqset wear clev
-}
-{9}
-
 #ALIAS {^combatsound$}
 {
 	#variable {combatsound} {true};
 	#showme {Combat sound enabled.}
-}
-{9}
-
-#ALIAS {^dp$}
-{
-	#math {i} {$necromancerLevel - $controlPoints};
-	#if {$i > 1}
-	{
-		#showme {You have $i control points remaining.}
-	};
-	#elseif {$i == 1}
-	{
-		#showme {You have 1 control point remaining.}
-	};
-	#else
-	{
-		#showme {You have no control points remaining.}
-	}
 }
 {9}
 
@@ -4216,6 +4261,7 @@
 #GAG              {^You haven't had a recent victory worth shouting about.$}
 #GAG              {^You put on a hooded red robe and parade about hunting for heretics and witches.$}
 #GAG              {^You run about the room shouting something about 'TP' and 'bungholes'.$}
+#GAG              {^You run about the room shouting something about 'cornholio' and 'cappuccino'.$}
 #GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
