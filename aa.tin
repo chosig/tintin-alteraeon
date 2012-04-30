@@ -873,6 +873,15 @@
 	#variable {maxMana} {%4};
 	#variable {currentMv} {%5};
 	#variable {maxMv} {%6};
+	#if {%1 == %2 && %3 >= %4 - 3 && %5 == %6 && "$regenAlert" != "true"}
+	{
+		play regen-complete;
+		#variable {regenAlert} {true}
+	};
+	#if {%1 < %2 || %3 <= %4 - 3 || %5 < %6}
+	{
+		#unvariable {regenAlert}
+	};
 	#if {"$autorefresh" == "true" && $currentMv < $maxMv / 5}
 	{
 		#if {"$areaRefresh" == "true"}
@@ -3041,7 +3050,7 @@
 	};
 	#if {$regenTime > 0}
 	{
-		#showme {Approximately $regenTime ticks until regeration is complete.}
+		#showme {Approximately $regenTime ticks until regeneration is complete.}
 	}
 }
 {9}
