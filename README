@@ -67,6 +67,8 @@ autometal Makes a metal construct, same requirements aas bone guardian and wood 
 autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of pale bluee or deep blue in your container for this to work.
 autoheal automatically heal someone if you hp them and they have less than a third of their hitpoints
 noautoheal turn off autohealing this is default
+automap: uses the map command automatically on each move to show where you have and have not explored.
+noautomap: Disable automap.
 autorecall automatically recalls you if you drop to pretty hurt or awful condition.
 noautorecall turns off autorecall. this is default.
 autorefresh will refresh you automatically if your mv is below a fifth. Requires ctrigger to be set to on. This is the default now.
@@ -104,6 +106,7 @@ clb or clightning target channel cast lightning bolt on specified target
 scroll item: Sets item as your battle scroll. When it is set, pressing alt+backslash will get the item from your container and use it.
 speech Uses speech-dispatcher to read tells and some other types of communication like clantell. You can change the rate with the speechrate command as in speechrate 80. Anything from -100 to 100 will work.
 nospeech turns off speech-dispatcher for tells, this is default.
+track location:  Use the nearby command to find areas close to you, then to get constant directions type track keyword where keyword is part of the area's name that is unique for that area. e.g. track castle will lead you to an area with  the name containing castle, just make sure no other areas nearby contain the word castle, if they do, choose a different keyword. Turn it off with the word track by itself.
 rsoc: Does a random social. (warning, there are some very interesting socials)
 rsoc name: Does a random social to name. (warning, there are some very interesting socials)
 twitter post achievements and deaths to Twitter requires the program TTYtter to be installed and properly configured. There is a how-to at: http://stormdragon.us/?p=131

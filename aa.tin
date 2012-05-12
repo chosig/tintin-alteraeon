@@ -1,3 +1,10 @@
+#alias {^automap$} {#showme {Automap on.};#variable {automap} {true};#gag {^Map Scale -%*};#gag {^You are standing {in|on}%*}} {9}
+#alias {^noautomap$} {#showme {Automap off.};#unvariable {automap};#ungag {^Map Scale -%*};#gag {^You are standing {in|on}%*}} {9}
+#act {^(friend) %S was kille%*} {play friend-death} {9}
+#alias {^track$} {#unvariable {tracking};#showme {You are no longer tracking.}} {9}
+#alias {^track %1} {#variable {tracking} {%1};#showme {You are now tracking.}} {9}
+#act {^[Exits: %*} {#if {&{tracking}} {nearby | grep -i $tracking | prefix tracking_};#if {&{automap}} {map}} {9}
+#substitute {tracking_[%1] } {}
 #act {^You have become more renowned!$} {play fame} {9}
 #ACTION {^You are already following %1.$}
 {
