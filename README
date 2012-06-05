@@ -6,11 +6,14 @@ Anthony: Helps test new code
 License LGPL
 
 NOTES:
-If you turn off line invertion, tintin++ seems to work better - fewer blank lines etc. To do so, in the game type invert and you should get the message that line invertion mode has been disabled.
+Players who can see, who are not using the blind mode on the game:
+For better readability, open aa.tin and delete the line:
+#GAG              {^$}
+
 Quest code works great now. The code now uses the newly added kxwt_event quest feature. In short, this means quests are posted right away, no odd hacks needed.
 Sound now uses sox. Although you can still set a new player in sound variables it will most likely break the trigger pack. Sox is available for pretty much every distro though so there shouldn't be any problems.
 To counter the bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
-If you don't need this and want to get rid of it, delete the line:
+If you don't need this and want to get rid of it, open aa.tin and delete the line:
 #SUBSTITUTE       {%*}  { %0}  {1}
 Work has started on background music/sound effects. If you happen to notice a lot of blank lines and the screen is hard to read type:
 set ctrigger off
@@ -20,10 +23,13 @@ Connecting:
 To connect, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.
 To start tintin++ with the sound and trigger pack loaded type:
 tt++ aa.tin
+To login your existing character type either aa or login and press enter.
+If this is your first time logging in, or if you have updated skills and spells using another client, type the word load and press enter after your character is logged in. This is important for some of the automatic features.
 
 Requirements:
 sox
-shuf usually included in most distros
+shuf
+wget
 
 Skills and Spells:
 Some skills and spells can automatically be used while you are playing. To make sure everything is set up, type load. You should only need to do this once, because the data will now be saved in the file game_data.tin. To make sure the data is up to date, when you practice a new skill or spell, type skill or spell followed by the name of the skill or spell you just practiced. for example, if you have just practiced kick for the first time, type:
@@ -41,7 +47,7 @@ F7: Sound volume down.
 F8: Sound volume up.
 alt+1 through alt+0 play last 1 through tenth message.
 alt+w makes a wood woad if you have the spell and woad material is in your container.
-alt+b makes a bone guardian if the requirements are met.
+alt+g makes a bone guardian if the requirements are met.
 alt+u northwest
 alt+i north
 alt+shift+I up
@@ -53,8 +59,10 @@ alt+, south
 alt+shift+< down
 alt+m southwest
 alt+. southeast
-alt+c or alt+shift+C: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
+alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scrole item command, for example, scroll softdrink will set the item to softdrink.
+autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
+noautobuypractice: Turns off autobuypractice, see above.
 autoclay cast clay man automatically if your current clay man dies
 autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
 autorecast: Set spells like armor and shield to recast automatically when they drop.
@@ -83,6 +91,7 @@ bm or bloodmist cast bloodmist
 bm or bloodmist target cast bloodmist on target
 brag cap or brag gt cap will brag your experience cap. this is not available in normal brag commands.
 browser name: sets name as your browser, for example browser firefox will set your browser to firefox.
+cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
 combatsound turn on combat sound like slashes, punches, kicks, etc. This is default.
 nocombatsound turns off combat sound.
 facebook: Post achievements to facebook. This requires fbcmd to be installed. There is a how-to at: http://stormdragon.us/?p=223
@@ -134,6 +143,18 @@ wsklev = warrior skill level
 to change into a set simply type the first letter of the set you want followed by the word set. For example, to change into mage cast level you would type mset or for warrior skill level wset.
 To create an equipment set in the game, while wearing the equipment you want to include in the set, type eqset create name container. for example, to store mclev in your bag you would type:
 eqset create mclev bag
+
+Music:
+If you like to listen to music using cmus while playing, you can now control it right from within tintin++. Here are the controls:
+alt+z: previous track
+alt+x: play
+alt+c pause
+alt+v stop (if you are in gnome-terminal use alt+shift+V)
+alt+b: next track
+alt+shift+R toggle repeat
+alt+shift+S: toggle shuffle
+alt+shift+_: volume down
+alt+shift++: volume up
 
 Botting:
 Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:

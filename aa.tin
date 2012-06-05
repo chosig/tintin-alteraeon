@@ -169,12 +169,6 @@
 }
 {3}
 
-#ACTION {^A clay man forms from nearby dirt and clay to serve you.$}
-{
-	play clay-man-rises
-}
-{3}
-
 #ACTION {^A {clay man|bone guardian|flesh beast|metal construct|wood woad} stops following you.$}
 {
 	#if {"$autoclay" == "true"}
@@ -278,7 +272,7 @@
 
 #ACTION {^ %1 bone guardian%2}
 {
-	#macro {\eb} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
+	#macro {\eg} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
 }
 {5}
 
@@ -581,15 +575,6 @@
 }
 {5}
 
-#ACTION {^%1 {lands|land} a textbook roundhouse kick squarely on %2!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
-}
-{5}
-
 #ACTION {^A %1 claws at and begins eating the corpse of %2!$}
 {
 	play undead-eating
@@ -635,24 +620,9 @@
 }
 {5}
 
-#ACTION {^A zombie slams into %1!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
-}
-{5}
-
 #ACTION {^A {bone guardian|skeletal mage|skeleton} rips a bone from the corpse of %1 as a replacement.$}
 {
 	play bone-rip
-}
-{5}
-
-#ACTION {^An ethereal hand appears and attacks %1 from behind!$}
-{
-	play spectral-hand
 }
 {5}
 
@@ -686,24 +656,6 @@
 }
 {5}
 
-#ACTION {^You bash full tilt into %1!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
-}
-{5}
-
-#ACTION {^You bash headfirst into %1!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
-}
-{5}
-
 #ACTION {^You can't concentrate enough!$}
 {
 	#if {!&{combat}}
@@ -720,30 +672,6 @@
 #ACTION {^You can't seem to wake up!$}
 {
 	#unvariable {lastSpell}
-}
-{5}
-
-#ACTION {^You catch %1 a little off center with your bash!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
-}
-{5}
-
-#ACTION {^You create a thick fog of icy particles from the air.$}
-{
-	play ice-fog
-}
-{5}
-
-#ACTION {^You disarm %1 and send %2 weapon flying!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play disarm
-	}
 }
 {5}
 
@@ -764,18 +692,6 @@
 #ACTION {^You enter a huge portal.$}
 {
 	play portal
-}
-{5}
-
-#ACTION {^You find a small bladder of %1 fluid, and carefully tie off the ends before removing it.$}
-{
-	play corpsecutter
-}
-{5}
-
-#ACTION {^You find an out-of-place dark mass, and carefully cut it from its surroundings.$}
-{
-	play corpsecutter
 }
 {5}
 
@@ -808,21 +724,9 @@
 }
 {5}
 
-#ACTION {^You make a small incision and drain some fluid into a vial of bile.$}
-{
-	play corpsecutter
-}
-{5}
-
 #ACTION {^You receive %1 experience.$}
 {
 	#variable {lastReceivedExp} {%1}
-}
-{5}
-
-#ACTION {^You roughly hack out a small bladder of %1 fluid and tie off the ends with string.$}
-{
-	play corpsecutter
 }
 {5}
 
@@ -864,24 +768,6 @@
 	};
 	#ungag {^Gender:  {Female|Male}$};
 	#unvariable {playerSex}
-}
-{5}
-
-#ACTION {^Your full circle kick plants a foot right where it should be.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
-}
-{5}
-
-#ACTION {^Your kick to %1 could have been better, but you got the point across.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
 }
 {5}
 
@@ -944,48 +830,9 @@
 }
 {7}
 
-#ACTION {%1 {attempts|attempt|try|tries} to heal some of %2{'s|r} %3 {wounds|injuries}.$}
-{
-	play cure-wounds
-}
-{8}
-
-#ACTION {%1 {conjures|conjure} and {throws|throw} a %2 fireball at %3!$}
-{
-	play fireball
-}
-{8}
-
-#ACTION {%1 {creates|create} and magically {throws|throw} bolts of ice at %2!$}
-{
-	play icebolt
-}
-{8}
-
-#ACTION {%1 {kicks|kick} %2 in the back of the head while {she|he|it}'s down!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play fatal-kick
-	}
-}
-{8}
-
 #ACTION {%1 {reels|reel} in %2 line and {recasts|recast} it.$}
 {
 	play fishing-cast
-}
-{8}
-
-#ACTION {%1 {throws|throw} %2 fireball at %3!$}
-{
-	play fireball
-}
-{8}
-
-#ACTION {%1 {throws|throw} a ball of freezing unfire at %1!$}
-{
-	play coldfire
 }
 {8}
 
@@ -1083,12 +930,6 @@
 }
 {8}
 
-#ACTION {%* is engulfed in a writhing mass of biting ethereal mouths!$}
-{
-	play rotting-sphere-hit
-}
-{9}
-
 #ACTION {%1 (unique)$}
 {
 	play unique
@@ -1098,12 +939,6 @@
 #ACTION {%1 arrives from%2portal%3}
 {
 	play portal
-}
-{9}
-
-#ACTION {%1 begins casting a dark and profane spell...$}
-{
-	play rotting-sphere-launch
 }
 {9}
 
@@ -1134,54 +969,9 @@
 }
 {9}
 
-#ACTION {%1 casts a spell, and a dim white glow flows out of %2 into a %3 soulstone!$}
-{
-	play soulsteal
-}
-{9}
-
-#ACTION {%1 casts a spell, and you feel %2 breathe life back into your body!$}
-{
-	play breath-of-life
-}
-{9}
-
 #ACTION {%1 cleaves through {its|her|his} enemies!$}
 {
 	play cleave
-}
-{9}
-
-#ACTION {%1 complet{es|e} the spell, and hur{ls|l} a ghastly looking ball of nether-energy at %2!$}
-{
-	play rotting-sphere-launch
-}
-{9}
-
-#ACTION {%1 delivers a powerful kick to%2!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
-}
-{9}
-
-#ACTION {%1 disarms %2 and sends %3 weapon flying!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play disarm
-	}
-}
-{9}
-
-#ACTION {%1 disarms you and sends your weapon flying!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play disarm
-	}
 }
 {9}
 
@@ -1232,75 +1022,9 @@
 }
 {9}
 
-#ACTION {%1 is protected by %2.$}
-{
-	play armor
-}
-{9}
-
 #ACTION {%1 is ready to go, but you would be left behind!$}
 {
 	stand
-}
-{9}
-
-#ACTION {%1 is singed by a blue dart of flame.$}
-{
-	play blue-dart
-}
-{9}
-
-#ACTION {%1 is struck by bolts of ice from %2!$}
-{
-	play icebolt
-}
-{9}
-
-#ACTION {%1 is surrounded by a strong force shield.$}
-{
-	play shield
-}
-{9}
-
-#ACTION {%1 kicks %2 in the back of the head, and you hear a faint crack of something breaking.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play fatal-kick
-	}
-}
-{9}
-
-#ACTION {%1 leaping attack %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		play leap-attack
-	}
-}
-{9}
-
-#ACTION {%1 lightly touches %2 and crackling %3 glow surrounds %4 hands.$}
-{
-	play shocking-grasp
-}
-{9}
-
-#ACTION {%1 lightly {touches|touch} %2 hands, and a crackling %3 glow surrounds them.$}
-{
-	play shocking-grasp
-}
-{9}
-
-#ACTION {%1 lightly {touches|touch} %2, and {pale|a pale} red glow {surrounds|surround} %3.$}
-{
-	play burning-hands
-}
-{9}
-
-#ACTION {%1 now watches over %2.$}
-{
-	play bless
 }
 {9}
 
@@ -1316,27 +1040,9 @@
 }
 {9}
 
-#ACTION {%1 shield bash %2{!|.}$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
-}
-{9}
-
 #ACTION {%1 spell rips up out of the ground and explodes in a harmless shower of frost.$}
 {
 	play frostbite-harmless
-}
-{9}
-
-#ACTION {%1 takes the full force of %2 bodyslam bash!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play bash
-	}
 }
 {9}
 
@@ -1346,53 +1052,9 @@
 }
 {9}
 
-#ACTION {%1 ta{ps|p} {your|his|its|her} life, and {a swarm of|a} blood red {demons|winged demon} {fly|flaps} quickly toward %2!$}
-{
-	play bloodmist-launch
-}
-{9}
-
-#ACTION {%1 tries to disarm%2.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play disarm-fail
-	}
-}
-{9}
-
-#ACTION {%1 wield%2.$}
-{
-	play wield
-}
-{9}
-
-#ACTION {%1 {are|is} engulfed in flames!$}
-{
-	#if {"$combatsound" == "true" && !&{firefieldPlaying}}
-	{
-		play flame-engulf;
-		#variable {firefieldPlaying} {true};
-		#delay {0.5} {#unvar {firefieldPlaying}}
-	}
-}
-{9}
-
-#ACTION {%1 {casts|cast} {the|a} spell, and %2 breathes new life into %3!$}
-{
-	play breath-of-life
-}
-{9}
-
 #ACTION {%1 {enchants|enchant}, then brutally {twists|twist} and {molds|mold} %2 into A metal construct.$}
 {
 	play metal-construct-rises
-}
-{9}
-
-#ACTION {%1 {enchants|enchant}, then quickly {twists|twist} and {molds|mold} %2 into {A|a} wood woad.$}
-{
-	play wood-woad-rises
 }
 {9}
 
@@ -1414,69 +1076,9 @@
 }
 {9}
 
-#ACTION {%1 {heals|heal} %2.$}
-{
-	play heal
-}
-{9}
-
-#ACTION {%1 {is|are} hit by a flamestrike from the heavens.$}
-{
-	play flamestrike
-}
-{9}
-
-#ACTION {%1 {is|are} on fire!$}
-{
-	play on-fire
-}
-{9}
-
-#ACTION {%1 {kicks|kick} %2 but barely {makes|make} contact.$}
-{
-	play kick
-}
-{9}
-
-#ACTION {%1 {kicks|kick} %2 while {she|he|it}'s down!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
-}
-{9}
-
-#ACTION {%1 {lands|land} a solid mule kick on %2!$}
-{
-	play kick
-}
-{9}
-
-#ACTION {%1 {parry|parries} %2 attack.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play parry
-	}
-}
-{9}
-
 #ACTION {%1 {pulls|pull} out a dragon tooth, {casts|cast} a spell, and quickly {drops|drop} it.$}
 {
 	play create-skeleton
-}
-{9}
-
-#ACTION {%1 {punch|pound} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play punch
-		}
-	}
 }
 {9}
 
@@ -1504,30 +1106,9 @@
 }
 {9}
 
-#ACTION {%1 {slowly fade|fades slowly} out of existence.$}
-{
-	play invisibility
-}
-{9}
-
-#ACTION {%1 {sneaks|sneak} a solid roundhouse kick in on %2!$}
-{
-	play kick
-}
-{9}
-
 #ACTION {%1 {struggles|struggle} with the spell, and the line of frost zips randomly across the ground...$}
 {
 	play frostbite-random
-}
-{9}
-
-#ACTION {%1 {takes|take} the full force of %2's {beautiful full circle|sudden mule} kick!$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
 }
 {9}
 
@@ -1541,27 +1122,9 @@
 }
 {9}
 
-#ACTION {%1 {they|hands} take on a sickly green tint.$}
-{
-	play sickening-touch
-}
-{9}
-
 #ACTION {%1 {throws out a line and starts|start} fishing.$}
 {
 	play fishing-cast
-}
-{9}
-
-#ACTION {%1 {throw|throws} %2 at %3!$}
-{
-	play throw_hit
-}
-{9}
-
-#ACTION {%1 {throw|throws}%1at%2, but miss.$}
-{
-	play throw_miss
 }
 {9}
 
@@ -1586,18 +1149,6 @@
 #ACTION {%1 {use|uses} magic to rip the bones and cartilage from the corpse of %2, then {reassembles|reassemble} them into A bone guardian.$}
 {
 	play bone-guardian-rises
-}
-{9}
-
-#ACTION {%1's image blurs and shifts to one side.$}
-{
-	play displacement
-}
-{9}
-
-#ACTION {%1's skin turns grey and granite-like.$}
-{
-	play stone-skin
 }
 {9}
 
@@ -1781,100 +1332,6 @@
 }
 {9}
 
-#ACTION {%1{our|'s} {slash|slice|chop|hack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play slash
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab
-		}
-	}
-}
-{9}
-
-#ACTION {%1{r|'s} kick %2 %3{.|!}$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play kick
-	}
-}
-{9}
-
-#ACTION {%1{r|'s} whip %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play whip
-		}
-	}
-}
-{9}
-
-#ACTION {%1{r|'s} {claw|scratch} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play claw
-		}
-	}
-}
-{9}
-
-#ACTION {%1{r|'s} {flail|thwack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail
-		}
-	}
-}
-{9}
-
-#ACTION {(friend) %1 posted: %*}
-{
-	#if {"%1" == "$name"}
-	{
-		play sendmsg
-	};
-	#else
-	{
-		play msg
-	}
-}
-{9}
-
-#ACTION {Your flail %1 %2{.|!}$}
-{
-	#if {"%1" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail
-		}
-	}
-}
-{9}
-
 #ACTION {^        harvest teeth%1}
 {
 	#variable {harvestTeeth} {true}
@@ -1900,45 +1357,18 @@
 }
 {9}
 
-#ACTION {^!!SOUND(misc/liquidempty.wav)$}
-{
-	play empty-liquid
-}
-{9}
-
-#ACTION {^!!SOUND(move/%1)$}
+#ACTION {^!!SOUND(%1.wav)$}
 {
 	#switch {"%1"}
 	{
-		#case {"waypoint.wav"}
-		{
-			play waypoint-travel
-		};
-		#case {"recall%d.wav"}
-		{
-			play recall
-		};
-		#case {"water%d.wav"}
-		{
-			play water-move
-		};
 		#default
 		{
-			play footstep
+			#if {"%1" != "Off U=http://www.alteraeon.com/soundpack/wav_v1/"}
+			{
+				#system {if [ ! -f "sounds/%1.wav" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed "s/.*\\/\([^\\/]*\)$/\\1/");mkdir -p "sounds/$DIR";wget -qP "sounds/$DIR" "http://alteraeon.com/soundpack/wav_v1/%1.wav";fi};
+				play %1
+			}
 		}
-	}
-}
-{9}
-
-#ACTION {^%1 cries victory over %2 fallen enemy!$}
-{
-	#if {"%2" == "her"}
-	{
-		play female-victory
-	};
-	#else
-	{
-		play male-victory
 	}
 }
 {9}
@@ -2008,18 +1438,6 @@
 }
 {9}
 
-#ACTION {^A %1 bolt of lightning leaps from you to %2!$}
-{
-	play lightningbolt
-}
-{9}
-
-#ACTION {^A %1 cone of cold streams from %2 outstretched fingertips to engulf %3!$}
-{
-	play cone-of-cold
-}
-{9}
-
 #ACTION {^A %1 soulstone disappears in a puff of smoke, and you hear demonic laughter all around you.$}
 {
 	play demonic-laughter
@@ -2047,12 +1465,6 @@
 }
 {9}
 
-#ACTION {^A ball of white lightning crackles as it fries %1!$}
-{
-	play ball-lightning
-}
-{9}
-
 #ACTION {^A beastly fido has arrived.$}
 {
 	play beastly-fido
@@ -2065,25 +1477,7 @@
 }
 {9}
 
-#ACTION {^A beautiful web of blazing %1 fire bursts forth from %2 hands and hits %3, setting {him|her|it} on fire!$}
-{
-	play fireweb
-}
-{9}
-
-#ACTION {^A beautiful web of blazing %1 fire suddenly appears and wraps around %2, setting {her|him|it} on fire!$}
-{
-	play fireweb
-}
-{9}
-
-#ACTION {^A beautiful web of blazing %1 fire suddenly appears and wraps around you, setting you on fire!$}
-{
-	play fireweb
-}
-{9}
-
-#ACTION {^A blood red winged demon suddenly bursts into a spray of blood and falls to the ground.$}
+#ACTION {^A blood red winged demon explodes in fine haze of red mist!$}
 {
 	play bloodmist-death
 }
@@ -2092,18 +1486,6 @@
 #ACTION {^A blood red winged demon {bites|claws at} %1!$}
 {
 	play bloodmist-attack
-}
-{9}
-
-#ACTION {^A blue dart of flame singes you!$}
-{
-	play blue-dart
-}
-{9}
-
-#ACTION {^A crackling blue-white glow suddenly surrounds %1 hands.$}
-{
-	play shocking-grasp
 }
 {9}
 
@@ -2119,42 +1501,12 @@
 }
 {9}
 
-#ACTION {^A golden glow surrounds %1, then flows outward to surround you.$}
-{
-	play area-refresh
-}
-{9}
-
-#ACTION {^A golden glow surrounds you, then flows outward.$}
-{
-	play area-refresh
-}
-{9}
-
 #ACTION {^A magical hammer disappears in a blinding flash of light! (worn by you)}
 {
 	#if {"$spiritHammer" == "true" && "$autorecast" == "true"}
 	{
 		c spirit
 	}
-}
-{9}
-
-#ACTION {^A pale red glow suddenly surrounds %1 hands.}
-{
-	play burning-hands
-}
-{9}
-
-#ACTION {^A raging magical blizzard turns all you see to ice!$}
-{
-	play blizzard
-}
-{9}
-
-#ACTION {^A searing white lightning bolt leaps from %1 to %2!$}
-{
-	play lightningbolt
 }
 {9}
 
@@ -2170,12 +1522,6 @@
 	{
 		f
 	}
-}
-{9}
-
-#ACTION {^A shower of %1 sparks suddenly engulfs %2!$}
-{
-	play shower-of-sparks
 }
 {9}
 
@@ -2210,12 +1556,6 @@
 #ACTION {^A small clawed hand reaches up through the ground, grabs a %1 soulstone, and vanishes.$}
 {
 	play demonic-laughter
-}
-{9}
-
-#ACTION {^A warm feeling fills your body.$}
-{
-	play heal
 }
 {9}
 
@@ -2307,12 +1647,6 @@
 }
 {9}
 
-#ACTION {^The air stirs as %1 starts casting a powerful spell...$}
-{
-	play shardstorm
-}
-{9}
-
 #ACTION {^The blade splits down the red lines and shatters, leaving behind oddly bloody fragments that seem to vanish when %1 not looking at them. (worn by you)$}
 {
 	#if {"$boneBlade" == "true"}
@@ -2398,12 +1732,6 @@
 }
 {9}
 
-#ACTION {^You are surrounded by a strong force shield.$}
-{
-	play shield
-}
-{9}
-
 #ACTION {^You attempt to goad %1 into attacking you.$}
 {
 	play taunt
@@ -2416,40 +1744,14 @@
 }
 {9}
 
-#ACTION {^You call upon %1 to strike down %2 with fire.$}
-{
-	play flamestrike
-}
-{9}
-
-#ACTION {^You cast the spell and feel %1 breathe new life into you!$}
-{
-	play breath-of-life
-}
-{9}
-
 #ACTION {^You cast the spell to separate soul from body, and pull %1's essence into a %2 soulstone!$}
 {
-	play soulsteal;
 	#if {"$autostore" == "true"}
 	{
 		#if {"%2" == "pale blue" || "%2" == "deep blue" || "%2" == "purple" || "%2" == "white" || "%2" == "black" || "%2" == "clear"}
 		{
 			put soulstone $container
 		}
-	}
-}
-{9}
-
-#ACTION {^You cry victory over your fallen enemy!$}
-{
-	#if {"$sex" == "female"}
-	{
-		play female-victory
-	};
-	#else
-	{
-		play male-victory
 	}
 }
 {9}
@@ -2478,24 +1780,12 @@
 }
 {9}
 
-#ACTION {^You feel %1 protecting you.$}
-{
-	play armor
-}
-{9}
-
 #ACTION {^You feel a slight tingle and you feel somehow abandoned.}
 {
 	#if {"$bless" == "true" && "$autorecast" == "true"}
 	{
 		c bless
 	}
-}
-{9}
-
-#ACTION {^You feel as though %1 is watching over you.$}
-{
-	play bless
 }
 {9}
 
@@ -2526,12 +1816,6 @@
 }
 {9}
 
-#ACTION {^You feel less tired.$}
-{
-	play refresh
-}
-{9}
-
 #ACTION {^You feel new bones and flesh forming a protective armor plate over your body.$}
 {
 	#if {"$soulbind" == "true"}
@@ -2546,30 +1830,12 @@
 }
 {9}
 
-#ACTION {^You feel queasy as the spell takes root in your blood and bones.$}
-{
-	play dying-breath-cast
-}
-{9}
-
 #ACTION {^You feel the pent up vengeance in your blood dissipate.$}
 {
 	#if {"$dyingBreath" == "true" && "$autorecast" == "true"}
 	{
 		c dying breath
 	}
-}
-{9}
-
-#ACTION {^You feel%1better{.|!}$}
-{
-	play cure-wounds
-}
-{9}
-
-#ACTION {^You follow %1 {northeast|northwest|north|southeast|southwest|south|east|west|up|down|out}.$}
-{
-	play footstep
 }
 {9}
 
@@ -2610,13 +1876,6 @@
 }
 {9}
 
-#ACTION {^You hold%*}
-{
-	show stats | prefix silent_;
-	show clev | prefix silent_
-}
-{9}
-
 #ACTION {^You let out a mighty roar as the blood fever takes hold of you!$}
 {
 	play berserk
@@ -2653,12 +1912,6 @@
 }
 {9}
 
-#ACTION {^You raise your hands and start casting the spell...$}
-{
-	play shardstorm
-}
-{9}
-
 #ACTION {^You receive %1 gold coins for your sacrifice.}
 {
 	split %1
@@ -2680,12 +1933,6 @@
 }
 {9}
 
-#ACTION {^You stand in the center of a raging blizzard created by your own magic.$}
-{
-	play blizzard
-}
-{9}
-
 #ACTION {^You stop using%*}
 {
 	show stats | prefix silent_;
@@ -2695,7 +1942,6 @@
 
 #ACTION {^You struggle to pull %1 essence into a %2 soulstone!$}
 {
-	play soulsteal;
 	#if {"$autostore" == "true"}
 	{
 		put soulstone $container
@@ -2721,50 +1967,9 @@
 }
 {9}
 
-#ACTION {^You throw a large ball of pent-up white electricity at %1.$}
-{
-	play ball-lightning
-}
-{9}
-
-#ACTION {^You try to disarm%1but fail.$}
-{
-	#if {"$combatsound" == "true"}
-	{
-		play disarm-fail
-	}
-}
-{9}
-
-#ACTION {^You try to push beyond the boundries of your endurance, but nothing happens!$}
-{
-	second wind
-}
-{9}
-
 #ACTION {^You try, but the blood fever remains just out of your reach!$}
 {
 	berserk
-}
-{9}
-
-#ACTION {^You use your faith in %1 as a shield to protect you.$}
-{
-	play faith-shield
-}
-{9}
-
-#ACTION {^You wear%*}
-{
-	show stats | prefix silent_;
-	show clev | prefix silent_
-}
-{9}
-
-#ACTION {^You wield%*}
-{
-	show stats | prefix silent_;
-	show clev | prefix silent_
 }
 {9}
 
@@ -2774,15 +1979,16 @@
 }
 {9}
 
-#ACTION {^You {tell|reply}%1,%2'$}
+#ACTION {^You {hold|wear|wield}%*}
 {
-	play sendmsg
+	show stats | prefix silent_;
+	show clev | prefix silent_
 }
 {9}
 
-#ACTION {^Your blue dart singes %2.$}
+#ACTION {^You {tell|reply}%1,%2'$}
 {
-	play blue-dart
+	play sendmsg
 }
 {9}
 
@@ -2801,25 +2007,11 @@
 }
 {9}
 
-#ACTION {^Your form shifts slightly, then separates from where your body actually is.$}
-{
-	play displacement
-}
-{9}
-
-#ACTION {^Your lungs feel funny, kinda dry... water anyone?$}
-{
-	play water-breathing
-}
-{9}
-
 #ACTION {^Your magically induced dexterity abruptly disappears.}
 {
 	#if {"$dexterity" == "true" && "$autorecast" == "true"}
 	{
-		c dex;
-		c dex;
-		c dex
+		#3 c dex
 	}
 }
 {9}
@@ -2845,12 +2037,6 @@
 #ACTION {^Your skin tingles as you pass through the magical barrier.$}
 {
 	play ff-barrier
-}
-{9}
-
-#ACTION {^Your skin turns to a stone like substance.$}
-{
-	play stone-skin
 }
 {9}
 
@@ -3099,12 +2285,6 @@
 	#variable {con} {%10};
 	#variable {chrBonus} {%11};
 	#variable {chr} {%12}
-}
-{9}
-
-#ACTION {^{Dentin|Dowart|Kenai|Wyvren|Heart|Fikh|Xael|Reorx|Talos|Squeak|Cygnii|Taran|Tarrant|Shadowfax|Draak|Vember|Islaine|Bobcat|Byung|Xandar|Grolantor|Coolbeans|Slamin|Schlyne|Morpheus|Gandor|Glorida|Shift|Mutt|The Lag Monster|The pantheon of gods} {has restored|restores} you to full health!$}
-{
-	play restore
 }
 {9}
 
@@ -4121,6 +3301,19 @@
 }
 {9}
 
+#ALIAS {cconf %1}
+{
+	#if {!&{%1}}
+	{
+		#showme {%1 false}
+	};
+	#else
+	{
+		#showme {%1 $%1}
+	}
+}
+{9}
+
 #ALIAS {facebook}
 {
 	#variable {facebook} {true};
@@ -4187,11 +3380,11 @@
 {
 	#if {!&{volume} || $volume == 0}
 	{
-		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*ogg)" "$(shuf -n 1 -e sounds/%2*ogg)" &> /dev/null &}
+		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" &> /dev/null &}
 	};
 	#else
 	{
-		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*ogg)" "$(shuf -n 1 -e sounds/%2*ogg)" gain $volume &> /dev/null &}
+		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
 	}
 }
 {9}
@@ -4200,11 +3393,11 @@
 {
 	#if {!&{volume} || $volume == 0}
 	{
-		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*ogg)" &> /dev/null &}
+		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*wav)" &> /dev/null &}
 	};
 	#else
 	{
-		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*ogg)" gain $volume &> /dev/null &}
+		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
 	}
 }
 {9}
@@ -4363,9 +3556,27 @@
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
 #GAG              {^silent_%*}
+#MACRO {\e+}
+{
+	#system {cmus-remote -v +10}
+}
+
 #MACRO {\e,}
 {
 	south
+}
+
+#MACRO {\e-}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex - 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
 #MACRO {\e.}
@@ -4428,15 +3639,15 @@
 	down
 }
 
-#MACRO {\eC}
+#MACRO {\e=}
 {
-	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
 	{
-		#variable {channelBufferIndex} {0}
+		#variable {channelBufferIndex} {5}
 	};
 	#else
 	{
-		#math {channelBufferIndex} {$channelBufferIndex - 1}
+		#math {channelBufferIndex} {$channelBufferIndex + 1}
 	};
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
@@ -4444,6 +3655,23 @@
 #MACRO {\eI}
 {
 	up
+}
+
+#MACRO {\eR}
+{
+	#system {cmus-remote -R};
+	#showme {Cmus repeat toggled.}
+}
+
+#MACRO {\eS}
+{
+	#system {cmus-remote -S};
+	#showme {Cmus shuffle toggled.}
+}
+
+#MACRO {\eV}
+{
+	#system {cmus-remote -s}
 }
 
 #MACRO {\e[18~}
@@ -4472,13 +3700,7 @@
 	play new-volume
 }
 
-#MACRO {\e\}
-{
-	get $battleScroll $container;
-	use $battleScroll
-}
-
-#MACRO {\ec}
+#MACRO {\e[1;3C}
 {
 	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
 	{
@@ -4489,6 +3711,40 @@
 		#math {channelBufferIndex} {$channelBufferIndex + 1}
 	};
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
+
+#MACRO {\e[1;3D}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex - 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
+
+#MACRO {\e\}
+{
+	get $battleScroll $container;
+	use $battleScroll
+}
+
+#MACRO {\e_}
+{
+	#system {cmus-remote -v -10}
+}
+
+#MACRO {\eb}
+{
+	#system {cmus-remote -n}
+}
+
+#MACRO {\ec}
+{
+	#system {cmus-remote -u}
 }
 
 #MACRO {\ei}
@@ -4524,6 +3780,21 @@
 #MACRO {\eu}
 {
 	northwest
+}
+
+#MACRO {\ev}
+{
+	#system {cmus-remote -s}
+}
+
+#MACRO {\ex}
+{
+	#system {cmus-remote -p}
+}
+
+#MACRO {\ez}
+{
+	#system {cmus-remote -r}
 }
 
 #PATHDIR          {d}  {u}  {32}
