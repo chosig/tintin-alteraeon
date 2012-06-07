@@ -27,9 +27,9 @@ To login your existing character type either aa or login and press enter.
 If this is your first time logging in, or if you have updated skills and spells using another client, type the word load and press enter after your character is logged in. This is important for some of the automatic features.
 
 Requirements:
-sox
-shuf
-wget
+tintin++, sox, shuf, and wget
+Optional:
+cmus, fbcmd, and TTYtter
 
 Skills and Spells:
 Some skills and spells can automatically be used while you are playing. To make sure everything is set up, type load. You should only need to do this once, because the data will now be saved in the file game_data.tin. To make sure the data is up to date, when you practice a new skill or spell, type skill or spell followed by the name of the skill or spell you just practiced. for example, if you have just practiced kick for the first time, type:
@@ -155,6 +155,7 @@ alt+shift+R toggle repeat
 alt+shift+S: toggle shuffle
 alt+shift+_: volume down
 alt+shift++: volume up
+alt+shift+M: Post currently playing file to music channel
 
 Botting:
 Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:

@@ -1088,12 +1088,6 @@
 }
 {9}
 
-#ACTION {%1 {reanimates|reanimate} and {unpacks|unpack} a ball of twisted bones, {then reassembles|forming} it into A bone guardian.$}
-{
-	play bone-guardian-rises
-}
-{9}
-
 #ACTION {%1 {reels|reel} in %2.$}
 {
 	play catch-fish
@@ -1143,12 +1137,6 @@
 #ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
 {
 	play ice-focus
-}
-{9}
-
-#ACTION {%1 {use|uses} magic to rip the bones and cartilage from the corpse of %2, then {reassembles|reassemble} them into A bone guardian.$}
-{
-	play bone-guardian-rises
 }
 {9}
 
@@ -1565,12 +1553,6 @@
 }
 {9}
 
-#ACTION {^A wood woad has left the group.$}
-{
-	play wood-woad-death
-}
-{9}
-
 #ACTION {^After a big fight, %1 {reels|reel} in %2.$}
 {
 	play catch-fish
@@ -1860,12 +1842,6 @@
 #ACTION {^You have %1 new mudmail {messages|message}!$}
 {
 	play new-mail
-}
-{9}
-
-#ACTION {^You have become more renowned!$}
-{
-	play fame
 }
 {9}
 
@@ -3657,16 +3633,21 @@
 	up
 }
 
+#MACRO {\eM}
+{
+	#script {echo "music Now playing ~/$(cmus-remote -Q | head -2 | tail -1 | cut -d "/" -f 4-)"}
+}
+
 #MACRO {\eR}
 {
 	#system {cmus-remote -R};
-	#showme {Cmus repeat toggled.}
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
 }
 
 #MACRO {\eS}
 {
 	#system {cmus-remote -S};
-	#showme {Cmus shuffle toggled.}
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
 }
 
 #MACRO {\eV}
