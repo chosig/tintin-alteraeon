@@ -1397,6 +1397,7 @@
 
 #ACTION {^(friend) %1 has entered the game.$}
 {
+	#variable {friendNameEnter} {%1};
 	#if {!&{replaying}}
 	{
 		play friend-enter
@@ -1406,6 +1407,10 @@
 
 #ACTION {^(friend) %1 has left the game.$}
 {
+	#if {"%1" == "$friendNameEnter"}
+	{
+		#unvariable {friendNameEnter}
+	};
 	#if {!&{replaying}}
 	{
 		play friend-leave
@@ -2836,6 +2841,12 @@
 }
 {9}
 
+#ALIAS {^csave$}
+{
+	#class {gameData} {write} {game_data.tin}
+}
+{9}
+
 #ALIAS {^fp %1}
 {
 	friend post %1
@@ -3462,10 +3473,8 @@
 }
 {9}
 
-#CONFIG           {256 COLORS}  {ON}
 #CONFIG           {AUTO TAB}  {5000}
 #CONFIG           {BUFFER SIZE}  {20000}
-#CONFIG           {CHARSET}  {UTF-8}
 #CONFIG           {COMMAND COLOR}  {<078>}
 #CONFIG           {COMMAND ECHO}  {ON}
 #CONFIG           {CONNECT RETRY}  {15}
@@ -3534,7 +3543,7 @@
 #GAG              {^silent_%*}
 #MACRO {\e+}
 {
-	#system {cmus-remote -v +10}
+	#system {cmus-remote -v +10%}
 }
 
 #MACRO {\e,}
@@ -3628,6 +3637,18 @@
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
+#MACRO {\eG}
+{
+	#if {&{friendNameEnter}}
+	{
+		#script {echo "friend post $(shuf -n 1 -e "Hello" "Greetings" "Hey" "Hi" "Howdy") $friendNameEnter!"}
+	};
+	#else
+	{
+		#showme {You have no one to greet.}
+	}
+}
+
 #MACRO {\eI}
 {
 	up
@@ -3715,7 +3736,7 @@
 
 #MACRO {\e_}
 {
-	#system {cmus-remote -v -10}
+	#system {cmus-remote -v -10%}
 }
 
 #MACRO {\eb}

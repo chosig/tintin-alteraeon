@@ -19,6 +19,21 @@ Work has started on background music/sound effects. If you happen to notice a lo
 set ctrigger off
 There are no sound effects for backgrounds yet. If you want to make some read help wxkt_terrain in the game. the terrain files should be terrain-number.ogg where number is the number corrisponding to the terrain type. For example, terain-2.ogg would be for towns. Until work is finished on terrain sounds music will be off by default.
 
+Mac Installation:
+These instructions may or may not be complete. If you have any problems please file an issue on the github page.
+Download and extract the Mac binary of tintin++ from
+http://tintin.sourceforge.net/download.php
+Install macports:
+http://www.macports.org/install.php
+Open terminal:
+To install tintin++ system wide you can move it to /opt/local/bin/ If
+you have extracted the files in the Downloads directory, the command
+would be:
+sudo mv ~/Downloads/tt++ /opt/local/bin/tt++
+sudo port install sox wget xz coreutils
+After everything has installed successfully link the commmand gshuf to the command shuf by typing:
+sudo ln /opt/local/bin/gshuf /opt/local/bin/shuf
+
 Connecting:
 To connect, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.
 To start tintin++ with the sound and trigger pack loaded type:
@@ -48,6 +63,7 @@ F8: Sound volume up.
 alt+1 through alt+0 play last 1 through tenth message.
 alt+w makes a wood woad if you have the spell and woad material is in your container.
 alt+g makes a bone guardian if the requirements are met.
+alt+shift+G: Greet the last friend to enter the game.
 alt+u northwest
 alt+i north
 alt+shift+I up
@@ -92,6 +108,8 @@ bm or bloodmist target cast bloodmist on target
 brag cap or brag gt cap will brag your experience cap. this is not available in normal brag commands.
 browser name: sets name as your browser, for example browser firefox will set your browser to firefox.
 cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
+csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
+cp game_data.tin game_data.tin.bak
 combatsound turn on combat sound like slashes, punches, kicks, etc. This is default.
 nocombatsound turns off combat sound.
 facebook: Post achievements to facebook. This requires fbcmd to be installed. There is a how-to at: http://stormdragon.us/?p=223
