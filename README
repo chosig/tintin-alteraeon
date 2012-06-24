@@ -81,6 +81,7 @@ autobuypractice: automatically buys a practice when you have enough experience p
 noautobuypractice: Turns off autobuypractice, see above.
 autoclay cast clay man automatically if your current clay man dies
 autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
+autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
 autorecast: Set spells like armor and shield to recast automatically when they drop.
 noautorecast: turns off autorecast.
 autowoad automatically try to create a new wood woad if the current woad dies.

@@ -1052,12 +1052,6 @@
 }
 {9}
 
-#ACTION {%1 {goes|go} berserk in battle!$}
-{
-	play berserk
-}
-{9}
-
 #ACTION {%1 {pulls|pull} out a dragon tooth, {casts|cast} a spell, and quickly {drops|drop} it.$}
 {
 	play create-skeleton
@@ -1119,186 +1113,6 @@
 #ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
 {
 	play ice-focus
-}
-{9}
-
-#ACTION {%1{our|'s} {burning|fiery|flaming} whip %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play whip fire-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {burning|fiery|flaming} {claw|scratch} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play claw fire-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {burning|fiery|flaming} {flail|thwack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail fire-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {burning|fiery|flaming} {slash|slice|chop|hack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play slash fire-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {burning|fiery|flaming} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab fire-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {freezing|icy} whip %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play whip ice-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {freezing|icy} {claw|scratch} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play claw ice-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {freezing|icy} {flail|thwack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail ice-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {freezing|icy} {slash|slice|chop|hack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play slash ice-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {freezing|icy} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab ice-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {shocking|zapping} whip %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play whip lightning-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {shocking|zapping} {claw|scratch} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play claw lightning-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {shocking|zapping} {flail|thwack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play flail lightning-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {shocking|zapping} {slash|slice|chop|hack} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play slash lightning-focus
-		}
-	}
-}
-{9}
-
-#ACTION {%1{our|'s} {shocking|zapping} {stab|pierce|bite|peck} %2 %3{.|!}$}
-{
-	#if {"%2" != "misses"}
-	{
-		#if {"$combatsound" == "true"}
-		{
-			play stab lightning-focus
-		}
-	}
 }
 {9}
 
@@ -1863,12 +1677,6 @@
 {
 	tweet $name has completed the achievement %1! #AlterAeon;
 	fbpost $name has completed the achievement %1!
-}
-{9}
-
-#ACTION {^You let out a mighty roar as the blood fever takes hold of you!$}
-{
-	play berserk
 }
 {9}
 
@@ -3574,6 +3382,7 @@
 #GAG              {^You convince yourself that you are being hunted....$}
 #GAG              {^You didn't find anything by that name.}
 #GAG              {^You discover the meaning of life, just as someone knocks you out with a brick.$}
+#GAG              {^You don't see anything named 'coins' in the corpse of %1.$}
 #GAG              {^You emote: %1 grabs a ball of light and quickly stuffs it down {his pants|her shirt}.$}
 #GAG              {^You emote: %1 says, 'Dude check it out, they glow!'$}
 #GAG              {^You find a copy of the 'WatchTower' and your life is Changed!!$}
