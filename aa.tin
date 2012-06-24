@@ -1178,12 +1178,6 @@
 }
 {9}
 
-#ACTION {^(FYI: %1 has just sent you a mudmail)$}
-{
-	play new-mail
-}
-{9}
-
 #ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
 {
 	#send {waypoint %1};
@@ -1664,12 +1658,6 @@
 #ACTION {^You happen to find %d gold coins, how fortunate!$}
 {
 	play pickpocket
-}
-{9}
-
-#ACTION {^You have %1 new mudmail {messages|message}!$}
-{
-	play new-mail
 }
 {9}
 
