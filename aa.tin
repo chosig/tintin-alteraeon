@@ -620,24 +620,6 @@
 }
 {5}
 
-#ACTION {^A {bone guardian|skeletal mage|skeleton} rips a bone from the corpse of %1 as a replacement.$}
-{
-	play bone-rip
-}
-{5}
-
-#ACTION {^As %1 {hits|hit} %2, a bright fan of lightning bolts leaps from %3 hands to blast %4!$}
-{
-	play shocking-hit
-}
-{5}
-
-#ACTION {^As you hit %1, a bright flash of %2 fire leaps from your hands to scorch %3!$}
-{
-	play burning-hit
-}
-{5}
-
 #ACTION {^The clay man crumbles back into the dust and dirt from whence it came.$}
 {
 	play clay-man-death
@@ -1767,6 +1749,15 @@
 }
 {9}
 
+#ACTION {^You feel a lump, so you cut open an organ and retrieve a jagged yellow stone.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk jagged
+	}
+}
+{9}
+
 #ACTION {^You feel a slight tingle and you feel somehow abandoned.}
 {
 	#if {"$bless" == "true" && "$autorecast" == "true"}
@@ -1826,6 +1817,24 @@
 }
 {9}
 
+#ACTION {^You find a small bladder of green fluid, and carefully tie off the ends before removing it.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk bladder
+	}
+}
+{9}
+
+#ACTION {^You find an out-of-place dark mass, and carefully cut it from its surroundings.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk tumor
+	}
+}
+{9}
+
 #ACTION {^You gain a practice!$}
 {
 	play train-practice
@@ -1863,6 +1872,15 @@
 }
 {9}
 
+#ACTION {^You make a small incision and drain some fluid into a vial of bile.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk bile
+	}
+}
+{9}
+
 #ACTION {^You notice that the foul taste in your mouth seems to be gone.$}
 {
 	#if {"$foulBlood" == "true" && "$autorecast" == "true"}
@@ -1896,6 +1914,15 @@
 #ACTION {^You receive %1 gold coins for your sacrifice.}
 {
 	split %1
+}
+{9}
+
+#ACTION {^You roughly hack out a small bladder of black fluid and tie off the ends with string.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk bile
+	}
 }
 {9}
 
@@ -2108,7 +2135,10 @@
 {
 	#if {&{lastReceivedExp}}
 	{
-		get all.$throwWeapon corpse;
+		#if {&{throwWeapon}}
+		{
+			get all.$throwWeapon corpse
+		};
 		#if {&{lastSoulSteal}}
 		{
 			#unvariable {lastSoulSteal}
@@ -2789,6 +2819,13 @@
 }
 {9}
 
+#ALIAS {^autojunk$}
+{
+	#variable {autojunk} {true};
+	#showme {You will now automatically discard spell components harvested from corpses.}
+}
+{9}
+
 #ALIAS {^automap$}
 {
 	#showme {Automap on.};
@@ -2897,6 +2934,13 @@
 {
 	#unvariable {autoheal};
 	#showme {Autoheal is now off.}
+}
+{9}
+
+#ALIAS {^noautojunk$}
+{
+	#unvariable {autojunk};
+	#showme {You will no longer automatically discard anything.}
 }
 {9}
 
@@ -3537,6 +3581,7 @@
 #GAG              {^You put on a hooded red robe and parade about hunting for heretics and witches.$}
 #GAG              {^You run about the room shouting something about 'TP' and 'bungholes'.$}
 #GAG              {^You run about the room shouting something about 'cornholio' and 'cappuccino'.$}
+#GAG              {^You see nothing left to loot from the corpse of %1.$}
 #GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
