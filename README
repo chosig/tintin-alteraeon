@@ -20,19 +20,20 @@ set ctrigger off
 There are no sound effects for backgrounds yet. If you want to make some read help wxkt_terrain in the game. the terrain files should be terrain-number.ogg where number is the number corrisponding to the terrain type. For example, terain-2.ogg would be for towns. Until work is finished on terrain sounds music will be off by default.
 
 Mac Installation:
-These instructions may or may not be complete. If you have any problems please file an issue on the github page.
 Download and extract the Mac binary of tintin++ from
 http://tintin.sourceforge.net/download.php
 Install macports:
 http://www.macports.org/install.php
+Install xcode available free   from the Mac app store
 Open terminal:
 To install tintin++ system wide you can move it to /opt/local/bin/ If
 you have extracted the files in the Downloads directory, the command
 would be:
 sudo mv ~/Downloads/tt++ /opt/local/bin/tt++
-sudo port install sox wget xz coreutils
+sudo port install git-core sox wget xz coreutils
 After everything has installed successfully link the commmand gshuf to the command shuf by typing:
 sudo ln /opt/local/bin/gshuf /opt/local/bin/shuf
+To be able to use the alt key abilities provided in this trigger pack, open terminal preferences and on the keyboard tab check use option as meta. Finally, select the file menu and choose use as defaults.
 
 Connecting:
 To connect, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.

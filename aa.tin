@@ -1308,12 +1308,6 @@
 }
 {9}
 
-#ACTION {^A skelet%1 suddenly breaks, crumbles, and turns to dust.$}
-{
-	play skeletal-death
-}
-{9}
-
 #ACTION {^A skeletal mage stops following you.$}
 {
 	#if {"$autoskeleton" == "true"}
@@ -1860,12 +1854,6 @@
 	{
 		map
 	}
-}
-{9}
-
-#ACTION {^dust before your eyes.$}
-{
-	play skeletal-death
 }
 {9}
 
