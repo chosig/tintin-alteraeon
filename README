@@ -76,8 +76,10 @@ alt+, south
 alt+shift+< down
 alt+m southwest
 alt+. southeast
+.: cast word of recall (requires spell word of recall).
+,: cast group recall (requires spell group recall).
 alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
-alt+\: Gets an item from your container and uses it. Set the item to be used with the scrole item command, for example, scroll softdrink will set the item to softdrink.
+alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
 autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
 noautobuypractice: Turns off autobuypractice, see above.
 autoclay cast clay man automatically if your current clay man dies
