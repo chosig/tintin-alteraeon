@@ -1,3 +1,5 @@
+#alias {^cspam$} {#class {cspam} {read} {cspam.tin};#class {gameData} {open};#showme {Minion and battle spam reduced.}}
+#alias {^nocspam$} {#class {cspam} {kill};#showme {Minion and battle spam will no longer be modified.}}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -242,7 +244,32 @@
 
 #ACTION {^ %1  bash  %2}
 {
+	#variable {bash} {true};
 	#macro {\ea} {bash}
+}
+{5}
+
+#ACTION {^ %1  cleave%2}
+{
+	#variable {cleave} {true}
+}
+{5}
+
+#ACTION {^ %1  feint%2}
+{
+	#variable {feint} {true}
+}
+{5}
+
+#ACTION {^ %1  leap attack%2}
+{
+	#variable {leapAttack} {true}
+}
+{5}
+
+#ACTION {^ %1  lunge%2}
+{
+	#variable {lunge} {true}
 }
 {5}
 
@@ -255,6 +282,24 @@
 #ACTION {^ %1  refresh%2}
 {
 	#variable {refresh} {true}
+}
+{5}
+
+#ACTION {^ %1  stomp%2}
+{
+	#variable {stomp} {true}
+}
+{5}
+
+#ACTION {^ %1  trip%2}
+{
+	#variable {trip} {true}
+}
+{5}
+
+#ACTION {^ %1  whirlwind%2}
+{
+	#variable {whirlwind} {true}
 }
 {5}
 
@@ -1144,6 +1189,7 @@
 
 #ACTION {^ %1kick%2}
 {
+	#variable {kick} {true};
 	#alias {k} {kick}
 }
 {9}
@@ -1231,27 +1277,6 @@
 #ACTION {^A %1 soulstone disappears in a puff of smoke, and you hear demonic laughter all around you.$}
 {
 	play demonic-laughter
-}
-{9}
-
-#ACTION {^A ball of light flies idly in circles around your head.}
-{
-	#if {1d1000 > 995}
-	{
-		#line {gag};
-		#if {"$sex" == "female"}
-		{
-			emot grabs a ball of light, quickly stuffs it down her shirt, and says, 'Dude check it out! They glow!'
-		};
-		#else
-		{
-			emot grabs a ball of light, quickly stuffs it down his pants, and says, 'Dude, check it out! They glow!'
-		}
-	};
-	#else
-	{
-		emot flies idly in circles around a ball of light.
-	}
 }
 {9}
 
@@ -2840,13 +2865,20 @@
 
 #ALIAS {^{aa|login}$}
 {
-	#session {Alter Aeon} {dentinmud.org} {3010};
-	#if {"$name" != "Name"}
+	#if {!&{connected}}
 	{
-		$name;
-		$password;
-		#cr
-	}
+		#session {Alter Aeon} {dentinmud.org} {3010};
+		#if {"$name" != "Name"}
+		{
+			$name;
+			$password;
+			#cr
+		}
+	};
+#else
+{
+#showme {Huh?}
+}
 }
 {9}
 
@@ -3077,7 +3109,10 @@
 	};
 	#variable {victim} {%1};
 	remove $weapon;
-	remove shield;
+	#if {&{eqshield}}
+	{
+		remove shield
+	};
 	wield $stabWeapon;
 	#if {"$hide" == "true"}
 	{
@@ -3086,7 +3121,10 @@
 	backstab %1;
 	remove $stabWeapon;
 	wield $weapon;
-	wear shield
+	#if {&{eqshield}}
+	{
+		wear shield
+	}
 }
 {9}
 
@@ -3313,8 +3351,10 @@
 }
 {9}
 
+#CONFIG           {256 COLORS}  {OFF}
 #CONFIG           {AUTO TAB}  {5000}
 #CONFIG           {BUFFER SIZE}  {20000}
+#CONFIG           {CHARSET}  {ASCII}
 #CONFIG           {COMMAND COLOR}  {<078>}
 #CONFIG           {COMMAND ECHO}  {ON}
 #CONFIG           {CONNECT RETRY}  {15}
@@ -3334,7 +3374,13 @@
 {
 	#read {name.tin};
 	#class {gameData} {read} {game_data.tin};
+	#variable {connected} {true};
 	#class {gameData} {open} {game_data.tin}
+}
+
+#EVENT {SESSION DISCONNECTED}
+{
+	#unvariable {connected}
 }
 
 #GAG              {%1 asks you, 'Have you heard of the Jehovas Witnesses?  May I come in?!! DO YOU WANT A PAMPHLET??!!!$}
@@ -3349,13 +3395,9 @@
 #GAG              {You don't see any of your group members here to split the gold with}
 #GAG              {You don't see anything by that name here.}
 #GAG              {You don't see anything named that in the corpse of %1}
-#GAG              {You emote: %1 flies idly in circles around a ball of light}
 #GAG              {You have %1 mana of %2 Max.}
 #GAG              {You see nothing in it for you to get.}
 #GAG              {^!!SOUND%*}
-#GAG              {^#NO SESSION WITH THAT NAME!$}
-#GAG              {^#SESSION 'aa' ACTIVATED.$}
-#GAG              {^#SESSION 'backgroundMusic' DIED.$}
 #GAG              {^$}
 #GAG              {^(You can only split gold with players, not minions.)$}
 #GAG              {^Clantell replay$}
@@ -3619,6 +3661,48 @@
 #MACRO {\eo}
 {
 	northeast
+}
+
+#MACRO {\er}
+{
+	#variable {randomAttack} { };
+	#if {"$bash" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "bash"}
+	};
+	#if {"$cleave" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "cleave"}
+	};
+	#if {"$feint" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "feint"}
+	};
+	#if {"$kick" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "kick"}
+	};
+	#if {"$leapAttack" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "leap"}
+	};
+	#if {"$lunge" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "lunge"}
+	};
+	#if {"$stomp" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "stomp"}
+	};
+	#if {"$trip" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "trip"}
+	};
+	#if {"$whirlwind" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "whirlwind"}
+	};
+	#script {shuf -n 1 -e $randomAttack}
 }
 
 #MACRO {\eu}

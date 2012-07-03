@@ -80,6 +80,7 @@ alt+. southeast
 ,: cast group recall (requires spell group recall).
 alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
+alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
 autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
 noautobuypractice: Turns off autobuypractice, see above.
 autoclay cast clay man automatically if your current clay man dies
@@ -114,6 +115,7 @@ browser name: sets name as your browser, for example browser firefox will set yo
 cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
 csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
 cp game_data.tin game_data.tin.bak
+cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
 combatsound turn on combat sound like slashes, punches, kicks, etc. This is default.
 nocombatsound turns off combat sound.
 facebook: Post achievements to facebook. This requires fbcmd to be installed. There is a how-to at: http://stormdragon.us/?p=223

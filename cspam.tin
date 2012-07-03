@@ -1,0 +1,9 @@
+#gag {^A skeleton's {shield bash|slash|slice|pierce|flail}%*}
+#gag {^A skeleton lands a textbook roundhouse kick squarely on%*}
+#gag {^A bone guardian's {crush|slash}%*}
+#gag {^A bone guardian trips%*}
+#gag {^A bone guardian knocks the legs out from under%*}
+#gag {^A ghoul's claw%*}
+#gag {^A wood woad's {crush|pound}%*}
+#gag {^A zombie's grapple%*}
+#substitute {*** %1 *** %2!$} {* %1 %2!}
