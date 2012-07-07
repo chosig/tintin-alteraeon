@@ -112,16 +112,6 @@
 }
 {1}
 
-#ACTION {^You run away from the battle like a yellow bellied coward!!$}
-{
-	#if {"$bot" == "true"}
-	{
-		nobot;
-		/
-	}
-}
-{1}
-
 #ACTION {^You struggle desparately for air to breathe!$}
 {
 	#if {"$waterBreathing" == "true"}
@@ -234,12 +224,6 @@
 }
 {5}
 
-#ACTION {^                          YOU GAIN A LEVEL!$}
-{
-	play levelup
-}
-{5}
-
 #ACTION {^ %1  bash  %2}
 {
 	#variable {bash} {true};
@@ -280,6 +264,12 @@
 #ACTION {^ %1  refresh%2}
 {
 	#variable {refresh} {true}
+}
+{5}
+
+#ACTION {^ %1  riposte%2}
+{
+	#variable {riposte} {true}
 }
 {5}
 
@@ -730,7 +720,8 @@
 
 #ACTION {^You find yourself too weak to use %1.$}
 {
-	#variable {rewield} {true}
+	#variable {rewield} {true};
+	eq | grep wielded | prefix silent_
 }
 {5}
 
@@ -760,12 +751,6 @@
 #ACTION {^You receive %1 experience.$}
 {
 	#variable {lastReceivedExp} {%1}
-}
-{5}
-
-#ACTION {^You scramble to retrieve %1!$}
-{
-	#send {wield $weapon}
 }
 {5}
 
@@ -860,6 +845,12 @@
 }
 {5}
 
+#ACTION {^silent_wielded     - $}
+{
+	#unvariable {weapon}
+}
+{5}
+
 #ACTION {^silent_Your levels are:  Ma %1  Cl %2  Th %3  Wa %4  Nc %5}
 {
 	#variable {mageLevel} {%1};
@@ -928,9 +919,9 @@
 		c strength;
 		c strength;
 		c strength;
-		#if {"$rewield" == "true"}
+		#if {"$rewield" == "true" && &{weapon}}
 		{
-			wield $weapon;
+			#send {wield $weapon};
 			#unvariable {rewield}
 		}
 	}
@@ -1200,7 +1191,7 @@
 }
 {9}
 
-#ACTION {^!!SOUND(%1.wav)$}
+#ACTION {^!!SOUND(%1.wav R=%2)$}
 {
 	#switch {"%1"}
 	{
@@ -1777,7 +1768,8 @@
 #ACTION {^You stop using%*}
 {
 	show stats | prefix silent_;
-	show clev | prefix silent_
+	show clev | prefix silent_;
+	eq | grep wielded | prefix silent_
 }
 {9}
 
@@ -3129,7 +3121,10 @@
 		c faerie fire %1
 	};
 	#variable {victim} {%1};
-	remove $weapon;
+	#if {&{weapon}}
+	{
+		remove $weapon
+	};
 	#if {&{eqshield}}
 	{
 		remove shield
@@ -3141,7 +3136,10 @@
 	};
 	backstab %1;
 	remove $stabWeapon;
-	wield $weapon;
+	#if {&{weapon}}
+	{
+		wield $weapon
+	};
 	#if {&{eqshield}}
 	{
 		wear shield
@@ -3309,7 +3307,10 @@
 #ALIAS {slay %1 %2}
 {
 	#variable {victim} {%1};
-	remove $weapon;
+	#if {&{weapon}}
+	{
+		remove $weapon
+	};
 	#if {&{eqshield}}
 	{
 		remove shield
@@ -3329,7 +3330,10 @@
 	{
 		wear shield
 	};
-	wield $weapon
+	#if {&{weapon}}
+	{
+		wield $weapon
+	}
 }
 {9}
 
@@ -3786,6 +3790,10 @@
 	#if {"$lunge" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "lunge"}
+	};
+	#if {"$riposte" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "riposte"}
 	};
 	#if {"$stomp" == "true"}
 	{
