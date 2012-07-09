@@ -74,6 +74,13 @@ http://stormdragon.us/?p=223
 
 Commands:
 In most cases, for longer words, you can type part of the command. The exception to this is auto stuff like autoclay, autobone, autofiend, autostore, etc - You will have to experiment because the  commands start where mud commands end. For example, if you type fire, you will connect to the fire channel. If, however, you type fireb all the way through fireball, you will cast the spell fireball if you have it.
+When you put items in something the something becomes your container. So, you can set your container even if you don't have the itme:
+put bunny sack
+even if you don't have a bunny, sack will become your container.
+Woad and bone material variables are already set to the most common item used to make them. If, however, you wish to change them, or if you want to set metal construct you should do it like a standard tintin++ variable:
+#variable {woadMaterial} {tree}
+#var boneMaterial skeleton
+#variable {metalMaterial} {dumpster}
 
 
 Sound Controls
@@ -121,24 +128,20 @@ stealth: Automatically use stealthy movement if you have the skill. Turn it off 
 Mage:
 Spells:
 fireball and fb cast fireball
-fireball and fb target cast fireball on a specific target
 cfb or cfireball channelcast fireball
-cfb or cfireball target channelcast fireball on a specific target
 ff cast firefield
 cff channelcast firefield
-hands cast all available hand spells on yourself burning hands, shocking grasp, sacred and sickening touch
-hands target cast all available hand spells on someone else burning hands, shocking grasp, sacred and sickening touch
+hands cast all available hand spells on yourself burning hands, shocking grasp, sacred and sickening touch. You can use on a specified target as well.
 icebolt and ib cast icebolt
-icebolt and ib target cast icebolt on a specific target
-id object cast identify on the specified object
 lb or lightning cast lightning bolt
-lb or lightning target cast lightning bolt on specified target
 clb or clightning channel cast lightning bolt
-clb or clightning target channel cast lightning bolt on specified target
 
 
 Warrior:
-k: kick. (requires kick skill)
+alt+a: Bash
+alt+d: Disarm
+k: kick.
+alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
 
 
 Thief:
@@ -177,7 +180,6 @@ Miscellaneous:
 autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
 noautobuypractice: Turns off autobuypractice, see above.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
-alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
 autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
 automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
