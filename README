@@ -6,15 +6,27 @@ Alonzo: Answered my countless questions about Mac installation, helpedd test Mac
 Harmony: Helped with test Mac installation instructions
 
 
-License LGPL
-
 NOTES:
+Licensed under the LGPL
 Players who can see, who are not using the blind mode on the game:
 For better readability, open aa.tin and delete the line:
 #GAG              {^$}
 To counter a bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
 If you don't need this and want to get rid of it, open aa.tin and delete the line:
 #SUBSTITUTE       {%*}  { %0}  {1}
+
+Multiple Characters:
+If you have multiple characters, the best way to support all of them is to keep the git directory clane, and create directories for each character, then link to the relevant files. Here is an example assuming tintin-alteraeon is in your home directory.
+make the character directory
+mkdir ~/rigby
+cd ~/rigby
+cp ../tintin-alteraeon/*.tin .
+ln -s ../tintin-alteraeon/sounds/ .
+Finally, because aa.tin is the most often updated file, we will make a link to it. First remove the existing file:
+rm aa.tin
+then, link the file from the main tintin-alteraeon directory:
+ln ../tintin-alteraeon/aa.tin .
+Repeat this for all your characters. Then, you only need pull updates in the main tintin-alteraeon/ directory
 
 Installation:
 Mac:
@@ -41,8 +53,12 @@ All of the above should be available from your package manager, and all except p
 Optional:
 cmus, fbcmd, and TTYtter
 
+Updating:
+To get updates, while in the tintin-alteraeon/ directory, type:
+git pull
+
 Connecting:
-cd tintin-alteraeon
+cd tintin-alteraeon/ (or your character name directory)
 You must be in the tintin-alteraeon directory for everything to work properly.
 before launching tintin++ for the first time, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.
 To start tintin++ with the sound and trigger pack loaded type:
