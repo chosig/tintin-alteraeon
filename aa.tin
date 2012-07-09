@@ -1191,7 +1191,7 @@
 }
 {9}
 
-#ACTION {^!!SOUND(%1.wav R=%2)$}
+#ACTION {^!!SOUND(%1.wa%2)$}
 {
 	#switch {"%1"}
 	{
@@ -2489,6 +2489,12 @@
 }
 {8}
 
+#ALIAS {^strik %1}
+{
+	shadow strike %1
+}
+{8}
+
 #ALIAS {^{ble|bles|bless} %1}
 {
 	#if {"$bless" == "true"}
@@ -2683,6 +2689,30 @@
 }
 {9}
 
+#ALIAS {^bin %1}
+{
+	shadow bind %1
+}
+{9}
+
+#ALIAS {^bin$}
+{
+	shadow bind
+}
+{9}
+
+#ALIAS {^bind %1}
+{
+	shadow bind %1
+}
+{9}
+
+#ALIAS {^bind$}
+{
+	shadow bind
+}
+{9}
+
 #ALIAS {^brag cap$}
 {
 	#line {gag};
@@ -2838,6 +2868,24 @@
 {
 	#variable {speech} {true};
 	#showme {speech enabled.}
+}
+{9}
+
+#ALIAS {^strik$}
+{
+	shadow strike
+}
+{9}
+
+#ALIAS {^strike %1}
+{
+	shadow strike %1
+}
+{9}
+
+#ALIAS {^strike$}
+{
+	shadow strike
 }
 {9}
 
@@ -3580,6 +3628,16 @@
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
+#MACRO {\eB}
+{
+	#system {cmus-remote -n}
+}
+
+#MACRO {\eC}
+{
+	#system {cmus-remote -u}
+}
+
 #MACRO {\eG}
 {
 	#if {&{friendNameEnter}}
@@ -3624,6 +3682,16 @@
 #MACRO {\eV}
 {
 	#system {cmus-remote -s}
+}
+
+#MACRO {\eX}
+{
+	#system {cmus-remote -p}
+}
+
+#MACRO {\eZ}
+{
+	#system {cmus-remote -r}
 }
 
 #MACRO {\e[18~}
@@ -3687,16 +3755,6 @@
 #MACRO {\e_}
 {
 	#system {cmus-remote -v -10%}
-}
-
-#MACRO {\eb}
-{
-	#system {cmus-remote -n}
-}
-
-#MACRO {\ec}
-{
-	#system {cmus-remote -u}
 }
 
 #MACRO {\ei}
@@ -3820,21 +3878,6 @@
 	{
 		northwest
 	}
-}
-
-#MACRO {\ev}
-{
-	#system {cmus-remote -s}
-}
-
-#MACRO {\ex}
-{
-	#system {cmus-remote -p}
-}
-
-#MACRO {\ez}
-{
-	#system {cmus-remote -r}
 }
 
 #PATHDIR          {d}  {u}  {32}

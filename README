@@ -1,6 +1,9 @@
 Credits:
-Storm Dragon: Creater/Author
-Anthony: Helps test new code
+Storm Dragon: Creater/Author:
+http://www.stormdragon.us/
+Anthony: Helps test new code.
+Alonzo: Answered my countless questions about Mac installation, helpedd test Mac installation.
+Harmony: Helped with test Mac installation instructions
 
 
 License LGPL
@@ -9,17 +12,12 @@ NOTES:
 Players who can see, who are not using the blind mode on the game:
 For better readability, open aa.tin and delete the line:
 #GAG              {^$}
-
-Quest code works great now. The code now uses the newly added kxwt_event quest feature. In short, this means quests are posted right away, no odd hacks needed.
-Sound now uses sox. Although you can still set a new player in sound variables it will most likely break the trigger pack. Sox is available for pretty much every distro though so there shouldn't be any problems.
-To counter the bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
+To counter a bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
 If you don't need this and want to get rid of it, open aa.tin and delete the line:
 #SUBSTITUTE       {%*}  { %0}  {1}
-Work has started on background music/sound effects. If you happen to notice a lot of blank lines and the screen is hard to read type:
-set ctrigger off
-There are no sound effects for backgrounds yet. If you want to make some read help wxkt_terrain in the game. the terrain files should be terrain-number.ogg where number is the number corrisponding to the terrain type. For example, terain-2.ogg would be for towns. Until work is finished on terrain sounds music will be off by default.
 
-Mac Installation:
+Installation:
+Mac:
 Download and extract the Mac binary of tintin++ from
 http://tintin.sourceforge.net/download.php
 Install macports:
@@ -35,36 +33,74 @@ After everything has installed successfully link the commmand gshuf to the comma
 sudo ln /opt/local/bin/gshuf /opt/local/bin/shuf
 To be able to use the alt key abilities provided in this trigger pack, open terminal preferences and on the keyboard tab check use option as meta. Finally, select the file menu and choose use as defaults.
 
+Linux:
+Requirements:
+tintin++, sox, shuf, and wget
+All of the above should be available from your package manager, and all except possibly tintin++ and sox should already be installed
+
+Optional:
+cmus, fbcmd, and TTYtter
+
 Connecting:
-To connect, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.
+cd tintin-alteraeon
+You must be in the tintin-alteraeon directory for everything to work properly.
+before launching tintin++ for the first time, edit name.tin. Change the text in the second set of braces in each of the 2 variables to match your character's name and password.
 To start tintin++ with the sound and trigger pack loaded type:
 tt++ aa.tin
 To login your existing character type either aa or login and press enter.
 If this is your first time logging in, or if you have updated skills and spells using another client, type the word load and press enter after your character is logged in. This is important for some of the automatic features.
 
-Requirements:
-tintin++, sox, shuf, and wget
-Optional:
-cmus, fbcmd, and TTYtter
 
 Skills and Spells:
-Some skills and spells can automatically be used while you are playing. To make sure everything is set up, type load. You should only need to do this once, because the data will now be saved in the file game_data.tin. To make sure the data is up to date, when you practice a new skill or spell, type skill or spell followed by the name of the skill or spell you just practiced. for example, if you have just practiced kick for the first time, type:
-skill kick
-to make sure it is added to the variables in game_data.tin.
-An example of autousage is clay man for necromancers. To turn on automatic recast when your clay man dies type autoclay and to turn it back off type noautoclay.
+Some skills and spells can automatically be used while you are playing. To make sure everything is set up, type load. You should only need to do this once, because the data will now be saved in the file game_data.tin.
+If you want to add your own triggers, aliases, macros, etc, add them to the file game_data.tin. This file will rarely change, and even if it does, you can backup your game_data and restore from it after pulling from git.
+If you want to turn off the automatic use of a skill or spell, you can either delete its variable from game_data.tin, or from within the game type #unvar variableName. For example, if you do not want to automatically use cry of victory:
+#unvariable cryOfVictory
+If the skill or spell name hasw spaces in it, leave the spaces out when searching for the variable but caps each word after the first, eexample:
+crystalSpear
 
+Social Networking:
 Twitter:
-You can have achievements like backstabs, levels, and achievements posted to Twitter. If you have the CLI Twitter client TTYtter installed and configured correctly, type twitter and events will be posted. To turn it off type notwitter.
+You can have character information like backstabs, levels, and achievements posted to Twitter. If you have the CLI Twitter client TTYtter installed and configured correctly, type twitter and events will be posted. To turn it off type notwitter.
+http://www.floodgap.com/software/ttytter/
+http://stormdragon.us/?p=131
+http://stormdragon.us/?p=131
+http://stormdragon.us/?p=159
+
+Facebook:
+You can have character information like backstabs, levels, and achievements posted to Facebook. If you have the CLI Facebook client fbcmd installed and configured correctly, type facebook and events will be posted to your wall. To turn it off type nofacebook
+http://fbcmd.dtompkins.com/installation
+http://stormdragon.us/?p=223
 
 Commands:
 In most cases, for longer words, you can type part of the command. The exception to this is auto stuff like autoclay, autobone, autofiend, autostore, etc - You will have to experiment because the  commands start where mud commands end. For example, if you type fire, you will connect to the fire channel. If, however, you type fireb all the way through fireball, you will cast the spell fireball if you have it.
-F$: Controls all minions to consume any available corpse.
+
+
+Sound Controls
 F7: Sound volume down.
 F8: Sound volume up.
+
+Music:
+If you like to listen to music using cmus while playing, you can now control it right from within tintin++. Here are the controls:
+alt+shift+Z: previous track
+alt+shift+X: play
+alt+shift+C pause
+alt+shift+V stop
+alt+shift+B: next track
+alt+shift+R toggle repeat
+alt+shift+S: toggle shuffle
+alt+shift+_: volume down
+alt+shift++: volume up
+alt+shift+M: Post currently playing file to music channel
+
+
+Comunication:
 alt+1 through alt+0 play last 1 through tenth message.
-alt+w makes a wood woad if you have the spell and woad material is in your container.
-alt+g makes a bone guardian if the requirements are met.
 alt+shift+G: Greet the last friend to enter the game.
+alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, gt, and tells.
+
+
+Navigation:
 alt+u northwest
 alt+i north
 alt+shift+I up
@@ -76,57 +112,20 @@ alt+, south
 alt+shift+< down
 alt+m southwest
 alt+. southeast
+stealth: Automatically use stealthy movement if you have the skill. Turn it off with nostealth.
+/: Recall. (works with all clients)
 .: cast word of recall (requires spell word of recall).
 ,: cast group recall (requires spell group recall).
-alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, and tells. You can access the last 10 messages by pressing alt+1 through alt+0.
-alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
-alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
-autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
-noautobuypractice: Turns off autobuypractice, see above.
-autoclay cast clay man automatically if your current clay man dies
-autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
-autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
-autorecast: Set spells like armor and shield to recast automatically when they drop.
-noautorecast: turns off autorecast.
-autowoad automatically try to create a new wood woad if the current woad dies.
-(NOTES: turn off the autocast with noautoclay or noautowoad. These should not be used together and turning on one should disable the other.
-the variable woadMaterial should be set to the material you want to use to create the woad. The material for creating the woad should be located in your container. The container variable needs to be set for this to work as well. Anytime you put something somewhere the destination is set as your container. So, put gondola sack will set your container as sack)
-autobone tries to make a bone guardian automatically. You need container set and some deanimated bones in your container for this to work. Of course the container variable has to be set.
-autometal Makes a metal construct, same requirements aas bone guardian and wood woad except the material has to be metal.
-autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of pale bluee or deep blue in your container for this to work.
-autoheal automatically heal someone if you hp them and they have less than a third of their hitpoints
-noautoheal turn off autohealing this is default
-automap: uses the map command automatically on each move to show where you have and have not explored.
-noautomap: Disable automap.
-autorecall automatically recalls you if you drop to pretty hurt or awful condition.
-noautorecall turns off autorecall. this is default.
-autorefresh will refresh you automatically if your mv is below a fifth. Requires ctrigger to be set to on. This is the default now.
-noautorefresh turns off autorefresh.
-beeps: Turn on enemy condition notifications using beeps.
-nobeeps: Turn off enemy condition beeps.
-bgmusic turn background music on
-nobgmusic turn background music off
-bless cast bless n yourself
-bless target cast bless on someone else
-bm or bloodmist cast bloodmist
-bm or bloodmist target cast bloodmist on target
-brag cap or brag gt cap will brag your experience cap. this is not available in normal brag commands.
-browser name: sets name as your browser, for example browser firefox will set your browser to firefox.
-cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
-csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
-cp game_data.tin game_data.tin.bak
-cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
-combatsound turn on combat sound like slashes, punches, kicks, etc. This is default.
-nocombatsound turns off combat sound.
-facebook: Post achievements to facebook. This requires fbcmd to be installed. There is a how-to at: http://stormdragon.us/?p=223
-nofacebook: Turns off posting to Facebook.
+
+
+Mage:
+Spells:
 fireball and fb cast fireball
 fireball and fb target cast fireball on a specific target
 cfb or cfireball channelcast fireball
 cfb or cfireball target channelcast fireball on a specific target
 ff cast firefield
 cff channelcast firefield
-forge stone: This will cast soulforge on 2 stones in your inventory. You can sort of control it, for example forge blue will forge 2 blue soulstones. If you have a blue and  a purple, you should use forge soulstone.
 hands cast all available hand spells on yourself burning hands, shocking grasp, sacred and sickening touch
 hands target cast all available hand spells on someone else burning hands, shocking grasp, sacred and sickening touch
 icebolt and ib cast icebolt
@@ -136,27 +135,70 @@ lb or lightning cast lightning bolt
 lb or lightning target cast lightning bolt on specified target
 clb or clightning channel cast lightning bolt
 clb or clightning target channel cast lightning bolt on specified target
-scroll item: Sets item as your battle scroll. When it is set, pressing alt+backslash will get the item from your container and use it.
-speech Uses speech-dispatcher to read tells and some other types of communication like clantell. You can change the rate with the speechrate command as in speechrate 80. Anything from -100 to 100 will work.
-nospeech turns off speech-dispatcher for tells, this is default.
-stealth: Automatically use stealthy movement if you have the skill. Turn it off with nostealth.
-track location:  Use the nearby command to find areas close to you, then to get constant directions type track keyword where keyword is part of the area's name that is unique for that area. e.g. track castle will lead you to an area with  the name containing castle, just make sure no other areas nearby contain the word castle, if they do, choose a different keyword. Turn it off with the word track by itself.
+
+
+Warrior:
+k: kick. (requires kick skill)
+
+
+Thief:
+b: backstab. before using it you should set your stab weapon with the swield command, swield spear.
+bind: shadow bind
+slay victim direction: Use available thief skills, stealthy movement, etc to sneak into a room and backstab victim.
+t: Throw your throwweapon. set the variable throwWeapon or use tweapon name to set it, tweapon dagger.
+strike: shadow strike
+
+
+Necromancer:
+Minion Controls:
+F4: Controls all minions to consume any available corpse.
+alt+g makes a bone guardian if the requirements are met.
+alt+w makes a wood woad if you have the spell and woad material is in your container.
+autobone tries to make a bone guardian automatically. You need container set and some deanimated bones in your container for this to work. Of course the container variable has to be set. Turn it off with noautobone.
+autoclay cast clay man automatically if your current clay man dies. Turn it off with noautoclay.
+autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of deep blue in your container for this to work. Turn it off with noautofiend.
+autometal Makes a metal construct, same requirements aas bone guardian and wood woad except the material has to be metal. Turn it off with noautometal.
+autowoad automatically try to create a new wood woad if the current woad dies. turn it off with noautowoad.
+
+spells:
+autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
+bm: cast bloodmist.
+forge stone: This will cast soulforge on 2 stones in your inventory. You can sort of control it, for example forge blue will forge 2 blue soulstones. If you have a blue and  a purple, you should use forge soulstone.
+
+
+Cleric:
+autoheal automatically heal someone if you hp them and they have less than a third of their hitpoints. turn it off with noautoheal.
+autorefresh: Automatically refreshes you if your movement is low using your best refresh spell. Turn it off with noautorefresh.
+bless cast bless n yourself
+bless target cast bless on someone else
+
+
+Miscellaneous:
+autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
+noautobuypractice: Turns off autobuypractice, see above.
+alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
+alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
+autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
+autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
+automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
+autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
+autostore put certain items in your container. For now just soulstones, pale blue and up. Turn it off with noautostore.
+beeps: Turn on enemy condition notifications using beeps. Turn it off with nobeeps.
+bgmusic turn background ambiance on. Turn it off with nobgmusic.
+brag cap or brag gt cap will brag your experience cap.
+browser name: sets name as your browser, for example browser firefox will set your browser to firefox.
+cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
+csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
+cp game_data.tin game_data.tin.bak
+cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
+load: Initialize skills, spells, and other information needed by the client.
 rsoc: Does a random social. (warning, there are some very interesting socials)
 rsoc name: Does a random social to name. (warning, there are some very interesting socials)
-twitter post achievements and deaths to Twitter requires the program TTYtter to be installed and properly configured. There is a how-to at: http://stormdragon.us/?p=131
-notwitter: Turn off posts to Twitter.
-To sac a corpse type x and press enter. You will use any skills you have like corpsecutter and/or bloodsacrifice.
-If you have the kick skill k will be aliased to kick.
-b is currently set to backstab. before using it you should set your stab weapon with the swield alias.
-swield set your backstab weapon. e.g. swield dagger
-load will show all your skills and spells and set the variables necessary for their automatic use.
 scan direction scans in a specific direction where direction is up, down, north, east, west, south. When scanning north or south the subdirections like northeast or southwest wil be included for that direction.
-t will throw a weapon.
-Some of these will work  even if you don't have the skill, this will change as work progresses.
+speech Uses speech-dispatcher to read tells and some other types of communication like clantell. You can change the rate with the speechrate command as in speechrate 80. Anything from -100 to 100 will work. Turn it off with nospeech.
+track location:  Use the nearby command to find areas close to you, then to get constant directions type track keyword where keyword is part of the area's name that is unique for that area. e.g. track castle will lead you to an area with  the name containing castle, just make sure no other areas nearby contain the word castle, if they do, choose a different keyword. Turn it off with the word track by itself.
 vote: Opens your browser to the mudconnect voting page for Alter Aeon You are allowed one vote per day..
-autostore put certain items in your container. For now just soulstones.
-noautostore turn autostorage off.
-You will not autostore yellow and red soulstones.
+x: sac a corpse using all applicable skills, consume, bloodsac, etc.
 
 Equipment Sets:
 There are built in change commands to wear equipment sets quickly. To use the speed switching you must name your eqset like so:
@@ -168,19 +210,6 @@ wsklev = warrior skill level
 to change into a set simply type the first letter of the set you want followed by the word set. For example, to change into mage cast level you would type mset or for warrior skill level wset.
 To create an equipment set in the game, while wearing the equipment you want to include in the set, type eqset create name container. for example, to store mclev in your bag you would type:
 eqset create mclev bag
-
-Music:
-If you like to listen to music using cmus while playing, you can now control it right from within tintin++. Here are the controls:
-alt+z: previous track
-alt+x: play
-alt+c pause
-alt+v stop (if you are in gnome-terminal use alt+shift+V)
-alt+b: next track
-alt+shift+R toggle repeat
-alt+shift+S: toggle shuffle
-alt+shift+_: volume down
-alt+shift++: volume up
-alt+shift+M: Post currently playing file to music channel
 
 Botting:
 Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:
@@ -198,5 +227,3 @@ will make 20 wood woads, deanimate them, and store them in your container. Each 
 Contributing
 If you make triggers or edit the aa.tin file in any way, please load it with tintin++ and save it with #write
 If you make triggers or edit the aa.tin file in any way, please load it with tintin++ and save it with #write aa.tin before committing it so that everything will be in the standard tintin++ format. Please test your code before submitting.
-
-
