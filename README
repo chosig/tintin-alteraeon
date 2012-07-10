@@ -56,6 +56,10 @@ cmus, fbcmd, and TTYtter
 Updating:
 To get updates, while in the tintin-alteraeon/ directory, type:
 git pull
+If you get errors it means you may have conflicting sounds or other files. In that case you will need to type the following three commands:
+git reset --hard HEAD
+git clean -f -d
+git pull
 
 Connecting:
 cd tintin-alteraeon/ (or your character name directory)

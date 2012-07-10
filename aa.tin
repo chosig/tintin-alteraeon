@@ -130,12 +130,6 @@
 }
 {1}
 
-#ACTION {^Gender:  %1}
-{
-	#variable {playerSex} {%1}
-}
-{2}
-
 #ACTION {^You fail to {channel|cast} the spel%1.$}
 {
 	#if {!&{recast}}
@@ -776,23 +770,6 @@
 	play death;
 	#line {gag};
 	experience lost | grep -i you have lost
-}
-{5}
-
-#ACTION {^Your blood curdles as you hear %1's dying scream!$}
-{
-	#gag {^Gender:  {Female|Male}$};
-	finger %1 | grep Gender;
-	#if {"$playerSex" == "Female"}
-	{
-		play player-female-death
-	};
-	#else
-	{
-		play player-male-death
-	};
-	#ungag {^Gender:  {Female|Male}$};
-	#unvariable {playerSex}
 }
 {5}
 
@@ -2735,13 +2712,6 @@
 }
 {9}
 
-#ALIAS {^combatsound$}
-{
-	#variable {combatsound} {true};
-	#showme {Combat sound enabled.}
-}
-{9}
-
 #ALIAS {^csave$}
 {
 	#class {gameData} {write} {game_data.tin}
@@ -2828,13 +2798,6 @@
 {
 	#showme {beeps off};
 	#unvariable {beeps}
-}
-{9}
-
-#ALIAS {^nocombatsound$}
-{
-	#unvariable {combatsound};
-	#showme {Combat sound disabled.}
 }
 {9}
 
