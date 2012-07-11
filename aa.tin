@@ -1,3 +1,4 @@
+#act {^Sleep while fighting?  Are you mad?$} {#unvariable {position}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -218,56 +219,56 @@
 }
 {5}
 
-#ACTION {^ %1  bash  %2}
+#ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bash} {true};
 	#macro {\ea} {bash}
 }
 {5}
 
-#ACTION {^ %1  cleave%2}
+#ACTION {^ %s  cleave%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {cleave} {true}
 }
 {5}
 
-#ACTION {^ %1  feint%2}
+#ACTION {^ %s  feint%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {feint} {true}
 }
 {5}
 
-#ACTION {^ %1  leap attack%2}
+#ACTION {^ %s  leap attack%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {leapAttack} {true}
 }
 {5}
 
-#ACTION {^ %1  lunge%2}
+#ACTION {^ %s  lunge%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {lunge} {true}
 }
 {5}
 
-#ACTION {^ %1  pick locks%2}
+#ACTION {^ %s  pick locks%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {pickLocks} {true}
 }
 {5}
 
-#ACTION {^ %1  refresh%2}
+#ACTION {^ %s  refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {refresh} {true}
 }
 {5}
 
-#ACTION {^ %1  riposte%2}
+#ACTION {^ %s  riposte%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {riposte} {true}
 }
 {5}
 
-#ACTION {^ %1  stealthy movement%2}
+#ACTION {^ %s  stealthy movement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {stealthyMovement} {true};
 	#alias {^stealth$} {#variable {stealth} {true};#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}};
@@ -275,330 +276,332 @@
 }
 {5}
 
-#ACTION {^ %1  stomp%2}
+#ACTION {^ %s  stomp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {stomp} {true}
 }
 {5}
 
-#ACTION {^ %1  trip%2}
+#ACTION {^ %s  trip%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {trip} {true}
 }
 {5}
 
-#ACTION {^ %1  whirlwind%2}
+#ACTION {^ %s  whirlwind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {whirlwind} {true}
 }
 {5}
 
-#ACTION {^ %1 area refresh%2}
+#ACTION {^ %s  area refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {areaRefresh} {true}
 }
 {5}
 
-#ACTION {^ %1 bloodmist%2}
+#ACTION {^ %s  bloodmist%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bloodmist} {true}
 }
 {5}
 
-#ACTION {^ %1 bone guardian%2}
+#ACTION {^ %s  bone guardian%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#macro {\eg} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
 }
 {5}
 
-#ACTION {^ %1 cry of victory %2}
+#ACTION {^ %s  cry of victory %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {cryOfVictory} {true}
 }
 {5}
 
-#ACTION {^ %1 detect invisibility%2}
+#ACTION {^ %s  detect invisibility%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {detectInvisibility} {true}
 }
 {5}
 
-#ACTION {^ %1 dying breath%2}
+#ACTION {^ %s  dying breath%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {dyingBreath} {true}
 }
 {5}
 
-#ACTION {^ %1 fireball%2}
+#ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {fireball} {true}
 }
 {5}
 
-#ACTION {^ %1 firefield%2}
+#ACTION {^ %s  firefield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {firefield} {true}
 }
 {5}
 
-#ACTION {^ %1 fly  %2}
+#ACTION {^ %s  fly  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {fly} {true}
 }
 {5}
 
-#ACTION {^ %1 icebolt%2}
+#ACTION {^ %s  icebolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {icebolt} {true}
 }
 {5}
 
-#ACTION {^ %1 infravision%2}
+#ACTION {^ %s  infravision%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {infravision} {true}
 }
 {5}
 
-#ACTION {^ %1 lightning bolt%2}
+#ACTION {^ %s  lightning bolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {lightningBolt} {true}
 }
 {5}
 
-#ACTION {^ %1 protection from evil%2}
+#ACTION {^ %s  protection from evil%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {protectionFromEvil} {true}
 }
 {5}
 
-#ACTION {^ %1 rancid flesh%2}
+#ACTION {^ %s  rancid flesh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {rancidFlesh} {true}
 }
 {5}
 
-#ACTION {^ %1 sacred touch%2}
+#ACTION {^ %s  sacred touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {sacredTouch} {true}
 }
 {5}
 
-#ACTION {^ %1 sense life%2}
+#ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {senseLife} {true}
 }
 {5}
 
-#ACTION {^ %1 soulbind%2}
+#ACTION {^ %s  soulbind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {soulbind} {true}
 }
 {5}
 
-#ACTION {^ %1 taunt%2}
+#ACTION {^ %s  taunt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {taunt} {true}
 }
 {5}
 
-#ACTION {^ %1 wood woad%2}
+#ACTION {^ %s  wood woad%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#macro {\ew} {get $woadMaterial $container;drop $woadMaterial;#if {&{autowoad}} {#unvariable {autowoad};#delay {3} {#var {autowoad} {true}}};#delay {0.2} {c wood $woadMaterial}}
 }
 {5}
 
-#ACTION {^ %1armor%2}
+#ACTION {^ %s  armor%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {armor} {true}
 }
 {5}
 
-#ACTION {^ %1bless%2}
+#ACTION {^ %s  bless%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bless} {true}
 }
 {5}
 
-#ACTION {^ %1blood sacrifice%2}
+#ACTION {^ %s  blood sacrifice%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bloodSacrifice} {true}
 }
 {5}
 
-#ACTION {^ %1bone blade%2}
+#ACTION {^ %s  bone blade%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {boneBlade} {true}
 }
 {5}
 
-#ACTION {^ %1bone shield%2}
+#ACTION {^ %s  bone shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {boneShield} {true}
 }
 {5}
 
-#ACTION {^ %1breath of life%2}
+#ACTION {^ %s  breath of life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {breath of life}
 }
 {5}
 
-#ACTION {^ %1burning hands%2}
+#ACTION {^ %s  burning hands%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {burningHands} {true}
 }
 {5}
 
-#ACTION {^ %1consume%2}
+#ACTION {^ %s  consume%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {consume} {true};
 	#macro {\eOS} {control all consume corpse}
 }
 {5}
 
-#ACTION {^ %1corpsecutter%2}
+#ACTION {^ %s  corpsecutter%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {corpsecutter} {true}
 }
 {5}
 
-#ACTION {^ %1cure light wounds%2}
+#ACTION {^ %s  cure light wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {cure light wounds}
 }
 {5}
 
-#ACTION {^ %1cure serious wounds%2}
+#ACTION {^ %s  cure serious wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {cure serious wounds}
 }
 {5}
 
-#ACTION {^ %1dexterity%2}
+#ACTION {^ %s  dexterity%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {dexterity} {true}
 }
 {5}
 
-#ACTION {^ %1disarm%2}
+#ACTION {^ %s  disarm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {disarm} {true};
 	#macro {\ed} {disarm}
 }
 {5}
 
-#ACTION {^ %1displacement%2}
+#ACTION {^ %s  displacement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {displacement} {true}
 }
 {5}
 
-#ACTION {^ %1faerie fire%2}
+#ACTION {^ %s  faerie fire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {faerieFire} {true}
 }
 {5}
 
-#ACTION {^ %1faith shield%2}
+#ACTION {^ %s  faith shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {faithShield} {true}
 }
 {5}
 
-#ACTION {^ %1foulblood%2}
+#ACTION {^ %s  foulblood%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {foulBlood} {true}
 }
 {5}
 
-#ACTION {^ %1group recall%2}
+#ACTION {^ %s  group recall%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {groupRecall} {true};
 	#alias {,} {c group recall} {1}
 }
 {5}
 
-#ACTION {^ %1heal  %2}
+#ACTION {^ %s  heal  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {heal}
 }
 {5}
 
-#ACTION {^ %1hide%2}
+#ACTION {^ %s  hide%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {hide} {true}
 }
 {5}
 
-#ACTION {^ %1knife throwing%2}
+#ACTION {^ %s  knife throwing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
+	#variable {knifeThrowing} {true};
 	#alias {^{t|th|thr|thro|throw}$}{throw $throwWeapon;get $throwWeapon}
 }
 {5}
 
-#ACTION {^ %1preservation%2}
+#ACTION {^ %s  preservation%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {preservation} {true};
 	#alias {{pres|prese|preser|preserv|preserve}} {c preservation corpse} {9}
 }
 {5}
 
-#ACTION {^ %1shadow fiend%2}
+#ACTION {^ %s  shadow fiend%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
+	#variable {shadowFiend} {true};
 	#alias {^f$} {#if {&{position}} {getup};get deep blue soulstone from $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
 }
 {5}
 
-#ACTION {^ %1shield%2}
+#ACTION {^ %s  shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {shield} {true}
 }
 {5}
 
-#ACTION {^ %1shocking grasp%2}
+#ACTION {^ %s  shocking grasp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {shockingGrasp} {true}
 }
 {5}
 
-#ACTION {^ %1sickening touch%2}
+#ACTION {^ %s  sickening touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {sickeningTouch} {true}
 }
 {5}
 
-#ACTION {^ %1soulsteal%2}
+#ACTION {^ %s  soulsteal%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {soulsteal} {true}
 }
 {5}
 
-#ACTION {^ %1stone skin%2}
+#ACTION {^ %s  stone skin%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {stoneSkin} {true}
 }
 {5}
 
-#ACTION {^ %1strength%2}
+#ACTION {^ %s  strength%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {strength} {true}
 }
 {5}
 
-#ACTION {^ %1water breathing%2}
+#ACTION {^ %s  water breathing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {waterBreathing} {true}
 }
 {5}
 
-#ACTION {^ %1word of recall%2}
+#ACTION {^ %s  word of recall%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {wordOfRecall} {true};
 	#alias {.} {c word of recall} {1}
 }
 {5}
 
-#ACTION {^ %sidentify%s%1}
+#ACTION {^ %sidentify%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {identify} {true}
 }
@@ -606,7 +609,7 @@
 
 #ACTION {^#SESSION 'Alter Aeon' DIED.^}
 {
-	#gts #delay {15} {aa}
+	#gts #delay {15} {login}
 }
 {5}
 
@@ -1161,7 +1164,7 @@
 }
 {9}
 
-#ACTION {^ %1kick%2}
+#ACTION {^ %skick%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {kick} {true};
 	#alias {k} {kick}
