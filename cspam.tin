@@ -6,6 +6,7 @@
 #gag {^A {ghoul|vampire}'s claw%*}
 #gag {^A ghoul rips and tears into %1 with filthy, diseased claws!$}
 #gag {^A ghoul jumps at %1 clawing and biting!$}
+#gag {^A ghoul bites %1 with diseased, razor sharp teeth!$}
 #gag {^A wood woad's {crush|pound}%*}
 #gag {^A zombie's grapple%*}
 #substitute {*** %1 *** %2!$} {* %1 %2!}
