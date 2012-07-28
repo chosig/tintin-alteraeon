@@ -1,3 +1,11 @@
+#act {^You now follow %S!$}
+{
+#script {i} {echo "$name $(shuf -n 1 -e "is now a follower of the god %1 and shall strike down nonbelievers!" "is now a %1's witness! Beware the pamphlets!" "boldly presses on in the name of the all powerful %1!")"};
+#var {i} {$i[1]};
+tweet $i #AlterAeon;
+fbpost $i
+}
+{9}
 #act {^Sleep while fighting?  Are you mad?$} {#unvariable {position}} {9}
 #ACTION {^You are already following %1.$}
 {
@@ -44,6 +52,7 @@
 
 #ACTION {^%s1)  Enter Alter Aeon$}
 {
+	#cursor {echo} {on}
 	set ctrigger on;
 	set msp on
 }
@@ -327,6 +336,12 @@
 #ACTION {^ %s  dying breath%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {dyingBreath} {true}
+}
+{5}
+
+#ACTION {^ %s  jab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {jab} {true}
 }
 {5}
 
@@ -1402,6 +1417,7 @@
 
 #ACTION {^Reconnecting.$}
 {
+	#cursor {echo} {on}
 	#line {gag};
 	set msp on;
 	#line {gag};
@@ -2613,11 +2629,15 @@
 	{
 		eqset wear nclev
 	};
+	#if {"%1" == "r"}
+	{
+		eqset wear regen
+	};
 	#if {"%1" == "t"}
 	{
 		eqset wear tsklev
 	};
-	#if {"%1" == "2"}
+	#if {"%1" == "w"}
 	{
 		eqset wear wsklev
 	}
@@ -3803,7 +3823,11 @@
 	{
 		#variable {randomAttack} {$randomAttack "feint"}
 	};
-	#if {"$kick" == "true"}
+		#if {"$jab" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "jab"}
+	};
+#if {"$kick" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "kick"}
 	};
