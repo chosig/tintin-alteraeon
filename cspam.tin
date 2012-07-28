@@ -1,12 +1,16 @@
 #gag {^A skeleton's {shield bash|slash|slice|pierce|flail}%*}
 #gag {^A skeleton lands a textbook roundhouse kick squarely on%*}
 #gag {^A bone guardian's {crush|slash}%*}
-#gag {^A {bone guardian|ghoul} trips%*}
-#gag {^A {bone guardian|ghoul} knocks the legs out from under%*}
+#gag {^A {bone guardian|ghoul|skeleton|vampire} trips%*}
+#gag {^A {bone guardian|ghoul|skeleton|vampire} knocks the legs out from under%*}
 #gag {^A {ghoul|vampire}'s claw%*}
 #gag {^A ghoul rips and tears into %1 with filthy, diseased claws!$}
 #gag {^A ghoul jumps at %1 clawing and biting!$}
-#gag {^A ghoul bites %1 with diseased, razor sharp teeth!$}
+#gag {^A {ghoul|vampire} bites%*}
+#gag {^A vampire quietly hisses an unintelligible and foul sounding word...$}
+#gag {^A vampire's eyes take on an unsettling red glow, and it glares at %1!}
+#gag {^A vampire shouts a ferocious warcry at %1!$}
 #gag {^A wood woad's {crush|pound}%*}
 #gag {^A zombie's grapple%*}
+#gag {%1 kicks at %2 but barely makes contact.$}
 #substitute {*** %1 *** %2!$} {* %1 %2!}
