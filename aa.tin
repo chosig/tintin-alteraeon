@@ -52,7 +52,7 @@ fbpost $i
 
 #ACTION {^%s1)  Enter Alter Aeon$}
 {
-	#cursor {echo} {on}
+	#cursor {echo} {on};
 	set ctrigger on;
 	set msp on
 }
@@ -1417,7 +1417,7 @@ fbpost $i
 
 #ACTION {^Reconnecting.$}
 {
-	#cursor {echo} {on}
+	#cursor {echo} {on};
 	#line {gag};
 	set msp on;
 	#line {gag};
