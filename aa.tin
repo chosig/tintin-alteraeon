@@ -1,3 +1,4 @@
+#substitute {^%S gives you 1 gold coins.$} {%1 gives you 1 gold coin.}
 #act {^You now follow %S!$}
 {
 #script {i} {echo "$name $(shuf -n 1 -e "is now a follower of the god %1 and shall strike down nonbelievers!" "is now a %1's witness! Beware the pamphlets!" "boldly presses on in the name of the all powerful %1!")"};
@@ -1054,12 +1055,6 @@ fbpost $i
 }
 {9}
 
-#ACTION {%1 raises A prepared %2 corpse into %3.$}
-{
-	play raise-undead
-}
-{9}
-
 #ACTION {%1 seems to have dropped %2!  You'll surely return it later.$}
 {
 	play pickpocket
@@ -1722,12 +1717,6 @@ fbpost $i
 #ACTION {^You quickly place a hand on the inside of a bone shield to bind it to you.$}
 {
 	wear shield
-}
-{9}
-
-#ACTION {^You raise A prepared %1 corpse into %2!$}
-{
-	play raise-undead
 }
 {9}
 

@@ -1,3 +1,4 @@
+#gag {^%S gives you 0 gold coins.$}
 #gag {^It is noon.$}
 #gag {^It is mid-afternoon.$}
 #gag {^A skeleton's {shield bash|slash|slice|pierce|flail}%*}
