@@ -1,13 +1,3 @@
-#substitute {^%S gives you 1 gold coins.$} {%1 gives you 1 gold coin.}
-#act {^You now follow %S!$}
-{
-#script {i} {echo "$name $(shuf -n 1 -e "is now a follower of the god %1 and shall strike down nonbelievers!" "is now a %1's witness! Beware the pamphlets!" "boldly presses on in the name of the all powerful %1!")"};
-#var {i} {$i[1]};
-tweet $i #AlterAeon;
-fbpost $i
-}
-{9}
-#act {^Sleep while fighting?  Are you mad?$} {#unvariable {position}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -229,204 +219,22 @@ fbpost $i
 }
 {5}
 
-#ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bash} {true};
-	#macro {\ea} {bash}
-}
-{5}
-
-#ACTION {^ %s  cleave%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cleave} {true}
-}
-{5}
-
-#ACTION {^ %s  feint%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {feint} {true}
-}
-{5}
-
-#ACTION {^ %s  leap attack%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {leapAttack} {true}
-}
-{5}
-
-#ACTION {^ %s  lunge%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {lunge} {true}
-}
-{5}
-
-#ACTION {^ %s  pick locks%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {pickLocks} {true}
-}
-{5}
-
-#ACTION {^ %s  refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {refresh} {true}
-}
-{5}
-
-#ACTION {^ %s  riposte%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {riposte} {true}
-}
-{5}
-
-#ACTION {^ %s  stealthy movement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {stealthyMovement} {true};
-	#alias {^stealth$} {#variable {stealth} {true};#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}};
-	#alias {^nostealth$} {#unvariable {stealth};#showme {you will no longer automatically use stealthy movement when walking with quick navigation keys.}}
-}
-{5}
-
-#ACTION {^ %s  stomp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {stomp} {true}
-}
-{5}
-
-#ACTION {^ %s  trip%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {trip} {true}
-}
-{5}
-
-#ACTION {^ %s  whirlwind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {whirlwind} {true}
-}
-{5}
-
 #ACTION {^ %s  area refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {areaRefresh} {true}
 }
 {5}
 
-#ACTION {^ %s  bloodmist%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bloodmist} {true}
-}
-{5}
-
-#ACTION {^ %s  bone guardian%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#macro {\eg} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
-}
-{5}
-
-#ACTION {^ %s  cry of victory %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cryOfVictory} {true}
-}
-{5}
-
-#ACTION {^ %s  detect invisibility%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {detectInvisibility} {true}
-}
-{5}
-
-#ACTION {^ %s  dying breath%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {dyingBreath} {true}
-}
-{5}
-
-#ACTION {^ %s  jab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {jab} {true}
-}
-{5}
-
-#ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {fireball} {true}
-}
-{5}
-
-#ACTION {^ %s  firefield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {firefield} {true}
-}
-{5}
-
-#ACTION {^ %s  fly  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {fly} {true}
-}
-{5}
-
-#ACTION {^ %s  icebolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {icebolt} {true}
-}
-{5}
-
-#ACTION {^ %s  infravision%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {infravision} {true}
-}
-{5}
-
-#ACTION {^ %s  lightning bolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {lightningBolt} {true}
-}
-{5}
-
-#ACTION {^ %s  protection from evil%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {protectionFromEvil} {true}
-}
-{5}
-
-#ACTION {^ %s  rancid flesh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {rancidFlesh} {true}
-}
-{5}
-
-#ACTION {^ %s  sacred touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {sacredTouch} {true}
-}
-{5}
-
-#ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {senseLife} {true}
-}
-{5}
-
-#ACTION {^ %s  soulbind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {soulbind} {true}
-}
-{5}
-
-#ACTION {^ %s  taunt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {taunt} {true}
-}
-{5}
-
-#ACTION {^ %s  wood woad%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#macro {\ew} {get $woadMaterial $container;drop $woadMaterial;#if {&{autowoad}} {#unvariable {autowoad};#delay {3} {#var {autowoad} {true}}};#delay {0.2} {c wood $woadMaterial}}
-}
-{5}
-
 #ACTION {^ %s  armor%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {armor} {true}
+}
+{5}
+
+#ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {bash} {true};
+	#macro {\ea} {bash}
 }
 {5}
 
@@ -442,9 +250,21 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  bloodmist%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {bloodmist} {true}
+}
+{5}
+
 #ACTION {^ %s  bone blade%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {boneBlade} {true}
+}
+{5}
+
+#ACTION {^ %s  bone guardian%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#macro {\eg} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
 }
 {5}
 
@@ -466,6 +286,12 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  cleave%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {cleave} {true}
+}
+{5}
+
 #ACTION {^ %s  consume%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {consume} {true};
@@ -479,6 +305,12 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  cry of victory %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {cryOfVictory} {true}
+}
+{5}
+
 #ACTION {^ %s  cure light wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {cure light wounds}
@@ -488,6 +320,12 @@ fbpost $i
 #ACTION {^ %s  cure serious wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {healSpell} {cure serious wounds}
+}
+{5}
+
+#ACTION {^ %s  detect invisibility%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {detectInvisibility} {true}
 }
 {5}
 
@@ -510,6 +348,12 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  dying breath%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {dyingBreath} {true}
+}
+{5}
+
 #ACTION {^ %s  faerie fire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {faerieFire} {true}
@@ -519,6 +363,30 @@ fbpost $i
 #ACTION {^ %s  faith shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {faithShield} {true}
+}
+{5}
+
+#ACTION {^ %s  feint%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {feint} {true}
+}
+{5}
+
+#ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {fireball} {true}
+}
+{5}
+
+#ACTION {^ %s  firefield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {firefield} {true}
+}
+{5}
+
+#ACTION {^ %s  fly  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {fly} {true}
 }
 {5}
 
@@ -547,6 +415,24 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  icebolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {icebolt} {true}
+}
+{5}
+
+#ACTION {^ %s  infravision%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {infravision} {true}
+}
+{5}
+
+#ACTION {^ %s  jab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {jab} {true}
+}
+{5}
+
 #ACTION {^ %s  knife throwing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {knifeThrowing} {true};
@@ -554,10 +440,70 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  leap attack%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {leapAttack} {true}
+}
+{5}
+
+#ACTION {^ %s  lightning bolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {lightningBolt} {true}
+}
+{5}
+
+#ACTION {^ %s  lunge%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {lunge} {true}
+}
+{5}
+
+#ACTION {^ %s  pick locks%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {pickLocks} {true}
+}
+{5}
+
 #ACTION {^ %s  preservation%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {preservation} {true};
 	#alias {{pres|prese|preser|preserv|preserve}} {c preservation corpse} {9}
+}
+{5}
+
+#ACTION {^ %s  protection from evil%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {protectionFromEvil} {true}
+}
+{5}
+
+#ACTION {^ %s  rancid flesh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {rancidFlesh} {true}
+}
+{5}
+
+#ACTION {^ %s  refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {refresh} {true}
+}
+{5}
+
+#ACTION {^ %s  riposte%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {riposte} {true}
+}
+{5}
+
+#ACTION {^ %s  sacred touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {sacredTouch} {true}
+}
+{5}
+
+#ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {senseLife} {true}
 }
 {5}
 
@@ -586,9 +532,29 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  soulbind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {soulbind} {true}
+}
+{5}
+
 #ACTION {^ %s  soulsteal%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {soulsteal} {true}
+}
+{5}
+
+#ACTION {^ %s  stealthy movement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {stealthyMovement} {true};
+	#alias {^stealth$} {#variable {stealth} {true};#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}};
+	#alias {^nostealth$} {#unvariable {stealth};#showme {you will no longer automatically use stealthy movement when walking with quick navigation keys.}}
+}
+{5}
+
+#ACTION {^ %s  stomp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {stomp} {true}
 }
 {5}
 
@@ -604,9 +570,33 @@ fbpost $i
 }
 {5}
 
+#ACTION {^ %s  taunt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {taunt} {true}
+}
+{5}
+
+#ACTION {^ %s  trip%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {trip} {true}
+}
+{5}
+
 #ACTION {^ %s  water breathing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {waterBreathing} {true}
+}
+{5}
+
+#ACTION {^ %s  whirlwind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {whirlwind} {true}
+}
+{5}
+
+#ACTION {^ %s  wood woad%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#macro {\ew} {get $woadMaterial $container;drop $woadMaterial;#if {&{autowoad}} {#unvariable {autowoad};#delay {3} {#var {autowoad} {true}}};#delay {0.2} {c wood $woadMaterial}}
 }
 {5}
 
@@ -1091,12 +1081,6 @@ fbpost $i
 }
 {9}
 
-#ACTION {%1 {pulls|pull} out a dragon tooth, {casts|cast} a spell, and quickly {drops|drop} it.$}
-{
-	play create-skeleton
-}
-{9}
-
 #ACTION {%1 {puts|put} one end of %1 to the ground and {begins casting|begin the spell}.$}
 {
 	play frostbite-launch
@@ -1420,6 +1404,12 @@ fbpost $i
 }
 {9}
 
+#ACTION {^Sleep while fighting?  Are you mad?$}
+{
+	#unvariable {position}
+}
+{9}
+
 #ACTION {^Someone steps on you, and you awake to see warriors locked in mortal combat!$}
 {
 	#unvariable {position}
@@ -1707,6 +1697,15 @@ fbpost $i
 }
 {9}
 
+#ACTION {^You now follow %S!$}
+{
+	#script {i} {echo "$name $(shuf -n 1 -e "is now a follower of the god %1 and shall strike down nonbelievers!" "is now a %1's witness! Beware the pamphlets!" "boldly presses on in the name of the all powerful %1!")"};
+	#variable {i} {$i[1]};
+	tweet $i #AlterAeon;
+	fbpost $i
+}
+{9}
+
 #ACTION {^You practice %1(%2 percent gained).$}
 {
 	spell %1;
@@ -1887,6 +1886,10 @@ fbpost $i
 #ACTION {^kxwt_exp %d}
 {
 	#variable {currentExperience} {%1};
+	#if {&{autolevelClass}}
+	{
+		level | grep -i $autolevelClass | prefix silent_
+	};
 	#if {"$autobuypractice" == "true" && %1 >= $buyPracticeExperience}
 	{
 		train practice
@@ -2107,6 +2110,15 @@ fbpost $i
 	#variable {con} {%10};
 	#variable {chrBonus} {%11};
 	#variable {chr} {%12}
+}
+{9}
+
+#ACTION {^silent_{Cleric|Mage|Necromancer|Thief|Warrior}  %2You can level!$}
+{
+	#if {"$autolevelClass" == "%1"}
+	{
+		level $autolevelClass
+	}
 }
 {9}
 
@@ -2655,6 +2667,14 @@ fbpost $i
 }
 {9}
 
+#ALIAS {^autolevel %i{cleric|mage|necromancer|thief|warrior}$}
+{
+	#script {autolevelClass} {echo "%1" | tr "[:upper:]" "[:lower:]" | awk '{print toupper(substr($0, 1, 1)) substr($0,2)}'};
+	#variable {autolevelClass} {$autolevelClass[1]};
+	#showme {You will now level $autolevelClass automatically.}
+}
+{9}
+
 #ALIAS {^automap$}
 {
 	#showme {Automap on.};
@@ -2730,6 +2750,12 @@ fbpost $i
 }
 {9}
 
+#ALIAS {^fbrew %1}
+{
+	brew potion focus %1
+}
+{9}
+
 #ALIAS {^fp %1}
 {
 	friend post %1
@@ -2787,6 +2813,13 @@ fbpost $i
 {
 	#unvariable {autojunk};
 	#showme {You will no longer automatically discard anything.}
+}
+{9}
+
+#ALIAS {^noautolevel$}
+{
+	#showme {You will no longer automatically level anything.};
+	#unvariable {autolevelClass}
 }
 {9}
 
@@ -3812,11 +3845,11 @@ fbpost $i
 	{
 		#variable {randomAttack} {$randomAttack "feint"}
 	};
-		#if {"$jab" == "true"}
+	#if {"$jab" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "jab"}
 	};
-#if {"$kick" == "true"}
+	#if {"$kick" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "kick"}
 	};
@@ -3871,6 +3904,7 @@ fbpost $i
 #PATHDIR          {w}  {e}  {8}
 #SUBSTITUTE       {%*}  { %0}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
+#SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{friends}{4}{grouptells}{5}{tells}}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}

@@ -7,6 +7,7 @@
 #gag {^A {bone guardian|ghoul|skeleton|vampire} trips%*}
 #gag {^A {bone guardian|ghoul|skeleton|vampire} knocks the legs out from under%*}
 #gag {^A {ghoul|vampire}'s claw%*}
+#gag {^A {clay man|mummy}'s {pound|punch}%*}
 #gag {^A ghoul rips and tears into %1 with filthy, diseased claws!$}
 #gag {^A ghoul jumps at %1 clawing and biting!$}
 #gag {^A {ghoul|vampire} bites%*}
@@ -18,3 +19,4 @@
 #gag {%1 kicks at %2 but barely makes contact.$}
 #substitute {*** %1 *** %2!$} {* %1 %2!}
 #substitute {%1 is mortally wounded, and will die soon if not aided.$} {%1 is mortally wounded.}
+#substitute {%S appreciates your sacrifice of %2.$} {%1 appreciates your sacrifice.}

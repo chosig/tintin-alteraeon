@@ -197,6 +197,7 @@ autobuypractice: automatically buys a practice when you have enough experience p
 noautobuypractice: Turns off autobuypractice, see above.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
+autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief (turn it off with noautolevel).
 autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
 automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
@@ -210,6 +211,7 @@ csave: Forces saving of game_data.tin where all your variables, aliases and cust
 cp game_data.tin game_data.tin.bak
 cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
 load: Initialize skills, spells, and other information needed by the client.
+fbrew spell component list or inventory: Shortcut for brew focus. E.g. fbrew fireball sand feathers soulstone E.g. fbrew armor inventory
 rsoc: Does a random social. (warning, there are some very interesting socials)
 rsoc name: Does a random social to name. (warning, there are some very interesting socials)
 scan direction scans in a specific direction where direction is up, down, north, east, west, south. When scanning north or south the subdirections like northeast or southwest wil be included for that direction.
