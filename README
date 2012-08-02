@@ -210,6 +210,7 @@ cconf setting: Find out if something is set. for example, cconf autowoad will te
 csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
 cp game_data.tin game_data.tin.bak
 cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
+groupexp: If you are in a group show how much exp you have gained so far. You can share this information with the group by typing brag groupexp.
 load: Initialize skills, spells, and other information needed by the client.
 fbrew spell component list or inventory: Shortcut for brew focus. E.g. fbrew fireball sand feathers soulstone E.g. fbrew armor inventory
 rsoc: Does a random social. (warning, there are some very interesting socials)
@@ -217,6 +218,7 @@ rsoc name: Does a random social to name. (warning, there are some very interesti
 scan direction scans in a specific direction where direction is up, down, north, east, west, south. When scanning north or south the subdirections like northeast or southwest wil be included for that direction.
 speech Uses speech-dispatcher to read tells and some other types of communication like clantell. You can change the rate with the speechrate command as in speechrate 80. Anything from -100 to 100 will work. Turn it off with nospeech.
 track location:  Use the nearby command to find areas close to you, then to get constant directions type track keyword where keyword is part of the area's name that is unique for that area. e.g. track castle will lead you to an area with  the name containing castle, just make sure no other areas nearby contain the word castle, if they do, choose a different keyword. Turn it off with the word track by itself.
+unset skill/spell name: If you want to stop automatically using a skill or spell type unset name. Remember names do not contain spaces, and the first letter of every word after the first one is caps. E.g. unset secondWind
 vote: Opens your browser to the mudconnect voting page for Alter Aeon You are allowed one vote per day..
 x: sac a corpse using all applicable skills, consume, bloodsac, etc.
 

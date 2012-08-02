@@ -12,7 +12,8 @@
 
 #ACTION {^You stop following %1.$}
 {
-	#unvariable {groupLeader}
+	#unvariable {groupLeader};
+	#unvariable {groupExperience}
 }
 {(9)}
 
@@ -501,6 +502,12 @@
 }
 {5}
 
+#ACTION {^ %s  second wind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {secondWind} {true}
+}
+{5}
+
 #ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {senseLife} {true}
@@ -682,6 +689,12 @@
 }
 {5}
 
+#ACTION {^You are now a group member.$}
+{
+	#variable {groupExperience} {0}
+}
+{5}
+
 #ACTION {^You can't concentrate enough!$}
 {
 	#if {!&{combat}}
@@ -751,12 +764,6 @@
 }
 {5}
 
-#ACTION {^You receive %1 experience.$}
-{
-	#variable {lastReceivedExp} {%1}
-}
-{5}
-
 #ACTION {^You spend one practice to learn %1 (%2 percent gained).$}
 {
 	spell %1;
@@ -773,6 +780,10 @@
 
 #ACTION {^You weep as you think of the %1 experience that you lost.$}
 {
+	#if {&{groupExperience}}
+	{
+		#math {groupExperience} {$groupExperience - %1}
+	};
 	#math {lostExp} {$lostExp + %1};
 	tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;
 	fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.;
@@ -821,6 +832,11 @@
 				}
 			}
 		}
+	};
+	#if {"$secondWind" == "true" && !&{exhausted}}
+	{
+		second wind;
+		#variable {exhausted} {true}
 	}
 }
 {5}
@@ -1464,6 +1480,12 @@
 }
 {9}
 
+#ACTION {^The physical reserve deep within you feels replenished.$}
+{
+	#unvariable {exhausted}
+}
+{9}
+
 #ACTION {^The red in your vision disappears.$}
 {
 	#if {"$infravision" == "true" && "$autorecast" == "true"}
@@ -1533,6 +1555,15 @@
 		{
 			put soulstone $container
 		}
+	}
+}
+{9}
+
+#ACTION {^You don't learn much from this battle, but still receive %d experience.$}
+{
+	#if {&{groupExperience}}
+	{
+		#math {groupExperience} {$groupExperience + %1}
 	}
 }
 {9}
@@ -1672,6 +1703,15 @@
 }
 {9}
 
+#ACTION {^You learn very little from this battle.  You receive %d experience.$}
+{
+	#if {&{groupExperience}}
+	{
+		#math {groupExperience} {$groupExperience + %1}
+	}
+}
+{9}
+
 #ACTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$}
 {
 	get %1 soulstone $container;
@@ -1793,6 +1833,15 @@
 #ACTION {^You {decide to reel in your line and take a break for a while|finish reeling in your line and stop fishing|are no longer fishing}.$}
 {
 	play stop-fishing
+}
+{9}
+
+#ACTION {^You {gain|receive} %d experience{.|!}$}
+{
+	#if {&{groupExperience}}
+	{
+		#math {groupExperience} {$groupExperience + %2}
+	}
 }
 {9}
 
@@ -2139,6 +2188,15 @@
 	#variable {buyPracticeExperience} {%2}
 }
 {9}
+
+#ALIAS {^unset %s}
+{
+	#if {&{%1}}
+	{
+		
+	}
+}
+{#unvariable {%1}}
 
 #ALIAS {skill %1}
 {
@@ -2730,6 +2788,19 @@
 }
 {9}
 
+#ALIAS {^brag groupexp$}
+{
+	#if {&{groupExperience}}
+	{
+		gt I have gained $groupExperience in this group so far.
+	};
+	#else
+	{
+		#showme {Group experience is not being calculated at this time.}
+	}
+}
+{9}
+
 #ALIAS {^brag gt cap$}
 {
 	#line {gag};
@@ -2765,6 +2836,19 @@
 #ALIAS {^getup$}
 {
 	\stand
+}
+{9}
+
+#ALIAS {^groupexp$}
+{
+	#if {&{groupExperience}}
+	{
+		#showme {You have gained $groupExperience in this group so far.}
+	};
+	#else
+	{
+		#showme {Group experience is not being calculated at this time.}
+	}
 }
 {9}
 
@@ -3090,7 +3174,8 @@
 
 #ALIAS {^{quit|logoff}$}
 {
-	#unvariable {controlPoints};
+	#unvariable {position};
+	#unvariable {groupExperience};
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
 	set ctrigger off;

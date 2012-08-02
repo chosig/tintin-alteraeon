@@ -1,6 +1,7 @@
+#gag {^To see the lost exp hall of fame, try the 'exp lost' command.$}
 #gag {^%S gives you 0 gold coins.$}
 #gag {^It is noon.$}
-#gag {^It is mid-afternoon.$}
+#gag {^It is mid{-afternoon|night}.$}
 #gag {^A skeleton's {shield bash|slash|slice|pierce|flail}%*}
 #gag {^A skeleton lands a textbook roundhouse kick squarely on%*}
 #gag {^A bone guardian's {crush|slash}%*}
@@ -20,3 +21,4 @@
 #substitute {*** %1 *** %2!$} {* %1 %2!}
 #substitute {%1 is mortally wounded, and will die soon if not aided.$} {%1 is mortally wounded.}
 #substitute {%S appreciates your sacrifice of %2.$} {%1 appreciates your sacrifice.}
+#substitute {^%S has restored you to full health!$} {%1 restored you!}
