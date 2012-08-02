@@ -1561,6 +1561,7 @@
 
 #ACTION {^You don't learn much from this battle, but still receive %d experience.$}
 {
+	#variable {lastReceivedExp} {%1};
 	#if {&{groupExperience}}
 	{
 		#math {groupExperience} {$groupExperience + %1}
@@ -1705,6 +1706,7 @@
 
 #ACTION {^You learn very little from this battle.  You receive %d experience.$}
 {
+	#variable {lastReceivedExp} {%1};
 	#if {&{groupExperience}}
 	{
 		#math {groupExperience} {$groupExperience + %1}
@@ -1838,6 +1840,7 @@
 
 #ACTION {^You {gain|receive} %d experience{.|!}$}
 {
+	#variable {lastReceivedExp} {%1};
 	#if {&{groupExperience}}
 	{
 		#math {groupExperience} {$groupExperience + %2}
