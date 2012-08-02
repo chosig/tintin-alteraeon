@@ -19,6 +19,8 @@
 #gag {^A zombie's grapple%*}
 #gag {%1 kicks at %2 but barely makes contact.$}
 #substitute {*** %1 *** %2!$} {* %1 %2!}
-#substitute {%1 is mortally wounded, and will die soon if not aided.$} {%1 is mortally wounded.}
+#substitute {%1 is mortally wounded, and will die soon if not aided.$} {%1 is morted.}
 #substitute {%S appreciates your sacrifice of %2.$} {%1 appreciates your sacrifice.}
 #substitute {^%S has restored you to full health!$} {%1 restored you!}
+#substitute {%s {tell|tells} the clan, '%3'} {%1 ct, '%3'}
+#substitute {%s {tell|tells} the group, '%3'} {%1 gt, '%3'}
