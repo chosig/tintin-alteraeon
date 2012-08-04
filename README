@@ -4,6 +4,7 @@ http://www.stormdragon.us/
 Anthony: Helps test new code.
 Alonzo: Answered my countless questions about Mac installation, helpedd test Mac installation.
 Harmony: Helped with test Mac installation instructions
+Mike Wassel: http://blindndangerous.com/ Improved Mac installation instructions.
 
 
 NOTES:
@@ -34,7 +35,7 @@ Download and extract the Mac binary of tintin++ from
 http://tintin.sourceforge.net/download.php
 Install macports:
 http://www.macports.org/install.php
-Install xcode available free   from the Mac app store
+Install xcode and its command line tools available free   from the Mac app store. The command line tools can be found under the download button on the toolbar, it's the last item in the components table.
 Open terminal:
 To install tintin++ system wide you can move it to /opt/local/bin/ If
 you have extracted the files in the Downloads directory, the command
