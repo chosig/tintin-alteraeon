@@ -1955,43 +1955,43 @@
 	{
 		#if {%1 >= 90}
 		{
-			play enemy-condition-90
+			#system {play -q -n -c1 synth sin %12 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 80}
 		{
-			play enemy-condition-80
+			#system {play -q -n -c1 synth sin %9 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 70}
 		{
-			play enemy-condition-70
+			#system {play -q -n -c1 synth sin %6 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 60}
 		{
-			play enemy-condition-60
+			#system {play -q -n -c1 synth sin %3 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 50}
 		{
-			play enemy-condition-50
+			#system {play -q -n -c1 synth sin %0 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 40}
 		{
-			play enemy-condition-40
+			#system {play -q -n -c1 synth sin %-3 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 30}
 		{
-			play enemy-condition-30
+			#system {play -q -n -c1 synth sin %-6 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 20}
 		{
-			play enemy-condition-20
+			#system {play -q -n -c1 synth sin %-9 fade h 0.5 0.25 0.5 &}
 		};
 		#elseif {%1 >= 10}
 		{
-			play enemy-condition-10
+			#system {play -q -n -c1 synth sin %-12 fade h 0.5 0.25 0.5 &}
 		};
 		#else
 		{
-			play enemy-condition-0
+			#system {play -q -n -c1 synth sin %-15 fade h 0.5 0.25 0.5 &}
 		}
 	}
 }
