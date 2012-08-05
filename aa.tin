@@ -1953,46 +1953,8 @@
 {
 	#if {"$beeps" == "true"}
 	{
-		#if {%1 >= 90}
-		{
-			#system {play -q -n -c1 synth sin %12 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 80}
-		{
-			#system {play -q -n -c1 synth sin %9 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 70}
-		{
-			#system {play -q -n -c1 synth sin %6 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 60}
-		{
-			#system {play -q -n -c1 synth sin %3 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 50}
-		{
-			#system {play -q -n -c1 synth sin %0 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 40}
-		{
-			#system {play -q -n -c1 synth sin %-3 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 30}
-		{
-			#system {play -q -n -c1 synth sin %-6 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 20}
-		{
-			#system {play -q -n -c1 synth sin %-9 fade h 0.5 0.25 0.5 &}
-		};
-		#elseif {%1 >= 10}
-		{
-			#system {play -q -n -c1 synth sin %-12 fade h 0.5 0.25 0.5 &}
-		};
-		#else
-		{
-			#system {play -q -n -c1 synth sin %-15 fade h 0.5 0.25 0.5 &}
-		}
+		#math {enemyConditionTone} {%1 * 0.1 - 10};
+		#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.5 0.25 0.5 &}
 	}
 }
 {9}
