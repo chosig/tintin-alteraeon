@@ -1957,7 +1957,7 @@
 	#if {"$beeps" == "true"}
 	{
 		#math {enemyConditionTone} {%1 * 0.1 - 10};
-		#if {&{volume} || $volume == 0} {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain 0 &> /dev/null &}};#else {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume &> /dev/null &}}
+		#if {!&{volume} || $volume == 0} {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 &> /dev/null &}};#else {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume &> /dev/null &}}
 	}
 }
 {9}
