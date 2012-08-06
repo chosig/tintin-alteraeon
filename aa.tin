@@ -1957,7 +1957,7 @@
 	#if {"$beeps" == "true"}
 	{
 		#math {enemyConditionTone} {%1 * 0.1 - 10};
-		#if {!&{volume} || $volume == 0} {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 &> /dev/null &}};#else {#system {play -q -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume &> /dev/null &}}
+		#if {!&{volume} || $volume == 0} {#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 &> /dev/null &}};#else {#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume &> /dev/null &}}
 	}
 }
 {9}
@@ -3264,11 +3264,11 @@
 {
 	#if {!&{volume} || $volume == 0}
 	{
-		#system {$soundCommand "sounds/ambiance/terrains/%1.ogg" &> /dev/null &}
+		#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" &> /dev/null &}
 	};
 	#else
 	{
-		#system {$soundCommand "sounds/ambiance/terrains/%1.ogg" gain $volume &> /dev/null &}
+		#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" gain $volume &> /dev/null &}
 	}
 }
 {9}
@@ -3377,11 +3377,11 @@
 {
 	#if {!&{volume} || $volume == 0}
 	{
-		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" &> /dev/null &}
+		#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" &> /dev/null &}
 	};
 	#else
 	{
-		#system {$soundCommand -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
+		#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
 	}
 }
 {9}
@@ -3390,11 +3390,11 @@
 {
 	#if {!&{volume} || $volume == 0}
 	{
-		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*wav)" &> /dev/null &}
+		#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" &> /dev/null &}
 	};
 	#else
 	{
-		#system {$soundCommand "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
+		#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
 	}
 }
 {9}
