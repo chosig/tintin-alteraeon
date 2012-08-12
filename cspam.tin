@@ -1,3 +1,4 @@
+#gag {^A {bone|clay|flesh|shadow|wood} {beast|fiend|guardian|man|woad} stands up.$}
 #gag {^A flesh beast's {bite|splat}%*}
 #gag {^To see the lost exp hall of fame, try the 'exp lost' command.$}
 #gag {^%S gives you 0 gold coins.$}
@@ -26,4 +27,3 @@
 #substitute {%s {tell|tells} the clan, '%3'} {%1 ct, '%3'}
 #substitute {%s {tell|tells} the group, '%3'} {%1 gt, '%3'}
 #substitute {You carefully extract one %1 and put it in your bag.$} {You extract a %1.}
-##variable {lastMorted} {}
