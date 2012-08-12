@@ -898,7 +898,15 @@
 
 #ACTION {^You %1, '%2'$}
 {
-	play sendmsg
+#if {"%1" != "yell"}
+{
+#switch {"%1"}
+{
+#case {"tell the clan"} {play sendmsg-clan};
+#case {"tell the group"} {play sendmsg-group};
+	#default {play sendmsg-generic}
+}
+}
 }
 {8}
 
@@ -1198,9 +1206,14 @@
 
 #ACTION {^%S %2{n|p|s|u}, '%3'$}
 {
-	#if {"%1" != "{A|An|The|You}" && "%2" != "utters the word"}
+	#if {"%1" != "{A|An|The|You}" && "%2" != "{yell|utters the word}"}
 	{
-		play msg;
+#switch {"%2"}
+{
+#case {"tells the cla"} {play msg-cla};
+#case {"tells the grou"} {play msg-group};
+		#default {play msg-generic}
+};
 		#if {&{speech}}
 		{
 			#system {spd-say -S -P important -r $speechRate "%0"}
