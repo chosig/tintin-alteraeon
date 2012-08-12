@@ -903,6 +903,8 @@
 #switch {"%1"}
 {
 #case {"auction"} {play sendmsg-auction};
+#case {"music"} {play sendmsg-music};
+#case {"auction"} {play sendmsg-auction};
 #case {"tell the clan"} {play sendmsg-clan};
 #case {"tell the group"} {play sendmsg-group};
 	#default {play sendmsg-generic}
@@ -1212,6 +1214,7 @@
 #switch {"%2"}
 {
 #case {"auction"} {play msg-auction};
+#case {"music"} {play sendmsg-music};
 #case {"tells the cla"} {play msg-clan};
 #case {"tells the grou"} {play msg-group};
 		#default {play msg-generic}
