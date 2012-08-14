@@ -1,3 +1,8 @@
+#act {^%S stops resting, and stands up.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader" && &{position}} {stand}} {9}
+#act {^%S goes to sleep.} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {sleep}} {9}
+#act {^%S sits down and rests.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {rest}} {9}
+#alias {^autoregen$} {#variable {autoregen} {true};#showme {You will now regen when your group leader does.}} {9}
+#alias {^noautoregen$} {#unvariable {autoregen};#showme {You will no longer automatically regen when your group leader does.}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
