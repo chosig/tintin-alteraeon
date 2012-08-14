@@ -203,7 +203,7 @@ autorecast: Set spells like armor and shield to recast automatically when they d
 automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
 autostore put certain items in your container. For now just soulstones, pale blue and up. Turn it off with noautostore.
-b c n v x or z set command: sets alt+the chosen letter to command. E.g. zset cast heal sets alt+z to cast heal.
+a b c d e f g h n q r s t v w x y and z set command: sets alt+the chosen letter to command. E.g. zset cast heal sets alt+z to cast heal. If you want to execute multiple commands put a \; between each, e.g. tset get axe bag\;throw axe will set alt+t to get the axe from the bag and throw it if you are in combat.
 beeps: Turn on enemy condition notifications using beeps. Turn it off with nobeeps.
 bgmusic turn background ambiance on. Turn it off with nobgmusic.
 brag cap or brag gt cap will brag your experience cap.

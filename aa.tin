@@ -235,7 +235,6 @@
 #ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bash} {true};
-	#macro {\ea} {bash}
 }
 {5}
 
@@ -265,7 +264,7 @@
 
 #ACTION {^ %s  bone guardian%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#macro {\eg} {get $boneMaterial $container;drop $boneMaterial;c bone guardian $boneMaterial}
+	#variable {boneGuardian} {true}
 }
 {5}
 
@@ -339,7 +338,6 @@
 #ACTION {^ %s  disarm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {disarm} {true};
-	#macro {\ed} {disarm}
 }
 {5}
 
@@ -603,7 +601,7 @@
 
 #ACTION {^ %s  wood woad%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#macro {\ew} {get $woadMaterial $container;drop $woadMaterial;#if {&{autowoad}} {#unvariable {autowoad};#delay {3} {#var {autowoad} {true}}};#delay {0.2} {c wood $woadMaterial}}
+	#variable {woodWoad} {true}
 }
 {5}
 
@@ -1214,7 +1212,7 @@
 #switch {"%2"}
 {
 #case {"auction"} {play msg-auction};
-#case {"music"} {play sendmsg-music};
+#case {"music"} {play msg-music};
 #case {"tells the cla"} {play msg-clan};
 #case {"tells the grou"} {play msg-group};
 		#default {play msg-generic}
@@ -1987,11 +1985,11 @@
 		#math {enemyConditionTone} {%1 * 0.1 - 10};
 		#if {!&{volume} || $volume == 0}
 		{
-			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 &> /dev/null &}
+			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 norm -1 &> /dev/null &}
 		};
 		#else
 		{
-			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume &> /dev/null &}
+			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume norm -1 &> /dev/null &}
 		}
 	}
 }
@@ -3068,7 +3066,7 @@
 }
 {9}
 
-#ALIAS {^{b|c|n|v|x|z}set %2}
+#ALIAS {^{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}set %2}
 {
 	#macro {\e%1} {%2};
 	#showme {alt+%1 has been set to %2.}
