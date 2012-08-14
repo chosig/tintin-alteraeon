@@ -1,3 +1,4 @@
+#act {^You have been removed from the group.$} {groupexp;#unvariable {groupexperience}}
 #act {^%S stops resting, and stands up.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader" && &{position}} {stand}} {9}
 #act {^%S goes to sleep.} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {sleep}} {9}
 #act {^%S sits down and rests.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {rest}} {9}
@@ -17,6 +18,7 @@
 
 #ACTION {^You stop following %1.$}
 {
+	groupexp;
 	#unvariable {groupLeader};
 	#unvariable {groupExperience}
 }
@@ -3928,7 +3930,7 @@
 	}
 }
 
-#MACRO {\er}
+#alias {r}
 {
 	#variable {randomAttack} { };
 	#if {"$bash" == "true"}

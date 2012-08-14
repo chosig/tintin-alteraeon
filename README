@@ -155,10 +155,8 @@ clb or clightning channel cast lightning bolt
 
 
 Warrior:
-alt+a: Bash
-alt+d: Disarm
 k: kick.
-alt+r: Random warrior/thief attack including but not limited to stomp, lunge, cleave, trip, bash. It will check to make sure you have the skill before using it.
+r: random attack.
 
 
 Thief:
@@ -172,8 +170,6 @@ strike: shadow strike
 Necromancer:
 Minion Controls:
 F4: Controls all minions to consume any available corpse.
-alt+g makes a bone guardian if the requirements are met.
-alt+w makes a wood woad if you have the spell and woad material is in your container.
 autobone tries to make a bone guardian automatically. You need container set and some deanimated bones in your container for this to work. Of course the container variable has to be set. Turn it off with noautobone.
 autoclay cast clay man automatically if your current clay man dies. Turn it off with noautoclay.
 autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of deep blue in your container for this to work. Turn it off with noautofiend.
