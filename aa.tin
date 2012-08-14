@@ -3930,7 +3930,7 @@
 	}
 }
 
-#alias {r}
+#alias {^r$}
 {
 	#variable {randomAttack} { };
 	#if {"$bash" == "true"}
