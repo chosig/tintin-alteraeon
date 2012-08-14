@@ -1,3 +1,7 @@
+#act {^You go to sleep.$} {#if {&{autohelp}} {help random}} {8}
+#act {^You are already sound asleep!$} {#if {&{autohelp}} {help random}} {8}
+#alias {^autohelp$} {#variable {autohelp} {true};#showme {You will now see random help files when you sleep.}} {9}
+#alias {^noautohelp$} {#unvariable {autohelp};#showme {You will no longer see random help files when you sleep.}} {9}
 #act {^You have been removed from the group.$} {groupexp;#unvariable {groupexperience}}
 #act {^%S stops resting, and stands up.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader" && &{position}} {stand}} {9}
 #act {^%S goes to sleep.} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {sleep}} {9}

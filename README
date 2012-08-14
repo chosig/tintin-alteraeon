@@ -193,6 +193,7 @@ Miscellaneous:
 autobuypractice: automatically buys a practice when you have enough experience points. Make sure you want to do this before setting it. There is a sound notification for when this happens, train_practice.ogg.
 noautobuypractice: Turns off autobuypractice, see above.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
+autohelp: Shows help files when you go to sleep. (Turn it off with noautohelp.)
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
 autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief (turn it off with noautolevel).
 autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
@@ -200,7 +201,7 @@ automap: uses the map command automatically on each move to show where you have 
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
 Autoregen: Tries to copy your group leader's regen position, if they rest so will you, if they sleep so will you. When your group leader stands you will also if you see it happen, E.G. if you are resting. (Turn it off with noautoregen.)
 autostore put certain items in your container. For now just soulstones, pale blue and up. Turn it off with noautostore.
-a b c d e f g h n q r s t v w x y and z set command: sets alt+the chosen letter to command. E.g. zset cast heal sets alt+z to cast heal. If you want to execute multiple commands put a \; between each, e.g. tset get axe bag\;throw axe will set alt+t to get the axe from the bag and throw it if you are in combat.
+a b c d e f g h n q r s t v w x y and z set command: sets alt+the chosen letter to command. E.g. zset cast heal sets alt+z to cast heal. If you want to execute multiple commands put a \; between each, e.g. tset get axe bag\;throw axe will set alt+t to get the axe from the bag and throw it if you are in combat. Note that not all of these may be available if you are using a terminal emulator like gnome-terminal. E.g. if you press alt+f it opens the file menu.
 beeps: Turn on enemy condition notifications using beeps. Turn it off with nobeeps.
 bgmusic turn background ambiance on. Turn it off with nobgmusic.
 brag cap or brag gt cap will brag your experience cap.
