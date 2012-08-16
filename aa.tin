@@ -1,3 +1,7 @@
+#act {^silent_You must have an empty liquid container to brew anything in.$} {empty $brewContainer | prefix silent_;brew p i | prefix silent_}
+#alias {^autobrew$} {noautojunk;#variable {autobrew} {true};#showme {You will now automatically brew potions using items harvested from corpses.}} {9}
+#alias {^noautobrew$} {#unvariable {autobrew};#showme {You will no longer brew potions.}} {9}
+#act {^silent_Your brew%*} {#if {"$autobrew" == "true"} {empty $brewContainer | prefix silent_}}
 #act {^You go to sleep.$} {#if {&{autohelp}} {help random}} {8}
 #act {^You are already sound asleep!$} {#if {&{autohelp}} {help random}} {8}
 #alias {^autohelp$} {#variable {autohelp} {true};#showme {You will now see random help files when you sleep.}} {9}
@@ -2036,6 +2040,7 @@
 			{
 				harvest components corpse
 			};
+			#if {"$autobrew" == "true"} {brew p i | prefix silent_};
 			#if {"$harvestTeeth" == "true"}
 			{
 				harvest teeth corpse
@@ -2723,6 +2728,7 @@
 
 #ALIAS {^autojunk$}
 {
+	noautobrew;
 	#variable {autojunk} {true};
 	#showme {You will now automatically discard spell components harvested from corpses.}
 }
@@ -3602,23 +3608,13 @@
 #GAG              {^Sending activity for channel 'auction'$}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
-#GAG              {^You begin to feel very inadequate and start thinking about trees.$}
 #GAG              {^You can only blood sacrifice corpses with blood in them.$}
-#GAG              {^You convince yourself that you are being hunted....$}
-#GAG              {^You didn't find anything by that name.}
-#GAG              {^You discover the meaning of life, just as someone knocks you out with a brick.$}
+#GAG              {^You didn't find anything by that name.$}
 #GAG              {^You don't see anything named 'coins' in the corpse of %1.$}
-#GAG              {^You emote: %1 grabs a ball of light and quickly stuffs it down {his pants|her shirt}.$}
-#GAG              {^You emote: %1 says, 'Dude check it out, they glow!'$}
 #GAG              {^You feel extremely jittery and awake.$}
-#GAG              {^You find a copy of the 'WatchTower' and your life is Changed!!$}
 #GAG              {^You find yourself unable to sit still, gotta keep moving...$}
 #GAG              {^You haven't had a recent victory worth shouting about.$}
-#GAG              {^You put on a hooded red robe and parade about hunting for heretics and witches.$}
-#GAG              {^You run about the room shouting something about 'TP' and 'bungholes'.$}
-#GAG              {^You run about the room shouting something about 'cornholio' and 'cappuccino'.$}
 #GAG              {^You see nothing left to loot from the corpse of %1.$}
-#GAG              {^You think you are someone else for a moment, but then regain your composure.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
 #GAG              {^silent_%*}
