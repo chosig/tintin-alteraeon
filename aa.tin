@@ -639,18 +639,6 @@
 }
 {5}
 
-#ACTION {^A %1 claws at and begins eating the corpse of %2!$}
-{
-	play undead-eating
-}
-{5}
-
-#ACTION {^A %1 rips and tears into the corpse of %2, devouring it!$}
-{
-	play undead-eating
-}
-{5}
-
 #ACTION {^A ghoul bites %1 with diseased, razor sharp teeth!$}
 {
 	play ghoul-attack
