@@ -1,17 +1,3 @@
-#act {^silent_You must have an empty liquid container to brew anything in.$} {empty $brewContainer | prefix silent_;brew p i | prefix silent_}
-#alias {^autobrew$} {noautojunk;#variable {autobrew} {true};#showme {You will now automatically brew potions using items harvested from corpses.}} {9}
-#alias {^noautobrew$} {#unvariable {autobrew};#showme {You will no longer brew potions.}} {9}
-#act {^silent_Your brew%*} {#if {"$autobrew" == "true"} {empty $brewContainer | prefix silent_}}
-#act {^You go to sleep.$} {#if {&{autohelp}} {help random}} {8}
-#act {^You are already sound asleep!$} {#if {&{autohelp}} {help random}} {8}
-#alias {^autohelp$} {#variable {autohelp} {true};#showme {You will now see random help files when you sleep.}} {9}
-#alias {^noautohelp$} {#unvariable {autohelp};#showme {You will no longer see random help files when you sleep.}} {9}
-#act {^You have been removed from the group.$} {groupexp;#unvariable {groupexperience}}
-#act {^%S stops resting, and stands up.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader" && &{position}} {stand}} {9}
-#act {^%S goes to sleep.} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {sleep}} {9}
-#act {^%S sits down and rests.$} {#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"} {rest}} {9}
-#alias {^autoregen$} {#variable {autoregen} {true};#showme {You will now regen when your group leader does.}} {9}
-#alias {^noautoregen$} {#unvariable {autoregen};#showme {You will no longer automatically regen when your group leader does.}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -249,7 +235,7 @@
 
 #ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {bash} {true};
+	#variable {bash} {true}
 }
 {5}
 
@@ -352,7 +338,7 @@
 
 #ACTION {^ %s  disarm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {disarm} {true};
+	#variable {disarm} {true}
 }
 {5}
 
@@ -752,6 +738,13 @@
 }
 {5}
 
+#ACTION {^You have been removed from the group.$}
+{
+	groupexp;
+	#unvariable {groupexperience}
+}
+{5}
+
 #ACTION {^You have {quite a few|big nasty} {wounds and scratches|wounds}.$}
 {
 	#if {"$autoheal" == "true"}
@@ -851,6 +844,22 @@
 }
 {5}
 
+#ACTION {^silent_You must have an empty liquid container to brew anything in.$}
+{
+	empty $brewContainer | prefix silent_;
+	brew p i | prefix silent_
+}
+{5}
+
+#ACTION {^silent_Your brew%*}
+{
+	#if {"$autobrew" == "true"}
+	{
+		empty $brewContainer | prefix silent_
+	}
+}
+{5}
+
 #ACTION {^silent_wielded     - $}
 {
 	#unvariable {weapon}
@@ -899,24 +908,68 @@
 
 #ACTION {^You %1, '%2'$}
 {
-#if {"%1" != "yell"}
-{
-#switch {"%1"}
-{
-#case {"auction"} {play sendmsg-auction};
-#case {"music"} {play sendmsg-music};
-#case {"auction"} {play sendmsg-auction};
-#case {"tell the clan"} {play sendmsg-clan};
-#case {"tell the group"} {play sendmsg-group};
-	#default {play sendmsg-generic}
+	#if {"%1" != "yell"}
+	{
+		#switch {"%1"}
+		{
+			#case {"auction"}
+			{
+				play sendmsg-auction
+			};
+			#case {"music"}
+			{
+				play sendmsg-music
+			};
+			#case {"auction"}
+			{
+				play sendmsg-auction
+			};
+			#case {"tell the clan"}
+			{
+				play sendmsg-clan
+			};
+			#case {"tell the group"}
+			{
+				play sendmsg-group
+			};
+			#default
+			{
+				play sendmsg-generic
+			}
+		}
+	}
 }
-}
+{8}
+
+#ACTION {^You are already sound asleep!$}
+{
+	#if {&{autohelp}}
+	{
+		help random
+	};
+	#elseif {"$autodream" == "true"}
+	{
+		dream
+	}
 }
 {8}
 
 #ACTION {^You are awakened by the noise.$}
 {
 	#delay {3} {\sleep}
+}
+{8}
+
+#ACTION {^You go to sleep.$}
+{
+	#if {&{autohelp}}
+	{
+		help random
+	};
+	#elseif {"$autodream" == "true"}
+	{
+		dream
+	}
 }
 {8}
 
@@ -1212,14 +1265,29 @@
 {
 	#if {"%1" != "{A|An|The|You}" && "%2" != "{yell|utters the word}"}
 	{
-#switch {"%2"}
-{
-#case {"auction"} {play msg-auction};
-#case {"music"} {play msg-music};
-#case {"tells the cla"} {play msg-clan};
-#case {"tells the grou"} {play msg-group};
-		#default {play msg-generic}
-};
+		#switch {"%2"}
+		{
+			#case {"auction"}
+			{
+				play msg-auction
+			};
+			#case {"music"}
+			{
+				play msg-music
+			};
+			#case {"tells the cla"}
+			{
+				play msg-clan
+			};
+			#case {"tells the grou"}
+			{
+				play msg-group
+			};
+			#default
+			{
+				play msg-generic
+			}
+		};
 		#if {&{speech}}
 		{
 			#system {spd-say -S -P important -r $speechRate "%0"}
@@ -1231,6 +1299,33 @@
 #ACTION {^%S appears out of a flickering blue glow.$}
 {
 	play waypoint-arrive
+}
+{9}
+
+#ACTION {^%S goes to sleep.}
+{
+	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
+	{
+		sleep
+	}
+}
+{9}
+
+#ACTION {^%S sits down and rests.$}
+{
+	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
+	{
+		rest
+	}
+}
+{9}
+
+#ACTION {^%S stops resting, and stands up.$}
+{
+	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader" && &{position}}
+	{
+		stand
+	}
 }
 {9}
 
@@ -1985,16 +2080,46 @@
 {
 	#if {"$beeps" == "true"}
 	{
-		#if {%1 >= 90} {#math {enemyConditionTone} {%1 + 400}};
-		#elseif {%1 >= 80} {#math {enemyConditionTone} {%1 + 380}};
-		#elseif {%1 >= 70} {#math {enemyConditionTone} {%1 + 360}};
-		#elseif {%1 >= 60} {#math {enemyConditionTone} {%1 + 340}};
-		#elseif {%1 >= 50} {#math {enemyConditionTone} {%1 + 320}};
-		#elseif {%1 >= 40} {#math {enemyConditionTone} {%1 + 300}};
-		#elseif {%1 >= 30} {#math {enemyConditionTone} {%1 + 280}};
-		#elseif {%1 >= 20} {#math {enemyConditionTone} {%1 + 260}};
-		#elseif {%1 >= 10} {#math {enemyConditionTone} {%1 + 240}};
-		#else {#math {enemyConditionTone} {%1 + 220}};
+		#if {%1 >= 90}
+		{
+			#math {enemyConditionTone} {%1 + 400}
+		};
+		#elseif {%1 >= 80}
+		{
+			#math {enemyConditionTone} {%1 + 380}
+		};
+		#elseif {%1 >= 70}
+		{
+			#math {enemyConditionTone} {%1 + 360}
+		};
+		#elseif {%1 >= 60}
+		{
+			#math {enemyConditionTone} {%1 + 340}
+		};
+		#elseif {%1 >= 50}
+		{
+			#math {enemyConditionTone} {%1 + 320}
+		};
+		#elseif {%1 >= 40}
+		{
+			#math {enemyConditionTone} {%1 + 300}
+		};
+		#elseif {%1 >= 30}
+		{
+			#math {enemyConditionTone} {%1 + 280}
+		};
+		#elseif {%1 >= 20}
+		{
+			#math {enemyConditionTone} {%1 + 260}
+		};
+		#elseif {%1 >= 10}
+		{
+			#math {enemyConditionTone} {%1 + 240}
+		};
+		#else
+		{
+			#math {enemyConditionTone} {%1 + 220}
+		};
 		#if {!&{volume} || $volume == 0}
 		{
 			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 &> /dev/null &}
@@ -2037,7 +2162,10 @@
 			{
 				harvest components corpse
 			};
-			#if {"$autobrew" == "true"} {brew p i | prefix silent_};
+			#if {"$autobrew" == "true"}
+			{
+				brew p i | prefix silent_
+			};
 			#if {"$harvestTeeth" == "true"}
 			{
 				harvest teeth corpse
@@ -2279,6 +2407,57 @@
 {
 	#variable {pkMode} {true};
 	#showme {PK mode activated.}
+}
+{5}
+
+#ALIAS {^r$}
+{
+	#variable {randomAttack} { };
+	#if {"$bash" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "bash"}
+	};
+	#if {"$cleave" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "cleave"}
+	};
+	#if {"$feint" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "feint"}
+	};
+	#if {"$jab" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "jab"}
+	};
+	#if {"$kick" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "kick"}
+	};
+	#if {"$leapAttack" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "leap"}
+	};
+	#if {"$lunge" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "lunge"}
+	};
+	#if {"$riposte" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "riposte"}
+	};
+	#if {"$stomp" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "stomp"}
+	};
+	#if {"$trip" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "trip"}
+	};
+	#if {"$whirlwind" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "whirlwind"}
+	};
+	#script {shuf -n 1 -e $randomAttack}
 }
 {5}
 
@@ -2708,6 +2887,14 @@
 }
 {9}
 
+#ALIAS {^autobrew$}
+{
+	noautojunk;
+	#variable {autobrew} {true};
+	#showme {You will now automatically brew potions using items harvested from corpses.}
+}
+{9}
+
 #ALIAS {^autobuypractice$}
 {
 	#showme {You will now automatically spend experience to buy practices.};
@@ -2716,10 +2903,24 @@
 }
 {9}
 
+#ALIAS {^autodream$}
+{
+	#variable {autodream} {true};
+	#showme {Welcome to the world of dreams.}
+}
+{9}
+
 #ALIAS {^autoheal$}
 {
 	#variable {autoheal} {true};
 	#showme {Autoheal is now on.}
+}
+{9}
+
+#ALIAS {^autohelp$}
+{
+	#variable {autohelp} {true};
+	#showme {You will now see random help files when you sleep.}
 }
 {9}
 
@@ -2752,6 +2953,13 @@
 {
 	#variable {autorecall} {true};
 	#showme {You will automatically recall if you are in awful or pretty hurt.}
+}
+{9}
+
+#ALIAS {^autoregen$}
+{
+	#variable {autoregen} {true};
+	#showme {You will now regen when your group leader does.}
 }
 {9}
 
@@ -2885,6 +3093,13 @@
 }
 {9}
 
+#ALIAS {^noautobrew$}
+{
+	#unvariable {autobrew};
+	#showme {You will no longer brew potions.}
+}
+{9}
+
 #ALIAS {^noautobuypractice$}
 {
 	#showme {You will no longer automatically buy practices.};
@@ -2892,10 +3107,24 @@
 }
 {9}
 
+#ALIAS {^noautodream$}
+{
+	#unvariable {autodream};
+	#showme {As you decide to stop dreaming, you hear a snort and think you see the misty form of a nightmare vanishing into the distance.}
+}
+{9}
+
 #ALIAS {^noautoheal$}
 {
 	#unvariable {autoheal};
 	#showme {Autoheal is now off.}
+}
+{9}
+
+#ALIAS {^noautohelp$}
+{
+	#unvariable {autohelp};
+	#showme {You will no longer see random help files when you sleep.}
 }
 {9}
 
@@ -2926,6 +3155,13 @@
 {
 	#unvariable {autorecall};
 	#showme {You will no automatically recall.}
+}
+{9}
+
+#ALIAS {^noautoregen$}
+{
+	#unvariable {autoregen};
+	#showme {You will no longer automatically regen when your group leader does.}
 }
 {9}
 
@@ -3054,6 +3290,13 @@
 }
 {9}
 
+#ALIAS {^{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}set %2}
+{
+	#macro {\e%1} {%2};
+	#showme {alt+%1 has been set to %2.}
+}
+{9}
+
 #ALIAS {^{ble|bles|bless}}
 {
 	#if {"$bless" == "true"}
@@ -3077,13 +3320,6 @@
 	{
 		#showme {You do not have the spell bloodmist yet.}
 	}
-}
-{9}
-
-#ALIAS {^{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}set %2}
-{
-	#macro {\e%1} {%2};
-	#showme {alt+%1 has been set to %2.}
 }
 {9}
 
@@ -3929,56 +4165,6 @@
 	{
 		northeast
 	}
-}
-
-#alias {^r$}
-{
-	#variable {randomAttack} { };
-	#if {"$bash" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "bash"}
-	};
-	#if {"$cleave" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "cleave"}
-	};
-	#if {"$feint" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "feint"}
-	};
-	#if {"$jab" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "jab"}
-	};
-	#if {"$kick" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "kick"}
-	};
-	#if {"$leapAttack" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "leap"}
-	};
-	#if {"$lunge" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "lunge"}
-	};
-	#if {"$riposte" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "riposte"}
-	};
-	#if {"$stomp" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "stomp"}
-	};
-	#if {"$trip" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "trip"}
-	};
-	#if {"$whirlwind" == "true"}
-	{
-		#variable {randomAttack} {$randomAttack "whirlwind"}
-	};
-	#script {shuf -n 1 -e $randomAttack}
 }
 
 #MACRO {\eu}
