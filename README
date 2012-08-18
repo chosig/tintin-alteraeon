@@ -125,6 +125,12 @@ alt+shift+G: Greet the last friend to enter the game.
 alt+left and right arrow or alt+- or =: switch channel buffer. current channels are all, auction, ct, gt, and tells.
 
 
+Logging:
+When you connect to the game you will automatically log all output from the game into a file located in the log/ subdirectory. Log paths and file names are generated based on the date. An example of a log file path is:
+log/2012/August/18/12_59AM.log
+You should clean out your log directory every so often. It can get large quickly.
+
+
 Navigation:
 alt+u northwest
 alt+i north

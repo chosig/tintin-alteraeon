@@ -3580,6 +3580,10 @@
 	#read {name.tin};
 	#class {gameData} {read} {game_data.tin};
 	#variable {connected} {true};
+	#script {logFilePath} {date +'log/%Y/%B/%d/'};
+	#script {logFileName} {date +'%I_%M%p.log'};
+	#system {mkdir -p ${logFilePath[1]}};
+	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
 	#class {gameData} {open} {game_data.tin}
 }
 
