@@ -1997,14 +1997,23 @@
 {
 	#if {"$beeps" == "true"}
 	{
-		#math {enemyConditionTone} {%1 * 0.1 - 10};
+		#if {%1 >= 90} {#math {enemyConditionTone} {%1 + 340}};
+		#elseif {%1 >= 80} {#math {enemyConditionTone} {%1 + 320}};
+		#elseif {%1 >= 70} {#math {enemyConditionTone} {%1 + 300}};
+		#elseif {%1 >= 60} {#math {enemyConditionTone} {%1 + 280}};
+		#elseif {%1 >= 50} {#math {enemyConditionTone} {%1 + 260}};
+		#elseif {%1 >= 40} {#math {enemyConditionTone} {%1 + 240}};
+		#elseif {%1 >= 30} {#math {enemyConditionTone} {%1 + 220}};
+		#elseif {%1 >= 20} {#math {enemyConditionTone} {%1 + 200}};
+		#elseif {%1 >= 10} {#math {enemyConditionTone} {%1 + 180}};
+		#else {#math {enemyConditionTone} {%1 + 180}};
 		#if {!&{volume} || $volume == 0}
 		{
-			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 norm -1 &> /dev/null &}
+			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 &> /dev/null &}
 		};
 		#else
 		{
-			#system {play -q -V0 -n -c1 synth sin %$enemyConditionTone fade h 0.25 0.25 0.3 gain $volume norm -1 &> /dev/null &}
+			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 gain $volume &> /dev/null &}
 		}
 	}
 }
