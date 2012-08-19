@@ -1,3 +1,17 @@
+#act {^(%S) {A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z}%3: %4}
+{
+#if {"%1" != "friend"}
+{
+#switch {"%1"}
+{
+#case {"fury"} {play msg-fury};
+#default
+{
+play sendmsg-generic
+}
+}
+}
+}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
