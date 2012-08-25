@@ -3,7 +3,7 @@
 #gag {^To see the lost exp hall of fame, try the 'exp lost' command.$}
 #gag {^%S gives you 0 gold coins.$}
 #gag {^It is noon.$}
-#gag {^It is mid{-afternoon|night}.$}
+#gag {^It is mid{-morning|-afternoon|night}.$}
 #gag {^A skeleton's {shield bash|slash|slice|pierce|flail}%*}
 #gag {^A skeleton lands a textbook roundhouse kick squarely on%*}
 #gag {^A bone guardian's {crush|slash}%*}
@@ -27,3 +27,4 @@
 #substitute {%s {tell|tells} the clan, '%3'} {%1 ct, '%3'}
 #substitute {%s {tell|tells} the group, '%3'} {%1 gt, '%3'}
 #substitute {You carefully extract one %1 and put it in your bag.$} {You extract a %1.}
+#substitute {^%S {taps|tap} {her|his|its|your} life, and {a swarm of|a} blood red {demons|winged demon} {flaps|flap|flies|fly} quickly toward %7!$} {%4 blood red %5 %6 toward %7!}
