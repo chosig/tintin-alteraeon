@@ -16,6 +16,9 @@ For better readability, open aa.tin and delete the line:
 To counter a bug in gnome-terminal with the Orca screen reader, a space has been added to the beginning of each line.
 If you don't need this and want to get rid of it, open aa.tin and delete the line:
 #SUBSTITUTE       {%*}  { %0}  {1}
+To discuss this code in game, or to ask questions, connect to the cowsay channel:
+%connect cowsay
+cowsay hello
 
 Multiple Characters:
 If you have multiple characters, the best way to support all of them is to keep the git directory clane, and create directories for each character, then link to the relevant files. Here is an example assuming tintin-alteraeon is in your home directory.
@@ -180,6 +183,7 @@ F4: Controls all minions to consume any available corpse.
 autobone tries to make a bone guardian automatically. You need container set and some deanimated bones in your container for this to work. Of course the container variable has to be set. Turn it off with noautobone.
 autoclay cast clay man automatically if your current clay man dies. Turn it off with noautoclay.
 autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of deep blue in your container for this to work. Turn it off with noautofiend.
+autofleshbeast: Tries to make a new flesh beast if your current flesh beast has low hp. For this to work, there must be a corpse available. This is kind of a dangerous setting. If you use it it is recommended to have another tanking minion to fall back on.
 autometal Makes a metal construct, same requirements aas bone guardian and wood woad except the material has to be metal. Turn it off with noautometal.
 autowoad automatically try to create a new wood woad if the current woad dies. turn it off with noautowoad.
 
@@ -204,7 +208,7 @@ autobrew: Automatically use components harvested from corpses to brew potions. (
 autodream: You will dream when you sleep. (turn it off with noautodream)
 autohelp: Shows help files when you go to sleep. (Turn it off with noautohelp.)
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
-autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief (turn it off with noautolevel).
+autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief  To level all classes type autolevel all (turn it off with noautolevel).
 autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
 automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
