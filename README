@@ -208,7 +208,7 @@ autobrew: Automatically use components harvested from corpses to brew potions. (
 autodream: You will dream when you sleep. (turn it off with noautodream)
 autohelp: Shows help files when you go to sleep. (Turn it off with noautohelp.)
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
-autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief  To level all classes type autolevel all (turn it off with noautolevel).
+autolevel ClassName: Level that class as soon as you have the experience. E.g. autolevel thief will level thief automatically. To level all classes type autolevel all. To find out what you are currently autoleveling, type autolevel with no arguments. (turn it off with noautolevel).
 autorecast: Set spells like armor and shield to recast automatically when they drop. turn it off with noautorecast.
 automap: uses the map command automatically on each move to show where you have and have not explored. turn it off with noautomap.
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.

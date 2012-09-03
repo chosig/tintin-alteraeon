@@ -1,24 +1,3 @@
-#act {^You fail the rescue!$} {\!res} {5}
-#act {^A flesh beast starts following you.$} {#if {&{makeNewFleshBeast}} {#unvariable {makeNewFleshBeast}}} {5}
-#alias {^autofleshbeast$} {#variable {autofleshbeast} {true};#showme {You will attempt to make a new flesh beast automatically.}} {9}
-#alias {^noautofleshbeast$} {#unvariable {autofleshbeast};#showme {You will no longer make flesh beasts automatically.}} {9}
-#act {^silent_A flesh beast %d} {c flesh corpse} {9}
-#act {^You can't rest while fighting!$} {#unvariable {position}} {9}
-#act {^(%S) {A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z}%3: %4}
-{
-#if {"%1" != "friend"}
-{
-#switch {"%1"}
-{
-#case {"fury"} {play msg-fury};
-#default
-{
-play sendmsg-generic
-}
-}
-}
-}
-{9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -201,7 +180,10 @@ play sendmsg-generic
 		#delay {0.2} {c bone guardian $boneMaterial};
 		#delay {3} {#variable {autobone} {true}}
 	};
-	#if {"$autofleshbeast" == "true"} {#variable {makeNewFleshBeast} {true}};
+	#if {"$autofleshbeast" == "true"}
+	{
+		#variable {makeNewFleshBeast} {true}
+	};
 	#if {"$autometal" == "true"}
 	{
 		get $metalMaterial $container;
@@ -315,6 +297,12 @@ play sendmsg-generic
 }
 {5}
 
+#ACTION {^ %s  cloak of darkness%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {cloakOfDarkness} {true}
+}
+{5}
+
 #ACTION {^ %s  consume%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {consume} {true};
@@ -385,12 +373,6 @@ play sendmsg-generic
 #ACTION {^ %s  faith shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {faithShield} {true}
-}
-{5}
-
-#ACTION {^ %s  cloak of darkness%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cloakOfDarkness} {true}
 }
 {5}
 
@@ -653,6 +635,15 @@ play sendmsg-generic
 }
 {5}
 
+#ACTION {^A flesh beast starts following you.$}
+{
+	#if {&{makeNewFleshBeast}}
+	{
+		#unvariable {makeNewFleshBeast}
+	}
+}
+{5}
+
 #ACTION {^A ghoul bites %1 with diseased, razor sharp teeth!$}
 {
 	play ghoul-attack
@@ -749,6 +740,12 @@ play sendmsg-generic
 #ACTION {^You enter a huge portal.$}
 {
 	play portal
+}
+{5}
+
+#ACTION {^You fail the rescue!$}
+{
+	\!res
 }
 {5}
 
@@ -1372,6 +1369,25 @@ play sendmsg-generic
 }
 {9}
 
+#ACTION {^(%S) {A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z}%3: %4}
+{
+	#if {"%1" != "friend"}
+	{
+		#switch {"%1"}
+		{
+			#case {"fury"}
+			{
+				play msg-fury
+			};
+			#default
+			{
+				play sendmsg-generic
+			}
+		}
+	}
+}
+{9}
+
 #ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
 {
 	#send {waypoint %1};
@@ -1574,12 +1590,6 @@ play sendmsg-generic
 }
 {9}
 
-#act {^You can't sleep here, there's a battle going on!$}
-{
-	#unvariable {position}
-}
-{9}
-
 #ACTION {^Sleep while fighting?  Are you mad?$}
 {
 	#unvariable {position}
@@ -1711,6 +1721,18 @@ play sendmsg-generic
 #ACTION {^You burp in the general direction of %1.}
 {
 	play burp
+}
+{9}
+
+#ACTION {^You can't rest while fighting!$}
+{
+	#unvariable {position}
+}
+{9}
+
+#ACTION {^You can't sleep here, there's a battle going on!$}
+{
+	#unvariable {position}
 }
 {9}
 
@@ -2200,7 +2222,17 @@ play sendmsg-generic
 			{
 				brew p i | prefix silent_
 			};
-			#if {"$autofleshbeast" == "true"} {#if {"$makeNewFleshBeast" == "true"} {c flesh corpse};#else {lowhp | prefix silent_}};
+			#if {"$autofleshbeast" == "true"}
+			{
+				#if {"$makeNewFleshBeast" == "true"}
+				{
+					c flesh corpse
+				};
+				#else
+				{
+					lowhp | prefix silent_
+				}
+			};
 			#if {"$harvestTeeth" == "true"}
 			{
 				harvest teeth corpse
@@ -2266,6 +2298,12 @@ play sendmsg-generic
 	{
 		c bone armor $name
 	}
+}
+{9}
+
+#ACTION {^silent_A flesh beast %d}
+{
+	c flesh corpse
 }
 {9}
 
@@ -2341,7 +2379,10 @@ play sendmsg-generic
 
 #ACTION {^silent_{Cleric|Mage|Necromancer|Thief|Warrior}  %2You can level!$}
 {
-	#if {"$autolevelClass" == "All"} {level %1};
+	#if {"$autolevelClass" == "All"}
+	{
+		level %1
+	};
 	#if {"$autolevelClass" == "%1"}
 	{
 		level $autolevelClass
@@ -2946,6 +2987,13 @@ play sendmsg-generic
 }
 {9}
 
+#ALIAS {^autofleshbeast$}
+{
+	#variable {autofleshbeast} {true};
+	#showme {You will attempt to make a new flesh beast automatically.}
+}
+{9}
+
 #ALIAS {^autoheal$}
 {
 	#variable {autoheal} {true};
@@ -2972,7 +3020,27 @@ play sendmsg-generic
 {
 	#script {autolevelClass} {echo "%1" | tr "[:upper:]" "[:lower:]" | awk '{print toupper(substr($0, 1, 1)) substr($0,2)}'};
 	#variable {autolevelClass} {$autolevelClass[1]};
-	#if {"$autolevelClass" != "All"} {#showme {You will now level $autolevelClass automatically.}};#else {#showme {You will now level all classes automatically}}
+	#if {"$autolevelClass" != "All"}
+	{
+		#showme {You will now level $autolevelClass automatically.}
+	};
+	#else
+	{
+		#showme {You will now level all classes automatically}
+	}
+}
+{9}
+
+#ALIAS {^autolevel$}
+{
+	#if {"$autolevelClass" == "All"}
+	{
+		#showme {You are leveling your cheapest class automatically.}
+	};
+	#else
+	{
+		#showme {You are currently leveling $autolevelClass automatically.}
+	}
 }
 {9}
 
@@ -3147,6 +3215,13 @@ play sendmsg-generic
 {
 	#unvariable {autodream};
 	#showme {As you decide to stop dreaming, you hear a snort and think you see the misty form of a nightmare vanishing into the distance.}
+}
+{9}
+
+#ALIAS {^noautofleshbeast$}
+{
+	#unvariable {autofleshbeast};
+	#showme {You will no longer make flesh beasts automatically.}
 }
 {9}
 
@@ -3569,7 +3644,10 @@ play sendmsg-generic
 		remove shield
 	};
 	wield $stabWeapon;
-	#if {"$cloakOfDarkness" == "true"} {cloak on};
+	#if {"$cloakOfDarkness" == "true"}
+	{
+		cloak on
+	};
 	#if {"$hide" == "true"}
 	{
 		hide
@@ -3584,7 +3662,10 @@ play sendmsg-generic
 	{
 		wear shield
 	};
-	#if {"$cloakOfDarkness" == "true"} {cloak off}
+	#if {"$cloakOfDarkness" == "true"}
+	{
+		cloak off
+	}
 }
 {9}
 
@@ -3757,7 +3838,10 @@ play sendmsg-generic
 		remove shield
 	};
 	wield $stabWeapon;
-	#if {"$cloakOfDarkness" == "true"} {cloak on};
+	#if {"$cloakOfDarkness" == "true"}
+	{
+		cloak on
+	};
 	#if {&{stealthyMovement}}
 	{
 		sneak %2
@@ -3776,7 +3860,10 @@ play sendmsg-generic
 	{
 		wield $weapon
 	};
-	#if {"$cloakOfDarkness" == "true"} {cloak off}
+	#if {"$cloakOfDarkness" == "true"}
+	{
+		cloak off
+	}
 }
 {9}
 
