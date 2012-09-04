@@ -1,3 +1,4 @@
+#gag {^You shatter one of the teeth attempting to remove it.$}
 #gag {^A {bone|clay|flesh|shadow|wood} {beast|fiend|guardian|man|woad} stands up.$}
 #gag {^A flesh beast's {bite|splat}%*}
 #gag {^To see the lost exp hall of fame, try the 'exp lost' command.$}
