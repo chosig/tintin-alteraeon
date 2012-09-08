@@ -2174,7 +2174,15 @@
 		};
 		#else
 		{
-			#math {enemyConditionTone} {%1 + 220}
+			#math {enemyConditionTone} {%1 + 220};
+		#if {"$soulsteal" == "true"}
+		{
+			#if {"$lastSoulSteal" != "%1"}
+			{
+				c soulsteal
+			};
+			#variable {lastSoulSteal} {%1}
+		}
 		};
 		#if {!&{volume} || $volume == 0}
 		{
@@ -2220,7 +2228,7 @@
 			};
 			#if {"$autobrew" == "true"}
 			{
-				brew p i | prefix silent_
+				#delay {1d5} {brew p i | prefix silent_}
 			};
 			#if {"$autofleshbeast" == "true"}
 			{
@@ -2379,13 +2387,17 @@
 
 #ACTION {^silent_{Cleric|Mage|Necromancer|Thief|Warrior}  %2You can level!$}
 {
-	#if {"$autolevelClass" == "All"}
+	#if {"$autolevelClass" == "All" && !&{justLeveled}}
 	{
-		level %1
+		level %1;
+		#var {justLeveled} {true};
+		#delay {15} {#unvariable {justLeveled}}
 	};
-	#if {"$autolevelClass" == "%1"}
+	#if {"$autolevelClass" == "%1" && !&{justLeveled}}
 	{
-		level $autolevelClass
+		level $autolevelClass;
+		#var {justLeveled} {true};
+		#delay {15} {#unvariable {justLeveled}}
 	}
 }
 {9}
