@@ -137,11 +137,11 @@
 {
 	#if {!&{recast}}
 	{
-		#variable {recast} {$lastSpell;}
+		#if {"$autorecast" == "true"} {#variable {recast} {$lastSpell;}}
 	};
 	#else
 	{
-		#variable {recast} {$recast $lastSpell;}
+		#if {"$autorecast" == "ture"} {#variable {recast} {$recast $lastSpell;}}
 	};
 	#if {&{lastSpell} && "$autorecast" == "true"}
 	{
@@ -2174,15 +2174,7 @@
 		};
 		#else
 		{
-			#math {enemyConditionTone} {%1 + 220};
-		#if {"$soulsteal" == "true"}
-		{
-			#if {"$lastSoulSteal" != "%1"}
-			{
-				c soulsteal
-			};
-			#variable {lastSoulSteal} {%1}
-		}
+			#math {enemyConditionTone} {%1 + 220}
 		};
 		#if {!&{volume} || $volume == 0}
 		{

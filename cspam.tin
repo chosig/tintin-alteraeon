@@ -31,3 +31,4 @@
 #substitute {^%S {taps|tap} {her|his|its|your} life, and {a swarm of|a} blood red {demons|winged demon} {flaps|flap|flies|fly} quickly toward %7!$} {%4 blood red %5 %6 toward %7!}
 #substitute {^A %1 is too much for you to carry, so you prepare a spot on the ground for it.$} {You drop a %1.}
 #substitute {^The {corpse|gutted carcass|skinned corpse} of a triceratops is too big for you to sacrifice.$} {It's too big to sac.}
+#substitute {^You sacrifice blood from the corpse %1, drawing power from it!$} {You sacrifice blood from the corpse.}
