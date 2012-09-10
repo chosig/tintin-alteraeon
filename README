@@ -6,6 +6,7 @@ Alonzo: Answered my countless questions about Mac installation, helpedd test Mac
 Harmony: Helped with test Mac installation instructions
 Mike Wassel: http://blindndangerous.com/ Improved Mac installation instructions.
 Derek Roberts (chikorita) http://www.twitter.com/big_d01 : Helped my with the totally confusing sinth options in sox for the enemy condition beeps.
+Kendell Clark: Helped write multicharacter-setup.sh
 
 
 NOTES:
@@ -21,6 +22,13 @@ To discuss this code in game, or to ask questions, connect to the cowsay channel
 cowsay hello
 
 Multiple Characters:
+The easiest way is to run multicharacter-setup.sh. This can be done in two ways:
+./multicharacter-setup.sh
+uses an interactive mode that prompts you for character name and password and creates directories one at a time. Using this method you have the option of leaving the password field blank.
+Method 2:
+./multicharacter-setup.sh name password name password name password
+For each set of name and password a directory will be created for that character. Using this method the password must be supplied.
+Manual method (not recommended):
 If you have multiple characters, the best way to support all of them is to keep the git directory clane, and create directories for each character, then link to the relevant files. Here is an example assuming tintin-alteraeon is in your home directory.
 make the character directory
 mkdir ~/rigby
