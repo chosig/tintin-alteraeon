@@ -1,3 +1,5 @@
+#gag {^(auction) Current bid is %1 gold coins for '%2'.$}
+#gag {(auction) %S has bid %2 gold coins for '%3'.$}
 #gag {^You shatter one of the teeth attempting to remove it.$}
 #gag {^A {bone|clay|flesh|shadow|wood} {beast|fiend|guardian|man|woad} stands up.$}
 #gag {^A flesh beast's {bite|splat}%*}
@@ -32,3 +34,4 @@
 #substitute {^A %1 is too much for you to carry, so you prepare a spot on the ground for it.$} {You drop a %1.}
 #substitute {^The {corpse|gutted carcass|skinned corpse} of a triceratops is too big for you to sacrifice.$} {It's too big to sac.}
 #substitute {^You sacrifice blood from the corpse %1, drawing power from it!$} {You sacrifice blood from the corpse.}
+#substitute {^(auction) Now accepting bids for '%1', minimum bid is %2 gold coins.$} {(auction) started on '%1' at %2 gold.}

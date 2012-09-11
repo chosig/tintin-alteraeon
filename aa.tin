@@ -1,3 +1,5 @@
+#alias {^autocspam$} {#showme {autocspam enabled.};#variable {autocspam} {true}} {9}
+#alias {^noautocspam$} {#showme {autocspam disabled.};#unvariable {autocspam}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -3139,7 +3141,7 @@
 
 #ALIAS {^csave$}
 {
-	#class {gameData} {write} {game_data.tin}
+	#class {gameData} {write} {game_data.tin};#showme {saving game_data.tin}
 }
 {9}
 
@@ -3552,6 +3554,8 @@
 #ALIAS {^{quit|logoff}$}
 {
 	#unvariable {position};
+	#unvariable {recast};
+	#unvariable {lastSpell};
 	#unvariable {groupExperience};
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
@@ -3951,7 +3955,7 @@
 	#script {logFileName} {date +'%I_%M%p.log'};
 	#system {mkdir -p ${logFilePath[1]}};
 	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
-	#class {gameData} {open} {game_data.tin}
+	#if {"$autocspam" == "true"} {cspam};#else {#class {gameData} {open} {game_data.tin}}
 }
 
 #EVENT {SESSION DISCONNECTED}
@@ -4140,7 +4144,7 @@
 
 #MACRO {\eM}
 {
-	#script {echo "music Now playing ~/$(cmus-remote -Q | head -2 | tail -1 | cut -d "/" -f 4-)"}
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(basename "$(cmus-remote -Q | head -2 | tail -1)")"}
 }
 
 #MACRO {\eR}

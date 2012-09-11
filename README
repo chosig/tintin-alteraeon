@@ -213,6 +213,7 @@ autobuypractice: automatically buys a practice when you have enough experience p
 noautobuypractice: Turns off autobuypractice, see above.
 alt+\: Gets an item from your container and uses it. Set the item to be used with the scroll item command, for example, scroll softdrink will set the item to softdrink.
 autobrew: Automatically use components harvested from corpses to brew potions. (Turn it off with noautobrew)
+autocspam: Enable cspam.tin filters. (turn it off with noautocspam)
 autodream: You will dream when you sleep. (turn it off with noautodream)
 autohelp: Shows help files when you go to sleep. (Turn it off with noautohelp.)
 autojunk: Discard spell components harvested from corpses. To turn it off type noautojunk.
