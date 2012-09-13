@@ -4144,7 +4144,7 @@
 
 #MACRO {\eM}
 {
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(basename "$(cmus-remote -Q | head -2 | tail -1)")"}
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\""; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
 }
 
 #MACRO {\eR}
