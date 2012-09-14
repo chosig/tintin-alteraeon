@@ -1,3 +1,4 @@
+#alias {^brew in %S$} {#showme {Brew container set to %1.};#variable {brewContainer} {%1}} {9}
 #alias {^autocspam$} {#showme {autocspam enabled.};#variable {autocspam} {true}} {9}
 #alias {^noautocspam$} {#showme {autocspam disabled.};#unvariable {autocspam}} {9}
 #ACTION {^You are already following %1.$}
@@ -4144,7 +4145,7 @@
 
 #MACRO {\eM}
 {
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\""; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "http://www.last.fm/search?q=$artist%2B$title" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL " | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
 }
 
 #MACRO {\eR}

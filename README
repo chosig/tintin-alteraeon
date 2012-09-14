@@ -227,6 +227,7 @@ a b c d e f g h n q r s t v w x y and z set command: sets alt+the chosen letter 
 beeps: Turn on enemy condition notifications using beeps. Turn it off with nobeeps.
 bgmusic turn background ambiance on. Turn it off with nobgmusic.
 brag cap or brag gt cap will brag your experience cap.
+brew in containerName: Set contaner as your brewing container. Must not contain a space in the container name. E.g. brew in bowl
 browser name: sets name as your browser, for example browser firefox will set your browser to firefox.
 cconf setting: Find out if something is set. for example, cconf autowoad will tell you if you have autowoad set. True is on and false is off.
 csave: Forces saving of game_data.tin where all your variables, aliases and custom triggers should be. This may be buggy, so back up often if you use this.
