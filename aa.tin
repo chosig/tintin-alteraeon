@@ -1,3 +1,4 @@
+#act {^kxwt_myname %S} {lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256}
 #alias {^brew in %S$} {#showme {Brew container set to %1.};#variable {brewContainer} {%1}} {9}
 #alias {^autocspam$} {#showme {autocspam enabled.};#variable {autocspam} {true}} {9}
 #alias {^noautocspam$} {#showme {autocspam disabled.};#unvariable {autocspam}} {9}
