@@ -1240,11 +1240,11 @@
 {
 		#if {!&{volume} || $volume == 0}
 	{
-		#system {play -qn -V0 synth 00:00:02 sq 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol 0.1 &> /dev/null &}
+		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol 0.1 &> /dev/null &}
 	};
 	#else
 	{
-		#system {play -qn -V0 synth 00:00:02 sq 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
+		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
 	}
 }
 {9}
