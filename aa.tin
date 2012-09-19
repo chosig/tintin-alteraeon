@@ -970,7 +970,14 @@
 			};
 			#default
 			{
-				play sendmsg-generic
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth pl A3 pl D3 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth pl A3 pl D3 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+		}
 			}
 		}
 	}
@@ -1335,7 +1342,14 @@
 			};
 			#default
 			{
-				play msg-generic
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth pl D2 pl A2 pl D3 pl A3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth pl D2 pl A2 pl D3 pl A3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+		}
 			}
 		};
 		#if {&{speech}}
