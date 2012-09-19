@@ -962,7 +962,14 @@
 			};
 			#case {"tell the clan"}
 			{
-				play sendmsg-clan
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth sin D4 sin G3 sin D3 sin G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth sin D4 sin G3 sin D3 sin G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+		}
 			};
 			#case {"tell the group"}
 			{
@@ -1341,7 +1348,14 @@
 			};
 			#case {"tells the cla"}
 			{
-				play msg-clan
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth sin G2 sin D3 sin G3 sin D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth sin G2 sin D3 sin G3 sin D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+		}
 			};
 			#case {"tells the grou"}
 			{
