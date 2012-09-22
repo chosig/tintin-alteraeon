@@ -1817,10 +1817,7 @@
 {
 	#if {"$autostore" == "true"}
 	{
-		#if {"%2" == "pale blue" || "%2" == "deep blue" || "%2" == "purple" || "%2" == "white" || "%2" == "black" || "%2" == "clear"}
-		{
-			put soulstone $container
-		}
+		put soulstone $container
 	}
 }
 {9}
