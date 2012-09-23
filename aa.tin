@@ -1,8 +1,7 @@
-#action {^silent_You have %d experience points.$}
-{
-#if {!&{groupExperience} || $groupExperience == 0} {#variable {groupExperience} {%1}};#else {#math {groupExperience} {%1 - $groupExperience}}
-}
-{5}
+#alias {^autoconsume$} {#showme {Your minions will now consume corpses automatically};#variable {autoconsume} {true}} {9}
+#alias {^noautoconsume$} {#showme {Your minions will no longer consume corpses automatically};#unvariable {autoconsume}} {9}
+#alias {^autobloodsacrifice$} {#showme {You will now blood sacrifice corpses automatically};#variable {autobloodsacrifice} {true}} {9}
+#alias {^noautobloodsacrifice$} {#showme {You will no longer blood sacrifice corpses automatically};#unvariable {autobloodsacrifice}} {9}
 #act {^kxwt_myname %S} {lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256}
 #alias {^brew in %S$} {#showme {Brew container set to %1.};#variable {brewContainer} {%1}} {9}
 #alias {^autocspam$} {#showme {autocspam enabled.};#variable {autocspam} {true}} {9}
@@ -706,8 +705,8 @@
 
 #ACTION {^You are now a group member.$}
 {
-	exp | prefix silent_;
-	#variable {groupExperience} {0}
+	#variable {groupExperience} {0};
+	#variable {groupStartingExp} {$lastReceivedExp}
 }
 {5}
 
@@ -2248,6 +2247,8 @@
 		};
 		#if {!&{pkMode}}
 		{
+			#if {"$autoconsume" == "true"} {control all consume corpse};
+			#if {"$autobloodsacrifice" == "true"} {bsac corpse};
 			#if {"$cryOfVictory" == "true"}
 			{
 				victory

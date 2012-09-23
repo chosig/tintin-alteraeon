@@ -188,8 +188,10 @@ strike: shadow strike
 Necromancer:
 Minion Controls:
 F4: Controls all minions to consume any available corpse.
+autobloodsacrifice: Sacrifice blood from corpses automatically. (turn it off with noautobloodsacrifice)
 autobone tries to make a bone guardian automatically. You need container set and some deanimated bones in your container for this to work. Of course the container variable has to be set. Turn it off with noautobone.
 autoclay cast clay man automatically if your current clay man dies. Turn it off with noautoclay.
+autoconsume: All minions consume corpses automatically. (turn it off with noautoconsume)
 autofiend Automatically make a new shadow fiend if the current one leaves or dies. You need soulstones of deep blue in your container for this to work. Turn it off with noautofiend.
 autofleshbeast: Tries to make a new flesh beast if your current flesh beast has low hp. For this to work, there must be a corpse available. This is kind of a dangerous setting. If you use it it is recommended to have another tanking minion to fall back on.
 autometal Makes a metal construct, same requirements aas bone guardian and wood woad except the material has to be metal. Turn it off with noautometal.
