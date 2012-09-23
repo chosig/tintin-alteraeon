@@ -1,3 +1,8 @@
+#action {^silent_You have %d experience points.$}
+{
+#if {!&{groupExperience} || $groupExperience == 0} {#variable {groupExperience} {%1}};#else {#math {groupExperience} {%1 - $groupExperience}}
+}
+{5}
 #act {^kxwt_myname %S} {lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256}
 #alias {^brew in %S$} {#showme {Brew container set to %1.};#variable {brewContainer} {%1}} {9}
 #alias {^autocspam$} {#showme {autocspam enabled.};#variable {autocspam} {true}} {9}
@@ -16,7 +21,7 @@
 
 #ACTION {^You stop following %1.$}
 {
-	groupexp;
+	exp | prefix silent_;
 	#unvariable {groupLeader};
 	#unvariable {groupExperience}
 }
@@ -701,6 +706,7 @@
 
 #ACTION {^You are now a group member.$}
 {
+	exp | prefix silent_;
 	#variable {groupExperience} {0}
 }
 {5}
@@ -806,10 +812,6 @@
 
 #ACTION {^You weep as you think of the %1 experience that you lost.$}
 {
-	#if {&{groupExperience}}
-	{
-		#math {groupExperience} {$groupExperience - %1}
-	};
 	#math {lostExp} {$lostExp + %1};
 	tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;
 	fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.;
@@ -2164,15 +2166,6 @@
 
 #ACTION {^kxwt_exp %d}
 {
-	#if {&{lastReceivedExp} && %1 < $lastReceivedExp}
-	{
-	#variable {lastReceivedExp} {%1}
-	};
-	#if {&{groupExperience} && %1 > $lastReceivedExp}
-	{
-		#math {i} {%1 - $lastReceivedExp};
-		#math {groupExperience} {$groupExperience + $i}
-	};
 	#variable {lastReceivedExp} {%1};
 	#if {&{autolevelClass}}
 	{
@@ -3165,6 +3158,7 @@
 
 #ALIAS {^brag groupexp$}
 {
+	exp | prefix silent_;
 	#if {&{groupExperience}}
 	{
 		gt I have gained $groupExperience experience points in this group so far.
@@ -3216,6 +3210,7 @@
 
 #ALIAS {^groupexp$}
 {
+	exp | prefix silent_;
 	#if {&{groupExperience}}
 	{
 		#showme {You have gained $groupExperience experience points in this group so far.}
