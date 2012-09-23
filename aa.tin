@@ -2170,7 +2170,8 @@
 	};
 	#if {&{groupExperience} && %1 > $lastReceivedExp}
 	{
-		#math {groupExperience} {$groupExperience + (%1 - $lastReceivedExp)}
+		#math {i} {%1 - $lastReceivedExp};
+		#math {groupExperience} {$groupExperience + $i}
 	};
 	#variable {lastReceivedExp} {%1};
 	#if {&{autolevelClass}}
