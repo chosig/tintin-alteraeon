@@ -1822,16 +1822,6 @@
 }
 {9}
 
-#ACTION {^You don't learn much from this battle, but still receive %d experience.$}
-{
-	#variable {lastReceivedExp} {%1};
-	#if {&{groupExperience}}
-	{
-		#math {groupExperience} {$groupExperience + %1}
-	}
-}
-{9}
-
 #ACTION {^You end up with a stinky, nasty mess, but no magic potion.}
 {
 	empty $brewContainer
@@ -1967,16 +1957,6 @@
 }
 {9}
 
-#ACTION {^You learn very little from this battle.  You receive %d experience.$}
-{
-	#variable {lastReceivedExp} {%1};
-	#if {&{groupExperience}}
-	{
-		#math {groupExperience} {$groupExperience + %1}
-	}
-}
-{9}
-
 #ACTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$}
 {
 	get %1 soulstone $container;
@@ -2101,16 +2081,6 @@
 }
 {9}
 
-#ACTION {^You {gain|receive} %d experience{.|!}$}
-{
-	#variable {lastReceivedExp} {%1};
-	#if {&{groupExperience}}
-	{
-		#math {groupExperience} {$groupExperience + %2}
-	}
-}
-{9}
-
 #ACTION {^You {hold|wear|wield}%*}
 {
 	show stats | prefix silent_;
@@ -2194,7 +2164,15 @@
 
 #ACTION {^kxwt_exp %d}
 {
-	#variable {currentExperience} {%1};
+	#if {&{lastReceivedExp} && %1 < $lastReceivedExp}
+	{
+	#variable {lastReceivedExp} {%1}
+	};
+	#if {&{groupExperience} && %1 > $lastReceivedExp}
+	{
+		#math {groupExperience} {$groupExperience + (%1 - $lastReceivedExp)}
+	};
+	#variable {lastReceivedExp} {%1};
 	#if {&{autolevelClass}}
 	{
 		level | prefix silent_
