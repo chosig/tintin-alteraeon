@@ -2164,6 +2164,7 @@
 
 #ACTION {^kxwt_exp %d}
 {
+	#var {lastReceivedExp} {%1};
 	#if {!&{oldExp} || $oldExp > %1}
 	{
 	#variable {oldExp} {%1}
