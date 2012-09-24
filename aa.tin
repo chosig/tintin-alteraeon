@@ -705,8 +705,7 @@
 
 #ACTION {^You are now a group member.$}
 {
-	#variable {groupExperience} {0};
-	#variable {groupStartingExp} {$lastReceivedExp}
+	#variable {groupExperience} {0}
 }
 {5}
 
@@ -2165,7 +2164,14 @@
 
 #ACTION {^kxwt_exp %d}
 {
-	#variable {lastReceivedExp} {%1};
+	#if {!&{oldExp} || $oldExp > %1}
+	{
+	#variable {oldExp} {%1}
+};
+	#math {expGained} {%1 - $oldExp};
+#if {&{groupExperience}} {#math {groupExperience} {$groupExperience + $expGained}
+};
+#var {oldExp} {%1};
 	#if {&{autolevelClass}}
 	{
 		level | prefix silent_
