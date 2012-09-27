@@ -40,7 +40,7 @@ create_character()
         exit 1
     fi
     if [ -d "sounds" ] ; then
-        ln -s $(pwd)/sounds/ $characterPath/sounds/
+        ln -s $(pwd)/sounds/ $characterPath/
      else
         echo "Error! Missing sounds directory. Exiting."
         exit 1
