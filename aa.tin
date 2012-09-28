@@ -1513,18 +1513,6 @@
 }
 {9}
 
-#ACTION {^A beastly fido has arrived.$}
-{
-	play beastly-fido
-}
-{9}
-
-#ACTION {^A beastly looking dog growls at you as you pass.$}
-{
-	play beastly-fido
-}
-{9}
-
 #ACTION {^A blood red winged demon explodes in fine haze of red mist!$}
 {
 	play bloodmist-death
@@ -3406,11 +3394,11 @@
 }
 {9}
 
-#ALIAS {^unset %s}
+#ALIAS {^unset %S}
 {
-	#if {"$%1" == "true"}
+	#if {"${%1}" == "true"}
 	{
-		#unvariable {%1}
+		#unvariable {%1};#showme {%1 unset}
 	};
 	#else
 	{
