@@ -1,3 +1,7 @@
+#macro {\eOQ} {control $lastRaisedMinion protect}
+#macro {\eOR} {control $lastRaisedMinion assist}
+#substitute {^Replayin_%1} {%1} {1}
+#alias {^repla%*} {#send {%0 | prefix Replayin_}} {9}
 #alias {^autoconsume$} {#showme {Your minions will now consume corpses automatically};#variable {autoconsume} {true}} {9}
 #alias {^noautoconsume$} {#showme {Your minions will no longer consume corpses automatically};#unvariable {autoconsume}} {9}
 #alias {^autobloodsacrifice$} {#showme {You will now blood sacrifice corpses automatically};#variable {autobloodsacrifice} {true}} {9}
@@ -811,6 +815,7 @@
 #ACTION {^You weep as you think of the %1 experience that you lost.$}
 {
 	#math {lostExp} {$lostExp + %1};
+	#if {&{groupExperience}} {#math {groupExperience} {$groupExperience - %1}};
 	tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;
 	fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.;
 	play death;
@@ -1243,12 +1248,6 @@
 }
 {9}
 
-#ACTION {%1 {shouts|shout} a challenge {to|trying to draw} everyone near{by.|by into a fight!}$}
-{
-	play taunt
-}
-{9}
-
 #ACTION {%1 {struggles|struggle} with the spell, and the line of frost zips randomly across the ground...$}
 {
 	play frostbite-random
@@ -1330,7 +1329,7 @@
 
 #ACTION {^%S %2{n|p|s|u}, '%3'$}
 {
-	#if {"%1" != "{A|An|The|You}" && "%2" != "yell" && "%2" != "{.*}utters the word"}
+	#if {"%1" != "{A|An|The|You}" && "%1" != "Replayin_{.*}" && "%2" != "yell" && "%2" != "{.*}utters the word"}
 	{
 		#switch {"%2"}
 		{
@@ -1746,8 +1745,7 @@
 {
 	#if {"%1" == "zombie" || "%1" == "ghoul" || "%1" == "mummy" || "%1" == "vampire"}
 	{
-		#macro {\eOQ} {control %1 protect};
-		#macro {\eOR} {control %1 assist}
+		#variable {lastRaisedMinion} {%1}
 	}
 }
 {9}
@@ -1789,12 +1787,6 @@
 }
 {9}
 
-#ACTION {^You attempt to goad %1 into attacking you.$}
-{
-	play taunt
-}
-{9}
-
 #ACTION {^You burp in the general direction of %1.}
 {
 	play burp
@@ -1822,7 +1814,7 @@
 }
 {9}
 
-#ACTION {^You end up with a stinky, nasty mess, but no magic potion.}
+#ACTION {^{Silent_|You} end up with a stinky, nasty mess, but no magic potion.}
 {
 	empty $brewContainer
 }
@@ -2707,7 +2699,6 @@
 
 #ALIAS {display_channel %1 %2 %3}
 {
-	#action {^Recent channel history}{#line gag;#unact {^Recent channel history}};
 	#if {%2 <= 0}
 	{
 		replay %3 | head -2
@@ -3611,6 +3602,9 @@
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
+	#unvariable {lastReceivedExp};
+	#unvariable {oldExp};
+	#unvariable {expGained};
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
 	set ctrigger off;
@@ -4027,11 +4021,11 @@
 #GAG              {^$}
 #GAG              {^%S twitches and starts fidgeting.$}
 #GAG              {^(You can only split gold with players, not minions.)$}
-#GAG              {^Clantell replay$}
+#GAG              {^Replayin_Clantell replay$}
 #GAG              {^Looks like the corpse of %1 is too damaged for you to use.$}
 #GAG              {^None of your minions seem hungry at the moment.$}
-#GAG              {^Recent tells:$}
-#GAG              {^Sending activity for channel 'auction'$}
+#GAG              {^Replayin_Recent tells:$}
+#GAG              {^Replayin_Sending activity for channel 'auction'$}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
 #GAG              {^You can only blood sacrifice corpses with blood in them.$}
@@ -4044,6 +4038,7 @@
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
 #GAG              {^silent_%*}
+#gag {^Replayin_Recent channel history$}
 #GAG              {^{A|An|The} %1 twitches and starts fidgeting.$}
 #MACRO {\e+}
 {
