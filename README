@@ -238,6 +238,7 @@ cspam: cuts down on minion spam and some combat spam. Turn off with nocspam.
 groupexp: If you are in a group show how much exp you have gained so far. You can share this information with the group by typing brag groupexp.
 load: Initialize skills, spells, and other information needed by the client.
 fbrew spell component list or inventory: Shortcut for brew focus. E.g. fbrew fireball sand feathers soulstone E.g. fbrew armor inventory
+pfile path/to/personalfile.tin: Reads the file specified. Great for making your own aliases, triggers, macros. (Turn it off with nopfile)
 rsoc: Does a random social. (warning, there are some very interesting socials)
 rsoc name: Does a random social to name. (warning, there are some very interesting socials)
 scan direction scans in a specific direction where direction is up, down, north, east, west, south. When scanning north or south the subdirections like northeast or southwest wil be included for that direction.

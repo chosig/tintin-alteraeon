@@ -1,3 +1,5 @@
+#alias {^pfile %1} {#variable {personalFile} {%1};#class {personal} {read} {$personalFile};#showme {loading $personalFile}} {9}
+#alias {^nopfile$} {#unvariable {personalFile};#showme {personal file variable cleared.}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -1266,7 +1268,14 @@
 
 #ACTION {%1 {traces|trace} fiery glowing symbols in the {air before you|air}...$}
 {
-	play fire-focus
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
+	}
 }
 {9}
 
@@ -1619,13 +1628,29 @@
 
 #ACTION {^REBOOT IMPENDING, EVERYONE PLEASE RECALL AND SAVE.$}
 {
-	play reboot
+#variable {rebootTime} {1};
+#if {!&{volume} || $volume == 0}
+{
+#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
+};
+#else
+{
+#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
+}
 }
 {9}
 
 #ACTION {^REBOOT IN APPROXIMATELY %1 MINUTES, FYI.$}
 {
-	play reboot-%1
+#variable {rebootTime} {%1};
+#if {!&{volume} || $volume == 0}
+{
+#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
+};
+#else
+{
+#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
+}
 }
 {9}
 
@@ -1684,12 +1709,6 @@
 	{
 		c detect invisibility
 	}
-}
-{9}
-
-#ACTION {^The game has been rebooted.  Please try again in about %1 seconds.$}
-{
-	#delay {%1} {aa}
 }
 {9}
 
@@ -3498,7 +3517,7 @@
 	#if {!&{connected}}
 	{
 		#session {Alter Aeon} {dentinmud.org} {3010};
-		#if {"$name" != "Name"}
+		#if {&{name} && "$name" != "Name"}
 		{
 			$name;
 			$password
@@ -4063,6 +4082,7 @@
 	#script {logFileName} {date +'%I_%M%p.log'};
 	#system {mkdir -p ${logFilePath[1]}};
 	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
+		#if {&{personalFile}} {#class {personal} {read} {$personalFile};#showme {Loading $personalFile}};
 	#if {"$autocspam" == "true"}
 	{
 		cspam
