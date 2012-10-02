@@ -1,3 +1,4 @@
+#alias {^get %1} {#if {"$palm" == "true"} {palm %1};#else {#send {get %1}}} {9}
 #alias {^pfile %1} {#variable {personalFile} {%1};#class {personal} {read} {$personalFile};#showme {loading $personalFile}} {9}
 #alias {^nopfile$} {#unvariable {personalFile};#showme {personal file variable cleared.}} {9}
 #ACTION {^You are already following %1.$}
@@ -387,6 +388,12 @@
 #ACTION {^ %s  feint%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {feint} {true}
+}
+{5}
+
+#ACTION {^ %s  palm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {palm} {true}
 }
 {5}
 
@@ -4264,6 +4271,11 @@
 	{
 		#showme {You have no one to greet.}
 	}
+}
+
+#MACRO {\eU}
+{
+	#script {echo "#showme {$(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\"" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)}"}
 }
 
 #MACRO {\eI}

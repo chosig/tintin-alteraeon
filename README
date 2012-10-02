@@ -64,7 +64,7 @@ tintin++, sox, shuf, and wget
 All of the above should be available from your package manager, and all except possibly tintin++ and sox should already be installed
 
 Optional:
-cmus, fbcmd, and TTYtter
+cmus, fbcmd, curl, and TTYtter
 
 Updating:
 To get updates, while in the tintin-alteraeon/ directory, type:
@@ -125,6 +125,7 @@ alt+shift+V stop
 alt+shift+B: next track
 alt+shift+R toggle repeat
 alt+shift+S: toggle shuffle
+alt+shift+U: Show currently playing track information.
 alt+shift+_: volume down
 alt+shift++: volume up
 alt+shift+M: Post currently playing file to music channel
