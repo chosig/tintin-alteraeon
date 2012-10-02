@@ -1,6 +1,3 @@
-#alias {^get %1} {#if {"$palm" == "true"} {palm %1};#else {#send {get %1}}} {9}
-#alias {^pfile %1} {#variable {personalFile} {%1};#class {personal} {read} {$personalFile};#showme {loading $personalFile}} {9}
-#alias {^nopfile$} {#unvariable {personalFile};#showme {personal file variable cleared.}} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -391,12 +388,6 @@
 }
 {5}
 
-#ACTION {^ %s  palm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {palm} {true}
-}
-{5}
-
 #ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {fireball} {true}
@@ -480,6 +471,12 @@
 #ACTION {^ %s  lunge%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {lunge} {true}
+}
+{5}
+
+#ACTION {^ %s  palm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {palm} {true}
 }
 {5}
 
@@ -827,13 +824,6 @@
 	play death;
 	#line {gag};
 	experience lost | grep -i you have lost
-}
-{5}
-
-#ACTION {^kxwt_myname %S}
-{
-	lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
-	%connect cowsay | prefix silent_
 }
 {5}
 
@@ -1635,29 +1625,29 @@
 
 #ACTION {^REBOOT IMPENDING, EVERYONE PLEASE RECALL AND SAVE.$}
 {
-#variable {rebootTime} {1};
-#if {!&{volume} || $volume == 0}
-{
-#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
-};
-#else
-{
-#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-}
+	#variable {rebootTime} {1};
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
+	}
 }
 {9}
 
 #ACTION {^REBOOT IN APPROXIMATELY %1 MINUTES, FYI.$}
 {
-#variable {rebootTime} {%1};
-#if {!&{volume} || $volume == 0}
-{
-#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
-};
-#else
-{
-#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-}
+	#variable {rebootTime} {%1};
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
+	}
 }
 {9}
 
@@ -2129,9 +2119,18 @@
 
 #ACTION {^[Exits: %*}
 {
-	#if {&{tracking}}
+	#if {"$loggedIn" == "false"}
 	{
-		nearby | grep -i $tracking | prefix tracking_
+		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
+		%connect cowsay | prefix silent_;
+		#variable {loggedIn} {true}
+	};
+	#else
+	{
+		#if {&{tracking}}
+		{
+			nearby | grep -i $tracking | prefix tracking_
+		}
 	};
 	#if {&{automap}}
 	{
@@ -2441,6 +2440,24 @@
 }
 {9}
 
+#ACTION {^{Fats the moogle|A warrior moogle|The moogle guard|Stripe the moogle|The librarian moogle|A tan moogle|Bert the moogle|A white moogle|A gray moogle|A baby moogle|An injured moogle|A small tonberry|Maria the water faerie|The soul faerie} is DEAD!$}
+{
+	play ff-death
+}
+{9}
+
+#ACTION {^{Silent_|You} end up with a stinky, nasty mess, but no magic potion.}
+{
+	empty $brewContainer
+}
+{9}
+
+#ACTION {^{Something REALLY big catches your line, and breaks it!|Your hook gets stuck on something, and you have to break the line.}$}
+{
+	play fish-line-break
+}
+{9}
+
 #ACTION {^{\(|\[}%S{\)|\]} %S: %5}
 {
 	#if {"%2" != "friend"}
@@ -2460,24 +2477,6 @@
 			}
 		}
 	}
-}
-{9}
-
-#ACTION {^{Fats the moogle|A warrior moogle|The moogle guard|Stripe the moogle|The librarian moogle|A tan moogle|Bert the moogle|A white moogle|A gray moogle|A baby moogle|An injured moogle|A small tonberry|Maria the water faerie|The soul faerie} is DEAD!$}
-{
-	play ff-death
-}
-{9}
-
-#ACTION {^{Silent_|You} end up with a stinky, nasty mess, but no magic potion.}
-{
-	empty $brewContainer
-}
-{9}
-
-#ACTION {^{Something REALLY big catches your line, and breaks it!|Your hook gets stuck on something, and you have to break the line.}$}
-{
-	play fish-line-break
 }
 {9}
 
@@ -3259,6 +3258,19 @@
 }
 {9}
 
+#ALIAS {^get %1}
+{
+	#if {"$palm" == "true"}
+	{
+		palm %1
+	};
+	#else
+	{
+		#send {get %1}
+	}
+}
+{9}
+
 #ALIAS {^getup$}
 {
 	\stand
@@ -3413,10 +3425,25 @@
 }
 {9}
 
+#ALIAS {^nopfile$}
+{
+	#unvariable {personalFile};
+	#showme {personal file variable cleared.}
+}
+{9}
+
 #ALIAS {^nospeech$}
 {
 	#unvariable {speech};
 	#showme {speech disabled.}
+}
+{9}
+
+#ALIAS {^pfile %1}
+{
+	#variable {personalFile} {%1};
+	#class {personal} {read} {$personalFile};
+	#showme {loading $personalFile}
 }
 {9}
 
@@ -3516,6 +3543,21 @@
 	{
 		#showme {You do not have a browser command set, to do so please type browser followed by the browser command you would like to use,  E.G. browser firefox.}
 	}
+}
+{9}
+
+#ALIAS {^x$}
+{
+	#send {get coins corpse};
+	#if {"$consume" == "true"}
+	{
+		control all consume corpse
+	};
+	#if {"$bloodSacrifice" == "true"}
+	{
+		bsac corpse
+	};
+	sac corpse
 }
 {9}
 
@@ -3871,7 +3913,7 @@
 
 #ALIAS {g}
 {
-	get all corpse
+	#send {get all corpse}
 }
 {9}
 
@@ -4038,21 +4080,6 @@
 }
 {9}
 
-#ALIAS {x}
-{
-	get coins corpse;
-	#if {"$consume" == "true"}
-	{
-		control all consume corpse
-	};
-	#if {"$bloodSacrifice" == "true"}
-	{
-		bsac corpse
-	};
-	sac corpse
-}
-{9}
-
 #ALIAS {{invi|invit|invite} %1}
 {
 	#math {invite} {10d10};
@@ -4085,11 +4112,16 @@
 	#read {name.tin};
 	#class {gameData} {read} {game_data.tin};
 	#variable {connected} {true};
+	#variable {loggedIn} {false};
 	#script {logFilePath} {date +'log/%Y/%B/%d/'};
 	#script {logFileName} {date +'%I_%M%p.log'};
 	#system {mkdir -p ${logFilePath[1]}};
 	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
-		#if {&{personalFile}} {#class {personal} {read} {$personalFile};#showme {Loading $personalFile}};
+	#if {&{personalFile}}
+	{
+		#class {personal} {read} {$personalFile};
+		#showme {Loading $personalFile}
+	};
 	#if {"$autocspam" == "true"}
 	{
 		cspam
@@ -4273,11 +4305,6 @@
 	}
 }
 
-#MACRO {\eU}
-{
-	#script {echo "#showme {$(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\"" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)}"}
-}
-
 #MACRO {\eI}
 {
 	#if {"$stealth" == "true"}
@@ -4315,6 +4342,11 @@
 {
 	#system {cmus-remote -S};
 	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
+}
+
+#MACRO {\eU}
+{
+	#script {echo "#showme {$(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\"" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)}"}
 }
 
 #MACRO {\eV}
