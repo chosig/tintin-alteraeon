@@ -168,7 +168,7 @@
 	{
 		#unvariable {autoclay};
 		#delay {0.2} {c clay man};
-		#delay {3} {#variable {autoclay} {true}}
+		#delay {8} {#variable {autoclay} {true}}
 	};
 	#if {"$autowoad" == "true"}
 	{
@@ -176,7 +176,7 @@
 		drop $woadMaterial;
 		#unvariable {autowoad};
 		#delay {0.2} {c wood $woadMaterial};
-		#delay {3} {#variable {autowoad} {true}}
+		#delay {8} {#variable {autowoad} {true}}
 	};
 	#if {"$autobone" == "true"}
 	{
@@ -184,7 +184,7 @@
 		drop $boneMaterial;
 		#unvariable {autobone};
 		#delay {0.2} {c bone guardian $boneMaterial};
-		#delay {3} {#variable {autobone} {true}}
+		#delay {8} {#variable {autobone} {true}}
 	};
 	#if {"$autofleshbeast" == "true"}
 	{
@@ -196,7 +196,7 @@
 		drop $metalMaterial;
 		#unvariable {autometal};
 		#delay {0.2} {c metal construct $metalMaterial};
-		#delay {3} {#variable {autometal} {true}}
+		#delay {8} {#variable {autometal} {true}}
 	}
 }
 {4}
@@ -538,7 +538,7 @@
 #ACTION {^ %s  shadow fiend%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {shadowFiend} {true};
-	#alias {^f$} {#if {&{position}} {getup};get deep blue soulstone from $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
+	#alias {^f$} {#if {&{position}} {getup};#send {get deep blue soulstone from $container};stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
 }
 {5}
 
@@ -3260,7 +3260,7 @@
 
 #ALIAS {^get %1}
 {
-	#if {"$palm" == "true"}
+	#if {"$palm" == "true" && "%1" != "all"}
 	{
 		palm %1
 	};
