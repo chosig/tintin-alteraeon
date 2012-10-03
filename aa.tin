@@ -641,12 +641,6 @@
 }
 {5}
 
-#ACTION {^#SESSION 'Alter Aeon' DIED.^}
-{
-	#gts #delay {15} {login}
-}
-{5}
-
 #ACTION {^A flesh beast starts following you.$}
 {
 	#if {&{makeNewFleshBeast}}
@@ -2172,6 +2166,7 @@
 
 #ACTION {^kxwt_fighting %1 %2 %3}
 {
+	#variable {inBattle} {true};
 	#if {"$beeps" == "true"}
 	{
 		#if {%1 >= 90}
@@ -3260,7 +3255,7 @@
 
 #ALIAS {^get %1}
 {
-	#if {"$palm" == "true" && "%1" != "all"}
+	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all"}
 	{
 		palm %1
 	};
@@ -3268,6 +3263,7 @@
 	{
 		#send {get %1}
 	}
+	#if {&{inBattle}} {#unvariable {inBattle}}
 }
 {9}
 
