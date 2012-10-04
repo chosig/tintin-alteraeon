@@ -226,7 +226,7 @@ automap: uses the map command automatically on each move to show where you have 
 autorecall automatically recalls you if you drop to pretty hurt or awful condition. Turn it off with noautorecall.
 Autoregen: Tries to copy your group leader's regen position, if they rest so will you, if they sleep so will you. When your group leader stands you will also if you see it happen, E.G. if you are resting. (Turn it off with noautoregen.)
 autostore put certain items in your container. For now just soulstones, pale blue and up. Turn it off with noautostore.
-a b c d e f g h n q r s t v w x y and z set command: sets alt+the chosen letter to command. E.g. zset cast heal sets alt+z to cast heal. If you want to execute multiple commands put a \; between each, e.g. tset get axe bag\;throw axe will set alt+t to get the axe from the bag and throw it if you are in combat. Note that not all of these may be available if you are using a terminal emulator like gnome-terminal. E.g. if you press alt+f it opens the file menu.
+set(a b c d e f g h n q r s t v w x y and z): command: sets alt+the chosen letter to command. E.g. setz cast heal sets alt+z to cast heal. If you want to execute multiple commands put a \; between each, e.g. tset get axe bag\;throw axe will set alt+t to get the axe from the bag and throw it if you are in combat. Note that not all of these may be available if you are using a terminal emulator like gnome-terminal. E.g. if you press alt+f it opens the file menu. To find out what a letter is set to without using it type without the second argument, e.g. seta. If nothing is bound to the letter the then nothing is returned, other wise you will get something that looks like #MACRO {\ec}={c crystal spear}
 beeps: Turn on enemy condition notifications using beeps. Turn it off with nobeeps.
 bgmusic turn background ambiance on. Turn it off with nobgmusic.
 brag cap or brag gt cap will brag your experience cap.
@@ -250,15 +250,10 @@ vote: Opens your browser to the mudconnect voting page for Alter Aeon You are al
 x: sac a corpse using all applicable skills, consume, bloodsac, etc.
 
 Equipment Sets:
-There are built in change commands to wear equipment sets quickly. To use the speed switching you must name your eqset like so:
-cclev = cleric cast level
-mclev = mage cast level
-nclev = necromancer cast level
-tsklev = thief skill level
-wsklev = warrior skill level
-to change into a set simply type the first letter of the set you want followed by the word set. For example, to change into mage cast level you would type mset or for warrior skill level wset.
-To create an equipment set in the game, while wearing the equipment you want to include in the set, type eqset create name container. for example, to store mclev in your bag you would type:
-eqset create mclev bag
+There are built in change commands to wear equipment sets quickly. To use the speed switching you must name your eqset with a lettter followed by the word set:
+to change into a set simply type the first letter of the set you want followed by the word set. For example, to change into a set called wset type wset.
+To create an equipment set in the game, while wearing the equipment you want to include in the set, type eqset create name container. for example, to store cset in your bag you would type:
+eqset create cset bag
 
 Botting:
 Because it is hard to make a generic bot for leveling any character that is left to the user. You can create classes and read them in as needed and still use variables and triggers defined in the main file. if you create a bot load it like this:

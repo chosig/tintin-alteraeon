@@ -553,7 +553,7 @@
 #ACTION {^ %s  shadow fiend%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {shadowFiend} {true};
-	#alias {^f$} {#if {&{position}} {getup};#send {get deep blue soulstone from $container};stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
+	#alias {^f$} {#if {&{position}} {getup};#send {get deep blue soulstone $container};stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
 }
 {5}
 
@@ -3016,30 +3016,7 @@
 
 #ALIAS {%.set$}
 {
-	#if {"%1" == "c"}
-	{
-		eqset wear cclev
-	};
-	#if {"%1" == "m"}
-	{
-		eqset wear mclev
-	};
-	#if {"%1" == "n"}
-	{
-		eqset wear nclev
-	};
-	#if {"%1" == "r"}
-	{
-		eqset wear regen
-	};
-	#if {"%1" == "t"}
-	{
-		eqset wear tsklev
-	};
-	#if {"%1" == "w"}
-	{
-		eqset wear wsklev
-	}
+eqset wear %1set
 }
 {9}
 
@@ -3583,7 +3560,13 @@
 }
 {9}
 
-#ALIAS {^{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}set %2}
+#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}$}
+{
+	#macro {\e%1}
+}
+{9}
+
+#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z} %2}
 {
 	#macro {\e%1} {%2};
 	#showme {alt+%1 has been set to %2.}
