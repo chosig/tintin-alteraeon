@@ -1,3 +1,18 @@
+#alias {^1$}
+{
+	#if {"$loggedIn" == "false"}
+	{
+		#send {1};
+		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
+		%connect cowsay | prefix silent_;
+		#variable {loggedIn} {true}
+	};
+	#else
+	{
+#send {1}
+}
+}
+
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -2113,18 +2128,9 @@
 
 #ACTION {^[Exits: %*}
 {
-	#if {"$loggedIn" == "false"}
-	{
-		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
-		%connect cowsay | prefix silent_;
-		#variable {loggedIn} {true}
-	};
-	#else
-	{
 		#if {&{tracking}}
 		{
 			nearby | grep -i $tracking | prefix tracking_
-		}
 	};
 	#if {&{automap}}
 	{
@@ -2223,6 +2229,7 @@
 
 #ACTION {^kxwt_mdeath$}
 {
+	#if {&{inBattle}} {#unvariable {inBattle}};
 	#if {&{lastReceivedExp}}
 	{
 		#if {&{throwWeapon}}
@@ -3726,6 +3733,7 @@
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
+#unvariable {groupLeader};
 	#unvariable {lastReceivedExp};
 	#unvariable {oldExp};
 	#unvariable {expGained};
