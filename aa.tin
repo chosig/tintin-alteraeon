@@ -1,3 +1,4 @@
+#substitute {^You are now wearing set '%S'.$} {You are now wearing '%1'.}
 #alias {^1$}
 {
 	#if {"$loggedIn" == "false"}
@@ -553,7 +554,7 @@
 #ACTION {^ %s  shadow fiend%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {shadowFiend} {true};
-	#alias {^f$} {#if {&{position}} {getup};#send {get deep blue soulstone $container};stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
+	#alias {^f$} {#if {&{position}} {getup};get deep $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
 }
 {5}
 
@@ -796,8 +797,7 @@
 	#if {"$autoheal" == "true"}
 	{
 		h
-	};
-	play heart
+	}
 }
 {5}
 
@@ -844,6 +844,54 @@
 	#variable {maxMana} {%4};
 	#variable {currentMv} {%5};
 	#variable {maxMv} {%6};
+	#if {$currentHp <= $maxHp * 0.75 && "$lastHpAlert" != "{awful|bn|ph|qf}"}
+	{
+	#variable {lastHpAlert} {qf};
+				#if {!&{volume} || $volume == 0}
+				{
+					#system {play -qn -V0 synth tri D3 tri F3 tri G#3 tri A3 tri C4 remix - fade 0 2.5 2 repeat 1 vol 0.5 &> /dev/null &}
+				};
+				#else
+				{
+					#system {play -qn -V0 synth tri D3 tri F3 tri G#3 tri A3 tri C4 remix - fade 0 2.5 2 repeat 1 vol 0.5 gain $volume &> /dev/null &}
+				}
+	};
+	#elseif {$currentHp <= $maxHp * 0.50 && "$lastHpAlert" != "{awful|bn|ph}"}
+	{
+	#variable {lastHpAlert} {bn};
+				#if {!&{volume} || $volume == 0}
+				{
+					#system {play -qn -V0 synth sin C#2 sin E2 sin A2 remix - fade 0 2.5 2 repeat 1 &> /dev/null &}
+				};
+				#else
+				{
+					#system {play -qn -V0 synth sin C#2 sin E2 sin A2 remix - fade 0 2.5 2 repeat 1 gain $volume &> /dev/null &}
+				}
+	};
+	#elseif {$currentHp <= $maxHp * 0.25 && "$lastHpAlert" != "{awful|ph}"}
+	{
+	#variable {lastHpAlert} {ph};
+				#if {!&{volume} || $volume == 0}
+				{
+					#system {play -qn -V0 synth exp C#1 exp D#1 exp F#1 exp A1 exp C#2 remix - fade 0 2.5 2 repeat 1 &> /dev/null &}
+				};
+				#else
+				{
+					#system {play -qn -V0 synth exp C#1 exp D#1 exp F#1 exp A1 exp C#2 remix - fade 0 2.5 2 repeat 1 gain $volume &> /dev/null &}
+				}
+	};
+	#elseif {$currentHp <= $maxHp * 0.10 && "$lastHpAlert" != "awful"}
+	{
+	#variable {lastHpAlert} {awful};
+				#if {!&{volume} || $volume == 0}
+				{
+					#system {play -qn -V0 synth sq D#0 sq B0 sq C#1 sq F1 sq A1 remix - fade 0 2.5 2 repeat 1 vol 0.5 &> /dev/null &}
+				};
+				#else
+				{
+					#system {play -qn -V0 synth sq D#0 sq B0 sq C#1 sq F1 sq A1 remix - fade 0 2.5 2 repeat 1 vol 0.5 gain $volume &> /dev/null &}
+				}
+	};
 	#if {%1 == %2 && %3 >= %4 - 3 && %5 == %6 && "$regenAlert" != "true"}
 	{
 		#if {&{position}}
@@ -1780,8 +1828,7 @@
 		{
 			/
 		}
-	};
-	play pretty-hurt
+	}
 }
 {9}
 
@@ -1943,7 +1990,7 @@
 
 #ACTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$}
 {
-	get %1 soulstone $container;
+	#send {get %1 soulstone from $container};
 	prepare corpse %1 soulstone
 }
 {9}
@@ -3239,7 +3286,7 @@ eqset wear %1set
 
 #ALIAS {^get %1}
 {
-	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all"}
+	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all" && "$position" != "sleep"}
 	{
 		palm %1
 	};
