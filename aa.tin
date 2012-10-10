@@ -844,7 +844,7 @@
 	#variable {maxMana} {%4};
 	#variable {currentMv} {%5};
 	#variable {maxMv} {%6};
-	#if {$currentHp <= $maxHp * 0.75 && "$lastHpAlert" != "{awful|bn|ph|qf}"}
+	#if {$currentHp <= $maxHp * 0.75 && $currentHp > $maxHp * 0.50 && "$lastHpAlert" != "qf"}
 	{
 	#variable {lastHpAlert} {qf};
 				#if {!&{volume} || $volume == 0}
@@ -856,7 +856,7 @@
 					#system {play -qn -V0 synth tri D3 tri F3 tri G#3 tri A3 tri C4 remix - fade 0 2.5 2 repeat 1 vol 0.5 gain $volume &> /dev/null &}
 				}
 	};
-	#elseif {$currentHp <= $maxHp * 0.50 && "$lastHpAlert" != "{awful|bn|ph}"}
+	#elseif {$currentHp <= $maxHp * 0.50 && $currentHp > $maxHp * 0.25 && "$lastHpAlert" != "bn"}
 	{
 	#variable {lastHpAlert} {bn};
 				#if {!&{volume} || $volume == 0}
@@ -868,7 +868,7 @@
 					#system {play -qn -V0 synth sin C#2 sin E2 sin A2 remix - fade 0 2.5 2 repeat 1 gain $volume &> /dev/null &}
 				}
 	};
-	#elseif {$currentHp <= $maxHp * 0.25 && "$lastHpAlert" != "{awful|ph}"}
+	#elseif {$currentHp <= $maxHp * 0.25 && $currentHp > $maxHp * 0.10 && "$lastHpAlert" != "ph"}
 	{
 	#variable {lastHpAlert} {ph};
 				#if {!&{volume} || $volume == 0}
@@ -891,7 +891,7 @@
 				{
 					#system {play -qn -V0 synth sq D#0 sq B0 sq C#1 sq F1 sq A1 remix - fade 0 2.5 2 repeat 1 vol 0.5 gain $volume &> /dev/null &}
 				}
-	};
+				};
 	#if {%1 == %2 && %3 >= %4 - 3 && %5 == %6 && "$regenAlert" != "true"}
 	{
 		#if {&{position}}
