@@ -1237,17 +1237,6 @@
 }
 {9}
 
-#ACTION {%1 hits, and a bright fan of lightning bolts blasts %2!$}
-{
-	play shocking-hit
-}
-{9}
-
-#ACTION {%1 hits, and a bright flash of %2 fire scorches %3!$}
-{
-	play burning-hit
-}
-{9}
 
 #ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
 {
@@ -3351,12 +3340,6 @@ eqset wear %1set
 	{
 		c sickening touch
 	}
-}
-{9}
-
-#ALIAS {^hit$}
-{
-	eqset wear hit
 }
 {9}
 
