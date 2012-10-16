@@ -128,7 +128,7 @@ alt+shift+S: toggle shuffle
 alt+shift+U: Show currently playing track information.
 alt+shift+_: volume down
 alt+shift++: volume up
-alt+shift+M: Post currently playing file to music channel
+alt+shift+M: Post currently playing file to music channel. If the track is properly tagged then a link providing search will be added to the music channel send. You can configure which service you would like to use to give results using the musicurl servicename command. For example, musicurl last.fm will provide search results using Last.fm. Valid choices for musicurl are Jango, Last.fm, Pandora, or Youtube.
 
 
 Comunication:

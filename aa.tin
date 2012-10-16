@@ -1,3 +1,22 @@
+#alias {^musicurl %S$}
+{
+#if {"%1" == "jango"} {#variable {musicURL} {http://www.jango.com/music/$artist?l=0};#showme {Music search results now provided by Jango.}};
+#elseif {"%1" == "last.fm"} {#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};#showme {Music search results now provided by Last.fm.}};
+#elseif {"%1" == "pandora"} {#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};#showme {Music search results now provided by Pandora.}};
+#elseif {"%1" == "youtube"} {#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};#showme {Music search results now provided by Youtube.}};
+#else {#showme {Valid choices are jango, last.fm, pandora, or youtube}}
+}
+#alias {^woad$}
+{
+	get $woadMaterial from $container;
+	drop $woadMaterial;
+	#if {&{autowoad}}
+	{
+		#unvariable {autowoad};
+		#delay {5} {#var {autowoad} {true}}
+	};
+	#delay {0.2} {c wood $woadMaterial}
+}
 #substitute {^You are now wearing set '%S'.$} {You are now wearing '%1'.}
 #alias {^1$}
 {
@@ -977,15 +996,6 @@
 }
 {8}
 
-#ACTION {%1attracts your attention, fresh meat!  KILLLLLLLL!$}
-{
-	#if {"$disarm" == "true"}
-	{
-		disarm
-	}
-}
-{8}
-
 #ACTION {^The air smells cleaner, and you realize your rancid flesh spell has expired.$}
 {
 	#if {"$rancidFlesh" == "true" && "$autorecast" == "true"}
@@ -1454,12 +1464,6 @@
 }
 {9}
 
-#ACTION {^%S appears out of a flickering blue glow.$}
-{
-	play waypoint-arrive
-}
-{9}
-
 #ACTION {^%S goes to sleep.}
 {
 	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
@@ -1484,12 +1488,6 @@
 	{
 		stand
 	}
-}
-{9}
-
-#ACTION {^%S vanishes into a flickering red glow.$}
-{
-	play waypoint-leave
 }
 {9}
 
@@ -1554,12 +1552,6 @@
 #ACTION {^A blood red winged demon explodes in fine haze of red mist!$}
 {
 	play bloodmist-death
-}
-{9}
-
-#ACTION {^A blood red winged demon {bites|claws at} %1!$}
-{
-	play bloodmist-attack
 }
 {9}
 
@@ -4351,7 +4343,8 @@ eqset wear %1set
 
 #MACRO {\eM}
 {
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "http://www.last.fm/search?q=$artist%2B$title" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL " | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
+	#if {!&{musicURL}} {#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}};
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL " | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
 }
 
 #MACRO {\eOQ}
