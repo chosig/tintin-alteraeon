@@ -1310,7 +1310,9 @@
 
 #ACTION {%1 {struggles|struggle} with the spell, and the line of frost zips randomly across the ground...$}
 {
-	play frostbite-random
+	#math {leftChannel} {1d9};
+	#math {rightChannel} {1d9};
+	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
 }
 {9}
 
@@ -1348,7 +1350,14 @@
 
 #ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
 {
-	play ice-focus
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
+	}
 }
 {9}
 
@@ -1714,7 +1723,9 @@
 
 #ACTION {^The %1 line of frost zips randomly across the ground...$}
 {
-	play frostbite-random
+	#math {leftChannel} {1d9};
+	#math {rightChannel} {1d9};
+	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
 }
 {9}
 
