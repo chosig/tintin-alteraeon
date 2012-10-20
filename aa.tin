@@ -1,38 +1,3 @@
-#alias {^musicurl %S$}
-{
-#if {"%1" == "jango"} {#variable {musicURL} {http://www.jango.com/music/$artist?l=0};#showme {Music search results now provided by Jango.}};
-#elseif {"%1" == "last.fm"} {#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};#showme {Music search results now provided by Last.fm.}};
-#elseif {"%1" == "pandora"} {#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};#showme {Music search results now provided by Pandora.}};
-#elseif {"%1" == "youtube"} {#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};#showme {Music search results now provided by Youtube.}};
-#else {#showme {Valid choices are jango, last.fm, pandora, or youtube}}
-}
-#alias {^woad$}
-{
-	get $woadMaterial from $container;
-	drop $woadMaterial;
-	#if {&{autowoad}}
-	{
-		#unvariable {autowoad};
-		#delay {5} {#var {autowoad} {true}}
-	};
-	#delay {0.2} {c wood $woadMaterial}
-}
-#substitute {^You are now wearing set '%S'.$} {You are now wearing '%1'.}
-#alias {^1$}
-{
-	#if {"$loggedIn" == "false"}
-	{
-		#send {1};
-		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
-		%connect cowsay | prefix silent_;
-		#variable {loggedIn} {true}
-	};
-	#else
-	{
-#send {1}
-}
-}
-
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -863,55 +828,58 @@
 	#variable {maxMana} {%4};
 	#variable {currentMv} {%5};
 	#variable {maxMv} {%6};
-	#if {$currentHp >= $maxHp - 5} {#var {lastHpAlert} {}};
+	#if {$currentHp >= $maxHp - 5}
+	{
+		#variable {lastHpAlert} {}
+	};
 	#if {$currentHp <= $maxHp * 0.75 && $currentHp > $maxHp * 0.50 && "$lastHpAlert" != "qf"}
 	{
-	#variable {lastHpAlert} {qf};
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-				}
+		#variable {lastHpAlert} {qf};
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
+		}
 	};
 	#elseif {$currentHp <= $maxHp * 0.50 && $currentHp > $maxHp * 0.25 && "$lastHpAlert" != "bn"}
 	{
-	#variable {lastHpAlert} {bn};
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-				}
+		#variable {lastHpAlert} {bn};
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
+		}
 	};
 	#elseif {$currentHp <= $maxHp * 0.25 && $currentHp > $maxHp * 0.10 && "$lastHpAlert" != "ph"}
 	{
-	#variable {lastHpAlert} {ph};
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-				}
+		#variable {lastHpAlert} {ph};
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
+		}
 	};
 	#elseif {$currentHp <= $maxHp * 0.10 && "$lastHpAlert" != "awful"}
 	{
-	#variable {lastHpAlert} {awful};
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-				}
-				};
+		#variable {lastHpAlert} {awful};
+		#if {!&{volume} || $volume == 0}
+		{
+			#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 &> /dev/null &}
+		};
+		#else
+		{
+			#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
+		}
+	};
 	#if {%1 == %2 && %3 >= %4 - 3 && %5 == %6 && "$regenAlert" != "true"}
 	{
 		#if {&{position}}
@@ -1246,7 +1214,6 @@
 	play fart
 }
 {9}
-
 
 #ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
 {
@@ -1628,7 +1595,7 @@
 }
 {9}
 
-#ACTION {^A white line of frost zips across the ground away from %1 staff...$}
+#ACTION {^A white line of frost zips across the ground away from %1 staff%2.$}
 {
 	#if {!&{volume} || $volume == 0}
 	{
@@ -1712,7 +1679,9 @@
 	#line {gag};
 	set msp on;
 	#line {gag};
-	set ctrigger on
+	set ctrigger on;
+	#line {gag};
+	lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256
 }
 {9}
 
@@ -1971,7 +1940,14 @@
 
 #ACTION {^You guide the spell directly toward %1!$}
 {
-	play frostbite-zip
+	#if {!&{volume} || $volume == 0}
+	{
+		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 &> /dev/null &}
+	};
+	#else
+	{
+		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
+	}
 }
 {9}
 
@@ -2175,9 +2151,9 @@
 
 #ACTION {^[Exits: %*}
 {
-		#if {&{tracking}}
-		{
-			nearby | grep -i $tracking | prefix tracking_
+	#if {&{tracking}}
+	{
+		nearby | grep -i $tracking | prefix tracking_
 	};
 	#if {&{automap}}
 	{
@@ -2276,7 +2252,10 @@
 
 #ACTION {^kxwt_mdeath$}
 {
-	#if {&{inBattle}} {#unvariable {inBattle}};
+	#if {&{inBattle}}
+	{
+		#unvariable {inBattle}
+	};
 	#if {&{lastReceivedExp}}
 	{
 		#if {&{throwWeapon}}
@@ -2576,6 +2555,22 @@
 }
 {1}
 
+#ALIAS {^1$}
+{
+	#if {"$loggedIn" == "false"}
+	{
+		#send {1};
+		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
+		%connect cowsay | prefix silent_;
+		#variable {loggedIn} {true}
+	};
+	#else
+	{
+		#send {1}
+	}
+}
+{5}
+
 #ALIAS {^cspam$}
 {
 	#class {cspam} {read} {cspam.tin};
@@ -2589,6 +2584,35 @@
 	#if {"$facebook" == "true"}
 	{
 		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null}
+	}
+}
+{5}
+
+#ALIAS {^musicurl %S$}
+{
+	#if {"%1" == "jango"}
+	{
+		#variable {musicURL} {http://www.jango.com/music/$artist?l=0};
+		#showme {Music search results now provided by Jango.}
+	};
+	#elseif {"%1" == "last.fm"}
+	{
+		#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};
+		#showme {Music search results now provided by Last.fm.}
+	};
+	#elseif {"%1" == "pandora"}
+	{
+		#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};
+		#showme {Music search results now provided by Pandora.}
+	};
+	#elseif {"%1" == "youtube"}
+	{
+		#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};
+		#showme {Music search results now provided by Youtube.}
+	};
+	#else
+	{
+		#showme {Valid choices are jango, last.fm, pandora, or youtube}
 	}
 }
 {5}
@@ -2662,6 +2686,19 @@
 		#variable {randomAttack} {$randomAttack "whirlwind"}
 	};
 	#script {shuf -n 1 -e $randomAttack}
+}
+{5}
+
+#ALIAS {^woad$}
+{
+	get $woadMaterial from $container;
+	drop $woadMaterial;
+	#if {&{autowoad}}
+	{
+		#unvariable {autowoad};
+		#delay {5} {#var {autowoad} {true}}
+	};
+	#delay {0.2} {c wood $woadMaterial}
 }
 {5}
 
@@ -3063,7 +3100,7 @@
 
 #ALIAS {%.set$}
 {
-eqset wear %1set
+	eqset wear %1set
 }
 {9}
 
@@ -3284,20 +3321,6 @@ eqset wear %1set
 }
 {9}
 
-#ALIAS {^get %S$}
-{
-	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all" && "$position" != "sleep"}
-	{
-		palm %1
-	};
-	#else
-	{
-		#send {get %1}
-	}
-	#if {&{inBattle}} {#unvariable {inBattle}}
-}
-{9}
-
 #ALIAS {^get %S %S$}
 {
 	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all" && "$position" != "sleep"}
@@ -3307,8 +3330,28 @@ eqset wear %1set
 	#else
 	{
 		#send {get %1 %2}
+	};
+	#if {&{inBattle}}
+	{
+		#unvariable {inBattle}
 	}
-	#if {&{inBattle}} {#unvariable {inBattle}}
+}
+{9}
+
+#ALIAS {^get %S$}
+{
+	#if {"$palm" == "true" && "$inBattle" != "true" && "%1" != "all" && "$position" != "sleep"}
+	{
+		palm %1
+	};
+	#else
+	{
+		#send {get %1}
+	};
+	#if {&{inBattle}}
+	{
+		#unvariable {inBattle}
+	}
 }
 {9}
 
@@ -3507,6 +3550,19 @@ eqset wear %1set
 }
 {9}
 
+#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z} %2}
+{
+	#macro {\e%1} {%2};
+	#showme {alt+%1 has been set to %2.}
+}
+{9}
+
+#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}$}
+{
+	#macro {\e%1}
+}
+{9}
+
 #ALIAS {^speech$}
 {
 	#variable {speech} {true};
@@ -3612,19 +3668,6 @@ eqset wear %1set
 	{
 		#showme {Huh?}
 	}
-}
-{9}
-
-#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z}$}
-{
-	#macro {\e%1}
-}
-{9}
-
-#ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z} %2}
-{
-	#macro {\e%1} {%2};
-	#showme {alt+%1 has been set to %2.}
 }
 {9}
 
@@ -3771,7 +3814,7 @@ eqset wear %1set
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
-#unvariable {groupLeader};
+	#unvariable {groupLeader};
 	#unvariable {lastReceivedExp};
 	#unvariable {oldExp};
 	#unvariable {expGained};
@@ -4361,7 +4404,10 @@ eqset wear %1set
 
 #MACRO {\eM}
 {
-	#if {!&{musicURL}} {#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}};
+	#if {!&{musicURL}}
+	{
+		#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}
+	};
 	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL " | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
 }
 
@@ -4561,7 +4607,8 @@ eqset wear %1set
 #SUBSTITUTE       {^Replayin_%1}  {%1}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
 #SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
+#SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{friends}{4}{grouptells}{5}{tells}}
+#VARIABLE         {lastHpAlert}  {}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
-#variable {lastHpAlert} {}
