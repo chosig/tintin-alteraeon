@@ -54,7 +54,7 @@ if [ $# -gt 0 ] ; then
             characterName="$1"
             characterPath="$HOME/$1"
             shift
-            characterPassword="$2"
+            characterPassword="$1"
             shift
             create_character
         done
