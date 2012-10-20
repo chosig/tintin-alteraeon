@@ -13,7 +13,7 @@ fi
 create_character()
 {
     mkdir -p $characterPath
-    echo -e "#VARIABLE         {name}  \{$characterName\}\n#VARIABLE         {password}  \{$characterPassword\}" > $characterPath/name.tin
+    echo -e "#VARIABLE         {name}  {$characterName}\n#VARIABLE         {password}  {$characterPassword}" > $characterPath/name.tin
     #Link files.
     if [ -f "aa.tin" ] ; then
         ln aa.tin $characterPath/
@@ -51,7 +51,7 @@ create_character()
 if [ $# -gt 0 ] ; then
     if [ $(echo "$# % 2" | bc) -eq 0 ] ; then
         while [ $# -gt 0 ] ; do
-            charactername="$1"
+            characterName="$1"
             characterPath="$HOME/$1"
             shift
             characterPassword="$2"
