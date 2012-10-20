@@ -1677,6 +1677,8 @@
 {
 	#cursor {echo} {on};
 	#line {gag};
+	set telnetga off;
+	#line {gag};
 	set msp on;
 	#line {gag};
 	set ctrigger on;
@@ -2560,6 +2562,8 @@
 	#if {"$loggedIn" == "false"}
 	{
 		#send {1};
+		#line {gag};
+		set telnetga off;
 		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
 		%connect cowsay | prefix silent_;
 		#variable {loggedIn} {true}
@@ -4229,7 +4233,6 @@
 #GAG              {You have %1 mana of %2 Max.}
 #GAG              {You see nothing in it for you to get.}
 #GAG              {^!!SOUND%*}
-#GAG              {^$}
 #GAG              {^%S twitches and starts fidgeting.$}
 #GAG              {^(You can only split gold with players, not minions.)$}
 #GAG              {^Looks like the corpse of %1 is too damaged for you to use.$}
