@@ -2597,21 +2597,25 @@
 	#if {"%1" == "jango"}
 	{
 		#variable {musicURL} {http://www.jango.com/music/$artist?l=0};
+		#variable {musicProvider} {Jango};
 		#showme {Music search results now provided by Jango.}
 	};
 	#elseif {"%1" == "last.fm"}
 	{
 		#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};
+		#variable {musicProvider} {Last.fm};
 		#showme {Music search results now provided by Last.fm.}
 	};
 	#elseif {"%1" == "pandora"}
 	{
 		#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};
+		#variable {musicProvider} {Pandora};
 		#showme {Music search results now provided by Pandora.}
 	};
 	#elseif {"%1" == "youtube"}
 	{
 		#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};
+		#variable {musicProvider} {Youtube};
 		#showme {Music search results now provided by Youtube.}
 	};
 	#else
@@ -4411,7 +4415,11 @@
 	{
 		#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}
 	};
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL " | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
+	#if {!&{musicProvider}}
+	{
+		#variable {musicProvider} {Last.fm}
+	};
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to" "*Breaks out the airguitar! It's") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL (Search results provided by $musicProvider)" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
 }
 
 #MACRO {\eOQ}
