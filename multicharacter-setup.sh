@@ -16,7 +16,7 @@ create_character()
     echo -e "#VARIABLE         {name}  {$characterName}\n#VARIABLE         {password}  {$characterPassword}" > $characterPath/name.tin
     #Link files.
     if [ -f "aa.tin" ] ; then
-        ln aa.tin $characterPath/
+        ln -s $(pwd)/aa.tin $characterPath/
      else
         echo "Error! Missing file aa.tin. Exiting."
         exit 1
@@ -28,13 +28,13 @@ create_character()
         exit 1
     fi
     if [ -f "cspam.tin" ] ; then
-        ln cspam.tin $characterPath/
+        ln -s $(pwd)/cspam.tin $characterPath/
      else
         echo "Error! Missing file cspam.tin. Exiting."
         exit 1
     fi
     if [ -f "woadbot.tin" ] ; then
-        ln woadbot.tin $characterPath/
+        ln -s $(pwd)/woadbot.tin $characterPath/
      else
         echo "Error! Missing file woadbot.tin. Exiting."
         exit 1
