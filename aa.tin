@@ -4419,7 +4419,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to" "*Breaks out the airguitar! It's") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');lastfmURL="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)";if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\" $lastfmURL (Search results provided by $musicProvider)" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)"}
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to" "*Breaks out the airguitar! It's") $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eOQ}
@@ -4446,7 +4446,7 @@
 
 #MACRO {\eU}
 {
-	#script {echo "#showme {$(shuf -n 1 -e "Now playing" "Listening to") $(info=$(cmus-remote -Q);artist=$(echo "$info" | sed -n 's/^tag artist //p');title=$(echo "$info" | sed -n 's/^tag title //p');album=$(echo "$info" | sed -n 's/^tag album //p');if [ -n "$artist" -a -n "$title" -a -n "$album" ] ; then echo "\"$title\" by \"$artist\" from \"$album\"" | tr -d "\n"; else basename "$(cmus-remote -Q | head -2 | tail -1)";fi)}"}
+	#script {echo "#showme {Playing: $(scripts/music.sh)}"}
 }
 
 #MACRO {\eV}
