@@ -4522,6 +4522,16 @@
 	use $battleScroll
 }
 
+#MACRO {\e\x7B}
+{
+	#system {cmus-remote -k -5}
+}
+
+#MACRO {\e\x7D}
+{
+	#system {cmus-remote -k +5}
+}
+
 #MACRO {\e_}
 {
 	#system {cmus-remote -v -10%}
