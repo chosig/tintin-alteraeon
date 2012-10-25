@@ -4446,7 +4446,7 @@
 
 #MACRO {\eU}
 {
-	#script {echo "#showme {Playing: $(scripts/music.sh)}"}
+	#script {echo "#showme {Playing: $(scripts/music.sh false)}"}
 }
 
 #MACRO {\eV}

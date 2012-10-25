@@ -7,7 +7,10 @@ if [ -f "$HOME/.shell-fm/nowplaying" ] ; then
 artist="$(cut -f 1 -d '\' "$HOME/.shell-fm/nowplaying")"
 title="$(cut -f 2 -d '\' "$HOME/.shell-fm/nowplaying")"
 album="$(cut -f 3 -d '\' "$HOME/.shell-fm/nowplaying")"
-url="$(cut -f 4 -d '\' "$HOME/.shell-fm/nowplaying")"
+if [ "$1" != false ] ; then
+url="$(curl -s -G --data-urlencode longurl="$(cut -f 4 -d '\' "$HOME/.shell-fm/nowplaying")" http://is.gd/api.php)"
+musicProvider="Last.fm"
+fi
 else
 #If there was no last.fm file assume we're using cmus
 musicURL="$1"
@@ -16,7 +19,7 @@ info="$(cmus-remote -Q)"
 artist="$(echo "$info" | sed -n 's/^tag artist //p')"
 title="$(echo "$info" | sed -n 's/^tag title //p')"
 album="$(echo "$info" | sed -n 's/^tag album //p')"
-if [ -n "$musicURL" ] ; then
+if [ -n "$musicURL" -a "$musicURL" != false ] ; then
 url="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)"
 fi
 fi
