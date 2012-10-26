@@ -131,10 +131,14 @@ alt+shift++: volume up
 alt+shift+{: seek left 5 seconds (rewind)
 alt+shift+}: seek right 5 secdonds (fast forward)
 alt+shift+M: Post currently playing file to music channel. If the track is properly tagged then a link providing search will be added to the music channel send. You can configure which service you would like to use to give results using the musicurl servicename command. For example, musicurl last.fm will provide search results using Last.fm. Valid choices for musicurl are Jango, Last.fm, Pandora, or Youtube.
-Support is also provided for posting the currently playing song to music channel from shell-fm. For this to work though you will need to edit your ~/.shell-fm/shell-fmrc file and add the following 2 lines. Replace USERNAME with your user name
+Support is also provided for posting the currently playing song to music channel from shell-fm and Pianobar. For this to work for shell-fm you will need to edit your ~/.shell-fm/shell-fmrc file and add the following 2 lines. Replace USERNAME with your user name
 np-file = /home/USERNAME/.shell-fm/nowplaying
 np-file-format = %a\%t\%l\%T
-
+For Pianobar you will need to copy the eventcmd.sh script provided in the scripts directory to ~/.config/pianobar/
+Then, in your ~/.config/pianobar/config file add the following line replacing USERNAME with your user name:
+event_command = /home/USERNAME/.config/pianobar/eventcmd.sh
+If you already have an event script for pianobar and do not want to replace it, simply add the following line to the "songstart" part of your script:
+echo "$artist\\$title\\$album" > $HOME/.config/pianobar/nowplaying
 
 Comunication:
 alt+1 through alt+0 play last 1 through tenth message.
