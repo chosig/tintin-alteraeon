@@ -43,14 +43,6 @@
 }
 {1}
 
-#ACTION {^%s1)  Enter Alter Aeon$}
-{
-	#cursor {echo} {on};
-	set ctrigger on;
-	set msp on
-}
-{1}
-
 #ACTION {^A tall prison of jagged bone teeth cracks and shatters as you break free!$}
 {
 	#if {&{position}}
@@ -1676,12 +1668,9 @@
 #ACTION {^Reconnecting.$}
 {
 	#cursor {echo} {on};
-	#line {gag};
-	set telnetga off;
-	#line {gag};
-	set msp on;
-	#line {gag};
-	set ctrigger on;
+	set telnetga off | prefix silent_;
+	set msp on | prefix silent_;
+	set ctrigger on | prefix silent_;
 	#line {gag};
 	lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256
 }
@@ -2562,8 +2551,10 @@
 	#if {"$loggedIn" == "false"}
 	{
 		#send {1};
-		#line {gag};
-		set telnetga off;
+		set telnetga off | prefix silent_;
+		#cursor {echo} {on};
+		set ctrigger on | prefix silent_;
+		set msp on | prefix silent_;
 		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
 		%connect cowsay | prefix silent_;
 		#variable {loggedIn} {true}
