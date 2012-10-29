@@ -3,8 +3,12 @@
 {
 #if {&{pumpkinCannonFeet} && &{pumpkinCannonLocation}}
 {
+#if {!&{lastPumpkinCannonFeet} || $pumpkinCannonFeet >= $lastPumpkinCannonFeet}
+{
 tweet $name shot a pumpkin $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with %1 feet. #AlterAeon;
 fbpost $name shot a pumpkin a distance of $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with a distance of %1 feet.;
+};
+#math {lastPumpkinCannonFeet} {$pumpkinCannonFeet * 1};
 #unvariable {pumpkinCannonFeet};
 #unvariable {pumpkinCannonLocation}
 }
