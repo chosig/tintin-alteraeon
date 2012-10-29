@@ -1,3 +1,14 @@
+#act {^[event] The pumpkin cannon operator: %1 shot a pumpkin a distance of %2 feet %3!$} {#if {"%1" == "%i$name"} {#variable {pumpkinCannonFeet} {%2};#variable {pumpkinCannonLocation} {%3}}}
+#act {^The pumpkin cannon operator says, 'the record distance is %1 feet, held by %2'$}
+{
+#if {&{pumpkinCannonFeet} && &{pumpkinCannonLocation}}
+{
+tweet $name shot a pumpkin $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with %1 feet. #AlterAeon;
+fbpost $name shot a pumpkin a distance of $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with a distance of %1 feet.;
+#unvariable {pumpkinCannonFeet};
+#unvariable {pumpkinCannonLocation}
+}
+}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
