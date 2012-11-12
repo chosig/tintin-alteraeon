@@ -5,7 +5,13 @@ To do an action more than once you can put # followed by the amount of times you
 #4 {get pale soulstone $container;prepare corpse pale}
 
 Sometimes though you may need to perform the action on specific targets. If, for example, you want to haste all 6 of your skeletal army, you would need to use the #loop command:
-#loop 1 6 i c haste $i.skelet
+#loop 1 6 i c haste .$i.skelet
 It is important to not put the word skeleton because that will only do warriors. Mages are skeletal mages, so skeleton does not work as a keyword for them.
 gnome-terminal users, if you would like to be able to juse keys like alt+f alt+e, etc for macros you need to open the edit menu, keyboard shortcuts, and uncheck the menu keys shortcuts box.
+
+Useful bindings:
+#Alt+t current time and optional temperature
+sett #system {talking-clock -c &> /dev/null}
+#make wood woads quickly with the woad alias
+setw woad
 
