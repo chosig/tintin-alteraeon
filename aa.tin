@@ -1,4 +1,4 @@
-#action {^-*BOOM*- Your lightning bolt strikes a ball of lightning, causing an explosion near %1!$} {tweet -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1!;fbpost -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1!} {9}
+#action {^-*BOOM*- Your lightning bolt strikes a ball of lightning, causing an explosion near %1!$} {tweet -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1! #AlterAeon;fbpost -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1!} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
