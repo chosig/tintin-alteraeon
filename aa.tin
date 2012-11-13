@@ -1,4 +1,4 @@
-#action {^-*BOOM*- Your lightning bolt strikes a ball of lightning, causing an explosion near %1!$} {tweet $name struck a ball of lightning with a bolt of lightning causing an electrical explosion that engulfed %1;fbpost $name struck a ball of lightning causing an electrical explosion that engulfed %1.} {9}
+#action {^-*BOOM*- Your lightning bolt strikes a ball of lightning, causing an explosion near %1!$} {tweet -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1!;fbpost -*BOOM*- $name's lightning bolt struck a ball of lightning, causing an explosion near %1!} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}
@@ -2606,7 +2606,7 @@
 {
 	#if {"$facebook" == "true"}
 	{
-		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null}
+		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null&}
 	}
 }
 {5}
@@ -4180,7 +4180,7 @@
 {
 	#if {"$twitter" == "true"}
 	{
-		#system {ttytter -norc -silent -readline=0 -status="%1"}
+		#system {ttytter -norc -silent -readline=0 -status="%1"&}
 	}
 }
 {9}
