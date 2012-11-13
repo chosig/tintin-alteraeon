@@ -1,3 +1,4 @@
+#action {^-*BOOM*- Your lightning bolt strikes a ball of lightning, causing an explosion near %1!$} {tweet $name struck a ball of lightning with a bolt of lightning causing an electrical explosion that engulfed %1;fbpost $name struck a ball of lightning causing an electrical explosion that engulfed %1.} {9}
 #ACTION {^You are already following %1.$}
 {
 	#variable {groupLeader} {%1}

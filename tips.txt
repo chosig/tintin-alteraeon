@@ -11,7 +11,7 @@ gnome-terminal users, if you would like to be able to juse keys like alt+f alt+e
 
 Useful bindings:
 #Alt+t current time and optional temperature
-sett #system {talking-clock -c &> /dev/null}
+sett #system {talking-clock -c &> /dev/null&}
 #make wood woads quickly with the woad alias
 setw woad
 
