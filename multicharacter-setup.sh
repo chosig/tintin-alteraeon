@@ -39,6 +39,12 @@ create_character()
         echo "Error! Missing file woadbot.tin. Exiting."
         exit 1
     fi
+    if [ -d "scripts" ] ; then
+        ln -s $(pwd)/scripts/ $characterPath/
+     else
+        echo "Error! Missing scripts directory. Exiting."
+        exit 1
+    fi
     if [ -d "sounds" ] ; then
         ln -s $(pwd)/sounds/ $characterPath/
      else
@@ -51,8 +57,8 @@ create_character()
 if [ $# -gt 0 ] ; then
     if [ $(echo "$# % 2" | bc) -eq 0 ] ; then
         while [ $# -gt 0 ] ; do
-            characterName="$1"
-            characterPath="$HOME/$1"
+            characterName="${1^}"
+            characterPath="$HOME/$(echo "$1" | tr "[:upper:]" "[:lower:]")"
             shift
             characterPassword="$1"
             shift
@@ -72,7 +78,9 @@ while [ "$characterName" != "QUIT" ] ; do
     if [ -n "$characterName" ] ; then
         read -p "Enter the password for $characterName, or leave blank if you would rather enter it manually at login:  " characterPassword
         #generate the directory for the new character's information.
-        characterPath="$HOME/$characterName"
+        characterPath="$HOME/$(echo "$characterName" | tr "[:upper:]" "[:lower:]")"
+        #make sure character name is propperyly started with caps letter:
+        characterName="${characterName^}"
         create_character
     else
         characterName="QUIT"
