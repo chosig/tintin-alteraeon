@@ -1485,6 +1485,13 @@
 }
 {9}
 
+#ACTION {^%w calls upon %2 to bring the corpse of $name back to life!$}
+{
+	tweet $name was resurrected by %1! #AlterAeon;
+	fbpost $name was resurrected by %1!
+}
+{9}
+
 #ACTION {^(%1 is trying to get your attention)$}
 {
 	#if {!&{replaying}}
@@ -1826,6 +1833,13 @@
 }
 {9}
 
+#ACTION {^You become better at %1!}
+{
+	tweet $name became better at %1! #AlterAeon;
+	fbpost $name became better at %1!
+}
+{9}
+
 #ACTION {^You burp in the general direction of %1.}
 {
 	play burp
@@ -1986,6 +2000,13 @@
 {
 	tweet $name has completed the achievement %1! #AlterAeon;
 	fbpost $name has completed the achievement %1!
+}
+{9}
+
+#ACTION {^You have sudden insight, and become much better at %1!$}
+{
+	tweet $name had sudden insight, and is now much better at %1! #alterAeon;
+	fbpost $name had sudden insight, and is now much better at %1!
 }
 {9}
 
