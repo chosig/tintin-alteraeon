@@ -2141,6 +2141,13 @@
 }
 {9}
 
+#ACTION {^You've won %1 gold coins!$}
+{
+	tweet $name won %1 gold coins! #AlterAeon #slots;
+	fbpost $name won %1 gold coins from the 'Three Gold Rings' slot machine!
+}
+{9}
+
 #ACTION {^Your displaced image rejoins your body.$}
 {
 	#if {"$displacement" == "true" && "$autorecast" == "true"}
@@ -4207,7 +4214,7 @@
 {
 	#if {"$twitter" == "true"}
 	{
-		#system {ttytter -norc -silent -readline=0 -status="%1"&}
+		#system {ttytter -silent -readline=0 -status="%1" &> /dev/null&}
 	}
 }
 {9}
