@@ -1,9 +1,3 @@
-#ACTION {^You are already following %1.$}
-{
-	#variable {groupLeader} {%1}
-}
-{(9)}
-
 #ACTION {^You start following %1.$}
 {
 	#variable {groupLeader} {%1}
