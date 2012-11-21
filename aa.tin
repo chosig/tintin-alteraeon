@@ -1777,6 +1777,12 @@
 }
 {9}
 
+#ACTION {^You are already following %1.$}
+{
+	#variable {groupLeader} {%1}
+}
+{9}
+
 #ACTION {^You are asleep... ZZZZZZZZ *snork* ZZZZZ...}
 {
 	getup;
@@ -1983,13 +1989,6 @@
 }
 {9}
 
-#ACTION {^You have sudden insight, and become much better at %1!$}
-{
-	tweet $name had sudden insight, and is now much better at %1! #alterAeon;
-	fbpost $name had sudden insight, and is now much better at %1!
-}
-{9}
-
 #ACTION {^You learn from your mistakes, and become more adept at %1.$}
 {
 	#if {"$sex" != "female"}
@@ -2082,6 +2081,20 @@
 }
 {9}
 
+#ACTION {^You start following %1.$}
+{
+	#variable {groupLeader} {%1}
+}
+{9}
+
+#ACTION {^You stop following %1.$}
+{
+	exp | prefix silent_;
+	#unvariable {groupLeader};
+	#unvariable {groupExperience}
+}
+{9}
+
 #ACTION {^You stop using%*}
 {
 	show stats | prefix silent_;
@@ -2126,6 +2139,13 @@
 #ACTION {^You {decide to reel in your line and take a break for a while|finish reeling in your line and stop fishing|are no longer fishing}.$}
 {
 	play stop-fishing
+}
+{9}
+
+#ACTION {^You {have sudden insight, and | }become much better at %1!$}
+{
+	tweet $name had sudden insight, and is now much better at %1! #alterAeon;
+	fbpost $name had sudden insight, and is now much better at %1!
 }
 {9}
 
