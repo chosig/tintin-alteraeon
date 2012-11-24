@@ -1,3 +1,5 @@
+#alias {^bonemaker$} {#class {bonemaker} {read} {bonemaker.tin};#class {gameData} {open}} {9}
+#alias {^nobonemaker$} {#class {bonemaker} {kill};#showme {Bone maker closed.}} {9}
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}

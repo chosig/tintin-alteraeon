@@ -21,6 +21,12 @@ create_character()
         echo "Error! Missing file aa.tin. Exiting."
         exit 1
     fi
+    if [ -f "bonemaker.tin" ] ; then
+        ln -s $(pwd)/bonemaker.tin $characterPath/
+     else
+        echo "Error! Missing file bonemaker.tin. Exiting."
+        exit 1
+    fi
     if [ -f "game_data.tin" ] ; then
         cp game_data.tin $characterPath/
      else

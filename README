@@ -272,6 +272,10 @@ Because it is hard to make a generic bot for leveling any character that is left
 and when you are finished close it with:
 #class bot kill
 Some bots that are not combat based will be added as they are written.
+
+bonemaker
+This makes it easy to quickly create and store deanimated bone guardians. To activate, type bonemaker. This requires bone guardian, deanimate, blood sacrifice. Make sure you can kill the targets you want to make into bone guardians easily without a tank. It will cast bone guardian on the corpse, deanimate it, and put it into your container. It also keeps a running count of how many you have made. When you are done you can return to normal game play with nobonemaker.
+
 Woadbot
 If you have deanimate and wood woad spells you can create woads automatically and deanimate them for future use. To do this, go to the boat shop in Zin, n from wp, e to the bridge, s, s, e, s, s, s, w, n and then type:
 buildwoads number
