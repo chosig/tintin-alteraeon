@@ -2341,7 +2341,7 @@
 			{
 				harvest components corpse
 			};
-			#if {"$autobrew" == "true"}
+			#if {"$autobrew" == "true" && &{brewContainer}}
 			{
 				#delay {1d5} {brew p i | prefix silent_}
 			};
@@ -3172,7 +3172,8 @@
 {
 	noautojunk;
 	#variable {autobrew} {true};
-	#showme {You will now automatically brew potions using items harvested from corpses.}
+	#showme {You will now automatically brew potions using items harvested from corpses.};
+#if {!&{brewContainer}} {#showme {Remember to set your brew container by typing brew in containername}}
 }
 {9}
 
