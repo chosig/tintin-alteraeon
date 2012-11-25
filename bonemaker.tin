@@ -1,4 +1,4 @@
-#act {^Your blood freezes as you hear %1's death cry!$} {#if {"$guardian" == "true"} {c deanimate guardian};bsac corpse;c bone guardian corpse} {9}
+#act {^Your blood freezes as you hear %1's death cry!$} {#if {"$guardian" == "true"} {c deanimate .guardian;#variable {guardian} {false}};bsac corpse;c bone guardian corpse} {9}
 #act {^You add A bone guardian to your group.$}  {#variable {guardian} {true}} {5}
 #act {^You get a ball of twisted bones.$} {#variable {guardian} {false};get boneguardian;put boneguardian $container;bcount} {9}
 #alias {^bcount$} {l in $container | grep ball of twisted bones} {9}
