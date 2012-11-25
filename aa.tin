@@ -1,3 +1,4 @@
+#gag {^Sending activity for channel '%*}
 #alias {^bonemaker$} {#class {bonemaker} {read} {bonemaker.tin};#class {gameData} {open}} {9}
 #alias {^nobonemaker$} {#class {bonemaker} {kill};#showme {Bone maker closed.}} {9}
 #ACTION {%1 has %2 of %3 hitpoints.$}
@@ -1821,13 +1822,6 @@
 }
 {9}
 
-#ACTION {^You become better at %1!}
-{
-	tweet $name became better at %1! #AlterAeon;
-	fbpost $name became better at %1!
-}
-{9}
-
 #ACTION {^You burp in the general direction of %1.}
 {
 	play burp
@@ -1988,21 +1982,6 @@
 {
 	tweet $name has completed the achievement %1! #AlterAeon;
 	fbpost $name has completed the achievement %1!
-}
-{9}
-
-#ACTION {^You learn from your mistakes, and become more adept at %1.$}
-{
-	#if {"$sex" != "female"}
-	{
-		tweet $name learned from his mistakes, and became more adept at %1. #AlterAeon;
-		fbpost $name learned from his mistakes, and became more adept at %1.
-	};
-	#else
-	{
-		tweet $name learned from her mistakes, and became more adept at %1. #AlterAeon;
-		fbpost $name learned from her mistakes, and became more adept at %1.
-	}
 }
 {9}
 
@@ -2895,17 +2874,17 @@
 	{
 		replay %3 | head -2
 	};
-	#elseif {%2 > 0 && %2 < 3 || %2 == 5}
+	#elseif {%2 > 0 && %2 < 4 || %2 == 6}
 	{
 		replay %1 %3 | head -2
 	};
-	#elseif {%2 == 3}
+	#elseif {%2 == 4}
 	{
 		replay | grep -i (friend) | tail %3 | head -1
 	};
 	#else
 	{
-		replay | grep -i tells the group, | tail %3 | head -1
+		replay | grep -i the group, ' | tail %3 | head -1
 	};
 	#variable {replaying} {true};
 	#delay {2} {#unvariable {replaying}}
@@ -4314,7 +4293,7 @@
 #GAG              {^Replayin_Clantell replay$}
 #GAG              {^Replayin_Recent channel history$}
 #GAG              {^Replayin_Recent tells:$}
-#GAG              {^Replayin_Sending activity for channel 'auction'$}
+#GAG              {^Replayin_Sending activity for channel '%*}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
 #GAG              {^You can only blood sacrifice corpses with blood in them.$}
@@ -4434,9 +4413,9 @@
 
 #MACRO {\e=}
 {
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 6}
 	{
-		#variable {channelBufferIndex} {5}
+		#variable {channelBufferIndex} {6}
 	};
 	#else
 	{
@@ -4562,9 +4541,9 @@
 
 #MACRO {\e[1;3C}
 {
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 5}
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 6}
 	{
-		#variable {channelBufferIndex} {5}
+		#variable {channelBufferIndex} {6}
 	};
 	#else
 	{
@@ -4703,6 +4682,6 @@
 #SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
-#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{ct}{3}{friends}{4}{grouptells}{5}{tells}}
+#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{friends}{5}{grouptells}{6}{tells}}
 #VARIABLE         {lastHpAlert}  {}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
