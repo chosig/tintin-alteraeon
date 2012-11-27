@@ -1,3 +1,5 @@
+#ticker {spellSetChecker} {affect | prefix silent_} {30}
+#act {^silent_Missing '%1'.$} {#if {"$autorecast" == "true"} {c %1}} {9}
 #act {^silent_In order to empty it, you must add '-force' to the end of your command.$} {noautobrew;#showme {There was a problem with autobrew, it has been disabled. Please correct the issue and renable autobrew when the problem is resolved.}} {9}
 #gag {^Sending activity for channel '%*}
 #alias {^bonemaker$} {#class {bonemaker} {read} {bonemaker.tin};#class {gameData} {open}} {9}
@@ -4470,7 +4472,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to" "*Breaks out the airguitar! It's") $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "music $(shuf -n 1 -e "Now playing" "Listening to" "*Breaks out the air$(shuf -n1 -e "guitar" "vuvuzela" "didgeridoo" "harp" "keytar" "harpsichord" "fiddle" "banjo" "piano" "accordion")! It's") $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eOQ}
