@@ -501,6 +501,12 @@
 }
 {5}
 
+#ACTION {^ %s  coldfire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {coldfire} {true}
+}
+{5}
+
 #ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {senseLife} {true}
@@ -2340,7 +2346,7 @@
 			};
 			#if {"$autobrew" == "true" && &{brewContainer}}
 			{
-				#delay {1d5} {brew p i | prefix silent_}
+				#if {"$coldfire" == "true"} {c coldfire self;#delay {7} {junk coldfire | prefix silent_}};#delay {1d5} {brew p i | prefix silent_}
 			};
 			#if {"$autofleshbeast" == "true"}
 			{
@@ -3183,7 +3189,7 @@
 
 #ALIAS {^autobrew$}
 {
-	noautojunk;
+	noautojunk | prefix silent_;
 	#variable {autobrew} {true};
 	#showme {You will now automatically brew potions using items harvested from corpses.};
 	#if {!&{brewContainer}}
@@ -3245,7 +3251,7 @@
 
 #ALIAS {^autojunk$}
 {
-	noautobrew;
+	noautobrew | prefix silent_;
 	#variable {autojunk} {true};
 	#showme {You will now automatically discard spell components harvested from corpses.}
 }
@@ -4500,7 +4506,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "music *Breaks out the air$(shuf -n 1 -e "guitar" "vuvuzela" "didgeridoo" "harp" "keytar" "harpsichord" "fiddle" "banjo" "piano" "accordion")! It's $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "music *Breaks out the air$(shuf -n 1 -e "bagpipes" "guitar" "vuvuzela" "cello" "didgeridoo" "harp" "keytar" "piccolo" "harpsichord" "fiddle" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eOQ}
