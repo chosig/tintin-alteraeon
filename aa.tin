@@ -2346,7 +2346,7 @@
 			};
 			#if {"$autobrew" == "true" && &{brewContainer}}
 			{
-				#if {"$coldfire" == "true"} {c coldfire self;#delay {7} {junk coldfire | prefix silent_}};#delay {1d5} {brew p i | prefix silent_}
+				#if {"$coldfire" == "true" && !&{hasColdFire}} {c coldfire self;#variable {hasColdFire} {true};#delay {7} {junk coldfire | prefix silent_;#unvariable {hasColdFire}}};#delay {1d5} {brew p i | prefix silent_}
 			};
 			#if {"$autofleshbeast" == "true"}
 			{
