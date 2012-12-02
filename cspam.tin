@@ -35,3 +35,4 @@
 #substitute {^The {corpse|gutted carcass|skinned corpse} of a triceratops is too big for you to sacrifice.$} {It's too big to sac.}
 #substitute {^You sacrifice blood from the corpse %1, drawing power from it!$} {You sacrifice blood from the corpse.}
 #substitute {^(auction) Now accepting bids for '%1', minimum bid is %2 gold coins.$} {(auction) started on '%1' at %2 gold.}
+#substitute {^You use magic to rip the bones and cartilage from%*} {You make a bone guardian.}
