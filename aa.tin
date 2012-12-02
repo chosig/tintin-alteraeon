@@ -1652,14 +1652,7 @@
 
 #ACTION {^Neebla encourages you to consider converting to Os.$}
 {
-	#if {1d2 == 2}
-	{
-		emot encourages Neebla to shut the hell up.
-	};
-	#else
-	{
-		emot encourages Neebla to go straight to hell.
-	}
+#script {echo "emot encourages Neebla to $(shuf -n 1 -e "shut the hell up" "go straight to hell" "'pull my finger'" "attempt reproduction with an electrical outlet")!"}
 }
 {9}
 
@@ -1693,11 +1686,10 @@
 
 #ACTION {^Reconnecting.$}
 {
-	#cursor {echo} {on};
-	set telnetga off | prefix silent_;
 	set msp on | prefix silent_;
 	set ctrigger on | prefix silent_;
-	#line {gag};
+	#cursor {echo} {on};
+	set telnetga off | prefix silent_;
 	lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
 	#variable {loggedIn} {true}
 }
@@ -2627,11 +2619,11 @@
 {
 	#if {"$loggedIn" == "false"}
 	{
-		#send {1};
-		set telnetga off | prefix silent_;
 		#cursor {echo} {on};
 		set ctrigger on | prefix silent_;
 		set msp on | prefix silent_;
+		#send {1};
+		set telnetga off | prefix silent_;
 		lecho tintin++ pack by Storm Dragon: http://stormdragon.us/?p=256;
 		%connect cowsay | prefix silent_;
 		#variable {loggedIn} {true}
@@ -4506,7 +4498,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "music *Breaks out the air$(shuf -n 1 -e "bagpipes" "guitar" "vuvuzela" "cello" "didgeridoo" "harp" "keytar" "piccolo" "harpsichord" "fiddle" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "music *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eOQ}
