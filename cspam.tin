@@ -36,3 +36,4 @@
 #substitute {^You sacrifice blood from the corpse %1, drawing power from it!$} {You sacrifice blood from the corpse.}
 #substitute {^(auction) Now accepting bids for '%1', minimum bid is %2 gold coins.$} {(auction) started on '%1' at %2 gold.}
 #substitute {^You use magic to rip the bones and cartilage from%*} {You make a bone guardian.}
+#substitute {^You add %1 to your group.$} {You group %1.}
