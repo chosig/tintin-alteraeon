@@ -1,2 +1,3 @@
+#VARIABLE         {mudPort}  {3000}
 #VARIABLE         {name}  {Name}
 #VARIABLE         {password}  {password}
