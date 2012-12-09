@@ -18,6 +18,8 @@ If you don't need this and want to get rid of it, open aa.tin and delete the lin
 to enable a mode where your text isn't scattered around in the main window as you type type #split. If you want you can disable with #unsplit.
 #split is not enabled by default because it really messes up reading with Orca in terminal emulators
 If you turn off your prompt while in #split mode you may need to disable split and turn it back on for the prompt to truly go away.
+For blind players, if you don't want the text art at the beginning change the variable mudPort in name.tin to 3010
+the client should automatically connect you to this channel, so try cowsay hello before connecting.
 
 To discuss this code in game, or to ask questions, connect to the cowsay channel:
 %connect cowsay
