@@ -1024,7 +1024,7 @@
 			};
 			#case {"tell the group"}
 			{
-				#if {!&{volume} || $volume == 0}n
+				#if {!&{volume} || $volume == 0}
 				{
 					#system {play -qn -V0 synth exp B3 exp E3 exp B2 exp E2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
 				};
