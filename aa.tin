@@ -1015,16 +1015,16 @@
 			{
 				#if {!&{volume} || $volume == 0}
 				{
-					#system {play -qn -V0 synth sin D4 sin G3 sin D3 sin G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+					#system {play -qn -V0 synth saw D4 pl G3 saw D3 pl G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
 				};
 				#else
 				{
-					#system {play -qn -V0 synth sin D4 sin G3 sin D3 sin G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+					#system {play -qn -V0 synth saw D4 pl G3 saw D3 pl G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
 				}
 			};
 			#case {"tell the group"}
 			{
-				#if {!&{volume} || $volume == 0}
+				#if {!&{volume} || $volume == 0}n
 				{
 					#system {play -qn -V0 synth exp B3 exp E3 exp B2 exp E2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
 				};
@@ -1406,11 +1406,11 @@
 			{
 				#if {!&{volume} || $volume == 0}
 				{
-					#system {play -qn -V0 synth sin G2 sin D3 sin G3 sin D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
+					#system {play -qn -V0 synth saw G2 pl D3 saw G3 pl D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
 				};
 				#else
 				{
-					#system {play -qn -V0 synth sin G2 sin D3 sin G3 sin D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+					#system {play -qn -V0 synth saw G2 pl D3 saw G3 pl D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
 				}
 			};
 			#case {"tells the grou"}
@@ -2517,7 +2517,7 @@
 }
 {9}
 
-#ACTION {^silent_{Cleric|Mage|Necromancer|Thief|Warrior}  %2 You can level!$}
+#ACTION {^silent_{Cleric|Mage|Necromancer|Thief|Warrior} %2 You can level!$}
 {
 	#if {"$autolevelClass" == "All" && !&{justLeveled}}
 	{
