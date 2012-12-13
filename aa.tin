@@ -896,9 +896,10 @@
 	{
 		#unvariable {regenAlert}
 	};
-	#if {"$autorefresh" == "true" && $currentMv < $maxMv / 5}
+	#if {"$autorefresh" == "true" && "$refreshed" != "true" && $currentMv < $maxMv / 5}
 	{
-		#if {"$areaRefresh" == "true"}
+		#variable {refreshed} {true};#delay {3} {#unvariable {refreshed}};
+#if {"$areaRefresh" == "true"}
 		{
 			#if {$currentMana >= 28}
 			{
@@ -3906,10 +3907,12 @@
 #ALIAS {^{quit|logoff}$}
 {
 	#unvariable {position};
+#unvariable {refreshed};
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
 	#unvariable {groupLeader};
+#unvariable {justLeveled};
 	#unvariable {lastReceivedExp};
 	#unvariable {oldExp};
 	#unvariable {expGained};
