@@ -116,7 +116,7 @@
 	};
 	#else
 	{
-		#if {"$autorecast" == "ture"}
+		#if {"$autorecast" == "true"}
 		{
 			#variable {recast} {$recast $lastSpell;}
 		}
@@ -3908,6 +3908,7 @@
 {
 	#unvariable {position};
 #unvariable {refreshed};
+#unvariable {exhausted};
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
@@ -4509,7 +4510,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "music *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "$musicChannel *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eOQ}
@@ -4726,8 +4727,6 @@
 #TICKER           {spellSetChecker}  {#if {"$autorecast" == "true"} {affect | prefix silent_}}                                {30}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{friends}{5}{grouptells}{6}{tells}}
 #VARIABLE         {lastHpAlert}  {}
-#VARIABLE         {mudPort}  {3000}
-#VARIABLE         {name}  {Goroth}
-#VARIABLE         {password}  {password}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
+#variable {musicChannel} {music}
 #read {name.tin}
