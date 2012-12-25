@@ -1,3 +1,14 @@
+#ACTION {^A skeletal spider stops following you.$}
+{
+	#if {"$autoskeleton" == "true"}
+	{
+		#unvariable {autoskeleton};
+		#delay {0.2} {c skeletal spider};
+		#delay {2} {#variable {autoskeleton} {true}}
+	}
+}
+{9}
+
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}
@@ -3916,6 +3927,7 @@
 #unvariable {justLeveled};
 	#unvariable {lastReceivedExp};
 	#unvariable {oldExp};
+#unvariable {pkMode};
 	#unvariable {expGained};
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
