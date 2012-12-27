@@ -377,6 +377,14 @@
 }
 {5}
 
+#ACTION {^ %s  scent of death%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {scentOfDeath} {true};
+	#alias {^autoscent$} {#variable {autoscent} {true};#showme {you will now automatically try to detect near by corpses when using quick navigation keys.}};
+	#alias {^noautoscent$} {#unvariable {autoscent};#showme {You will no longer automatically search for neary by corpses when using quick navigation keys.}}
+}
+{5}
+
 #ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {fireball} {true}
@@ -2214,6 +2222,10 @@
 	#if {&{automap}}
 	{
 		map
+	};
+	#if {"$autoscent" == "true"}
+	{
+		scent of death
 	}
 }
 {9}
