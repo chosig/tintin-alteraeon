@@ -11,6 +11,7 @@
 #VARIABLE         {metalMaterial}  {metalconstruct}
 #VARIABLE         {soundCommand}  {play -q}
 #VARIABLE         {speechRate}  {80}
+#VARIABLE         {throwWeapon}  {shadow}
 #VARIABLE         {volume}  {0}
 #VARIABLE         {woadMaterial}  {deanimate}
 
