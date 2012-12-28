@@ -13,7 +13,7 @@ fi
 create_character()
 {
     mkdir -p $characterPath
-    echo -e "#VARIABLE         {name}  {$characterName}\n#VARIABLE         {password}  {$characterPassword}" > $characterPath/name.tin
+    echo -e "#VARIABLE         {mudPort}  {3000}\n#VARIABLE         {name}  {$characterName}\n#VARIABLE         {password}  {$characterPassword}" > $characterPath/name.tin
     #Link files.
     if [ -f "aa.tin" ] ; then
         ln -s $(pwd)/aa.tin $characterPath/
