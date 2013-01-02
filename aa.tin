@@ -1,14 +1,3 @@
-#ACTION {^A skeletal spider stops following you.$}
-{
-	#if {"$autoskeleton" == "true"}
-	{
-		#unvariable {autoskeleton};
-		#delay {0.2} {c skeletal spider};
-		#delay {2} {#variable {autoskeleton} {true}}
-	}
-}
-{9}
-
 #ACTION {%1 has %2 of %3 hitpoints.$}
 {
 	#if {"$autoheal" == "true"}
@@ -244,6 +233,12 @@
 }
 {5}
 
+#ACTION {^ %s  bloodletting stab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {bloodlettingStab} {true}
+}
+{5}
+
 #ACTION {^ %s  bloodmist%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {bloodmist} {true}
@@ -270,7 +265,7 @@
 
 #ACTION {^ %s  breath of life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {healSpell} {breath of life}
+	#variable {breathOfLife} {true}
 }
 {5}
 
@@ -317,15 +312,21 @@
 }
 {5}
 
+#ACTION {^ %s  cure critical wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {cureCriticalWounds} {true}
+}
+{5}
+
 #ACTION {^ %s  cure light wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {healSpell} {cure light wounds}
+	#variable {cureLightWounds} {true}
 }
 {5}
 
 #ACTION {^ %s  cure serious wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {healSpell} {cure serious wounds}
+	#variable {cureSeriousWounds} {true}
 }
 {5}
 
@@ -377,14 +378,6 @@
 }
 {5}
 
-#ACTION {^ %s  scent of death%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {scentOfDeath} {true};
-	#alias {^autoscent$} {#variable {autoscent} {true};#showme {you will now automatically try to detect near by corpses when using quick navigation keys.}};
-	#alias {^noautoscent$} {#unvariable {autoscent};#showme {You will no longer automatically search for neary by corpses when using quick navigation keys.}}
-}
-{5}
-
 #ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {fireball} {true}
@@ -416,9 +409,15 @@
 }
 {5}
 
+#ACTION {^ %s  harvest teeth  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {harvestTeeth} {true}
+}
+{5}
+
 #ACTION {^ %s  heal  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
-	#variable {healSpell} {heal}
+	#variable {heal} {true}
 }
 {5}
 
@@ -446,10 +445,17 @@
 }
 {5}
 
+#ACTION {^ %s  kick%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {kick} {true};
+	#alias {k} {kick}
+}
+{5}
+
 #ACTION {^ %s  knife throwing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {knifeThrowing} {true};
-	#alias {^{t|th|thr|thro|throw}$}{throw $throwWeapon;get $throwWeapon}
+	#alias {^{t|th|thr|thro|throw}$} {throw $throwWeapon;get $throwWeapon}
 }
 {5}
 
@@ -480,6 +486,12 @@
 #ACTION {^ %s  pick locks%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {pickLocks} {true}
+}
+{5}
+
+#ACTION {^ %s  pommel strike%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {pommelStrike} {true}
 }
 {5}
 
@@ -517,6 +529,14 @@
 #ACTION {^ %s  sacred touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {sacredTouch} {true}
+}
+{5}
+
+#ACTION {^ %s  scent of death%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {scentOfDeath} {true};
+	#alias {^autoscent$} {#variable {autoscent} {true};#showme {you will now automatically try to detect near by corpses when using quick navigation keys.}};
+	#alias {^noautoscent$} {#unvariable {autoscent};#showme {You will no longer automatically search for neary by corpses when using quick navigation keys.}}
 }
 {5}
 
@@ -917,8 +937,9 @@
 	};
 	#if {"$autorefresh" == "true" && "$refreshed" != "true" && $currentMv < $maxMv / 5}
 	{
-		#variable {refreshed} {true};#delay {3} {#unvariable {refreshed}};
-#if {"$areaRefresh" == "true"}
+		#variable {refreshed} {true};
+		#delay {3} {#unvariable {refreshed}};
+		#if {"$areaRefresh" == "true"}
 		{
 			#if {$currentMana >= 28}
 			{
@@ -1269,12 +1290,6 @@
 }
 {9}
 
-#ACTION {%1 {enchants|enchant}, then brutally {twists|twist} and {molds|mold} %2 into A metal construct.$}
-{
-	play metal-construct-rises
-}
-{9}
-
 #ACTION {%1 {fart|farts uncerimoniously} in %2 direction.$}
 {
 	play fart
@@ -1352,12 +1367,6 @@
 }
 {9}
 
-#ACTION {^        harvest teeth%1}
-{
-	#variable {harvestTeeth} {true}
-}
-{9}
-
 #ACTION {^       You receive a combat point!$}
 {
 	#delay {0.2} {#script {echo -n "gt "; shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!" "CPwn!"}}
@@ -1368,13 +1377,6 @@
 {
 	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon;
 	fbpost $name just gained the official rank of level %2 #%3 and now has %4 total levels!
-}
-{9}
-
-#ACTION {^ %skick%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {kick} {true};
-	#alias {k} {kick}
 }
 {9}
 
@@ -1605,12 +1607,12 @@
 }
 {9}
 
-#ACTION {^A skeletal mage stops following you.$}
+#ACTION {^A skeletal {mage|spider} stops following you.$}
 {
 	#if {"$autoskeleton" == "true"}
 	{
 		#unvariable {autoskeleton};
-		#delay {0.2} {c skeletal mage};
+		#delay {0.2} {c skeletal %1};
 		#delay {2} {#variable {autoskeleton} {true}}
 	}
 }
@@ -2022,15 +2024,6 @@
 	{
 		c foulblood
 	}
-}
-{9}
-
-#ACTION {^You now follow %S!$}
-{
-	#script {i} {echo "$name $(shuf -n 1 -e "is now a follower of the god %1 and shall strike down nonbelievers!" "is now a %1's witness! Beware the pamphlets!" "boldly presses on in the name of the all powerful %1!")"};
-	#variable {i} {$i[1]};
-	tweet $i #AlterAeon;
-	fbpost $i
 }
 {9}
 
@@ -2625,6 +2618,26 @@
 
 #ALIAS {h}
 {
+	#if {"$breathOfLife" == "true"}
+	{
+		#variable {healSpell} {breath of life}
+	};
+	#elseif {"$heal" == "true"}
+	{
+		#variable {healSpell} {heal}
+	};
+	#elseif {"$cureCriticalWounds" == "true"}
+	{
+		#variable {healSpell} {cure critical wounds}
+	};
+	#elseif {"$cureSeriousWounds" == "true"}
+	{
+		#variable {healSpell} {cure serious wounds}
+	};
+	#else
+	{
+		#variable {healSpell} {cure light wounds}
+	};
 	c $healSpell
 }
 {1}
@@ -2743,6 +2756,10 @@
 	{
 		#variable {randomAttack} {$randomAttack "bash"}
 	};
+	#if {"$bloodlettingStab" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "stab"}
+	};
 	#if {"$cleave" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "cleave"}
@@ -2766,6 +2783,10 @@
 	#if {"$lunge" == "true"}
 	{
 		#variable {randomAttack} {$randomAttack "lunge"}
+	};
+	#if {"$pommelStrike" == "true"}
+	{
+		#variable {randomAttack} {$randomAttack "pommel"}
 	};
 	#if {"$riposte" == "true"}
 	{
@@ -3930,16 +3951,16 @@
 #ALIAS {^{quit|logoff}$}
 {
 	#unvariable {position};
-#unvariable {refreshed};
-#unvariable {exhausted};
+	#unvariable {refreshed};
+	#unvariable {exhausted};
 	#unvariable {recast};
 	#unvariable {lastSpell};
 	#unvariable {groupExperience};
 	#unvariable {groupLeader};
-#unvariable {justLeveled};
+	#unvariable {justLeveled};
 	#unvariable {lastReceivedExp};
 	#unvariable {oldExp};
-#unvariable {pkMode};
+	#unvariable {pkMode};
 	#unvariable {expGained};
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
@@ -4751,6 +4772,9 @@
 #TICKER           {spellSetChecker}  {#if {"$autorecast" == "true"} {affect | prefix silent_}}                                {30}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{friends}{5}{grouptells}{6}{tells}}
 #VARIABLE         {lastHpAlert}  {}
+#VARIABLE         {mudPort}  {3000}
+#VARIABLE         {musicChannel}  {music}
+#VARIABLE         {name}  {Goroth}
+#VARIABLE         {password}  {chaosad}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
-#variable {musicChannel} {music}
 #read {name.tin}
