@@ -330,6 +330,13 @@
 }
 {5}
 
+#ACTION {^ %s  demonfire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
+{
+	#variable {demonfire} {true};
+#alias {demonfire} {get pale blue soulstone from $container;cast demonfire}
+}
+{5}
+
 #ACTION {^ %s  detect invisibility%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
 {
 	#variable {detectInvisibility} {true}
