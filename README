@@ -214,6 +214,7 @@ autowoad automatically try to create a new wood woad if the current woad dies. t
 spells:
 autobonearmor recast bone armor when it drops. Will automatically soulbind the armor if you have the skill and a blue soulstone. use noautobonearmor to turn it off.
 bm: cast bloodmist.
+demonfire gets a stone from your container and casts the spell demonfire. You can optionally specify a target. You can set the color of the stone with the dstone command as in, dstone green. To see the current color type dstone with no arguments.
 forge stone: This will cast soulforge on 2 stones in your inventory. You can sort of control it, for example forge blue will forge 2 blue soulstones. If you have a blue and  a purple, you should use forge soulstone.
 
 
