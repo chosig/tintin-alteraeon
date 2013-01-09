@@ -5,7 +5,7 @@ Anthony: Helps test new code.
 Alonzo: Answered my countless questions about Mac installation, helpedd test Mac installation.
 Harmony: Helped with test Mac installation instructions
 Mike Wassel: http://blindndangerous.com/ Improved Mac installation instructions.
-Derek Roberts (chikorita) http://www.twitter.com/big_d01 : Helped my with the totally confusing sinth options in sox for the enemy condition beeps.
+Derek Roberts (chikorita) http://www.twitter.com/big_d01 : Helped me with the totally confusing sinth options in sox for the enemy condition beeps.
 Kendell Clark: Helped write multicharacter-setup.sh
 
 
@@ -172,7 +172,11 @@ stealth: Automatically use stealthy movement if you have the skill. Turn it off 
 /: Recall. (works with all clients)
 .: cast word of recall (requires spell word of recall).
 ,: cast group recall (requires spell group recall).
-
+path <name>: Start mapping directions, when you are following someone. When you reach your destination, type nomap for the directions to be exported.
+loadpath <name>: load a path with the given name
+alt+shift+J: Walk backwards one step along the loaded path. (currently broken)
+alt+shift+L: Walk forward one step along your loaded path.
+pathrun <name>: Load given path name and walk the entire thing. there is a 0.5 delay between each step so refresh spells etc can be done while running the path.
 
 Mage:
 Spells:
