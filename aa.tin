@@ -2463,6 +2463,14 @@
 }
 {9}
 
+#ACTION {^mobrepop_%1->%2}
+{
+	#unvariable {mobRepop};
+	#showme {%1->%2};
+	play repop
+}
+{9}
+
 #ACTION {^silent_A flesh beast %d}
 {
 	c flesh corpse
@@ -3312,6 +3320,26 @@
 }
 {9}
 
+#ALIAS {^Clear_Variables$}
+{
+	#unvariable {position};
+	#unvariable {refreshed};
+	#unvariable {exhausted};
+	#unvariable {recast};
+	#unvariable {lastSpell};
+	#unvariable {groupExperience};
+	#unvariable {pathing};
+	#unvariable {pathName};
+	#unvariable {groupLeader};
+	#unvariable {justLeveled};
+	#unvariable {lastReceivedExp};
+	#unvariable {oldExp};
+	#unvariable {pkMode};
+	#unvariable {expGained};
+	#unvariable {mobRepop}
+}
+{9}
+
 #ALIAS {^autobloodsacrifice$}
 {
 	#showme {You will now blood sacrifice corpses automatically};
@@ -3836,6 +3864,34 @@
 }
 {9}
 
+#ALIAS {^repop %S}
+{
+	#if {"%1" == "clear" && &{mobRepop}}
+	{
+		#unvariable {mobRepop};
+		#showme {You are no longer waiting for anything to repop.}
+	};
+	#else
+	{
+		#variable {mobRepop} {%1};
+		#showme {Waiting for %1 to repop...}
+	}
+}
+{9}
+
+#ALIAS {^repop$}
+{
+	#if {&{mobRepop}}
+	{
+		#showme {You are waiting for $mobRepop to repop.}
+	};
+	#else
+	{
+		#showme {You are not currently waiting for anything to repop.}
+	}
+}
+{9}
+
 #ALIAS {^set{a|b|c|d|e|f|g|h|n|q|r|s|t|v|w|x|y|z} %2}
 {
 	#macro {\e%1} {%2};
@@ -4099,20 +4155,7 @@
 
 #ALIAS {^{quit|logoff}$}
 {
-	#unvariable {position};
-	#unvariable {refreshed};
-	#unvariable {exhausted};
-	#unvariable {recast};
-	#unvariable {lastSpell};
-	#unvariable {groupExperience};
-	#unvariable {pathing};
-	#unvariable {pathName};
-	#unvariable {groupLeader};
-	#unvariable {justLeveled};
-	#unvariable {lastReceivedExp};
-	#unvariable {oldExp};
-	#unvariable {pkMode};
-	#unvariable {expGained};
+	Clear_variables;
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
 	set ctrigger off;
@@ -4548,6 +4591,7 @@
 #GAG              {^You see nothing left to loot from the corpse of %1.$}
 #GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^kxwt_%*}
+#GAG              {^mobrepop_%*}
 #GAG              {^silent_%*}
 #GAG              {^{A|An|The} %1 twitches and starts fidgeting.$}
 #MACRO {\e+}
@@ -4949,6 +4993,7 @@
 #SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
+#TICKER           {Mob_Repop}  {#if {&{mobRepop}}{where $mobRepop | prefix mobrepop_}}                              {30}
 #TICKER           {spellSetChecker}  {#if {"$autorecast" == "true"} {affect | prefix silent_}}                                {30}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{friends}{5}{grouptells}{6}{tells}}
 #VARIABLE         {demonfireStone}  {pale blue}
