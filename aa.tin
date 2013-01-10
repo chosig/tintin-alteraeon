@@ -948,7 +948,7 @@
 		#delay {3} {#unvariable {refreshed}};
 		#if {"$areaRefresh" == "true"}
 		{
-			#if {$currentMana >= 28}
+			#if {$currentMana >= 28 && !&{inBattle}}
 			{
 				c area
 			}
@@ -957,7 +957,7 @@
 		{
 			#if {"$refresh" == "true"}
 			{
-				#if {$currentMana >= 15}
+				#if {$currentMana >= 15 && !&{inBattle}}
 				{
 					c refresh
 				}
@@ -1800,6 +1800,22 @@
 }
 {9}
 
+#ACTION {^The tooth melts and forms a pinkish mass, which you quickly pull and shape into a bone shield.$}
+{
+	#if {"$soulbind" == "true"}
+	{
+		#send {stand;get pale blue soulstone from $container};
+		remove shield;
+		soulbind shield;
+		wear shield
+	};
+	#if {&{position}}
+	{
+		$position
+	}
+}
+{9}
+
 #ACTION {^You add A %1 to your group.$}
 {
 	#if {"%1" == "zombie" || "%1" == "ghoul" || "%1" == "mummy" || "%1" == "vampire"}
@@ -2146,6 +2162,22 @@
 }
 {9}
 
+#ACTION {^You utter a short invocation over a tooth and pull it like taffy into a long bone blade.$}
+{
+	#if {"$soulbind" == "true"}
+	{
+		#send {stand;get pale blue soulstone from $container};
+		remove blade;
+		soulbind blade;
+		wield blade
+	};
+	#if {&{position}}
+	{
+		$position
+	}
+}
+{9}
+
 #ACTION {^You {decide to reel in your line and take a break for a while|finish reeling in your line and stop fishing|are no longer fishing}.$}
 {
 	play stop-fishing
@@ -2329,6 +2361,12 @@
 			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 gain $volume &> /dev/null &}
 		}
 	}
+}
+{9}
+
+#ACTION {^kxwt_fighting -1$}
+{
+	#unvariable {inBattle}
 }
 {9}
 
