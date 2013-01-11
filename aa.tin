@@ -696,7 +696,14 @@
 {
 	#if {"$boneShield" == "true" && "$autorecast" == "true"}
 	{
-		c bone shield
+		#if {!&{inBattle}}
+		{
+			c bone shield
+		};
+		#else
+		{
+			Add_Cast bone shield
+		}
 	}
 }
 {5}
@@ -744,22 +751,6 @@
 #ACTION {^You are now a group member.$}
 {
 	#variable {groupExperience} {0}
-}
-{5}
-
-#ACTION {^You can't concentrate enough!$}
-{
-	#if {"$autorecast" == "true"}
-	{
-		#if {!&{combat}}
-		{
-			#variable {combat} {$lastSpell}
-		};
-		#else
-		{
-			#variable {combat} {$combat $lastSpell}
-		}
-	}
 }
 {5}
 
@@ -1016,15 +1007,6 @@
 }
 {8}
 
-#ACTION {^The air smells cleaner, and you realize your rancid flesh spell has expired.$}
-{
-	#if {"$rancidFlesh" == "true" && "$autorecast" == "true"}
-	{
-		c rancid flesh
-	}
-}
-{8}
-
 #ACTION {^Yo%1miss%2{tonberry|moogle}.$}
 {
 	play ff-miss
@@ -1132,31 +1114,6 @@
 #ACTION {^You now have %1 combat points you can spend.$}
 {
 	#variable {cp} {%1}
-}
-{8}
-
-#ACTION {^Your force shield slowly dissipates.$}
-{
-	#if {"$shield" == "true" && "$autorecast" == "true"}
-	{
-		c shield
-	}
-}
-{8}
-
-#ACTION {^Your muscles deflate as your strength spell wears out.}
-{
-	#if {"$strength" == "true" && "$autorecast" == "true"}
-	{
-		c strength;
-		c strength;
-		c strength;
-		#if {"$rewield" == "true" && &{weapon}}
-		{
-			#send {wield $weapon};
-			#unvariable {rewield}
-		}
-	}
 }
 {8}
 
@@ -1759,7 +1716,14 @@
 {
 	#if {"$boneBlade" == "true"}
 	{
-		c bone blade
+		#if {!&{inBattle}}
+		{
+			c bone blade
+		};
+		#else
+		{
+			Add_Cast bone blade
+		}
 	}
 }
 {9}
@@ -1767,15 +1731,6 @@
 #ACTION {^The bones splinter and shatter, leaving behind only broken pieces.$}
 {
 	play bone-guardian-death
-}
-{9}
-
-#ACTION {^The detect invisible wears off.$}
-{
-	#if {"$detectInvisibility" == "true" && "$autorecast" == "true"}
-	{
-		c detect invisibility
-	}
 }
 {9}
 
@@ -1788,15 +1743,6 @@
 #ACTION {^The physical reserve deep within you feels replenished.$}
 {
 	#unvariable {exhausted}
-}
-{9}
-
-#ACTION {^The red in your vision disappears.$}
-{
-	#if {"$infravision" == "true" && "$autorecast" == "true"}
-	{
-		c infravision
-	}
 }
 {9}
 
@@ -1921,42 +1867,6 @@
 }
 {9}
 
-#ACTION {^You feel a slight tingle and you feel somehow abandoned.}
-{
-	#if {"$bless" == "true" && "$autorecast" == "true"}
-	{
-		c bless
-	}
-}
-{9}
-
-#ACTION {^You feel less aware of your surroundings.$}
-{
-	#if {&{senseLife} && "$autorecast" == "true"}
-	{
-		c sense life
-	}
-}
-{9}
-
-#ACTION {^You feel less protected from evil.$}
-{
-	#if {"$protectionFromEvil" == "true" && "$autorecast" == "true"}
-	{
-		cast protection from evil
-	}
-}
-{9}
-
-#ACTION {^You feel less protected.}
-{
-	#if {"$armor" == "true" && "$autorecast" == "true"}
-	{
-		c armor
-	}
-}
-{9}
-
 #ACTION {^You feel new bones and flesh forming a protective armor plate over your body.$}
 {
 	#if {"$soulbind" == "true"}
@@ -1967,15 +1877,6 @@
 	#if {&{position}}
 	{
 		$position
-	}
-}
-{9}
-
-#ACTION {^You feel the pent up vengeance in your blood dissipate.$}
-{
-	#if {"$dyingBreath" == "true" && "$autorecast" == "true"}
-	{
-		c dying breath
 	}
 }
 {9}
@@ -2055,15 +1956,6 @@
 }
 {9}
 
-#ACTION {^You notice that the foul taste in your mouth seems to be gone.$}
-{
-	#if {"$foulBlood" == "true" && "$autorecast" == "true"}
-	{
-		c foulblood
-	}
-}
-{9}
-
 #ACTION {^You practice %1(%2 percent gained).$}
 {
 	spell %1;
@@ -2088,15 +1980,6 @@
 	#if {"$autojunk" == "true"}
 	{
 		junk bile
-	}
-}
-{9}
-
-#ACTION {^You slowly float to the ground.$}
-{
-	#if {"$fly" == "true" && "$autorecast" == "true"}
-	{
-		c fly
 	}
 }
 {9}
@@ -2205,45 +2088,9 @@
 }
 {9}
 
-#ACTION {^Your displaced image rejoins your body.$}
-{
-	#if {"$displacement" == "true" && "$autorecast" == "true"}
-	{
-		c displacement
-	}
-}
-{9}
-
 #ACTION {^Your experience cap is %1 exp.$}
 {
 	#variable {cap} {%1}
-}
-{9}
-
-#ACTION {^Your magically induced dexterity abruptly disappears.}
-{
-	#if {"$dexterity" == "true" && "$autorecast" == "true"}
-	{
-		#3 c dex
-	}
-}
-{9}
-
-#ACTION {^Your shield of faith dissipates, and you no longer feel as protected by your god.$}
-{
-	#if {"$faithShield" == "true" && "$autorecast" == "true"}
-	{
-		c faith shield
-	}
-}
-{9}
-
-#ACTION {^Your skin returns to its normal texture.$}
-{
-	#if {"$stoneSkin" == "true" && "$autorecast" == "true"}
-	{
-		c stone
-	}
 }
 {9}
 
@@ -2366,7 +2213,8 @@
 
 #ACTION {^kxwt_fighting -1$}
 {
-	#unvariable {inBattle}
+	#unvariable {inBattle};
+	affect | prefix silent_
 }
 {9}
 
@@ -2524,7 +2372,7 @@
 
 #ACTION {^silent_Missing '%1'.$}
 {
-	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8}
+	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8 && !&{inBattle}}
 	{
 		c %1
 	}
@@ -3354,6 +3202,19 @@
 				#path {insert} {enter %1} {enter %1}
 			}
 		}
+	}
+}
+{9}
+
+#ALIAS {^Add_Cast %1}
+{
+	#if {!&{combat}}
+	{
+		#variable {combat} {c %1}
+	};
+	#else
+	{
+		#variable {combat} {$combat c %1}
 	}
 }
 {9}
@@ -4193,7 +4054,7 @@
 
 #ALIAS {^{quit|logoff}$}
 {
-	Clear_variables;
+	Clear_Variables;
 	#class {gameData} {write} {game_data.tin};
 	#line {gag};
 	set ctrigger off;
