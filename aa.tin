@@ -665,6 +665,12 @@
 }
 {5}
 
+#ACTION {^%S has restored you to full health!$}
+{
+	Add_Event %0
+}
+{5}
+
 #ACTION {^A flesh beast starts following you.$}
 {
 	#if {&{makeNewFleshBeast}}
@@ -1440,6 +1446,12 @@
 }
 {9}
 
+#ACTION {^%S has given you a gift!$}
+{
+	Add_Event %0
+}
+{9}
+
 #ACTION {^%S sits down and rests.$}
 {
 	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
@@ -1766,7 +1778,7 @@
 {
 	#if {"%1" == "zombie" || "%1" == "ghoul" || "%1" == "mummy" || "%1" == "vampire"}
 	{
-		#variable {lastRaisedMinion} {%1}
+		variable lastRaisedMinion %1 | prefix silent_
 	}
 }
 {9}
@@ -1816,6 +1828,12 @@
 #ACTION {^You burp in the general direction of %1.}
 {
 	play burp
+}
+{9}
+
+#ACTION {^You can now learn the skill '%1'!$}
+{
+	Add_Event %0
 }
 {9}
 
@@ -1911,6 +1929,12 @@
 #ACTION {^You gain a practice!$}
 {
 	play train-practice
+}
+{9}
+
+#ACTION {^You gain favor in the eyes of %S!$}
+{
+	Add_Event %0
 }
 {9}
 
@@ -2220,12 +2244,12 @@
 
 #ACTION {^kxwt_mdeath$}
 {
-	#if {&{inBattle}}
-	{
-		#unvariable {inBattle}
-	};
 	#if {&{lastReceivedExp}}
 	{
+		#if {"$cryOfVictory" == "true"}
+		{
+			victory
+		};
 		#if {&{throwWeapon}}
 		{
 			#send {get all.$throwWeapon corpse}
@@ -2236,63 +2260,7 @@
 		};
 		#if {!&{pkMode}}
 		{
-			#if {"$autoconsume" == "true"}
-			{
-				control all consume corpse
-			};
-			#if {"$autobloodsacrifice" == "true"}
-			{
-				bsac corpse
-			};
-			#if {"$cryOfVictory" == "true"}
-			{
-				victory
-			};
-			#if {&{combat}}
-			{
-				#foreach {$combat} {spell}
-				{
-					$spell
-				}
-			};
-			#unvariable {combat};
-			#if {"$corpsecutter" == "true"}
-			{
-				harvest components corpse
-			};
-			#if {"$autobrew" == "true" && &{brewContainer}}
-			{
-				#if {"$coldfire" == "true" && !&{hasColdFire}}
-				{
-					c coldfire self;
-					#variable {hasColdFire} {true};
-					#delay {7} {junk coldfire | prefix silent_;#unvariable {hasColdFire}}
-				};
-				#delay {1d5} {brew p i | prefix silent_}
-			};
-			#if {"$autofleshbeast" == "true"}
-			{
-				#if {"$makeNewFleshBeast" == "true"}
-				{
-					c flesh corpse
-				};
-				#else
-				{
-					lowhp | prefix silent_
-				}
-			};
-			#if {"$harvestTeeth" == "true"}
-			{
-				harvest teeth corpse
-			};
-			#if {&{lastReceivedExp}}
-			{
-				#unvariable {lastReceivedExp}
-			};
-			#if {&{position}}
-			{
-				$position
-			}
+			#delay {0.5}{#if {"$autoconsume" == "true"}{control all consume corpse};#if {"$autobloodsacrifice" == "true" && !&{inBattle}}{bsac corpse};#if {&{combat}}{#foreach {$combat} {spell}{$spell}};#unvariable {combat};#if {"$corpsecutter" == "true" && !&{inBattle}}{harvest components corpse};#if {"$autobrew" == "true" && &{brewContainer}}{#if {"$coldfire" == "true" && !&{hasColdFire} && !&{inBattle}}{c coldfire self;#variable {hasColdFire} {true};#delay {7} {junk coldfire | prefix silent_;#unvariable {hasColdFire}}};#delay {1d5} {brew p i | prefix silent_}};#if {"$autofleshbeast" == "true"}{#if {"$makeNewFleshBeast" == "true"}{c flesh corpse};#else {lowhp | prefix silent_}};#if {"$harvestTeeth" == "true" && !&{inBattle}}{harvest teeth corpse};#if {&{lastReceivedExp}}{#unvariable {lastReceivedExp}};#if {&{position}}{$position}}
 		}
 	}
 }
@@ -2870,11 +2838,15 @@
 	{
 		replay %3 | head -2
 	};
-	#elseif {%2 > 0 && %2 < 4 || %2 == 6}
+	#elseif {%2 > 0 && %2 < 4 || %2 == 7}
 	{
 		replay %1 %3 | head -2
 	};
 	#elseif {%2 == 4}
+	{
+		#showme {Replayin_ ${eventList[%3]}}
+	};
+	#elseif {%2 == 5}
 	{
 		replay | grep -i (friend) | tail %3 | head -1
 	};
@@ -3225,23 +3197,52 @@
 }
 {9}
 
+#ALIAS {^Add_Event %1}
+{
+	#list {eventList} {insert} {1} {%1};
+	#list {eventList} {size} {i};
+	#if {$i >= 11}
+	{
+		#list {eventList} {delete} {11}
+	};
+	#unvariable {i}
+}
+{9}
+
 #ALIAS {^Clear_Variables$}
 {
-	#unvariable {position};
-	#unvariable {refreshed};
+	#unvariable {currentExperience};
+	#unvariable {currentHp};
+	#unvariable {currentMana};
+	#unvariable {currentMv};
+	#unvariable {enemyConditionTone};
 	#unvariable {exhausted};
-	#unvariable {recast};
-	#unvariable {lastSpell};
+	#unvariable {expGained};
+	#unvariable {friendNameEnter};
+	#unvariable {greeting};
 	#unvariable {groupExperience};
-	#unvariable {pathing};
-	#unvariable {pathName};
 	#unvariable {groupLeader};
+	#unvariable {hpRegenTime};
 	#unvariable {justLeveled};
 	#unvariable {lastReceivedExp};
+	#unvariable {lastSpell};
+	#unvariable {maxHp};
+	#unvariable {maxMana};
+	#unvariable {maxMv};
+	#unvariable {mnRegenTime};
+	#unvariable {mvRegenTime};
+	#unvariable {mobRepop};
 	#unvariable {oldExp};
+	#unvariable {recast};
+	#unvariable {refreshed};
+	#unvariable {regenAlert};
+	#unvariable {regenTime};
+	#unvariable {pathing};
+	#unvariable {pathName};
 	#unvariable {pkMode};
-	#unvariable {expGained};
-	#unvariable {mobRepop}
+	#unvariable {position};
+	#unvariable {spell};
+	#unvariable {waypoint}
 }
 {9}
 
@@ -3456,6 +3457,7 @@
 
 #ALIAS {^csave$}
 {
+	Clear_Variables;
 	#class {gameData} {write} {game_data.tin};
 	#showme {saving game_data.tin}
 }
@@ -4610,9 +4612,9 @@
 
 #MACRO {\e=}
 {
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 6}
+	#if {!&{channelBufferIndex} || $channelBufferIndex >= 7}
 	{
-		#variable {channelBufferIndex} {6}
+		#variable {channelBufferIndex} {7}
 	};
 	#else
 	{
@@ -4898,13 +4900,14 @@
 #PROMPT           {<%dhp %dm %dmv>}  {%0}  {1}
 #PROMPT           {^HP%*}  {%0}  {1}
 #SUBSTITUTE       {%*}  { %0}  {1}
-#SUBSTITUTE       {^Replayin_%1}  {%1}  {1}
+#SUBSTITUTE       {^Replayin{_|_ }%2}  {%2}  {1}
 #SUBSTITUTE       {MOV_REGEN}  {MOVE_REGEN}  {5}
 #SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
-#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{friends}{5}{grouptells}{6}{tells}}
+#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{events}{5}{friends}{6}{grouptells}{7}{tells}}
 #VARIABLE         {demonfireStone}  {pale blue}
+#VARIABLE         {eventList}  {}
 #VARIABLE         {lastHpAlert}  {}
 #VARIABLE         {musicChannel}  {music}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
