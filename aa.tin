@@ -1231,6 +1231,15 @@
 }
 {9}
 
+#ACTION {%1 has arrived.$}
+{
+	#if {"$autokill" == "true"}
+	{
+		#regexp {%1} {{.*} {.*}} {kill &2}
+	}
+}
+{9}
+
 #ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
 {
 	play fish-line-break
@@ -3211,6 +3220,7 @@
 
 #ALIAS {^Clear_Variables$}
 {
+	#unvariable {autokill};
 	#unvariable {currentExperience};
 	#unvariable {currentHp};
 	#unvariable {currentMana};
@@ -3320,6 +3330,13 @@
 	noautobrew | prefix silent_;
 	#variable {autojunk} {true};
 	#showme {You will now automatically discard spell components harvested from corpses.}
+}
+{9}
+
+#ALIAS {^autokill$}
+{
+	#variable {autokill} {true};
+	#showme {Auttokill enabled.}
 }
 {9}
 
@@ -3617,6 +3634,13 @@
 {
 	#unvariable {autojunk};
 	#showme {You will no longer automatically discard anything.}
+}
+{9}
+
+#ALIAS {^noautokill$}
+{
+	#unvariable {autokill};
+	#showme {Auttokill disabled.}
 }
 {9}
 
