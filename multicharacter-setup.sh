@@ -45,6 +45,12 @@ create_character()
         echo "Error! Missing file woadbot.tin. Exiting."
         exit 1
     fi
+    if [ -d "modules" ] ; then
+        ln -s $(pwd)/modules/ $characterPath/
+     else
+        echo "Error! Missing modules directory. Exiting."
+        exit 1
+    fi
     if [ -d "scripts" ] ; then
         ln -s $(pwd)/scripts/ $characterPath/
      else

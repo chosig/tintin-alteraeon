@@ -1,0 +1,109 @@
+#ALIAS {^musicurl %S$}
+{
+	#if {"%1" == "jango"}
+	{
+		#variable {musicURL} {http://www.jango.com/music/$artist?l=0};
+		#variable {musicProvider} {Jango};
+		#showme {Music search results now provided by Jango.}
+	};
+	#elseif {"%1" == "last.fm"}
+	{
+		#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};
+		#variable {musicProvider} {Last.fm};
+		#showme {Music search results now provided by Last.fm.}
+	};
+	#elseif {"%1" == "pandora"}
+	{
+		#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};
+		#variable {musicProvider} {Pandora};
+		#showme {Music search results now provided by Pandora.}
+	};
+	#elseif {"%1" == "youtube"}
+	{
+		#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};
+		#variable {musicProvider} {Youtube};
+		#showme {Music search results now provided by Youtube.}
+	};
+	#else
+	{
+		#showme {Valid choices are jango, last.fm, pandora, or youtube}
+	}
+}
+{5}
+
+#MACRO {\e+}
+{
+	#system {cmus-remote -v +10%}
+}
+
+#MACRO {\eB}
+{
+	#system {cmus-remote -n}
+}
+
+#MACRO {\eC}
+{
+	#system {cmus-remote -u}
+}
+
+#MACRO {\eM}
+{
+	#if {!&{musicURL}}
+	{
+		#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}
+	};
+	#if {!&{musicProvider}}
+	{
+		#variable {musicProvider} {Last.fm}
+	};
+	#script {echo "$musicChannel *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
+}
+
+#MACRO {\eR}
+{
+	#system {cmus-remote -R};
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
+}
+
+#MACRO {\eS}
+{
+	#system {cmus-remote -S};
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
+}
+
+#MACRO {\eU}
+{
+	#script {echo "#showme {Playing: $(scripts/music.sh false)}"}
+}
+
+#MACRO {\eV}
+{
+	#system {cmus-remote -s}
+}
+
+#MACRO {\eX}
+{
+	#system {cmus-remote -p}
+}
+
+#MACRO {\eZ}
+{
+	#system {cmus-remote -r}
+}
+
+#MACRO {\e\x7B}
+{
+	#system {cmus-remote -k -5}
+}
+
+#MACRO {\e\x7D}
+{
+	#system {cmus-remote -k +5}
+}
+
+#MACRO {\e_}
+{
+	#system {cmus-remote -v -10%}
+}
+
+#VARIABLE         {musicChannel}  {music}
