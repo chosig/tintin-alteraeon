@@ -231,3 +231,15 @@
 		northeast
 	}
 }
+
+#MACRO {\eu}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak northwest
+	};
+	#else
+	{
+		northwest
+	}
+}
