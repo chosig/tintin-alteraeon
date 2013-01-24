@@ -81,12 +81,6 @@
 }
 {1}
 
-#ACTION {^You have lost %1 experience points so far due to deaths.$}
-{
-	#variable {lostExp} {%1}
-}
-{1}
-
 #ACTION {^You struggle desparately for air to breathe!$}
 {
 	#if {"$waterBreathing" == "true"}
@@ -102,6 +96,12 @@
 	{
 		c water breathing
 	}
+}
+{1}
+
+#ACTION {^silent_You have lost %1 experience points so far due to deaths.$}
+{
+	#variable {lostExp} {%1}
 }
 {1}
 
@@ -200,474 +200,6 @@
 		};
 		#variable {lastSoulSteal} {%1}
 	}
-}
-{5}
-
-#ACTION {^ %s  area refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {areaRefresh} {true}
-}
-{5}
-
-#ACTION {^ %s  armor%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {armor} {true}
-}
-{5}
-
-#ACTION {^ %s  bash  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bash} {true}
-}
-{5}
-
-#ACTION {^ %s  bless%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bless} {true}
-}
-{5}
-
-#ACTION {^ %s  blood sacrifice%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bloodSacrifice} {true}
-}
-{5}
-
-#ACTION {^ %s  bloodletting stab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bloodlettingStab} {true}
-}
-{5}
-
-#ACTION {^ %s  bloodmist%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {bloodmist} {true}
-}
-{5}
-
-#ACTION {^ %s  bone blade%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {boneBlade} {true}
-}
-{5}
-
-#ACTION {^ %s  bone guardian%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {boneGuardian} {true}
-}
-{5}
-
-#ACTION {^ %s  bone shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {boneShield} {true}
-}
-{5}
-
-#ACTION {^ %s  breath of life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {breathOfLife} {true}
-}
-{5}
-
-#ACTION {^ %s  burning hands%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {burningHands} {true}
-}
-{5}
-
-#ACTION {^ %s  cleave%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cleave} {true}
-}
-{5}
-
-#ACTION {^ %s  cloak of darkness%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cloakOfDarkness} {true}
-}
-{5}
-
-#ACTION {^ %s  coldfire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {coldfire} {true}
-}
-{5}
-
-#ACTION {^ %s  consume%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {consume} {true};
-	#macro {\eOS} {control all consume corpse}
-}
-{5}
-
-#ACTION {^ %s  corpsecutter%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {corpsecutter} {true}
-}
-{5}
-
-#ACTION {^ %s  cry of victory %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cryOfVictory} {true}
-}
-{5}
-
-#ACTION {^ %s  cure critical wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cureCriticalWounds} {true}
-}
-{5}
-
-#ACTION {^ %s  cure light wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cureLightWounds} {true}
-}
-{5}
-
-#ACTION {^ %s  cure serious wounds%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {cureSeriousWounds} {true}
-}
-{5}
-
-#ACTION {^ %s  demonfire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {demonfire} {true};
-	#alias {demonfire} {get $demonfireStone soulstone from $container;cast demonfire}
-}
-{5}
-
-#ACTION {^ %s  detect invisibility%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {detectInvisibility} {true}
-}
-{5}
-
-#ACTION {^ %s  dexterity%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {dexterity} {true}
-}
-{5}
-
-#ACTION {^ %s  disarm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {disarm} {true}
-}
-{5}
-
-#ACTION {^ %s  displacement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {displacement} {true}
-}
-{5}
-
-#ACTION {^ %s  dying breath%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {dyingBreath} {true}
-}
-{5}
-
-#ACTION {^ %s  faerie fire%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {faerieFire} {true}
-}
-{5}
-
-#ACTION {^ %s  faith shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {faithShield} {true}
-}
-{5}
-
-#ACTION {^ %s  feint%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {feint} {true}
-}
-{5}
-
-#ACTION {^ %s  fireball%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {fireball} {true}
-}
-{5}
-
-#ACTION {^ %s  firefield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {firefield} {true}
-}
-{5}
-
-#ACTION {^ %s  fly  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {fly} {true}
-}
-{5}
-
-#ACTION {^ %s  foulblood%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {foulBlood} {true}
-}
-{5}
-
-#ACTION {^ %s  group recall%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {groupRecall} {true};
-	#alias {,} {c group recall} {1}
-}
-{5}
-
-#ACTION {^ %s  harvest teeth  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {harvestTeeth} {true}
-}
-{5}
-
-#ACTION {^ %s  heal  %s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {heal} {true}
-}
-{5}
-
-#ACTION {^ %s  hide%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {hide} {true}
-}
-{5}
-
-#ACTION {^ %s  icebolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {icebolt} {true}
-}
-{5}
-
-#ACTION {^ %s  infravision%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {infravision} {true}
-}
-{5}
-
-#ACTION {^ %s  jab%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {jab} {true}
-}
-{5}
-
-#ACTION {^ %s  kick%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {kick} {true};
-	#alias {k} {kick}
-}
-{5}
-
-#ACTION {^ %s  knife throwing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {knifeThrowing} {true};
-	#alias {^{t|th|thr|thro|throw}$} {throw $throwWeapon;get $throwWeapon}
-}
-{5}
-
-#ACTION {^ %s  leap attack%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {leapAttack} {true}
-}
-{5}
-
-#ACTION {^ %s  lightning bolt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {lightningBolt} {true}
-}
-{5}
-
-#ACTION {^ %s  lunge%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {lunge} {true}
-}
-{5}
-
-#ACTION {^ %s  palm%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {palm} {true}
-}
-{5}
-
-#ACTION {^ %s  pick locks%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {pickLocks} {true}
-}
-{5}
-
-#ACTION {^ %s  pommel strike%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {pommelStrike} {true}
-}
-{5}
-
-#ACTION {^ %s  preservation%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {preservation} {true};
-	#alias {{pres|prese|preser|preserv|preserve}} {c preservation corpse} {9}
-}
-{5}
-
-#ACTION {^ %s  protection from evil%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {protectionFromEvil} {true}
-}
-{5}
-
-#ACTION {^ %s  rancid flesh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {rancidFlesh} {true}
-}
-{5}
-
-#ACTION {^ %s  refresh%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {refresh} {true}
-}
-{5}
-
-#ACTION {^ %s  riposte%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {riposte} {true}
-}
-{5}
-
-#ACTION {^ %s  sacred touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {sacredTouch} {true}
-}
-{5}
-
-#ACTION {^ %s  scent of death%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {scentOfDeath} {true};
-	#alias {^autoscent$} {#variable {autoscent} {true};#showme {you will now automatically try to detect near by corpses when using quick navigation keys.}};
-	#alias {^noautoscent$} {#unvariable {autoscent};#showme {You will no longer automatically search for neary by corpses when using quick navigation keys.}}
-}
-{5}
-
-#ACTION {^ %s  second wind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {secondWind} {true}
-}
-{5}
-
-#ACTION {^ %s  sense life%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {senseLife} {true}
-}
-{5}
-
-#ACTION {^ %s  shadow fiend%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {shadowFiend} {true};
-	#alias {^f$} {#if {&{position}} {getup};get deep $container;stop;summon demon fiend soulstone;a;#if {&{position}} {$position}} {1}
-}
-{5}
-
-#ACTION {^ %s  shield%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {shield} {true}
-}
-{5}
-
-#ACTION {^ %s  shocking grasp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {shockingGrasp} {true}
-}
-{5}
-
-#ACTION {^ %s  sickening touch%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {sickeningTouch} {true}
-}
-{5}
-
-#ACTION {^ %s  soulbind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {soulbind} {true}
-}
-{5}
-
-#ACTION {^ %s  soulsteal%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {soulsteal} {true}
-}
-{5}
-
-#ACTION {^ %s  stealthy movement%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {stealthyMovement} {true};
-	#alias {^stealth$} {#variable {stealth} {true};#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}};
-	#alias {^nostealth$} {#unvariable {stealth};#showme {you will no longer automatically use stealthy movement when walking with quick navigation keys.}}
-}
-{5}
-
-#ACTION {^ %s  stomp%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {stomp} {true}
-}
-{5}
-
-#ACTION {^ %s  stone skin%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {stoneSkin} {true}
-}
-{5}
-
-#ACTION {^ %s  strength%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {strength} {true}
-}
-{5}
-
-#ACTION {^ %s  taunt%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {taunt} {true}
-}
-{5}
-
-#ACTION {^ %s  trip%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {trip} {true}
-}
-{5}
-
-#ACTION {^ %s  water breathing%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {waterBreathing} {true}
-}
-{5}
-
-#ACTION {^ %s  whirlwind%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {whirlwind} {true}
-}
-{5}
-
-#ACTION {^ %s  wood woad%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {woodWoad} {true}
-}
-{5}
-
-#ACTION {^ %s  word of recall%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {wordOfRecall} {true};
-	#alias {.} {c word of recall} {1}
-}
-{5}
-
-#ACTION {^ %sidentify%s{average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}}
-{
-	#variable {identify} {true}
-}
-{5}
-
-#ACTION {^%S has restored you to full health!$}
-{
-	Add_Event %0
 }
 {5}
 
@@ -780,12 +312,6 @@
 }
 {5}
 
-#ACTION {^You enter a huge portal.$}
-{
-	play portal
-}
-{5}
-
 #ACTION {^You fail the rescue!$}
 {
 	\!res
@@ -844,16 +370,13 @@
 
 #ACTION {^You weep as you think of the %1 experience that you lost.$}
 {
-	#math {lostExp} {$lostExp + %1};
+	experience lost | grep -i you have lost | prefix silent_;
 	#if {&{groupExperience}}
 	{
 		#math {groupExperience} {$groupExperience - %1}
 	};
-	tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;
-	fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.;
-	play death;
-	#line {gag};
-	experience lost | grep -i you have lost
+	#delay {2} {tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.};
+	play death
 }
 {5}
 
@@ -882,50 +405,22 @@
 	#if {$currentHp <= $maxHp * 0.75 && $currentHp > $maxHp * 0.50 && "$lastHpAlert" != "qf"}
 	{
 		#variable {lastHpAlert} {qf};
-		#if {!&{volume} || $volume == 0}
-		{
-			#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 &> /dev/null &}
-		};
-		#else
-		{
-			#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-		}
+		#system {play -qn -V0 synth tri D5 tri F5 tri G#5 tri A5 tri C6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
 	};
 	#elseif {$currentHp <= $maxHp * 0.50 && $currentHp > $maxHp * 0.25 && "$lastHpAlert" != "bn"}
 	{
 		#variable {lastHpAlert} {bn};
-		#if {!&{volume} || $volume == 0}
-		{
-			#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 &> /dev/null &}
-		};
-		#else
-		{
-			#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-		}
+		#system {play -qn -V0 synth tri C#3 tri E3 tri A3 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
 	};
 	#elseif {$currentHp <= $maxHp * 0.25 && $currentHp > $maxHp * 0.10 && "$lastHpAlert" != "ph"}
 	{
 		#variable {lastHpAlert} {ph};
-		#if {!&{volume} || $volume == 0}
-		{
-			#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 &> /dev/null &}
-		};
-		#else
-		{
-			#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-		}
+		#system {play -qn -V0 synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
 	};
 	#elseif {$currentHp <= $maxHp * 0.10 && "$lastHpAlert" != "awful"}
 	{
 		#variable {lastHpAlert} {awful};
-		#if {!&{volume} || $volume == 0}
-		{
-			#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 &> /dev/null &}
-		};
-		#else
-		{
-			#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
-		}
+		#system {play -qn -V0 synth sq D#3 sq B3 sq C#4 sq F4 sq A4 remix - fade 0 5.5 5 gain $volume &> /dev/null &}
 	};
 	#if {%1 == %2 && %3 >= %4 - 3 && %5 == %6 && "$regenAlert" != "true"}
 	{
@@ -1019,72 +514,6 @@
 }
 {8}
 
-#ACTION {^You %1, '%2'$}
-{
-	#if {"%1" != "yell"}
-	{
-		#switch {"%1"}
-		{
-			#case {"auction"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth tri C4 tri F3 tri C3 tri F2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth tri C4 tri F3 tri C3 tri F2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#case {"music"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth pl E4 pl C4 pl A3 pl E3 pl A2 delay 0 .05 .1 .15 .2 remix - fade 0 0.5 .1 flanger norm -1 vol 0.2 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth pl E4 pl C4 pl A3 pl E3 pl A2 delay 0 .05 .1 .15 .2 remix - fade 0 0.5 .1 flanger norm -1 vol 0.2 gain $volume &> /dev/null &}
-				}
-			};
-			#case {"tell the clan"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth saw D4 pl G3 saw D3 pl G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth saw D4 pl G3 saw D3 pl G2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#case {"tell the group"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth exp B3 exp E3 exp B2 exp E2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth exp B3 exp E3 exp B2 exp E2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#default
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth pl A3 pl D3 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth pl A3 pl D3 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			}
-		}
-	}
-}
-{8}
-
 #ACTION {^You are already sound asleep!$}
 {
 	#if {&{autohelp}}
@@ -1162,72 +591,9 @@
 }
 {9}
 
-#ACTION {%1 arrives from%2portal%3}
-{
-	play portal
-}
-{9}
-
-#ACTION {%1 begins {her|his|its} climb %2ward.}
-{
-	#if {"%1" == "$groupLeader"}
-	{
-		climb %2;
-		Add_Direction %2
-	}
-}
-{9}
-
-#ACTION {%1 burps at %2.$}
-{
-	play burp
-}
-{9}
-
-#ACTION {%1 burps in your general direction.$}
-{
-	play burp
-}
-{9}
-
-#ACTION {%1 bur{ps|p}.$}
-{
-	play burp
-}
-{9}
-
 #ACTION {%1 cleaves through {its|her|his} enemies!$}
 {
 	play cleave
-}
-{9}
-
-#ACTION {%1 enters {an|a|the} %2 and disappears.$}
-{
-	#script {isPortal} {echo "%2" | grep -i portal};
-	#if {&{isPortal[1]}}
-	{
-		play portal
-	};
-	#unvariable {isPortal};
-	#if {"%1" == "$groupLeader"}
-	{
-		#if {&{position}}
-		{
-			#send {stand}
-		};
-		#regexp {%2} {{.*} %*} {enter &2;Add_Direction &2};
-		#if {&{position}}
-		{
-			$position
-		}
-	}
-}
-{9}
-
-#ACTION {%1 farts, and is engulfed in a swirling green stench cloud.$}
-{
-	play fart
 }
 {9}
 
@@ -1261,18 +627,6 @@
 #ACTION {%1 spell rips up out of the ground and explodes in a harmless shower of frost.$}
 {
 	play frostbite-harmless
-}
-{9}
-
-#ACTION {%1 taunts %2, who suddenly attacks!$}
-{
-	play taunt
-}
-{9}
-
-#ACTION {%1 {fart|farts uncerimoniously} in %2 direction.$}
-{
-	play fart
 }
 {9}
 
@@ -1310,40 +664,19 @@
 
 #ACTION {%1 {traces|trace} fiery glowing symbols in the {air before you|air}...$}
 {
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {%1 {traces|trace} symbols in the air, which briefly spark and crackle...$}
 {
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol 0.1 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
 {
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
 }
 {9}
 
@@ -1355,94 +688,10 @@
 
 #ACTION {^ %1You are now level %2 %3, with %4 total levels!$}
 {
+	show stats | prefix silent_;
+	show clev | prefix silent_;
 	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon;
 	fbpost $name just gained the official rank of level %2 #%3 and now has %4 total levels!
-}
-{9}
-
-#ACTION {^!!SOUND(%1.wa%2)$}
-{
-	#switch {"%1"}
-	{
-		#default
-		{
-			#if {"%1" != "Off U=http://www.alteraeon.com/soundpack/wav_v1/"}
-			{
-				#system {if [ ! -f "sounds/%1.wav" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed "s/.*\\/\([^\\/]*\)$/\\1/");mkdir -p "sounds/$DIR";wget -qP "sounds/$DIR" "http://alteraeon.com/soundpack/wav_v1/%1.wav";fi};
-				play %1
-			}
-		}
-	}
-}
-{9}
-
-#ACTION {^%S %2{n|p|s|u}, '%3'$}
-{
-	#if {"%1" != "{A|An|The|You}" && "%1" != "Replayin_{.*}" && "%2" != "yell" && "%2" != "{.*}utters the word"}
-	{
-		#switch {"%2"}
-		{
-			#case {"auction"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth tri F2 tri C3 tri F3 tri C4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth tri F2 tri C3 tri F3 tri C4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#case {"music"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth pl A2 pl E3 pl A3 pl C4 pl E4 delay 0 .05 .1 .15 .2 remix - fade 0 0.5 .1 flanger norm -1 vol 0.2 &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth pl A2 pl E3 pl A3 pl C4 pl E4 delay 0 .05 .1 .15 .2 remix - fade 0 0.5 .1 flanger norm -1 vol 0.2 gain $volume &> /dev/null &}
-				}
-			};
-			#case {"tells the cla"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth saw G2 pl D3 saw G3 pl D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth saw G2 pl D3 saw G3 pl D4 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#case {"tells the grou"}
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth exp E2 exp B2 exp E3 exp B3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth exp E2 exp B2 exp E3 exp B3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			};
-			#default
-			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth pl D2 pl A2 pl D3 pl A3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth pl D2 pl A2 pl D3 pl A3 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
-			}
-		};
-		#if {&{speech}}
-		{
-			#system {spd-say -S -P important -r $speechRate "%0"}
-		}
-	}
 }
 {9}
 
@@ -1452,12 +701,6 @@
 	{
 		sleep
 	}
-}
-{9}
-
-#ACTION {^%S has given you a gift!$}
-{
-	Add_Event %0
 }
 {9}
 
@@ -1483,51 +726,6 @@
 {
 	tweet $name was resurrected by %1! #AlterAeon;
 	fbpost $name was resurrected by %1!
-}
-{9}
-
-#ACTION {^(%1 is trying to get your attention)$}
-{
-	#if {!&{replaying}}
-	{
-		#delay {0.5} {play attention}
-	}
-}
-{9}
-
-#ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
-{
-	#send {waypoint %1};
-	waypoint $waypoint
-}
-{9}
-
-#ACTION {^(friend) %1 has entered the game.$}
-{
-	#variable {friendNameEnter} {%1};
-	#if {!&{replaying}}
-	{
-		play friend-enter
-	}
-}
-{9}
-
-#ACTION {^(friend) %1 has left the game.$}
-{
-	#if {"%1" == "$friendNameEnter"}
-	{
-		#unvariable {friendNameEnter}
-	};
-	#if {!&{replaying}}
-	{
-		play friend-leave
-	}
-}
-{9}
-
-#ACTION {^(friend) %S was kille%*}
-{
-	play friend-death
 }
 {9}
 
@@ -1623,30 +821,13 @@
 
 #ACTION {^A white line of frost zips across the ground away from %1 staff%2.$}
 {
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {^After a big fight, %1 {reels|reel} in %2.$}
 {
 	play catch-fish
-}
-{9}
-
-#ACTION {^Alas, you cannot go that way.$}
-{
-	play bump;
-	#if {"$pathing" == "true"}
-	{
-		#path {del}
-	}
 }
 {9}
 
@@ -1671,28 +852,14 @@
 #ACTION {^REBOOT IMPENDING, EVERYONE PLEASE RECALL AND SAVE.$}
 {
 	#variable {rebootTime} {1};
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {^REBOOT IN APPROXIMATELY %1 MINUTES, FYI.$}
 {
 	#variable {rebootTime} {%1};
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
 }
 {9}
 
@@ -1834,18 +1001,6 @@
 }
 {9}
 
-#ACTION {^You burp in the general direction of %1.}
-{
-	play burp
-}
-{9}
-
-#ACTION {^You can now learn the skill '%1'!$}
-{
-	Add_Event %0
-}
-{9}
-
 #ACTION {^You can't rest while fighting!$}
 {
 	#unvariable {position}
@@ -1870,18 +1025,6 @@
 #ACTION {^You end up with a stinky, nasty mess, but nothing useful.}
 {
 	empty $brewContainer
-}
-{9}
-
-#ACTION {^You fart then look around innocently.$}
-{
-	play fart
-}
-{9}
-
-#ACTION {^You fart, and are totally amazed at the resulting smell.$}
-{
-	play fart
 }
 {9}
 
@@ -1941,22 +1084,9 @@
 }
 {9}
 
-#ACTION {^You gain favor in the eyes of %S!$}
-{
-	Add_Event %0
-}
-{9}
-
 #ACTION {^You guide the spell directly toward %1!$}
 {
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
-	}
+	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
 }
 {9}
 
@@ -2014,12 +1144,6 @@
 	{
 		junk bile
 	}
-}
-{9}
-
-#ACTION {^You smell something foul. Ok, who farted?$}
-{
-	play fart
 }
 {9}
 
@@ -2232,14 +1356,7 @@
 		{
 			#math {enemyConditionTone} {%1 + 220}
 		};
-		#if {!&{volume} || $volume == 0}
-		{
-			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 &> /dev/null &}
-		};
-		#else
-		{
-			#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 gain $volume &> /dev/null &}
-		}
+		#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 gain $volume &> /dev/null &}
 	}
 }
 {9}
@@ -2475,14 +1592,7 @@
 		{
 			#default
 			{
-				#if {!&{volume} || $volume == 0}
-				{
-					#system {play -qn -V0 synth pl A2 pl D2 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser &> /dev/null &}
-				};
-				#else
-				{
-					#system {play -qn -V0 synth pl A2 pl D2 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
-				}
+				#system {play -qn -V0 synth pl A2 pl D2 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
 			}
 		}
 	}
@@ -2606,39 +1716,6 @@
 }
 {5}
 
-#ALIAS {^musicurl %S$}
-{
-	#if {"%1" == "jango"}
-	{
-		#variable {musicURL} {http://www.jango.com/music/$artist?l=0};
-		#variable {musicProvider} {Jango};
-		#showme {Music search results now provided by Jango.}
-	};
-	#elseif {"%1" == "last.fm"}
-	{
-		#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};
-		#variable {musicProvider} {Last.fm};
-		#showme {Music search results now provided by Last.fm.}
-	};
-	#elseif {"%1" == "pandora"}
-	{
-		#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};
-		#variable {musicProvider} {Pandora};
-		#showme {Music search results now provided by Pandora.}
-	};
-	#elseif {"%1" == "youtube"}
-	{
-		#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};
-		#variable {musicProvider} {Youtube};
-		#showme {Music search results now provided by Youtube.}
-	};
-	#else
-	{
-		#showme {Valid choices are jango, last.fm, pandora, or youtube}
-	}
-}
-{5}
-
 #ALIAS {^nocspam$}
 {
 	#class {cspam} {kill};
@@ -2753,22 +1830,6 @@
 }
 {5}
 
-#ALIAS {ambPlay %1}
-{
-	#script {ambFile} {shuf -n 1 -e $(ls sounds/ambiance/%1/*)};
-	#math {lChannel} {1d5};
-	#math {rChannel} {1d5};
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -q ${ambFile[1]} remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -q ${ambFile[1]} gain $volume remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
-	}
-}
-{5}
-
 #ALIAS {autobone}
 {
 	#variable {autowoad} {false};
@@ -2838,33 +1899,6 @@
 	#variable {autoclay} {false};
 	#variable {autobone} {false};
 	#showme {You will now attempt to make a new wood woad automatically.}
-}
-{5}
-
-#ALIAS {display_channel %1 %2 %3}
-{
-	#if {%2 <= 0}
-	{
-		replay %3 | head -2
-	};
-	#elseif {%2 > 0 && %2 < 4 || %2 == 7}
-	{
-		replay %1 %3 | head -2
-	};
-	#elseif {%2 == 4}
-	{
-		#showme {Replayin_ ${eventList[%3]}}
-	};
-	#elseif {%2 == 5}
-	{
-		replay | grep -i (friend) | tail %3 | head -1
-	};
-	#else
-	{
-		replay | grep -i the group, ' | tail %3 | head -1
-	};
-	#variable {replaying} {true};
-	#delay {2} {#unvariable {replaying}}
 }
 {5}
 
@@ -3086,13 +2120,6 @@
 }
 {8}
 
-#ALIAS {^{way|wayp|waypo|waypoi|waypoin|waypoint} %1}
-{
-	#variable {waypoint} {%1};
-	\waypoint %1
-}
-{8}
-
 #ALIAS {{cfb|cf|cfi|cfir|cfire|cfireb|cfireba|cfirebal|cfireball} %1}
 {
 	#if {"$fireball" == "true"}
@@ -3206,18 +2233,6 @@
 }
 {9}
 
-#ALIAS {^Add_Event %1}
-{
-	#list {eventList} {insert} {1} {%1};
-	#list {eventList} {size} {i};
-	#if {$i >= 11}
-	{
-		#list {eventList} {delete} {11}
-	};
-	#unvariable {i}
-}
-{9}
-
 #ALIAS {^Clear_Variables$}
 {
 	#unvariable {autokill};
@@ -3236,6 +2251,7 @@
 	#unvariable {justLeveled};
 	#unvariable {lastReceivedExp};
 	#unvariable {lastSpell};
+	#unvariable {lostExp};
 	#unvariable {maxHp};
 	#unvariable {maxMana};
 	#unvariable {maxMv};
@@ -3243,6 +2259,7 @@
 	#unvariable {mvRegenTime};
 	#unvariable {mobRepop};
 	#unvariable {oldExp};
+	#unvariable {playerSex};
 	#unvariable {recast};
 	#unvariable {refreshed};
 	#unvariable {regenAlert};
@@ -3483,12 +2500,6 @@
 #ALIAS {^fbrew %1}
 {
 	brew potion focus %1
-}
-{9}
-
-#ALIAS {^fp %1}
-{
-	friend post %1
 }
 {9}
 
@@ -4065,7 +3076,6 @@
 	#cr;
 	#cr;
 	#cr;
-	experience lost | grep -i you have lost;
 	whoami | grep -i tall.;
 	skills;
 	#cr;
@@ -4207,19 +3217,6 @@
 }
 {9}
 
-#ALIAS {bgmPlay %1}
-{
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" gain $volume &> /dev/null &}
-	}
-}
-{9}
-
 #ALIAS {bgmusic}
 {
 	#variable {bgmusic} {true};
@@ -4317,32 +3314,6 @@
 #ALIAS {p %1}
 {
 	pickp %1
-}
-{9}
-
-#ALIAS {play %1 %2}
-{
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
-	}
-}
-{9}
-
-#ALIAS {play %S}
-{
-	#if {!&{volume} || $volume == 0}
-	{
-		#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" &> /dev/null &}
-	};
-	#else
-	{
-		#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
-	}
 }
 {9}
 
@@ -4468,6 +3439,7 @@
 
 #EVENT {PROGRAM START}
 {
+	#script {for i in modules/* ; do echo "#read $i";done};
 	#read {name.tin}
 }
 
@@ -4530,194 +3502,6 @@
 #GAG              {^mobrepop_%*}
 #GAG              {^silent_%*}
 #GAG              {^{A|An|The} %1 twitches and starts fidgeting.$}
-#MACRO {\e+}
-{
-	#system {cmus-remote -v +10%}
-}
-
-#MACRO {\e,}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak south
-	};
-	#else
-	{
-		south
-	}
-}
-
-#MACRO {\e-}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
-	{
-		#variable {channelBufferIndex} {0}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex - 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
-#MACRO {\e.}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak southeast
-	};
-	#else
-	{
-		southeast
-	}
-}
-
-#MACRO {\e0}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 10
-}
-
-#MACRO {\e1}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 1
-}
-
-#MACRO {\e2}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 2
-}
-
-#MACRO {\e3}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 3
-}
-
-#MACRO {\e4}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 4
-}
-
-#MACRO {\e5}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 5
-}
-
-#MACRO {\e6}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 6
-}
-
-#MACRO {\e7}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 7
-}
-
-#MACRO {\e8}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 8
-}
-
-#MACRO {\e9}
-{
-	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 9
-}
-
-#MACRO {\e<}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak down
-	};
-	#else
-	{
-		down
-	}
-}
-
-#MACRO {\e=}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 7}
-	{
-		#variable {channelBufferIndex} {7}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex + 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
-#MACRO {\eB}
-{
-	#system {cmus-remote -n}
-}
-
-#MACRO {\eC}
-{
-	#system {cmus-remote -u}
-}
-
-#MACRO {\eG}
-{
-	#if {&{friendNameEnter}}
-	{
-		#script {echo "friend post $(shuf -n 1 -e "Hello" "Greetings" "Hey" "Hi" "Howdy") $friendNameEnter!"}
-	};
-	#else
-	{
-		#showme {You have no one to greet.}
-	}
-}
-
-#MACRO {\eI}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak up
-	};
-	#else
-	{
-		up
-	}
-}
-
-#MACRO {\eJ}
-{
-	#if {"$pathLoaded" == "true"}
-	{
-		#path {walk} {backward}
-	};
-	#else
-	{
-		#showme {Path not loaded.}
-	}
-}
-
-#MACRO {\eL}
-{
-	#if {"$pathLoaded" == "true"}
-	{
-		#path {walk} {forward}
-	};
-	#else
-	{
-		#showme {Path not loaded.}
-	}
-}
-
-#MACRO {\eM}
-{
-	#if {!&{musicURL}}
-	{
-		#variable {musicURL} {http://www.last.fm/search?q=$artist%%2B$title}
-	};
-	#if {!&{musicProvider}}
-	{
-		#variable {musicProvider} {Last.fm}
-	};
-	#script {echo "$musicChannel *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
-}
-
 #MACRO {\eOQ}
 {
 	control $lastRaisedMinion protect
@@ -4728,186 +3512,10 @@
 	control $lastRaisedMinion assist
 }
 
-#MACRO {\eR}
-{
-	#system {cmus-remote -R};
-	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
-}
-
-#MACRO {\eS}
-{
-	#system {cmus-remote -S};
-	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
-}
-
-#MACRO {\eU}
-{
-	#script {echo "#showme {Playing: $(scripts/music.sh false)}"}
-}
-
-#MACRO {\eV}
-{
-	#system {cmus-remote -s}
-}
-
-#MACRO {\eX}
-{
-	#system {cmus-remote -p}
-}
-
-#MACRO {\eZ}
-{
-	#system {cmus-remote -r}
-}
-
-#MACRO {\e[18~}
-{
-	#if {$volume <= -40}
-	{
-		#variable {volume} {-40}
-	};
-	#else
-	{
-		#math {volume} {$volume - 2}
-	};
-	play new-volume
-}
-
-#MACRO {\e[19~}
-{
-	#if {$volume >= 0}
-	{
-		#variable {volume} {0}
-	};
-	#else
-	{
-		#math {volume} {$volume + 2}
-	};
-	play new-volume
-}
-
-#MACRO {\e[1;3C}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex >= 6}
-	{
-		#variable {channelBufferIndex} {6}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex + 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
-#MACRO {\e[1;3D}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
-	{
-		#variable {channelBufferIndex} {0}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex - 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
-}
-
 #MACRO {\e\}
 {
 	get $battleScroll $container;
 	use $battleScroll
-}
-
-#MACRO {\e\x7B}
-{
-	#system {cmus-remote -k -5}
-}
-
-#MACRO {\e\x7D}
-{
-	#system {cmus-remote -k +5}
-}
-
-#MACRO {\e_}
-{
-	#system {cmus-remote -v -10%}
-}
-
-#MACRO {\ei}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak north
-	};
-	#else
-	{
-		north
-	}
-}
-
-#MACRO {\ej}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak west
-	};
-	#else
-	{
-		west
-	}
-}
-
-#MACRO {\ek}
-{
-	enter portal
-}
-
-#MACRO {\el}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak east
-	};
-	#else
-	{
-		east
-	}
-}
-
-#MACRO {\em}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak southwest
-	};
-	#else
-	{
-		southwest
-	}
-}
-
-#MACRO {\eo}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak northeast
-	};
-	#else
-	{
-		northeast
-	}
-}
-
-#MACRO {\eu}
-{
-	#if {"$stealth" == "true"}
-	{
-		sneak northwest
-	};
-	#else
-	{
-		northwest
-	}
 }
 
 #PATHDIR          {d}  {u}  {32}
@@ -4929,9 +3537,6 @@
 #SUBSTITUTE       {^%S gives you 1 gold coins.$}          {%1 gives you 1 gold coin.}  {5}
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
-#VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{events}{5}{friends}{6}{grouptells}{7}{tells}}
 #VARIABLE         {demonfireStone}  {pale blue}
-#VARIABLE         {eventList}  {}
 #VARIABLE         {lastHpAlert}  {}
-#VARIABLE         {musicChannel}  {music}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}

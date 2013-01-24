@@ -67,6 +67,34 @@
 }
 {8}
 
+#ALIAS {^nostealth$}
+{
+	#if {"$stealth" == "true"}
+	{
+		#unvariable {stealth};
+		#showme {you will no longer automatically use stealthy movement when walking with quick navigation keys.}
+	};
+	#else
+	{
+		#showme {You are not currently using stealthy movement.}
+	}
+}
+{9}
+
+#ALIAS {^stealth$}
+{
+	#if {"$stealthyMovement" == "true"}
+	{
+		#variable {stealth} {true};
+		#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}
+	};
+	#else
+	{
+		#showme {This setting requires the stealthy movement skill.}
+	}
+}
+{9}
+
 #MACRO {\e,}
 {
 	#if {"$stealth" == "true"}

@@ -5,7 +5,6 @@
 #VARIABLE         {boneMaterial}  {boneguardian}
 #VARIABLE         {brewContainer}  {bowl}
 #VARIABLE         {container}  {bag}
-#VARIABLE         {fighting}  {kxwt_fighting -1}
 #VARIABLE         {harmSpell}  {cause light wounds}
 #VARIABLE         {healSpell}  {cure light wounds}
 #VARIABLE         {metalMaterial}  {metalconstruct}
