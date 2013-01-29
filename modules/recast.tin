@@ -1,0 +1,113 @@
+#ACTION {^You barely remember anything about that spell, but attempt to cast it anyway.$}
+{
+	#unvariable {lastSpell}
+}
+{1}
+
+#ACTION {^You fail to {channel|cast} the spel%1.$}
+{
+	#if {!&{recast}}
+	{
+		#if {"$autorecast" == "true"}
+		{
+			#variable {recast} {$lastSpell;}
+		}
+	};
+	#else
+	{
+		#if {"$autorecast" == "true"}
+		{
+			#variable {recast} {$recast $lastSpell;}
+		}
+	};
+	#if {&{lastSpell} && "$autorecast" == "true"}
+	{
+		recast
+	}
+}
+{2}
+
+#ACTION {^You can't seem to wake up!$}
+{
+	#unvariable {lastSpell}
+}
+{5}
+
+#ACTION {^You are asleep... ZZZZZZZZ *snork* ZZZZZ...}
+{
+	getup;
+	$lastSpell
+}
+{9}
+
+#ACTION {^silent_Missing '%1'.$}
+{
+	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8 && !&{inBattle}}
+	{
+		c %1
+	}
+}
+{9}
+
+#ALIAS {^{cc|cca|ccas|ccast|channelc|channelca|channelcas|channelcast} %1}
+{
+	#variable {lastSpell} {%0};
+	\channelcast %1
+}
+{1}
+
+#ALIAS {{c|ca|cas|cast} %1}
+{
+	#variable {lastSpell} {%0};
+	#if {&{position}}
+	{
+		getup;
+		#send {cast %1};
+		$position
+	};
+	#else
+	{
+		#send {cast %1}
+	}
+}
+{1}
+
+#ALIAS {^Add_Cast %1}
+{
+	#if {!&{combat}}
+	{
+		#variable {combat} {c %1}
+	};
+	#else
+	{
+		#variable {combat} {$combat c %1}
+	}
+}
+{9}
+
+#ALIAS {^recast}
+{
+	#if {&{recast}}
+	{
+		#foreach {$recast} {spell}
+		{
+			$spell
+		};
+		#unvariable {recast}
+	}
+}
+{9}
+
+#ALIAS {autorecast}
+{
+	#variable {autorecast} {true};
+	#showme {Some spells will now automatically recast when they drop}
+}
+{9}
+
+#ALIAS {noautorecast}
+{
+	#unvariable {autorecast};
+	#showme {Spells will no longer automatically recast.}
+}
+{9}
