@@ -1,0 +1,11 @@
+#ALIAS {^{da|dat|date}$}
+{
+	#system {date +'%I:%M%p%n%A, %B %d, %Y'}
+}
+{9}
+
+#ALIAS {^{ft|fti|ftim|ftime|flit|flite|flite_|flite_ti|flite_tim|flite_time}$}
+{
+	#system {flite_time $(date +'%H:%M')&}
+}
+{9}

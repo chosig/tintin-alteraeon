@@ -1,0 +1,245 @@
+#ACTION {^You enter a huge portal.$}
+{
+	play portal
+}
+{5}
+
+#ACTION {%1 arrives from%2portal%3}
+{
+	play portal
+}
+{9}
+
+#ACTION {%1 begins {her|his|its} climb %2ward.}
+{
+	#if {"%1" == "$groupLeader"}
+	{
+		climb %2;
+		Add_Direction %2
+	}
+}
+{9}
+
+#ACTION {%1 enters {an|a|the} %2 and disappears.$}
+{
+	#script {isPortal} {echo "%2" | grep -i portal};
+	#if {&{isPortal[1]}}
+	{
+		play portal
+	};
+	#unvariable {isPortal};
+	#if {"%1" == "$groupLeader"}
+	{
+		#if {&{position}}
+		{
+			#send {stand}
+		};
+		#regexp {%2} {{.*} %*} {enter &2;Add_Direction &2};
+		#if {&{position}}
+		{
+			$position
+		}
+	}
+}
+{9}
+
+#ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
+{
+	#send {waypoint %1};
+	waypoint $waypoint
+}
+{9}
+
+#ACTION {^Alas, you cannot go that way.$}
+{
+	play bump;
+	#if {"$pathing" == "true"}
+	{
+		#path {del}
+	}
+}
+{9}
+
+#ALIAS {^{way|wayp|waypo|waypoi|waypoin|waypoint} %1}
+{
+	#variable {waypoint} {%1};
+	\waypoint %1
+}
+{8}
+
+#ALIAS {^nostealth$}
+{
+	#if {"$stealth" == "true"}
+	{
+		#unvariable {stealth};
+		#showme {you will no longer automatically use stealthy movement when walking with quick navigation keys.}
+	};
+	#else
+	{
+		#showme {You are not currently using stealthy movement.}
+	}
+}
+{9}
+
+#ALIAS {^stealth$}
+{
+	#if {"$stealthyMovement" == "true"}
+	{
+		#variable {stealth} {true};
+		#showme {you will now automatically use stealthy movement when walking with quick navigation keys.}
+	};
+	#else
+	{
+		#showme {This setting requires the stealthy movement skill.}
+	}
+}
+{9}
+
+#MACRO {\e,}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak south
+	};
+	#else
+	{
+		south
+	}
+}
+
+#MACRO {\e.}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak southeast
+	};
+	#else
+	{
+		southeast
+	}
+}
+
+#MACRO {\e<}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak down
+	};
+	#else
+	{
+		down
+	}
+}
+
+#MACRO {\eI}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak up
+	};
+	#else
+	{
+		up
+	}
+}
+
+#MACRO {\eJ}
+{
+	#if {"$pathLoaded" == "true"}
+	{
+		#path {walk} {backward}
+	};
+	#else
+	{
+		#showme {Path not loaded.}
+	}
+}
+
+#MACRO {\eL}
+{
+	#if {"$pathLoaded" == "true"}
+	{
+		#path {walk} {forward}
+	};
+	#else
+	{
+		#showme {Path not loaded.}
+	}
+}
+
+#MACRO {\ei}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak north
+	};
+	#else
+	{
+		north
+	}
+}
+
+#MACRO {\ej}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak west
+	};
+	#else
+	{
+		west
+	}
+}
+
+#MACRO {\ek}
+{
+	enter portal
+}
+
+#MACRO {\el}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak east
+	};
+	#else
+	{
+		east
+	}
+}
+
+#MACRO {\em}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak southwest
+	};
+	#else
+	{
+		southwest
+	}
+}
+
+#MACRO {\eo}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak northeast
+	};
+	#else
+	{
+		northeast
+	}
+}
+
+#MACRO {\eu}
+{
+	#if {"$stealth" == "true"}
+	{
+		sneak northwest
+	};
+	#else
+	{
+		northwest
+	}
+}

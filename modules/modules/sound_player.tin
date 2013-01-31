@@ -1,0 +1,76 @@
+#alias {^synth_play %1}
+{
+#system {play -qV0 %1 gain $volume&}
+}
+{9}
+
+#ACTION {^!!SOUND(%1.wa%2)$}
+{
+	#switch {"%1"}
+	{
+		#default
+		{
+			#if {"%1" != "Off U=http://www.alteraeon.com/soundpack/wav_v1/"}
+			{
+				#system {if [ ! -f "sounds/%1.wav" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed "s/.*\\/\([^\\/]*\)$/\\1/");mkdir -p "sounds/$DIR";wget -qP "sounds/$DIR" "http://alteraeon.com/soundpack/wav_v1/%1.wav";fi};
+				play %1
+			}
+		}
+	}
+}
+{9}
+
+#ALIAS {ambPlay %1}
+{
+	#script {ambFile} {shuf -n 1 -e $(ls sounds/ambiance/%1/*)};
+	#math {lChannel} {1d5};
+	#math {rChannel} {1d5};
+	#system {play -q ${ambFile[1]} gain $volume remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
+}
+{5}
+
+#ALIAS {bgmPlay %1}
+{
+	#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" gain $volume &> /dev/null &}
+}
+{9}
+
+#ALIAS {play %1 %2}
+{
+	#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
+}
+{9}
+
+#ALIAS {play %S}
+{
+	#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
+}
+{9}
+
+#MACRO {\e[18~}
+{
+	#if {$volume <= -40}
+	{
+		#variable {volume} {-40}
+	};
+	#else
+	{
+		#math {volume} {$volume - 2}
+	};
+	synth_play $newVolumeSound
+}
+
+#MACRO {\e[19~}
+{
+	#if {$volume >= 0}
+	{
+		#variable {volume} {0}
+	};
+	#else
+	{
+		#math {volume} {$volume + 2}
+	};
+	synth_play $newVolumeSound
+}
+
+#VARIABLE         {volume}  {0}
