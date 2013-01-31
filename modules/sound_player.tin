@@ -1,3 +1,9 @@
+#alias {^synth_play %1}
+{
+#system {play -qV0 %1 gain $volume&}
+}
+{9}
+
 #ACTION {^!!SOUND(%1.wa%2)$}
 {
 	#switch {"%1"}
@@ -51,7 +57,7 @@
 	{
 		#math {volume} {$volume - 2}
 	};
-	play new-volume
+	synth_play $newVolumeSound
 }
 
 #MACRO {\e[19~}
@@ -64,7 +70,7 @@
 	{
 		#math {volume} {$volume + 2}
 	};
-	play new-volume
+	synth_play $newVolumeSound
 }
 
 #VARIABLE         {volume}  {0}
