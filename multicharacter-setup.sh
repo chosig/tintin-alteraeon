@@ -46,19 +46,19 @@ create_character()
         exit 1
     fi
     if [ -d "modules" ] ; then
-        ln -s $(pwd)/modules/ $characterPath/
+        ln -s $(pwd)/modules/ $characterPath/modules
      else
         echo "Error! Missing modules directory. Exiting."
         exit 1
     fi
     if [ -d "scripts" ] ; then
-        ln -s $(pwd)/scripts/ $characterPath/
+        ln -s $(pwd)/scripts/ $characterPath/scripts
      else
         echo "Error! Missing scripts directory. Exiting."
         exit 1
     fi
     if [ -d "sounds" ] ; then
-        ln -s $(pwd)/sounds/ $characterPath/
+        ln -s $(pwd)/sounds/ $characterPath/sounds
      else
         echo "Error! Missing sounds directory. Exiting."
         exit 1
