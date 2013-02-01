@@ -1,31 +1,42 @@
-#action {^setcast_{New v|V}ariable {changed|set} to '%3'.$}
+#ACTION {^You barely remember anything about that spell, but attempt to cast it anyway.$}
 {
-#variable {recast} {%3}
+	#unvariable {lastSpell}
 }
 {1}
 
-#ACTION {^You barely remember anything about that spell, but attempt to cast it anyway.$}
-{
-	#variable {recast} nocast
-}
-{2}
-
 #ACTION {^You fail to {channel|cast} the spel%1.$}
 {
-#if {"$autorecast" == "true" && "$recast" != "nocast"} {$recast}
+	#if {!&{recast}}
+	{
+		#if {"$autorecast" == "true"}
+		{
+			#variable {recast} {$lastSpell;}
+		}
+	};
+	#else
+	{
+		#if {"$autorecast" == "true"}
+		{
+			#variable {recast} {$recast $lastSpell;}
+		}
+	};
+	#if {&{lastSpell} && "$autorecast" == "true"}
+	{
+		recast
+	}
 }
 {2}
 
 #ACTION {^You can't seem to wake up!$}
 {
-	#variable {recast} {nocast}
+	#unvariable {lastSpell}
 }
-{2}
+{5}
 
 #ACTION {^You are asleep... ZZZZZZZZ *snork* ZZZZZ...}
 {
 	getup;
-	$recast
+	$lastSpell
 }
 {9}
 
@@ -40,14 +51,14 @@
 
 #ALIAS {^{cc|cca|ccas|ccast|channelc|channelca|channelcas|channelcast} %1}
 {
-	variable cast %0 | prefix setcast_;
+	#variable {lastSpell} {%0};
 	\channelcast %1
 }
 {1}
 
 #ALIAS {{c|ca|cas|cast} %1}
 {
-	variable cast %0 | prefix setcast_;
+	#variable {lastSpell} {%0};
 	#if {&{position}}
 	{
 		getup;
@@ -74,6 +85,19 @@
 }
 {9}
 
+#ALIAS {^recast}
+{
+	#if {&{recast}}
+	{
+		#foreach {$recast} {spell}
+		{
+			$spell
+		};
+		#unvariable {recast}
+	}
+}
+{9}
+
 #ALIAS {autorecast}
 {
 	#variable {autorecast} {true};
@@ -87,5 +111,3 @@
 	#showme {Spells will no longer automatically recast.}
 }
 {9}
-#gag {setcast_%*}
-#variable {recast} {}
