@@ -69,12 +69,6 @@
 }
 {1}
 
-#ACTION {^You barely remember anything about that spell, but attempt to cast it anyway.$}
-{
-	#unvariable {lastSpell}
-}
-{1}
-
 #ACTION {^You fail the rescue!}
 {
 	\!res
@@ -104,29 +98,6 @@
 	#variable {lostExp} {%1}
 }
 {1}
-
-#ACTION {^You fail to {channel|cast} the spel%1.$}
-{
-	#if {!&{recast}}
-	{
-		#if {"$autorecast" == "true"}
-		{
-			#variable {recast} {$lastSpell;}
-		}
-	};
-	#else
-	{
-		#if {"$autorecast" == "true"}
-		{
-			#variable {recast} {$recast $lastSpell;}
-		}
-	};
-	#if {&{lastSpell} && "$autorecast" == "true"}
-	{
-		recast
-	}
-}
-{2}
 
 #ACTION {^A clay man cracks and crumbles, becoming a pile of dust and dirt.$}
 {
@@ -292,12 +263,6 @@
 }
 {5}
 
-#ACTION {^You can't seem to wake up!$}
-{
-	#unvariable {lastSpell}
-}
-{5}
-
 #ACTION {^You do your best to explain to %1 that it was an honest mistake.$}
 {
 	#script {i} {echo "%1" | rev | cut -d " " -f 1 | rev};
@@ -351,13 +316,6 @@
 #ACTION {^You hear the loud -clang- *CLANG* of a hammer on anvil to the north.$}
 {
 	play hammer-on-anvil
-}
-{5}
-
-#ACTION {^You spend one practice to learn %1 (%2 percent gained).$}
-{
-	spell %1;
-	skill %1
 }
 {5}
 
@@ -965,13 +923,6 @@
 }
 {9}
 
-#ACTION {^You are asleep... ZZZZZZZZ *snork* ZZZZZ...}
-{
-	getup;
-	$lastSpell
-}
-{9}
-
 #ACTION {^You are awakened by %1.$}
 {
 	#unvariable {position}
@@ -1116,13 +1067,6 @@
 	{
 		junk bile
 	}
-}
-{9}
-
-#ACTION {^You practice %1(%2 percent gained).$}
-{
-	spell %1;
-	skill %1
 }
 {9}
 
@@ -1470,15 +1414,6 @@
 }
 {9}
 
-#ACTION {^silent_Missing '%1'.$}
-{
-	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8 && !&{inBattle}}
-	{
-		c %1
-	}
-}
-{9}
-
 #ACTION {^silent_You are casting at level %1 mage, level %2 cleric, level %3 necromancer%*}
 {
 	#if {&{mageClev} && $mageClev != %1}
@@ -1592,7 +1527,7 @@
 		{
 			#default
 			{
-				#system {play -qn -V0 synth pl A2 pl D2 pl A2 pl D2 delay 0 0 .2 .2 remix - fade 0 1.5 0.7 phaser gain $volume &> /dev/null &}
+				synth_play $broadcastSound
 			}
 		}
 	}
@@ -1610,13 +1545,6 @@
 	skills | grep -i %1
 }
 {(}
-
-#ALIAS {^{cc|cca|ccas|ccast|channelc|channelca|channelcas|channelcast} %1}
-{
-	#variable {lastSpell} {%0};
-	\channelcast %1
-}
-{1}
 
 #ALIAS {^{fl|fle|flee}$}
 {
@@ -1647,22 +1575,6 @@
 		#variable {healSpell} {cure light wounds}
 	};
 	c $healSpell
-}
-{1}
-
-#ALIAS {{c|ca|cas|cast} %1}
-{
-	#variable {lastSpell} {%0};
-	#if {&{position}}
-	{
-		getup;
-		#send {cast %1};
-		$position
-	};
-	#else
-	{
-		#send {cast %1}
-	}
 }
 {1}
 
@@ -2220,19 +2132,6 @@
 }
 {9}
 
-#ALIAS {^Add_Cast %1}
-{
-	#if {!&{combat}}
-	{
-		#variable {combat} {c %1}
-	};
-	#else
-	{
-		#variable {combat} {$combat c %1}
-	}
-}
-{9}
-
 #ALIAS {^Clear_Variables$}
 {
 	#unvariable {autokill};
@@ -2513,10 +2412,6 @@
 	{
 		#send {get %1 %2}
 	};
-	#if {&{inBattle}}
-	{
-		#unvariable {inBattle}
-	}
 }
 {9}
 
@@ -2530,10 +2425,6 @@
 	{
 		#send {get %1}
 	};
-	#if {&{inBattle}}
-	{
-		#unvariable {inBattle}
-	}
 }
 {9}
 
@@ -2778,19 +2669,6 @@
 	#variable {personalFile} {%1};
 	#class {personal} {read} {$personalFile};
 	#showme {loading $personalFile}
-}
-{9}
-
-#ALIAS {^recast}
-{
-	#if {&{recast}}
-	{
-		#foreach {$recast} {spell}
-		{
-			$spell
-		};
-		#unvariable {recast}
-	}
 }
 {9}
 
@@ -3169,13 +3047,6 @@
 }
 {9}
 
-#ALIAS {autorecast}
-{
-	#variable {autorecast} {true};
-	#showme {Some spells will now automatically recast when they drop}
-}
-{9}
-
 #ALIAS {b %1}
 {
 	#if {"$faerieFire" == "true"}
@@ -3281,13 +3152,6 @@
 }
 {9}
 
-#ALIAS {noautorecast}
-{
-	#unvariable {autorecast};
-	#showme {Spells will no longer automatically recast.}
-}
-{9}
-
 #ALIAS {nobgmusic}
 {
 	#unvariable {bgmusic};
@@ -3383,12 +3247,6 @@
 }
 {9}
 
-#ALIAS {spell %1}
-{
-	spells | grep -i %1
-}
-{9}
-
 #ALIAS {tweet %1}
 {
 	#if {"$twitter" == "true"}
@@ -3405,14 +3263,6 @@
 }
 {9}
 
-#ALIAS {{invi|invit|invite} %1}
-{
-	#math {invite} {10d10};
-	tell %1 Wanna run some exp? I promise I won't get you killed more than $invite times.;
-	#unvariable {invite}
-}
-{9}
-
 #CONFIG           {256 COLORS}  {OFF}
 #CONFIG           {AUTO TAB}  {5000}
 #CONFIG           {BUFFER SIZE}  {20000}
@@ -3421,7 +3271,7 @@
 #CONFIG           {COMMAND ECHO}  {ON}
 #CONFIG           {CONNECT RETRY}  {15}
 #CONFIG           {HISTORY SIZE}  {1000}
-#CONFIG           {LOG}  {RAW}
+#CONFIG           {LOG}  {PLAIN}
 #CONFIG           {PACKET PATCH}  {0.01}
 #CONFIG           {REPEAT CHAR}  {!}
 #CONFIG           {REPEAT ENTER}  {ON}
@@ -3439,7 +3289,7 @@
 
 #EVENT {PROGRAM START}
 {
-	#script {for i in modules/* ; do echo "#read $i";done};
+	#script {for i in modules/*.tin ; do echo "#read $i";done};
 	#read {name.tin}
 }
 
