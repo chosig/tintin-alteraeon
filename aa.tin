@@ -807,20 +807,6 @@
 }
 {9}
 
-#ACTION {^REBOOT IMPENDING, EVERYONE PLEASE RECALL AND SAVE.$}
-{
-	#variable {rebootTime} {1};
-	#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-}
-{9}
-
-#ACTION {^REBOOT IN APPROXIMATELY %1 MINUTES, FYI.$}
-{
-	#variable {rebootTime} {%1};
-	#system {play -qn -V0 synth 2 exp ${rebootTime}00:${rebootTime}0 exp $((${rebootTime}00*2)):$((${rebootTime}0*2)) remix - vol 0.8 gain $volume &> /dev/null &}
-}
-{9}
-
 #ACTION {^Reconnecting.$}
 {
 	set msp on | prefix silent_;
