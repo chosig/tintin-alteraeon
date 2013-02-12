@@ -25,3 +25,4 @@
 	spells | grep -i %1
 }
 {9}
+#VARIABLE {skillAndSpellLevels} {average|bad|exceptional|fair|good|moderate|perfect|poor|very bad|very good}
