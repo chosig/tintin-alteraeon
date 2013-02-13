@@ -1505,21 +1505,6 @@
 }
 {9}
 
-#ACTION {^{\(|\[}%S{\)|\]} %S: %5}
-{
-	#if {"%2" != "friend"}
-	{
-		#switch {"%2"}
-		{
-			#default
-			{
-				synth_play $broadcastSound
-			}
-		}
-	}
-}
-{9}
-
 #ACTION {^{silent_You|You} can train to get a practice, at a cost of %d experience each.$}
 {
 	#variable {buyPracticeExperience} {%2}
@@ -2962,9 +2947,8 @@
 {
 	Clear_Variables;
 	#class {gameData} {write} {game_data.tin};
-	#line {gag};
-	set ctrigger off;
-	\quit
+	set ctrigger off | prefix silent_;
+	#send {quit}
 }
 {9}
 

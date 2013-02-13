@@ -132,6 +132,21 @@
 }
 {9}
 
+#ACTION {^{\(|\[}%S{\)|\]} %S: %5}
+{
+	#if {"%2" != "friend"}
+	{
+		#switch {"%2"}
+		{
+			#default
+			{
+				synth_play $broadcastSound
+			}
+		}
+	}
+}
+{9}
+
 #ALIAS {display_channel %1 %2 %3}
 {
 	#if {%2 <= 0}
@@ -176,6 +191,19 @@
 	friend post %1
 }
 {9}
+
+#MACRO {\e-}
+{
+	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex - 1}
+	};
+	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
+}
 
 #MACRO {\e0}
 {
@@ -225,19 +253,6 @@
 #MACRO {\e9}
 {
 	display_channel $channelBuffer[$channelBufferIndex] $channelBufferIndex 9
-}
-
-#MACRO {\e-}
-{
-	#if {!&{channelBufferIndex} || $channelBufferIndex <= 0}
-	{
-		#variable {channelBufferIndex} {0}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex - 1}
-	};
-	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
 #MACRO {\e=}
