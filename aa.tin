@@ -266,14 +266,14 @@
 #ACTION {^You do your best to explain to %1 that it was an honest mistake.$}
 {
 	#script {i} {echo "%1" | rev | cut -d " " -f 1 | rev};
-	#delay {0.1} {#script {echo "talk ${i[1]} $(shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
+	#delay {0.1} {#script {echo "talk ${i[1]} $($shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
 }
 {5}
 
 #ACTION {^You do your best to explain to %1 that you didn't do it.$}
 {
 	#script {i} {echo "%1" | rev | cut -d " " -f 1 | rev};
-	#delay {0.1} {#script {echo "talk ${i[1]} $(shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
+	#delay {0.1} {#script {echo "talk ${i[1]} $($shuf -n 1 -e 'honest! I was only trying to tickle your balls!' 'I just wanted to scratch and sniff!')"}}
 }
 {5}
 
@@ -610,7 +610,7 @@
 {
 	#math {leftChannel} {1d9};
 	#math {rightChannel} {1d9};
-	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
+	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
 }
 {9}
 
@@ -622,25 +622,25 @@
 
 #ACTION {%1 {traces|trace} fiery glowing symbols in the {air before you|air}...$}
 {
-	#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "pi" "br") 60 synth $(shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
+	#system {play -qn -V0 synth 00:00:02 $($shuf -n 1 -e "pi" "br") 60 synth $($shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {%1 {traces|trace} symbols in the air, which briefly spark and crackle...$}
 {
-	#system {play -qn -V0 synth 00:00:02 $(shuf -n 1 -e "sq" "exp" "tri") 60 synth $(shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
+	#system {play -qn -V0 synth 00:00:02 $($shuf -n 1 -e "sq" "exp" "tri") 60 synth $($shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
 {
-	#system {play -qn -V0 synth 2 $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
+	#system {play -qn -V0 synth 2 $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
 }
 {9}
 
 #ACTION {^       You receive a combat point!$}
 {
-	#delay {0.2} {#script {echo -n "gt "; shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!" "CPwn!"}}
+	#delay {0.2} {#script {echo -n "gt "; $shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!" "CPwn!"}}
 }
 {9}
 
@@ -779,7 +779,7 @@
 
 #ACTION {^A white line of frost zips across the ground away from %1 staff%2.$}
 {
-	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
+	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
 }
 {9}
 
@@ -803,7 +803,7 @@
 
 #ACTION {^Neebla encourages you to consider converting to Os.$}
 {
-	#script {echo "emot encourages Neebla to $(shuf -n 1 -e "shut the hell up" "go straight to hell" "'pull my finger'" "attempt reproduction with an electrical outlet")!"}
+	#script {echo "emot encourages Neebla to $($shuf -n 1 -e "shut the hell up" "go straight to hell" "'pull my finger'" "attempt reproduction with an electrical outlet")!"}
 }
 {9}
 
@@ -834,7 +834,7 @@
 {
 	#math {leftChannel} {1d9};
 	#math {rightChannel} {1d9};
-	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
+	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
 }
 {9}
 
@@ -1023,7 +1023,7 @@
 
 #ACTION {^You guide the spell directly toward %1!$}
 {
-	#system {play -qn -V0 synth $(shuf -n 1 -e "wh" "pi" "tp" ) $(shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
+	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
 }
 {9}
 
@@ -1675,7 +1675,7 @@
 	{
 		#variable {randomAttack} {$randomAttack "whirlwind"}
 	};
-	#script {shuf -n 1 -e $randomAttack}
+	#script {$shuf -n 1 -e $randomAttack}
 }
 {5}
 
@@ -3159,13 +3159,13 @@
 
 #ALIAS {rsoc %1}
 {
-	#script {echo "$(shuf -n 1 -e $socials) %1"}
+	#script {echo "$($shuf -n 1 -e $socials) %1"}
 }
 {9}
 
 #ALIAS {rsoc$}
 {
-	#script {shuf -n 1 -e $socials}
+	#script {$shuf -n 1 -e $socials}
 }
 {9}
 

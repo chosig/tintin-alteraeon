@@ -7,7 +7,7 @@
 
 #ACTION {^  %s  %2  %s{$skillAndSpellLevels}}
 {
-	#script {i} {echo "%2" | sed -e 's/[^ ]*/\u&/g' -e 's/[^ .]/\l&/' | tr -d " "};
+	#script {i} {echo "%2" | $sed -e 's/[^ ]*/\u&/g' -e 's/[^ .]/\l&/' | tr -d " "};
 	#variable {i} {${i[1]}};
 	#variable {$i} {true}
 }

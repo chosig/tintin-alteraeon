@@ -56,7 +56,7 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "$musicChannel *$(shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$(shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "$musicChannel *$($shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$($shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eR}

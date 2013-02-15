@@ -22,7 +22,7 @@
 
 #ALIAS {ambPlay %1}
 {
-	#script {ambFile} {shuf -n 1 -e $(ls sounds/ambiance/%1/*)};
+	#script {ambFile} {$shuf -n 1 -e $(ls sounds/ambiance/%1/*)};
 	#math {lChannel} {1d5};
 	#math {rChannel} {1d5};
 	#system {play -q ${ambFile[1]} gain $volume remix v0.${lChannel} v0.${rChannel} &> /dev/null &}
@@ -37,13 +37,13 @@
 
 #ALIAS {play %1 %2}
 {
-	#system {play -q -V0 -mix "$(shuf -n 1 -e sounds/%1*wav)" "$(shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
+	#system {play -q -V0 -mix "$($shuf -n 1 -e sounds/%1*wav)" "$($shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
 }
 {9}
 
 #ALIAS {play %S}
 {
-	#system {play -q -V0 "$(shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
+	#system {play -q -V0 "$($shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
 }
 {9}
 
