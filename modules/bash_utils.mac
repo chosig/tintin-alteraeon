@@ -1,0 +1,2 @@
+#VARIABLE         {sed}  {gsed}
+#VARIABLE         {shuf}  {gshuf}

@@ -1,2 +1,2 @@
-#var {shuf} {shuf}
-#variable {sed} {sed}
+#VARIABLE         {sed}  {sed}
+#VARIABLE         {shuf}  {shuf}
