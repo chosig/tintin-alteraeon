@@ -46,21 +46,8 @@ ln ../tintin-alteraeon/aa.tin .
 Repeat this for all your characters. Then, you only need pull updates in the main tintin-alteraeon/ directory
 
 Installation:
-Mac:
-Download and extract the Mac binary of tintin++ from
-http://tintin.sourceforge.net/download.php
-Install macports:
-http://www.macports.org/install.php
-Install xcode and its command line tools available free   from the Mac app store. The command line tools can be found under the download button on the toolbar, it's the last item in the components table.
-Open terminal:
-To install tintin++ system wide you can move it to /opt/local/bin/ If
-you have extracted the files in the Downloads directory, the command
-would be:
-sudo mv ~/Downloads/tt++ /opt/local/bin/tt++
-sudo port install git-core sox wget xz coreutils
-After everything has installed successfully link the commmand gshuf to the command shuf by typing:
-sudo ln /opt/local/bin/gshuf /opt/local/bin/shuf
-To be able to use the alt key abilities provided in this trigger pack, open terminal preferences and on the keyboard tab check use option as meta. Finally, select the file menu and choose use as defaults.
+Mac or Windows:
+Visit: http://stormdragon.us/?p=256 for instructions.
 
 Linux:
 Requirements:
