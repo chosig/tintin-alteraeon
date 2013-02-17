@@ -1,0 +1,17 @@
+#MACRO {\eOQ}
+{
+	control $lastRaisedMinion protect
+}
+
+#MACRO {\eOR}
+{
+	control $lastRaisedMinion assist
+}
+
+#MACRO {\eOS}
+{
+	#if {"$consume" == "true"}
+	{
+		control all consume corpse
+	}
+}

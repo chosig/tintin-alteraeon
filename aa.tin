@@ -3322,16 +3322,6 @@
 #GAG              {^mobrepop_%*}
 #GAG              {^silent_%*}
 #GAG              {^{A|An|The} %1 twitches and starts fidgeting.$}
-#MACRO {\eOQ}
-{
-	control $lastRaisedMinion protect
-}
-
-#MACRO {\eOR}
-{
-	control $lastRaisedMinion assist
-}
-
 #MACRO {\e\}
 {
 	get $battleScroll $container;
