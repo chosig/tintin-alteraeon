@@ -272,7 +272,7 @@
 {
 	#if {&{friendNameEnter}}
 	{
-		#script {echo "friend post $(shuf -n 1 -e "Hello" "Greetings" "Hey" "Hi" "Howdy") $friendNameEnter!"}
+		#script {echo "friend post $($shuf -n 1 -e "Hello" "Greetings" "Hey" "Hi" "Howdy") $friendNameEnter!"}
 	};
 	#else
 	{
