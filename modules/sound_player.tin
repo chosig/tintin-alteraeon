@@ -12,7 +12,7 @@
 		{
 			#if {"%1" != "Off U=http://www.alteraeon.com/soundpack/wav_v1/"}
 			{
-				#system {if [ ! -f "sounds/%1.wav" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed "s/.*\\/\([^\\/]*\)$/\\1/");mkdir -p "sounds/$DIR";wget -qP "sounds/$DIR" "http://alteraeon.com/soundpack/wav_v1/%1.wav";fi};
+				#system {if [ ! -f "sounds/%1.ogg" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed -e "s/.*\\/\([^\\/]*\)$/\\1/" -e "s/\.wav$/.ogg/");mkdir -p "sounds/$DIR";sox "http://alteraeon.com/soundpack/wav_v1/%1.wav" "sounds/$DIR/$FNAME";fi};
 				play %1
 			}
 		}
@@ -37,13 +37,13 @@
 
 #ALIAS {play %1 %2}
 {
-	#system {play -q -V0 -mix "$($shuf -n 1 -e sounds/%1*wav)" "$($shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
+	#system {play -qV0 -mix "$($shuf -n 1 -e sounds/%1*ogg)" "$($shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}
 }
 {9}
 
 #ALIAS {play %S}
 {
-	#system {play -q -V0 "$($shuf -n 1 -e sounds/%1*wav)" gain $volume &> /dev/null &}
+	#system {play -qV0 "$($shuf -n 1 -e sounds/%1*ogg)" gain $volume &> /dev/null &}
 }
 {9}
 
