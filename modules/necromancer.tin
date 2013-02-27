@@ -1,3 +1,30 @@
+#ALIAS {^dstone %1}
+{
+	#variable {demonfireStone} {%1};
+	dstone
+}
+{5}
+
+#ALIAS {^dstone$}
+{
+	#variable {demonfireStone}
+}
+{5}
+
+#ALIAS {demonfire}
+{
+	#if {"$demonfire" == "true"}
+	{
+		get $demonfireStone $container;
+		c demonfire %1
+	};
+	#else
+	{
+		#showme {You do not have the demonfire spell yet.}
+	}
+}
+{9}
+
 #MACRO {\eOQ}
 {
 	control $lastRaisedMinion protect
@@ -15,3 +42,4 @@
 		control all consume corpse
 	}
 }
+#VARIABLE         {demonfireStone}  {pale blue}
