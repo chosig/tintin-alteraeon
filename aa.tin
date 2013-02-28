@@ -396,9 +396,9 @@
 }
 {9}
 
-#ACTION {%1 has arrived.$}
+#ACTION {%1 %S {arrived|into view}.$}
 {
-	#if {"$autokill" == "true"}
+	#if {"$autokill" == "true" && !&{inBattle}}
 	{
 		#regexp {%1} {{.*} {.*}} {kill &2}
 	}

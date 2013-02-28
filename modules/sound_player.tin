@@ -12,7 +12,7 @@
 		{
 			#if {"%1" != "Off U=http://www.alteraeon.com/soundpack/wav_v1/"}
 			{
-				#system {if [ ! -f "sounds/%1.ogg" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed -e "s/.*\\/\([^\\/]*\)$/\\1/" -e "s/\.wav$/.ogg/");mkdir -p "sounds/$DIR";sox "http://alteraeon.com/soundpack/wav_v1/%1.wav" "sounds/$DIR/$FNAME";fi};
+				#system {if [ ! -f "sounds/%1.ogg" ] ; then DIR=$(echo "%1.wav" | sed "s/\(.*\\/\)[^\\/]*$/\\1/");FNAME=$(echo "%1.wav" | sed -e "s/.*\\/\([^\\/]*\)$/\\1/" -e "s/\.wav$/.ogg/");mkdir -p "sounds/$DIR";sox -t wav "http://alteraeon.com/soundpack/wav_v1/%1.wav" "sounds/$DIR/$FNAME";fi};
 				play %1
 			}
 		}
