@@ -17,21 +17,6 @@
 }
 {1}
 
-#ACTION {%1 resists the spell.$}
-{
-	#unvariable {lastSoulSteal}
-}
-{1}
-
-#ACTION {^A tall prison of jagged bone teeth cracks and shatters as you break free!$}
-{
-	#if {&{position}}
-	{
-		stand
-	}
-}
-{1}
-
 #ACTION {^PANIC!!  You couldn't escape!$}
 {
 	run
@@ -99,51 +84,6 @@
 }
 {1}
 
-#ACTION {^A clay man cracks and crumbles, becoming a pile of dust and dirt.$}
-{
-	play clay-man-death
-}
-{3}
-
-#ACTION {^A {clay man|bone guardian|flesh beast|metal construct|wood woad} stops following you.$}
-{
-	#if {"$autoclay" == "true"}
-	{
-		#unvariable {autoclay};
-		#delay {0.2} {c clay man};
-		#delay {8} {#variable {autoclay} {true}}
-	};
-	#if {"$autowoad" == "true"}
-	{
-		get $woadMaterial $container;
-		drop $woadMaterial;
-		#unvariable {autowoad};
-		#delay {0.2} {c wood $woadMaterial};
-		#delay {8} {#variable {autowoad} {true}}
-	};
-	#if {"$autobone" == "true"}
-	{
-		get $boneMaterial $container;
-		drop $boneMaterial;
-		#unvariable {autobone};
-		#delay {0.2} {c bone guardian $boneMaterial};
-		#delay {8} {#variable {autobone} {true}}
-	};
-	#if {"$autofleshbeast" == "true"}
-	{
-		#variable {makeNewFleshBeast} {true}
-	};
-	#if {"$autometal" == "true"}
-	{
-		get $metalMaterial $container;
-		drop $metalMaterial;
-		#unvariable {autometal};
-		#delay {0.2} {c metal construct $metalMaterial};
-		#delay {8} {#variable {autometal} {true}}
-	}
-}
-{4}
-
 #ACTION {%1 begins trying to pick %2...$}
 {
 	#if {"%1" == "$groupLeader" && "$pickLocks" == "true"}
@@ -174,15 +114,6 @@
 }
 {5}
 
-#ACTION {^A flesh beast starts following you.$}
-{
-	#if {&{makeNewFleshBeast}}
-	{
-		#unvariable {makeNewFleshBeast}
-	}
-}
-{5}
-
 #ACTION {^A ghoul bites %1 with diseased, razor sharp teeth!$}
 {
 	play ghoul-attack
@@ -198,22 +129,6 @@
 #ACTION {^A ghoul rips and tears into %1 with filthy, diseased claws!$}
 {
 	play ghoul-attack
-}
-{5}
-
-#ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
-{
-	#if {"$boneShield" == "true" && "$autorecast" == "true"}
-	{
-		#if {!&{inBattle}}
-		{
-			c bone shield
-		};
-		#else
-		{
-			Add_Cast bone shield
-		}
-	}
 }
 {5}
 
@@ -659,37 +574,6 @@
 }
 {9}
 
-#ACTION {^A shadow fiend stops following you.$}
-{
-	#if {"$autofiend" == "true"}
-	{
-		f
-	}
-}
-{9}
-
-#ACTION {^A skeletal {mage|spider} stops following you.$}
-{
-	#if {"$autoskeleton" == "true"}
-	{
-		#unvariable {autoskeleton};
-		#delay {0.2} {c skeletal %1};
-		#delay {2} {#variable {autoskeleton} {true}}
-	}
-}
-{9}
-
-#ACTION {^A skeleton stops following you.$}
-{
-	#if {"$autoskeleton" == "true"}
-	{
-		#unvariable {autoskeleton};
-		#delay {0.2} {c skeletal warrior};
-		#delay {2} {#variable {autoskeleton} {true}}
-	}
-}
-{9}
-
 #ACTION {^A small clawed hand reaches up through the ground, grabs a %1 soulstone, and vanishes.$}
 {
 	play demonic-laughter
@@ -705,12 +589,6 @@
 #ACTION {^After a big fight, %1 {reels|reel} in %2.$}
 {
 	play catch-fish
-}
-{9}
-
-#ACTION {^Huge spikes of ice spring out of the ground directly beneath %1!$}
-{
-	play frostbite-hit
 }
 {9}
 
@@ -797,22 +675,6 @@
 }
 {9}
 
-#ACTION {^The tooth melts and forms a pinkish mass, which you quickly pull and shape into a bone shield.$}
-{
-	#if {"$soulbind" == "true"}
-	{
-		#send {stand;get pale blue soulstone from $container};
-		remove shield;
-		soulbind shield;
-		wear shield
-	};
-	#if {&{position}}
-	{
-		$position
-	}
-}
-{9}
-
 #ACTION {^You add A %1 to your group.$}
 {
 	#if {"%1" == "zombie" || "%1" == "ghoul" || "%1" == "mummy" || "%1" == "vampire"}
@@ -869,59 +731,9 @@
 }
 {9}
 
-#ACTION {^You cast the spell to separate soul from body, and pull %1's essence into a %2 soulstone!$}
-{
-	#if {"$autostore" == "true"}
-	{
-		put soulstone $container
-	}
-}
-{9}
-
 #ACTION {^You end up with a stinky, nasty mess, but nothing useful.}
 {
 	empty $brewContainer
-}
-{9}
-
-#ACTION {^You feel a lump, so you cut open an organ and retrieve a jagged yellow stone.$}
-{
-	#if {"$autojunk" == "true"}
-	{
-		junk jagged
-	}
-}
-{9}
-
-#ACTION {^You feel new bones and flesh forming a protective armor plate over your body.$}
-{
-	#if {"$soulbind" == "true"}
-	{
-		#send {stand;get pale blue soulstone from $container};
-		soulbind armor
-	};
-	#if {&{position}}
-	{
-		$position
-	}
-}
-{9}
-
-#ACTION {^You find a small bladder of green fluid, and carefully tie off the ends before removing it.$}
-{
-	#if {"$autojunk" == "true"}
-	{
-		junk bladder
-	}
-}
-{9}
-
-#ACTION {^You find an out-of-place dark mass, and carefully cut it from its surroundings.$}
-{
-	#if {"$autojunk" == "true"}
-	{
-		junk tumor
-	}
 }
 {9}
 
@@ -959,40 +771,9 @@
 }
 {9}
 
-#ACTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$}
-{
-	#send {get %1 soulstone from $container};
-	prepare corpse %1 soulstone
-}
-{9}
-
-#ACTION {^You make a small incision and drain some fluid into a vial of bile.$}
-{
-	#if {"$autojunk" == "true"}
-	{
-		junk bile
-	}
-}
-{9}
-
-#ACTION {^You quickly place a hand on the inside of a bone shield to bind it to you.$}
-{
-	wear shield
-}
-{9}
-
 #ACTION {^You receive %1 gold coins for your sacrifice.}
 {
 	split %1
-}
-{9}
-
-#ACTION {^You roughly hack out a small bladder of black fluid and tie off the ends with string.$}
-{
-	#if {"$autojunk" == "true"}
-	{
-		junk bile
-	}
 }
 {9}
 
@@ -1018,15 +799,6 @@
 }
 {9}
 
-#ACTION {^You struggle to pull %1 essence into a %2 soulstone!$}
-{
-	#if {"$autostore" == "true"}
-	{
-		put soulstone $container
-	}
-}
-{9}
-
 #ACTION {^You suddenly see your mistake, reverse the incantation and sacrifice a %1 soulstone.$}
 {
 	play demonic-laugh
@@ -1048,22 +820,6 @@
 #ACTION {^You try, but the blood fever remains just out of your reach!$}
 {
 	berserk
-}
-{9}
-
-#ACTION {^You utter a short invocation over a tooth and pull it like taffy into a long bone blade.$}
-{
-	#if {"$soulbind" == "true"}
-	{
-		#send {stand;get pale blue soulstone from $container};
-		remove blade;
-		soulbind blade;
-		wield blade
-	};
-	#if {&{position}}
-	{
-		$position
-	}
 }
 {9}
 
@@ -1115,26 +871,11 @@
 }
 {9}
 
-#ACTION {^large chunks. (worn by you)$}
-{
-	#if {"$autobonearmor" == "true"}
-	{
-		c bone armor $name
-	}
-}
-{9}
-
 #ACTION {^mobrepop_%1->%2}
 {
 	#unvariable {mobRepop};
 	#showme {%1->%2};
 	play repop
-}
-{9}
-
-#ACTION {^silent_A flesh beast %d}
-{
-	c flesh corpse
 }
 {9}
 
@@ -1411,26 +1152,6 @@
 }
 {5}
 
-#ALIAS {^woad$}
-{
-	get $woadMaterial from $container;
-	drop $woadMaterial;
-	#if {&{autowoad}}
-	{
-		#unvariable {autowoad};
-		#delay {5} {#var {autowoad} {true}}
-	};
-	#delay {0.2} {c wood $woadMaterial}
-}
-{5}
-
-#ALIAS {^{mi|min|mini|minio|minion|minions}$}
-{
-	#send {minions};
-	control | grep -i necromancer | prefix silent_
-}
-{5}
-
 #ALIAS {^{scro|scrol|scroll} %1}
 {
 	#variable {battleScroll} {%1};
@@ -1445,48 +1166,6 @@
 }
 {5}
 
-#ALIAS {autobone}
-{
-	#variable {autowoad} {false};
-	#variable {autoclay} {false};
-	#variable {autobone} {true};
-	#showme {You will now attempt to make a new bone guardian automatically.}
-}
-{5}
-
-#ALIAS {autobonearmor}
-{
-	#variable {autobonearmor} {true};
-	#showme {Bone armor will now autocast}
-}
-{5}
-
-#ALIAS {autoclay}
-{
-	#variable {autoclay} {true};
-	#variable {autowoad} {false};
-	#variable {autobone} {false};
-	#showme {Clay man will now autocast}
-}
-{5}
-
-#ALIAS {autofiend}
-{
-	#variable {autofiend} {true};
-	#showme {You will now make a new shadow fiend automatically.}
-}
-{5}
-
-#ALIAS {autometal}
-{
-	#variable {autowoad} {false};
-	#variable {autoclay} {false};
-	#variable {autobone} {false};
-	#variable {autometal} {true};
-	#showme {You will now attempt to make a new metal construct automatically.}
-}
-{5}
-
 #ALIAS {autorefresh}
 {
 	#variable {autorefresh} {true};
@@ -1494,26 +1173,10 @@
 }
 {5}
 
-#ALIAS {autoskeleton}
-{
-	#variable {autoskeleton} {true};
-	#showme {skeletons will now autocast}
-}
-{5}
-
 #ALIAS {autostore}
 {
 	#variable {autostore} {true};
 	#showme {You will now put certain items in your container when you get them.}
-}
-{5}
-
-#ALIAS {autowoad}
-{
-	#variable {autowoad} {true};
-	#variable {autoclay} {false};
-	#variable {autobone} {false};
-	#showme {You will now attempt to make a new wood woad automatically.}
 }
 {5}
 
@@ -1530,41 +1193,6 @@
 }
 {5}
 
-#ALIAS {noautobone}
-{
-	#variable {autobone} {false};
-	#showme {Bone guardian will no longer autocast.}
-}
-{5}
-
-#ALIAS {noautobonearmor}
-{
-	#variable {autobonearmor} {false};
-	#showme {Bone armor will no longer autocast.}
-}
-{5}
-
-#ALIAS {noautoclay}
-{
-	#variable {autoclay} {false};
-	#showme {Clay man will no longer autocast.}
-}
-{5}
-
-#ALIAS {noautofiend}
-{
-	#variable {autofiend} {false};
-	#showme {You will no longer automatically make shadow fiends.}
-}
-{5}
-
-#ALIAS {noautometal}
-{
-	#variable {autometal} {false};
-	#showme {Metal construct will no longer autocast.}
-}
-{5}
-
 #ALIAS {noautorefresh}
 {
 	#variable {autorefresh} {false};
@@ -1572,24 +1200,10 @@
 }
 {5}
 
-#ALIAS {noautoskeleton}
-{
-	#variable {autoskeleton} {false};
-	#showme {skeletons will no longer autocast}
-}
-{5}
-
 #ALIAS {noautostore}
 {
 	#unvariable {autostore};
 	#showme {You will no longer autostore anything.}
-}
-{5}
-
-#ALIAS {noautowoad}
-{
-	#variable {autowoad} {false};
-	#showme {Wood Woad will no longer autocast.}
 }
 {5}
 
@@ -1771,13 +1385,6 @@
 }
 {9}
 
-#ALIAS {^autobloodsacrifice$}
-{
-	#showme {You will now blood sacrifice corpses automatically};
-	#variable {autobloodsacrifice} {true}
-}
-{9}
-
 #ALIAS {^autobrew$}
 {
 	noautojunk | prefix silent_;
@@ -1798,13 +1405,6 @@
 }
 {9}
 
-#ALIAS {^autoconsume$}
-{
-	#showme {Your minions will now consume corpses automatically};
-	#variable {autoconsume} {true}
-}
-{9}
-
 #ALIAS {^autocspam$}
 {
 	#showme {autocspam enabled.};
@@ -1819,13 +1419,6 @@
 }
 {9}
 
-#ALIAS {^autofleshbeast$}
-{
-	#variable {autofleshbeast} {true};
-	#showme {You will attempt to make a new flesh beast automatically.}
-}
-{9}
-
 #ALIAS {^autoheal$}
 {
 	#variable {autoheal} {true};
@@ -1837,14 +1430,6 @@
 {
 	#variable {autohelp} {true};
 	#showme {You will now see random help files when you sleep.}
-}
-{9}
-
-#ALIAS {^autojunk$}
-{
-	noautobrew | prefix silent_;
-	#variable {autojunk} {true};
-	#showme {You will now automatically discard spell components harvested from corpses.}
 }
 {9}
 
@@ -1934,13 +1519,6 @@
 #ALIAS {^bind$}
 {
 	shadow bind
-}
-{9}
-
-#ALIAS {^bonemaker$}
-{
-	#class {bonemaker} {read} {bonemaker.tin};
-	#class {gameData} {open}
 }
 {9}
 
@@ -2068,13 +1646,6 @@
 }
 {9}
 
-#ALIAS {^noautobloodsacrifice$}
-{
-	#showme {You will no longer blood sacrifice corpses automatically};
-	#unvariable {autobloodsacrifice}
-}
-{9}
-
 #ALIAS {^noautobrew$}
 {
 	#unvariable {autobrew};
@@ -2086,13 +1657,6 @@
 {
 	#showme {You will no longer automatically buy practices.};
 	#unvariable {autobuypractice}
-}
-{9}
-
-#ALIAS {^noautoconsume$}
-{
-	#showme {Your minions will no longer consume corpses automatically};
-	#unvariable {autoconsume}
 }
 {9}
 
@@ -2110,13 +1674,6 @@
 }
 {9}
 
-#ALIAS {^noautofleshbeast$}
-{
-	#unvariable {autofleshbeast};
-	#showme {You will no longer make flesh beasts automatically.}
-}
-{9}
-
 #ALIAS {^noautoheal$}
 {
 	#unvariable {autoheal};
@@ -2128,13 +1685,6 @@
 {
 	#unvariable {autohelp};
 	#showme {You will no longer see random help files when you sleep.}
-}
-{9}
-
-#ALIAS {^noautojunk$}
-{
-	#unvariable {autojunk};
-	#showme {You will no longer automatically discard anything.}
 }
 {9}
 
@@ -2179,13 +1729,6 @@
 {
 	#showme {beeps off};
 	#unvariable {beeps}
-}
-{9}
-
-#ALIAS {^nobonemaker$}
-{
-	#class {bonemaker} {kill};
-	#showme {Bone maker closed.}
 }
 {9}
 
@@ -2349,13 +1892,6 @@
 }
 {9}
 
-#ALIAS {^tank$}
-{
-	eqset wear tank;
-	\tank
-}
-{9}
-
 #ALIAS {^track %1}
 {
 	#variable {tracking} {%1};
@@ -2435,113 +1971,9 @@
 }
 {9}
 
-#ALIAS {^{ble|bles|bless}}
-{
-	#if {"$bless" == "true"}
-	{
-		c bless
-	};
-	#else
-	{
-		#showme {You do not have the spell bless yet.}
-	}
-}
-{9}
-
-#ALIAS {^{bm|bloodm|bloodmi|bloodmis|bloodmist}$}
-{
-	#if {"$bloodmist" == "true"}
-	{
-		c bloodmist
-	};
-	#else
-	{
-		#showme {You do not have the spell bloodmist yet.}
-	}
-}
-{9}
-
-#ALIAS {^{cfb|cfi|cfir|cfire|cfireb|cfireba|cfirebal|cfireball}$}
-{
-	#if {"$fireball" == "true"}
-	{
-		cc fireball
-	};
-	#else
-	{
-		#showme {You do not have the spell fireball yet.}
-	}
-}
-{9}
-
-#ALIAS {^{cff|cfiref|cfirefi|cfirefiel|cfirefield}$}
-{
-	#if {"$firefield" == "true"}
-	{
-		cc firefield
-	};
-	#else
-	{
-		#showme {You do not have the spell firefield yet.}
-	}
-}
-{9}
-
-#ALIAS {^{di|dis|disa|disar|disarm} %1}
-{
-	#variable {victim} {%1};
-	\disarm %1
-}
-{9}
-
 #ALIAS {^{fam|fame}$}
 {
 	show fame
-}
-{9}
-
-#ALIAS {^{fb|fireb|fireba|firebal|fireball}$}
-{
-	#if {"$fireball" == "true"}
-	{
-		c fireball
-	};
-	#else
-	{
-		#showme {You do not have the spell fireball yet.}
-	}
-}
-{9}
-
-#ALIAS {^{ff|firef|firefi|firefiel|firefield}$}
-{
-	#if {"$firefield" == "true"}
-	{
-		c firefield
-	};
-	#else
-	{
-		#showme {You do not have the spell firefield yet.}
-	}
-}
-{9}
-
-#ALIAS {^{forg|forge} %1}
-{
-	c soulforge %1 2.%1
-}
-{9}
-
-#ALIAS {^{ib|iceb|icebo|icebol|icebolt}$}
-{
-	#if {"$icebolt" == "true"}
-	{
-		c icebolt
-	};
-	#else
-	{
-		#showme {You do not have the spell icebolt yet.}
-	}
 }
 {9}
 
@@ -2632,12 +2064,6 @@
 }
 {9}
 
-#ALIAS {^{tee|teet|teeth}$}
-{
-	show teeth
-}
-{9}
-
 #ALIAS {^{wa|wak|wake|stan|stand}$}
 {
 	#unvariable {position};
@@ -2700,17 +2126,6 @@
 }
 {9}
 
-#ALIAS {buildwoa{ds|d} %1}
-{
-	noautobone;
-	noautoclay;
-	noautowoad;
-	noautometal;
-	#class {woadbot} {read} {woadbot.tin};
-	makewoad %1
-}
-{9}
-
 #ALIAS {cconf %1}
 {
 	#if {!&{%1}}
@@ -2770,12 +2185,6 @@
 {
 	#unvariable {twitter};
 	#showme {Achievements will no longer be posted to Twitter.}
-}
-{9}
-
-#ALIAS {p %1}
-{
-	pickp %1
 }
 {9}
 
@@ -2928,9 +2337,6 @@
 #GAG              {You see nothing in it for you to get.}
 #GAG              {^!!SOUND%*}
 #GAG              {^%S twitches and starts fidgeting.$}
-#GAG              {^(You can only split gold with players, not minions.)$}
-#GAG              {^Looks like the corpse of %1 is too damaged for you to use.$}
-#GAG              {^None of your minions seem hungry at the moment.$}
 #GAG              {^Replayin_Clantell replay$}
 #GAG              {^Replayin_Recent channel history$}
 #GAG              {^Replayin_Recent tells:$}
@@ -2938,14 +2344,12 @@
 #GAG              {^Sending activity for channel '%*}
 #GAG              {^Stop doing what? You don't seem to be doing anything.$}
 #GAG              {^The {corpse|gutted carcass} of%1is no longer suitable for blood sacrifice.$}
-#GAG              {^You can only blood sacrifice corpses with blood in them.$}
 #GAG              {^You didn't find anything by that name.$}
 #GAG              {^You don't see anything named 'coins' in the corpse of %1.$}
 #GAG              {^You feel extremely jittery and awake.$}
 #GAG              {^You find yourself unable to sit still, gotta keep moving...$}
 #GAG              {^You haven't had a recent victory worth shouting about.$}
 #GAG              {^You see nothing left to loot from the corpse of %1.$}
-#GAG              {^Your collected {dragon teeth|teeth} grow restless.  It would be unwise to collect any more.$}
 #GAG              {^mobrepop_%*}
 #GAG              {^silent_%*}
 #GAG              {^{A|An|The} %1 twitches and starts fidgeting.$}
