@@ -69,7 +69,7 @@
 
 #ACTION {^A skeleton stops following you.$}
 {
-	CTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$} {#send {get %1 soulstone from $container};prepare corpse %1 soulstone} {9} {#if {"$autoskeleton" == "true"}{#unvariable {autoskeleton};#delay {0.2} {c skeletal warrior};#delay {2} {#variable {autoskeleton} {true}}}} {9} {#unvariable {lastSoulSteal}} {1}
+{#if {"$autoskeleton" == "true"}{#unvariable {autoskeleton};#delay {0.2} {c skeletal warrior};#delay {2} {#variable {autoskeleton} {true}}}} {9}
 }
 {5}
 
