@@ -69,10 +69,15 @@
 
 #ACTION {^A skeleton stops following you.$}
 {
-{#if {"$autoskeleton" == "true"}{#unvariable {autoskeleton};#delay {0.2} {c skeletal warrior};#delay {2} {#variable {autoskeleton} {true}}}} {9}
+    #if {"$autoskeleton" == "true"}
+    {
+        #unvariable {autoskeleton};
+        #delay {0.2} {c skeletal warrior};
+        #delay {2} {#variable {autoskeleton} {true}}
+    }
 }
-{5}
-
+{9}
+ 
 #ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
 {
 	#if {"$boneShield" == "true" && "$autorecast" == "true"}
