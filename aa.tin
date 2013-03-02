@@ -138,12 +138,6 @@
 }
 {5}
 
-#ACTION {^The clay man crumbles back into the dust and dirt from whence it came.$}
-{
-	play clay-man-death
-}
-{5}
-
 #ACTION {^The light above the wizard's shop flickers for an instant, looks like it needs maintenance.$}
 {
 	play wizard-shop-light
@@ -398,7 +392,7 @@
 
 #ACTION {%1 %S {arrived|into view}.$}
 {
-	#if {"$autokill" == "true" && !&{inBattle}}
+	#if {"$autokill" == "true" && !&{inBattle} && $currentHp > $maxHp / 2 && $currentMana > $maxMana / 3}
 	{
 		#regexp {%1} {{.*} {.*}} {kill &2}
 	}
@@ -856,6 +850,7 @@
 
 #ACTION {^[Exits: %*}
 {
+	#variable {exits} {%1};
 	#if {&{tracking}}
 	{
 		nearby | grep -i $tracking | prefix tracking_
@@ -1354,6 +1349,7 @@
 	#unvariable {currentMv};
 	#unvariable {enemyConditionTone};
 	#unvariable {exhausted};
+	#unvariable {exits};
 	#unvariable {expGained};
 	#unvariable {friendNameEnter};
 	#unvariable {greeting};
