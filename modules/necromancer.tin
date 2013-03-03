@@ -1,3 +1,19 @@
+#alias {^shadowfiend$}
+{
+get deep blue soulstone from $container;
+summon demon fiend soulstone
+}
+{9}
+
+#ACTION {^A shadow fiend stops following you.$}
+{
+    #if {"$autofiend" == "true"}
+    {
+        shadowfiend
+    }
+}
+{9}
+ 
 #ACTION {^A tall prison of jagged bone teeth cracks and shatters as you break free!$}
 {
 	#if {&{position}}
@@ -54,10 +70,10 @@
 
 #ACTION {%1 resists the spell.$}
 {
-	CTION {^A shadow fiend stops following you.$} {#if {"$autofiend" == "true"}{f}} {9}
+    #unvariable {lastSoulSteal}
 }
-{5}
-
+{1}
+ 
 #ACTION {^A flesh beast starts following you.$}
 {
 	#if {&{makeNewFleshBeast}}
