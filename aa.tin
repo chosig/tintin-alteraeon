@@ -378,6 +378,15 @@
 }
 {8}
 
+#ACTION {%1 %S {arrived|into view}.$}
+{
+	#if {"$autokill" == "true" && !&{inBattle} && $currentHp > $maxHp / 2 && $currentMana > $maxMana / 3}
+	{
+		#regexp {%1} {{.*} {.*}} {kill &2}
+	}
+}
+{9}
+
 #ACTION {%1 (unique)$}
 {
 	play unique
@@ -387,15 +396,6 @@
 #ACTION {%1 cleaves through {its|her|his} enemies!$}
 {
 	play cleave
-}
-{9}
-
-#ACTION {%1 %S {arrived|into view}.$}
-{
-	#if {"$autokill" == "true" && !&{inBattle} && $currentHp > $maxHp / 2 && $currentMana > $maxMana / 3}
-	{
-		#regexp {%1} {{.*} {.*}} {kill &2}
-	}
 }
 {9}
 
@@ -850,7 +850,8 @@
 
 #ACTION {^[Exits: %*}
 {
-	#variable {exits} {%1};
+	#script {exits} {echo "%1" | tr -d "[:punct:]"};
+	#variable {exits} {${exits[1]}};
 	#if {&{tracking}}
 	{
 		nearby | grep -i $tracking | prefix tracking_
@@ -1584,7 +1585,7 @@
 	#else
 	{
 		#send {get %1 %2}
-	};
+	}
 }
 {9}
 
@@ -1597,7 +1598,7 @@
 	#else
 	{
 		#send {get %1}
-	};
+	}
 }
 {9}
 
@@ -2375,4 +2376,7 @@
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
 #VARIABLE         {lastHpAlert}  {}
+#VARIABLE         {mudPort}  {3000}
+#VARIABLE         {name}  {Goroth}
+#VARIABLE         {password}  {chaosad}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
