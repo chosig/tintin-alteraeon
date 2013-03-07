@@ -1,0 +1,31 @@
+#action {^You are no longer harvesting teeth.$}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^Your collected teeth grow restless.  It would be unwise to collect any more.$}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^You can't safely carry any more teeth, and stop.$}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^You don't see any usable teeth remaining.$}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^You start harvesting teeth from %1.$}
+{
+#variable {busy} {true}
+}
+{8}
+ 
+#variable {busy} {false}
