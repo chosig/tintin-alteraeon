@@ -1,19 +1,9 @@
-#alias {^shadowfiend$}
+#ACTION {%1 resists the spell.$}
 {
-get deep blue soulstone from $container;
-summon demon fiend soulstone
+	#unvariable {lastSoulSteal}
 }
-{9}
+{1}
 
-#ACTION {^A shadow fiend stops following you.$}
-{
-    #if {"$autofiend" == "true"}
-    {
-        shadowfiend
-    }
-}
-{9}
- 
 #ACTION {^A tall prison of jagged bone teeth cracks and shatters as you break free!$}
 {
 	#if {&{position}}
@@ -68,12 +58,6 @@ summon demon fiend soulstone
 }
 {4}
 
-#ACTION {%1 resists the spell.$}
-{
-    #unvariable {lastSoulSteal}
-}
-{1}
- 
 #ACTION {^A flesh beast starts following you.$}
 {
 	#if {&{makeNewFleshBeast}}
@@ -83,17 +67,6 @@ summon demon fiend soulstone
 }
 {5}
 
-#ACTION {^A skeleton stops following you.$}
-{
-    #if {"$autoskeleton" == "true"}
-    {
-        #unvariable {autoskeleton};
-        #delay {0.2} {c skeletal warrior};
-        #delay {2} {#variable {autoskeleton} {true}}
-    }
-}
-{9}
- 
 #ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
 {
 	#if {"$boneShield" == "true" && "$autorecast" == "true"}
@@ -110,12 +83,32 @@ summon demon fiend soulstone
 }
 {5}
 
+#ACTION {^A shadow fiend stops following you.$}
+{
+	#if {"$autofiend" == "true"}
+	{
+		shadowfiend
+	}
+}
+{9}
+
 #ACTION {^A skeletal {mage|spider} stops following you.$}
 {
 	#if {"$autoskeleton" == "true"}
 	{
 		#unvariable {autoskeleton};
 		#delay {0.2} {c skeletal %1};
+		#delay {2} {#variable {autoskeleton} {true}}
+	}
+}
+{9}
+
+#ACTION {^A skeleton stops following you.$}
+{
+	#if {"$autoskeleton" == "true"}
+	{
+		#unvariable {autoskeleton};
+		#delay {0.2} {c skeletal warrior};
 		#delay {2} {#variable {autoskeleton} {true}}
 	}
 }
@@ -457,6 +450,19 @@ summon demon fiend soulstone
 {
 	#class {bonemaker} {kill};
 	#showme {Bone maker closed.}
+}
+{9}
+
+#ALIAS {^shadowfiend$}
+{
+	get deep blue soulstone from $container;
+	summon demon fiend soulstone
+}
+{9}
+
+#ALIAS {^{forg|forge} %1}
+{
+	c soulforge %1 2.%1
 }
 {9}
 
