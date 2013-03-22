@@ -1,0 +1,6 @@
+#action {^You cut %1 from %2.$}
+{
+#regexp {%1} {{.*} {.*}} {#if {"$autojunk" == "true"} {junk &2}}
+}
+{9}
+
