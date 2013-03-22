@@ -1,0 +1,143 @@
+#ACTION {^The pumpkin cannon operator says, 'the record distance is %1 feet, held by %2'$}
+{
+	#if {&{pumpkinCannonFeet} && &{pumpkinCannonLocation}}
+	{
+		#if {!&{lastPumpkinCannonFeet} || $pumpkinCannonFeet >= $lastPumpkinCannonFeet}
+		{
+			tweet $name shot a pumpkin $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with %1  feet. #AlterAeon;
+			fbpost $name shot a pumpkin a distance of $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with a distance of %1 feet.;
+			#math {lastPumpkinCannonFeet} {$pumpkinCannonFeet * 1}
+		};
+		#unvariable {pumpkinCannonFeet};
+		#unvariable {pumpkinCannonLocation}
+	}
+}
+{5}
+
+#ACTION {^You have achieved the rank of '%1' in %2!$}
+{
+	tweet $name has achieved the rank of '%1' in %2!;
+	fbpost $name has achieved the rank of '%1' in %2!
+}
+{5}
+
+#ACTION {^You turn %1 years old today!$}
+{
+	tweet $name turned %1 years old today! Happy birthday! #AlterAeon;
+	fbpost $name turned %1 years old today! Happy birthday!
+}
+{5}
+
+#ACTION {^You weep as you think of the %1 experience that you lost.$}
+{
+	experience lost | grep -i you have lost | prefix silent_;
+	#if {&{groupExperience}}
+	{
+		#math {groupExperience} {$groupExperience - %1}
+	};
+	#delay {2} {tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.};
+	play death
+}
+{5}
+
+#ACTION {^ %1You are now level %2 %3, with %4 total levels!$}
+{
+	show stats | prefix silent_;
+	show clev | prefix silent_;
+	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon;
+	fbpost $name just gained the official rank of level %2 #%3 and now has %4 total levels!
+}
+{9}
+
+#ACTION {^%w calls upon %2 to bring the corpse of $name back to life!$}
+{
+	tweet $name was resurrected by %1! #AlterAeon;
+	fbpost $name was resurrected by %1!
+}
+{9}
+
+#ACTION {^(notify) $name%1}
+{
+	tweet $name %1 #AlterAeon;
+	fbpost $name %1
+}
+{9}
+
+#ACTION {^You have completed the achievement:%1}
+{
+	tweet $name has completed the achievement %1! #AlterAeon;
+	fbpost $name has completed the achievement %1!
+}
+{9}
+
+#ACTION {^You have {advanced|fallen} to position %d on the '%3' leaderboard!$}
+{
+	#if {"$leaderboardUpdateString" == ""}
+	{
+		#variable {leaderboardUpdateString} {${name}'s new leaderboard standings are: '%3': %2}
+	};
+	#else
+	{
+		#variable {leaderboardUpdateString} {$leaderboardUpdateString '%3': %2}
+	}
+}
+{9}
+
+#ALIAS {^fbpost %1}
+{
+	#if {"$facebook" == "true"}
+	{
+		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null&}
+	}
+}
+{9}
+
+#ALIAS {^leaderboard_update$}
+{
+	#if {"$leaderboardUpdateString" != ""}
+	{
+		tweet $leaderboardUpdateString #AlterAeon;
+		fbpost $leaderboardUpdateString;
+		#variable {leaderboardUpdateString} {}
+	}
+}
+{9}
+
+#ALIAS {facebook}
+{
+	#variable {facebook} {true};
+	#showme {Achievements will now be posted to Facebook.}
+}
+{9}
+
+#ALIAS {nofacebook}
+{
+	#unvariable {facebook};
+	#showme {Achievements will no longer be posted to Facebook.}
+}
+{9}
+
+#ALIAS {notwitter}
+{
+	#unvariable {twitter};
+	#showme {Achievements will no longer be posted to Twitter.}
+}
+{9}
+
+#ALIAS {tweet %1}
+{
+	#if {"$twitter" == "true"}
+	{
+		#system {ttytter -silent -readline=0 -status="%1" &> /dev/null&}
+	}
+}
+{9}
+
+#ALIAS {twitter}
+{
+	#variable {twitter} {true};
+	#showme {Achievements will now be posted to Twitter.}
+}
+{9}
+
+#VARIABLE         {leaderboardUpdateString}     {}

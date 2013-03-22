@@ -144,22 +144,6 @@
 }
 {5}
 
-#ACTION {^The pumpkin cannon operator says, 'the record distance is %1 feet, held by %2'$}
-{
-	#if {&{pumpkinCannonFeet} && &{pumpkinCannonLocation}}
-	{
-		#if {!&{lastPumpkinCannonFeet} || $pumpkinCannonFeet >= $lastPumpkinCannonFeet}
-		{
-			tweet $name shot a pumpkin $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with %1 feet. #AlterAeon;
-			fbpost $name shot a pumpkin a distance of $pumpkinCannonFeet feet $pumpkinCannonLocation! The current record holder is %2 with a distance of %1 feet.;
-			#math {lastPumpkinCannonFeet} {$pumpkinCannonFeet * 1}
-		};
-		#unvariable {pumpkinCannonFeet};
-		#unvariable {pumpkinCannonLocation}
-	}
-}
-{5}
-
 #ACTION {^You are %1, and currently %2 tall.$}
 {
 	#variable {sex} {%1}
@@ -199,13 +183,6 @@
 }
 {5}
 
-#ACTION {^You have achieved the rank of '%1' in %2!$}
-{
-	tweet $name has achieved the rank of '%1' in %2!;
-	fbpost $name has achieved the rank of '%1' in %2!
-}
-{5}
-
 #ACTION {^You have been removed from the group.$}
 {
 	groupexp;
@@ -225,25 +202,6 @@
 #ACTION {^You hear the loud -clang- *CLANG* of a hammer on anvil to the north.$}
 {
 	play hammer-on-anvil
-}
-{5}
-
-#ACTION {^You turn %1 years old today!$}
-{
-	tweet $name turned %1 years old today! Happy birthday! #AlterAeon;
-	fbpost $name turned %1 years old today! Happy birthday!
-}
-{5}
-
-#ACTION {^You weep as you think of the %1 experience that you lost.$}
-{
-	experience lost | grep -i you have lost | prefix silent_;
-	#if {&{groupExperience}}
-	{
-		#math {groupExperience} {$groupExperience - %1}
-	};
-	#delay {2} {tweet $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points. #AlterAeon;fbpost $name was defeated in combat and lost %1 exp for a total loss of $lostExp experience points.};
-	play death
 }
 {5}
 
@@ -423,9 +381,13 @@
 }
 {9}
 
-#ACTION {%1 {gets|get} a bite, and after a little effort {you manage|manages} to reel in %2.$}
+#ACTION {%1 {gets|get} a bite, and after a little effort {you manage|manages} to reel in %4.$}
 {
-	play catch-fish
+	play catch-fish;
+	#if {"$autojunk" == "true"}
+	{
+		#regexp {%4} {{.*} {.*}} {junk &2}
+	}
 }
 {9}
 
@@ -435,9 +397,10 @@
 }
 {9}
 
-#ACTION {%1 {reels|reel} in %2.$}
+#ACTION {%1 {reels|reel} in %3.$}
 {
-	play catch-fish
+	play catch-fish;
+	#regexp {%3} {{.*} {.*}} {#if {"&2" != "{bushes|while}" && "$autojunk" == "true"} {junk &2};#if {"&2" == "{bushes|while}"} {#delay {1d3} {\!fis}}}
 }
 {9}
 
@@ -479,15 +442,6 @@
 }
 {9}
 
-#ACTION {^ %1You are now level %2 %3, with %4 total levels!$}
-{
-	show stats | prefix silent_;
-	show clev | prefix silent_;
-	tweet $name just gained the official rank of level %2 #%3 and now has %4 total levels! #AlterAeon;
-	fbpost $name just gained the official rank of level %2 #%3 and now has %4 total levels!
-}
-{9}
-
 #ACTION {^%S goes to sleep.}
 {
 	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
@@ -512,20 +466,6 @@
 	{
 		stand
 	}
-}
-{9}
-
-#ACTION {^%w calls upon %2 to bring the corpse of $name back to life!$}
-{
-	tweet $name was resurrected by %1! #AlterAeon;
-	fbpost $name was resurrected by %1!
-}
-{9}
-
-#ACTION {^(notify) $name%1}
-{
-	tweet $name %1 #AlterAeon;
-	fbpost $name %1
 }
 {9}
 
@@ -580,9 +520,13 @@
 }
 {9}
 
-#ACTION {^After a big fight, %1 {reels|reel} in %2.$}
+#ACTION {^After a big fight, %1 {reels|reel} in %3.$}
 {
-	play catch-fish
+	play catch-fish;
+    #if {"$autojunk" == "true"}
+    {
+        #regexp {%3} {{.*} {.*}} {junk &2}
+    }
 }
 {9}
 
@@ -755,13 +699,6 @@
 #ACTION {^You happen to find %d gold coins, how fortunate!$}
 {
 	play pickpocket
-}
-{9}
-
-#ACTION {^You have completed the achievement:%1}
-{
-	tweet $name has completed the achievement %1! #AlterAeon;
-	fbpost $name has completed the achievement %1!
 }
 {9}
 
@@ -1056,15 +993,6 @@
 	#class {cspam} {read} {cspam.tin};
 	#class {gameData} {open};
 	#showme {Minion and battle spam reduced.}
-}
-{5}
-
-#ALIAS {^fbpost %1}
-{
-	#if {"$facebook" == "true"}
-	{
-		#script {dummyvar} {fbcmd post "%1" "Alter Aeon" "http://www.alteraeon.com/" &> /dev/null&}
-	}
 }
 {5}
 
@@ -1934,6 +1862,10 @@
 #ALIAS {^x$}
 {
 	#send {get coins corpse};
+#if {"$corpsecutter" == "true"}
+{
+harvest components corpse
+};
 	#if {"$consume" == "true"}
 	{
 		control all consume corpse
@@ -2136,13 +2068,6 @@
 }
 {9}
 
-#ALIAS {facebook}
-{
-	#variable {facebook} {true};
-	#showme {Achievements will now be posted to Facebook.}
-}
-{9}
-
 #ALIAS {g}
 {
 	#send {get all corpse}
@@ -2168,20 +2093,6 @@
 	#unticker {ambiance};
 	#unticker {bgMusic};
 	#showme {Background music is now off.}
-}
-{9}
-
-#ALIAS {nofacebook}
-{
-	#unvariable {facebook};
-	#showme {Achievements will no longer be posted to Facebook.}
-}
-{9}
-
-#ALIAS {notwitter}
-{
-	#unvariable {twitter};
-	#showme {Achievements will no longer be posted to Twitter.}
 }
 {9}
 
@@ -2248,22 +2159,6 @@
 {
 	#variable {speechrate} {%1};
 	#showme {speech rate is now %1.}
-}
-{9}
-
-#ALIAS {tweet %1}
-{
-	#if {"$twitter" == "true"}
-	{
-		#system {ttytter -silent -readline=0 -status="%1" &> /dev/null&}
-	}
-}
-{9}
-
-#ALIAS {twitter}
-{
-	#variable {twitter} {true};
-	#showme {Achievements will now be posted to Twitter.}
 }
 {9}
 
@@ -2376,7 +2271,4 @@
 #SUBSTITUTE       {^You are now wearing set '%S'.$}             {You are now wearing '%1'.}  {5}
 #SUBSTITUTE       {tracking_[%1] }  {}  {5}
 #VARIABLE         {lastHpAlert}  {}
-#VARIABLE         {mudPort}  {3000}
-#VARIABLE         {name}  {Goroth}
-#VARIABLE         {password}  {chaosad}
 #VARIABLE         {socials}  {"ack" "agree" "ahha" "angel" "apologize" "argh" "arr" "babble" "backslap" "bahumbug" "bap" "barf" "bark" "beam" "bear" "beckon" "beer" "beg" "bellyache" "bkiss" "blah" "blarg" "blink" "blog" "blonde" "blush" "boggle" "bonk" "boogie" "bop" "bored" "boss" "bounce" "bow" "brb" "brit" "burp" "button" "bye" "cackle" "caress" "cartwheel" "cheer" "chip" "chortle" "chuckle" "clap" "code" "coffee" "coinflip" "comfort" "confused" "cough" "cower" "cringe" "cry" "cube" "cuddle" "curl" "curse" "curtsy" "dance" "daydream" "devil" "discodance" "doh!" "drool" "drunk" "duck" "eegrin" "eemo" "egrin" "embrace" "eyebrow" "facepalm" "faint" "fandango" "fart" "flex" "flip" "flirt" "flush" "flutter" "fondle" "freak" "fremen" "french" "frown" "ftf" "gamlin" "gasp" "gauntlet" "giggle" "glare" "goat" "goddamnit" "gorilla" "goth" "grab" "greet" "grimace" "grin" "groan" "grope" "growl" "grumble" "grunt" "gurgle" "hack" "hair" "handshake" "hate" "headbang" "headlock" "heil" "hiccup" "highfive" "hiss" "hmm" "honk" "hop" "howl" "hrm" "hug" "huge" "hum" "hump" "hurf" "innocent" "insane" "island" "jedi" "jello" "jigg" "kanook" "kiss" "kneel" "lag" "lalala" "laugh" "laundry" "lick" "make" "meow" "miss" "mmk" "mml" "moan" "mole" "moon" "mooo" "mutter" "nanook" "nerd" "nibble" "ninethousand" "nod" "noodle" "nowthan" "nudge" "nuzzle" "ogg" "orly" "oz" "pace" "pancake" "pant" "pat" "patriot" "peck" "peer" "pervert" "pet" "pie" "pimp" "pinch" "pointat" "poke" "ponder" "pounce" "pout" "powertrip" "prance" "preach" "propose" "protectinate" "puke" "punt" "purr" "putter" "raa" "raindance" "ranko" "raspberry" "ready" "redneck" "ribble" "rice" "rofl" "roll" "rose" "ruffle" "rutroh" "salute" "sbomb" "scoff" "scold" "scowl" "scratch" "scream" "scuffle" "scuttle" "seppuku" "shag" "shake" "shame" "shhh" "shi" "ver" "shoo" "shrug" "shudder" "shun" "sigh" "sing" "sith" "skip" "slam" "slap" "smack" "smile" "smirk" "smoke" "smooch" "snap" "snarl" "sneer" "sneeze" "snicker" "sniff" "snifle" "snod" "snore" "snort" "snowball" "snuggle" "spammm" "spank" "spin" "spit" "spock" "squat" "ssnod" "stalk" "stare" "steam" "stefen" "stomp" "stoned" "stretch" "strip" "strut" "suicide" "suspect" "tackle" "tapp" "thank" "threaten" "tickles" "tmi" "torture" "tweak" "twiddle" "twirl" "twitch" "uh" "valley" "vegetate" "view" "violin" "waffles" "wave" "wedgie" "whap" "whimper" "whine" "whistle" "whittle" "wibble" "wiggle" "willy" "wince" "wink" "worship" "wrestle" "wrinkle" "wrist" "wtf" "xxp" "yawn" "zerbert"}
