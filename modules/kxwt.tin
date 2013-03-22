@@ -72,6 +72,17 @@
 }
 {5}
 
+#ACTION {^kxwt_area %d %2}
+{
+	#variable {areaNumber} {%1};
+	#if {$oldAreaNumber != $areaNumber}
+	{
+		play new_area;
+		#variable {oldAreaNumber} {%1}
+	}
+}
+{9}
+
 #ACTION {^kxwt_event quest %1}
 {
 	tweet $name completed quest: %1 #AlterAeon;
@@ -248,7 +259,8 @@
 
 #ACTION {^kxwt_time%*}
 {
-	#delay {0.5}{#if {&{mobRepop}}{where $mobRepop | prefix mobrepop_};#if {"$autorecast" == "true"} {affect | prefix silent_}}
+	#delay {0.5}{#if {&{mobRepop}}{where $mobRepop | prefix mobrepop_};#if {"$autorecast" == "true"} {affect | prefix silent_}};
+	#delay {1} {leaderboard_update}
 }
 {9}
 
