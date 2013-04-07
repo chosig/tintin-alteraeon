@@ -357,6 +357,12 @@
 }
 {9}
 
+#ACTION {^The fish is too big for your line, and it snaps!$}
+{
+	play fish-line-break
+}
+{9}
+
 #ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
 {
 	play fish-line-break
@@ -764,12 +770,6 @@
 {
 	show stats | prefix silent_;
 	show clev | prefix silent_
-}
-{9}
-
-#ACTION {^Your experience cap is %1 exp.$}
-{
-	#variable {cap} {%1}
 }
 {9}
 
@@ -1447,14 +1447,6 @@
 }
 {9}
 
-#ALIAS {^brag cap$}
-{
-	#line {gag};
-	cap;
-	say My experience cap is $cap exp.
-}
-{9}
-
 #ALIAS {^brag groupexp$}
 {
 	exp | prefix silent_;
@@ -1469,24 +1461,10 @@
 }
 {9}
 
-#ALIAS {^brag gt cap$}
-{
-	#line {gag};
-	cap;
-	gt My experience cap is $cap exp.
-}
-{9}
-
 #ALIAS {^brew in %S$}
 {
 	#showme {Brew container set to %1.};
 	#variable {brewContainer} {%1}
-}
-{9}
-
-#ALIAS {^cap$}
-{
-	level | tail -1
 }
 {9}
 
@@ -1908,7 +1886,6 @@ harvest components corpse
 
 #ALIAS {^{loa|load}$}
 {
-	cap;
 	spells;
 	#cr;
 	#cr;
