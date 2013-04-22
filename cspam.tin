@@ -41,3 +41,4 @@
 #substitute {^All present and accounted for.$} {All present.}
 #substitute {^You reanimate and unpack a ball of twisted bones, forming it into A bone guardian.$} {You animate A bone guardian.}
 #substitute {^The demonic flames engulf and follow %1!} {Demonic flames engulf %1!}
+#substitute {^You gain %d experience!$} {%1 exp!}
