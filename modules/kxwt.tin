@@ -171,9 +171,9 @@
 }
 {9}
 
-#ACTION {^kxwt_mdeath$}
+#ACTION {^kxwt_mdeath %1}
 {
-	#if {&{lastReceivedExp}}
+	#if {"%1" != "A blood red winged demon"}
 	{
 		#if {"$cryOfVictory" == "true"}
 		{
