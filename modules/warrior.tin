@@ -1,0 +1,5 @@
+#action {You successfully finished a full 3 attack combo!}
+{
+play combo
+}
+{9}
