@@ -3,3 +3,9 @@
 play combo
 }
 {9}
+#action {^You discover a way to use %1 in combination!$}
+{
+play new-combo
+}
+{9}
+
