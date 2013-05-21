@@ -1,3 +1,20 @@
+#action {%1-EBG31@ %2}
+{
+#gag {%0};
+#script {unencryptedMessage} {echo "%2" | rot13};
+#variable {unencryptedMessage} {${unencryptedMessage[1]}};
+#echo {%1 $unencryptedMessage}
+}
+{8}
+
+#alias {^crypt%S %2}
+{
+#script {encryptedMessage} {echo "%2" | rot13};
+#variable {encryptedMessage} {${encryptedMessage[1]}};
+%1 -EBG31@  $encryptedMessage
+}
+{9}
+
 #ACTION {^%S has restored you to full health!$}
 {
 	Add_Event %0
