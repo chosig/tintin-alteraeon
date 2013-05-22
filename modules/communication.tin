@@ -3,7 +3,8 @@
 #gag {%0};
 #script {unencryptedMessage} {echo "%2" | rot13};
 #variable {unencryptedMessage} {${unencryptedMessage[1]}};
-#echo {%1 $unencryptedMessage}
+#echo {%1 $unencryptedMessage};
+play cryptmsg
 }
 {8}
 
