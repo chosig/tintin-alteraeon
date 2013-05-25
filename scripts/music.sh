@@ -8,7 +8,7 @@ artist="$(cut -f 1 -d '\' "$HOME/.shell-fm/nowplaying")"
 title="$(cut -f 2 -d '\' "$HOME/.shell-fm/nowplaying")"
 album="$(cut -f 3 -d '\' "$HOME/.shell-fm/nowplaying")"
 if [ "$1" != false ] ; then
-url="$(curl -s -G --data-urlencode longurl="$(cut -f 4 -d '\' "$HOME/.shell-fm/nowplaying")" http://is.gd/api.php)"
+url="$(curl -s "http://is.gd/create.php?format=simple&url=$(cut -f 4 -d '\' "$HOME/.shell-fm/nowplaying")")"
 musicProvider="Last.fm"
 fi
 elif cmus-remote -C >/dev/null 2>&1 ; then
@@ -20,7 +20,7 @@ artist="$(echo "$info" | sed -n 's/^tag artist //p')"
 title="$(echo "$info" | sed -n 's/^tag title //p')"
 album="$(echo "$info" | sed -n 's/^tag album //p')"
 if [ -n "$musicURL" -a "$musicURL" != false ] ; then
-url="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)"
+url="$(curl -s "http://is.gd/create.php?format=simple&url=$(echo "${musicURL}${artist} ${title}" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g' -e 's/ /%20/g')")"
 fi
 else
 #Fianlly, check for Pianobar
@@ -31,7 +31,7 @@ artist="$(cut -f 1 -d '\' "$HOME/.config/pianobar/nowplaying")"
 title="$(cut -f 2 -d '\' "$HOME/.config/pianobar/nowplaying")"
 album="$(cut -f 3 -d '\' "$HOME/.config/pianobar/nowplaying")"
 if [ -n "$musicURL" -a "$musicURL" != false ] ; then
-url="$(curl -s -G --data-urlencode longurl="$(echo "$musicURL" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g')" http://is.gd/api.php)"
+url="$(curl -s "http://is.gd/create.php?format=simple&url=$(echo "${musicURL}${artist} ${title}" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g' -e 's/ /%20/g')")"
 fi
 fi
 fi

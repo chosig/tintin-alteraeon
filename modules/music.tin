@@ -2,25 +2,25 @@
 {
 	#if {"%1" == "jango"}
 	{
-		#variable {musicURL} {http://www.jango.com/music/$artist?l=0};
+		#variable {musicURL} {http://www.jango.com/music/};
 		#variable {musicProvider} {Jango};
 		#showme {Music search results now provided by Jango.}
 	};
 	#elseif {"%1" == "last.fm"}
 	{
-		#variable {musicURL}{http://www.last.fm/search?q=$artist%%2B$title};
+		#variable {musicURL}{http://www.last.fm/search?q=};
 		#variable {musicProvider} {Last.fm};
 		#showme {Music search results now provided by Last.fm.}
 	};
 	#elseif {"%1" == "pandora"}
 	{
-		#variable {musicURL} {http://www.pandora.com/search/$artist%%20$title};
+		#variable {musicURL} {http://www.pandora.com/search/};
 		#variable {musicProvider} {Pandora};
 		#showme {Music search results now provided by Pandora.}
 	};
 	#elseif {"%1" == "youtube"}
 	{
-		#variable {musicURL} {http://www.youtube.com/results?search_query=$artist%%20$title};
+		#variable {musicURL} {http://www.youtube.com/results?search_query=};
 		#variable {musicProvider} {Youtube};
 		#showme {Music search results now provided by Youtube.}
 	};
