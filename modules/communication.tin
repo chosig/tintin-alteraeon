@@ -130,6 +130,13 @@
 }
 {9}
 
+#ACTION {^Welcome back! Thanks for playing Alter Aeon!$}
+{
+	gift | tail -n 1 | prefix silent_;
+	synth_play $dailyGift
+}
+{9}
+
 #ACTION {^You can now learn the skill '%1'!$}
 {
 	Add_Event %0
@@ -137,6 +144,12 @@
 {9}
 
 #ACTION {^You gain favor in the eyes of %S!$}
+{
+	Add_Event %0
+}
+{9}
+
+#ACTION {^silent_Your gift was:%1}
 {
 	Add_Event %0
 }
