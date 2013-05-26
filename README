@@ -163,6 +163,7 @@ path <name>: Start mapping directions, when you are following someone. When you 
 loadpath <name>: load a path with the given name
 alt+shift+J: Walk backwards one step along the loaded path. (currently broken)
 alt+shift+L: Walk forward one step along your loaded path.
+alt+shift+O: If you find a door/gate/whatever that is closed, press this to open it.
 pathrun <name>: Load given path name and walk the entire thing. there is a 0.5 delay between each step so refresh spells etc can be done while running the path.
 
 Mage:

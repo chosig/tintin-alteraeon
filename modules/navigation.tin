@@ -43,6 +43,12 @@
 }
 {9}
 
+#ACTION {%1 is closed.$}
+{
+	#regexp {%1} {{.*} {.*}} {#variable {doorName} {&2}}
+}
+{9}
+
 #ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
 {
 	#send {waypoint %1};
@@ -164,6 +170,18 @@
 	#else
 	{
 		#showme {Path not loaded.}
+	}
+}
+
+#MACRO {\eO}
+{
+	#if {&{doorName}}
+	{
+		open $doorName
+	};
+	#else
+	{
+		#showme {Nothing to open.}
 	}
 }
 
