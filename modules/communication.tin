@@ -151,7 +151,7 @@
 
 #ACTION {^silent_Your gift was:%1}
 {
-	Add_Event %0
+	Add_Event Your gift was:%1
 }
 {9}
 
