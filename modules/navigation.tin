@@ -43,7 +43,7 @@
 }
 {9}
 
-#ACTION {%1 is closed.$}
+#ACTION {%1 {are|is} closed.$}
 {
 	#regexp {%1} {{.*} {.*}} {#variable {doorName} {&2}}
 }
@@ -62,6 +62,15 @@
 	#if {"$pathing" == "true"}
 	{
 		#path {del}
+	}
+}
+{9}
+
+#ACTION {^It seems to be locked.$}
+{
+	#if {&{doorName} && "$pickLocks" == "true"}
+	{
+		pick $doorName
 	}
 }
 {9}
