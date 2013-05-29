@@ -1860,7 +1860,7 @@ harvest components corpse
 {
 	#if {!&{connected}}
 	{
-		#session {Alter Aeon} {dentinmud.org} {$mudPort};
+		#session {Alter Aeon} {alteraeon.com} {$mudPort};
 		#if {&{name} && "$name" != "Name"}
 		{
 			$name;
@@ -2165,7 +2165,7 @@ harvest components corpse
 
 #EVENT {PROGRAM START}
 {
-	#script {for i in modules/*.tin ; do echo "#read $i";done};
+	#script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done};
 	#read {name.tin}
 }
 
