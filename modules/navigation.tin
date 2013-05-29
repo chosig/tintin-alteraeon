@@ -49,6 +49,12 @@
 }
 {9}
 
+#ACTION {WARNING - you are now entering a level %d area.$}
+{
+	#system {scripts/att.sh "You are now entering a level %1 area." &> /dev/null&}
+}
+{9}
+
 #ACTION {^(You {may be able to|can} use waypoint %1 {to|to more easily} bridge the distance.)$}
 {
 	#send {waypoint %1};
