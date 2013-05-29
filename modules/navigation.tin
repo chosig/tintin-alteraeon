@@ -75,6 +75,26 @@
 }
 {9}
 
+#ACTION {^[Exits: %*}
+{
+	#regexp {%0} {{.*} [Doors: {.*}} {play door};
+	#script {exits} {echo "%1" | tr -d "[:punct:]"};
+	#variable {exits} {${exits[1]}};
+	#if {&{tracking}}
+	{
+		nearby | grep -i $tracking | prefix tracking_
+	};
+	#if {&{automap}}
+	{
+		map
+	};
+	#if {"$autoscent" == "true"}
+	{
+		scent of death
+	}
+}
+{9}
+
 #ALIAS {^{way|wayp|waypo|waypoi|waypoin|waypoint} %1}
 {
 	#variable {waypoint} {%1};

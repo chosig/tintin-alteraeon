@@ -785,25 +785,6 @@
 }
 {9}
 
-#ACTION {^[Exits: %*}
-{
-	#script {exits} {echo "%1" | tr -d "[:punct:]"};
-	#variable {exits} {${exits[1]}};
-	#if {&{tracking}}
-	{
-		nearby | grep -i $tracking | prefix tracking_
-	};
-	#if {&{automap}}
-	{
-		map
-	};
-	#if {"$autoscent" == "true"}
-	{
-		scent of death
-	}
-}
-{9}
-
 #ACTION {^mobrepop_%1->%2}
 {
 	#unvariable {mobRepop};
