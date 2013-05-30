@@ -29,7 +29,7 @@ play new-combo
 }
 {9}
 
-#action {^You got a %d attack combo! %*}
+#action {^You got a %d attack combo%2}
 {
 #switch {%1}
 {
