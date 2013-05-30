@@ -10,11 +10,19 @@
 }
 {9}
 
-#action {You successfully finished a full %d attack combo!}
+#action {^You successfully finished a full %d attack combo!}
 {
-play combo
+#if {%1 < 5}
+{
+play combo-ultimate
+};
+#else
+{
+play combo-ultra
+}
 }
 {9}
+
 #action {^You discover a way to use %1 in combination!$}
 {
 play new-combo
@@ -23,6 +31,33 @@ play new-combo
 
 #action {^You got a %d attack combo! %*}
 {
-play combo
+#switch {%1}
+{
+#case {3}
+{
+play combo-tripple
+};
+#case {4}
+{
+play combo-b
+};
+#case {5]
+{
+play combo-super
+};
+#case {6}
+{
+play combo-hyper
+};
+#case {7}
+{
+play combo-monster
+};
+#default
+{
+play combo-k
+}
+}
+}
 }
 {9}
