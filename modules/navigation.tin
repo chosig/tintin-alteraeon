@@ -49,9 +49,9 @@
 }
 {9}
 
-#ACTION {WARNING - you are now entering a level %d area.$}
+#ACTION {WARNING - {this is|you are now entering} a level %d area.$}
 {
-	#system {scripts/att.sh "You are now entering a level %1 area." &> /dev/null&}
+	#system {scripts/att.sh "You are now entering a level %2 area." &> /dev/null&}
 }
 {9}
 
