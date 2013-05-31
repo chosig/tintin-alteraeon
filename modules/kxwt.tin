@@ -1,3 +1,19 @@
+#action {^kxwt_area -1}
+{
+	#variable {areaNumber} {-1};
+	#if {$oldAreaNumber != $areaNumber}
+	{
+		play new_area;
+		#variable {oldAreaNumber} {-1};
+#if {"$bgmusic" == "true"}
+{
+stop_background_music;
+bgmPlay
+}
+	}
+}
+{8}
+
 #ACTION {^kxwt_prompt %1 %2 %3 %4 %5 %6}
 {
 	#variable {currentHp} {%1};
@@ -78,7 +94,12 @@
 	#if {$oldAreaNumber != $areaNumber}
 	{
 		play new_area;
-		#variable {oldAreaNumber} {%1}
+		#variable {oldAreaNumber} {%1};
+#if {"$bgmusic" == "true"}
+{
+stop_background_music;
+bgmPlay
+}
 	}
 }
 {9}
@@ -211,48 +232,6 @@
 	{
 		#list {roomVnumList} {sort} {%1};
 		#variable {exploredRoomString} {}
-	}
-}
-{9}
-
-#ACTION {^kxwt_terrain %1}
-{
-	#if {"$bgmusic" == "true"}
-	{
-		#if {$oldTerrain != %1}
-		{
-			#script {bgmFileLength} {if [ -e "sounds/ambiance/terrains/%1.ogg" ] ; then soxi sounds/ambiance/terrains/%1.ogg |  grep Duration | cut -f 1 -d "=" | cut -f 4 -d ":";else echo "0";fi};
-			#if {${bgmFileLength[1]} != 0}
-			{
-				bgmPlay %1;
-				#ticker {bgMusic} {bgmPlay %1} {${bgmFileLength[1]} - 0.05}
-			};
-			#else
-			{
-				#unticker {bgMusic}
-			}
-		};
-		#if {%1 >= 3 && %1 <= 6}
-		{
-			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay wilderness};#unvariable {ambNumber}} {2d10}
-		};
-		#elseif {%1 == 2 || %1 == 28}
-		{
-			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay town};#unvariable       {ambNumber}} {2d10}
-		};
-		#elseif {%1 == 7 || %1 == 29}
-		{
-			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay swamp};#unvariable      {ambNumber}} {2d10}
-		};
-		#elseif {%1 == 14 || %1 == 18}
-		{
-			#ticker {ambiance} {#math {ambNumber} {1d2};#loop {1} {$ambNumber} {ambianceIndex} {ambPlay ocean};#unvariable      {ambNumber}} {2d10}
-		};
-		#else
-		{
-			#unticker {ambiance}
-		};
-		#variable {oldTerrain} {%1}
 	}
 }
 {9}

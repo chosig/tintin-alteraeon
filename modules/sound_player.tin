@@ -29,12 +29,6 @@
 }
 {5}
 
-#ALIAS {bgmPlay %1}
-{
-	#system {play -q -V0 "sounds/ambiance/terrains/%1.ogg" gain $volume &> /dev/null &}
-}
-{9}
-
 #ALIAS {play %1 %2}
 {
 	#system {play -qV0 -mix "$($shuf -n 1 -e sounds/%1*ogg)" "$($shuf -n 1 -e sounds/%2*wav)" gain $volume &> /dev/null &}

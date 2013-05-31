@@ -1940,13 +1940,6 @@ harvest components corpse
 }
 {9}
 
-#ALIAS {bgmusic}
-{
-	#variable {bgmusic} {true};
-	#showme {Background music is now on.}
-}
-{9}
-
 #ALIAS {browser %1}
 {
 	#variable {browser} {%1};
@@ -1983,15 +1976,6 @@ harvest components corpse
 #ALIAS {lic}
 {
 	look in corpse
-}
-{9}
-
-#ALIAS {nobgmusic}
-{
-	#unvariable {bgmusic};
-	#unticker {ambiance};
-	#unticker {bgMusic};
-	#showme {Background music is now off.}
 }
 {9}
 
