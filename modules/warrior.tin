@@ -1,3 +1,102 @@
+#ALIAS {^r$}
+{
+    #variable {randomAttack} { };
+    #if {"$bash" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "bash"}
+    };
+    #if {"$bloodlettingStab" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "stab"}
+    };
+    #if {"$cleave" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "cleave"}
+    };
+    #if {"$disarm" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "disarm"}
+    };
+    #if {"$feint" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "feint"}
+    };
+    #if {"$intimidate" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "intimidate"}
+    };
+    #if {"$jab" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "jab"}
+    };
+    #if {"$kick" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "kick"}
+    };
+    #if {"$leapAttack" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "leap"}
+    };
+    #if {"$lunge" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "lunge"}
+    };
+    #if {"$pommelStrike" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "pommel"}
+    };
+    #if {"$riposte" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "riposte"}
+    };
+    #if {"$stomp" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "stomp"}
+    };
+    #if {"$trip" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "trip"}
+    };
+    #if {"$whirlwind" == "true"}
+    {
+        #variable {randomAttack} {$randomAttack "whirlwind"}
+    };
+    #script {$shuf -n 1 -e $randomAttack}
+}
+{5}
+
+#action {^silent_ Length %d \x7c %2}
+{
+#script {echo "%2" | tr -d "[:space:]" | tr "|" ";" | sed -e 's/leapattack/leap/g' -e 's/x/r/g'}
+}
+{9}
+
+#alias {^xcombo %S %S}
+{
+target %2;
+tactics all | grep %1 | grep x | prefix silent_ | head -n 1
+}
+{8}
+
+#alias {^xcombo %S}
+{
+tactics all | grep %1 | grep x | prefix silent_ | head -n 1
+}
+{9}
+
+#alias {^combo %S %S}
+{
+target %2;
+tactics all | grep %1 | grep -v x | prefix silent_ | head -n 1
+}
+{8}
+
+#alias {^combo %S}
+{
+tactics all | grep %1 | grep -v x | prefix silent_ | head -n 1
+}
+{9}
+
 #alias {^{a|as|ass|assi|assis|assist}$}
 {
 #if {"$charge" == "true"}
@@ -14,7 +113,7 @@
 {
 #if {%1 < 5}
 {
-play combo-ultimate
+play combo-awesome
 };
 #else
 {
