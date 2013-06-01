@@ -1,3 +1,11 @@
+#action {^silent_combo_wc - lines:  %d}
+{
+#math {i} {1d%1};
+tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | prefix silent_ | tail -n $i | head -n 1
+}
+{9}
+
+#alias {^rcombo$} {tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | wc -l | prefix silent_combo_} {9}
 #ALIAS {^r$}
 {
     #variable {randomAttack} { };
