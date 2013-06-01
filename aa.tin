@@ -357,12 +357,6 @@
 }
 {9}
 
-#ACTION {^The fish is too big for your line, and it snaps!$}
-{
-	play fish-line-break
-}
-{9}
-
 #ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
 {
 	play fish-line-break
@@ -529,10 +523,10 @@
 #ACTION {^After a big fight, %1 {reels|reel} in %3.$}
 {
 	play catch-fish;
-    #if {"$autojunk" == "true"}
-    {
-        #regexp {%3} {{.*} {.*}} {junk &2}
-    }
+	#if {"$autojunk" == "true"}
+	{
+		#regexp {%3} {{.*} {.*}} {junk &2}
+	}
 }
 {9}
 
@@ -604,6 +598,12 @@
 #ACTION {^The bones splinter and shatter, leaving behind only broken pieces.$}
 {
 	play bone-guardian-death
+}
+{9}
+
+#ACTION {^The fish is too big for your line, and it snaps!$}
+{
+	play fish-line-break
 }
 {9}
 
@@ -1762,10 +1762,10 @@
 #ALIAS {^x$}
 {
 	#send {get coins corpse};
-#if {"$corpsecutter" == "true"}
-{
-harvest components corpse
-};
+	#if {"$corpsecutter" == "true"}
+	{
+		harvest components corpse
+	};
 	#if {"$consume" == "true"}
 	{
 		control all consume corpse
@@ -2072,7 +2072,17 @@ harvest components corpse
 #EVENT {PROGRAM START}
 {
 	#script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done};
-	#read {name.tin}
+	#read {name.tin};
+	play intro;
+	#echo {TinTin Alter Aeon:};
+	#echo {By Storm Dragon};
+	#echo {-----------------------------------------------------------------------------------};
+	#echo {To get started type login}
+}
+
+#EVENT {PROGRAM TERMINATION}
+{
+	#system {killall play}
 }
 
 #EVENT {SESSION CONNECTED}
