@@ -1,3 +1,39 @@
+#action {^The lock yields quickly to your skills.$}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^You begin trying to pick}
+{
+#variable {busy} {true}
+}
+{9}
+
+#action {^You%1begin cutting pieces of meat from}
+{
+#variable {busy} {true}
+}
+{9}
+
+#action {^There is no more {hide|meat} left on}
+{
+#variable {busy} {false}
+}
+{9}
+
+#action {^You%1begin cutting pieces of hide from}
+{
+#variable {busy} {true}
+}
+{9}
+
+#action {^Your dragon teeth grow restless.  It would be unwise to collect any more.$}
+{
+#variable {busy} {false}
+}
+{9}
+
 #action {^You are no longer harvesting teeth.$}
 {
 #variable {busy} {false}

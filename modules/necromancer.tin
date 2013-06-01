@@ -171,6 +171,15 @@
 }
 {9}
 
+#ACTION {^You find an out-of-place dark mass, and carefully cut it from its surroundings.$}
+{
+	#if {"$autojunk" == "true"}
+	{
+		junk tumor
+	}
+}
+{9}
+
 #ACTION {^You make a mistake, the preparation fails, and a %1 soulstone is lost.$}
 {
 	#send {get %1 soulstone from $container};
@@ -407,7 +416,7 @@
 {
 	noautobrew | prefix silent_;
 	#variable {autojunk} {true};
-	#showme {You will now automatically discard spell components harvested from corpses.}
+	#showme {You will now automatically discard spell components harvested from corpses and caught fish.}
 }
 {9}
 

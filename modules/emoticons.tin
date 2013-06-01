@@ -7,11 +7,11 @@
 #substitute {:{-\x28|\x28}} {*frown*} {9}
 #substitute {>:{-\x28|\x28}} {*evil frown*}
 #substitute {:{-\x28|\x28}\x7D} {*bearded frown*}
-#substitute {>:{-\x28|\x28}\x7D} {*evil bearded frown*}
+#substitute {>:{-\x28|\x28}\x7D} {*evil bearded frown*} {4}
 #substitute {:{-\x29|\x29}} {*smile*} {9}
 #substitute {>:{-\x29|\x29}} {*evil smile*}
 #substitute {:{-\x29|\x29}\x7D} {*bearded smile*}
-#substitute {>:{-\x29|\x29}\x7D} {*evil bearded smile*}
+#substitute {>:{-\x29|\x29}\x7D} {*evil bearded smile*} {4}
 #substitute {:{-\x7c\x7c|@}} {*angry*}
 #substitute {:{-O|O}} {*surprise*}
 #substitute {:{-P|P}} {*tongue out*}

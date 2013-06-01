@@ -31,7 +31,7 @@
 
 #ACTION {^silent_Missing '%1'.$}
 {
-	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8 && !&{inBattle}}
+	#if {"$autorecast" == "true" && $currentMana > $maxMana / 8 && !&{inBattle} && "$busy" != "true"}
 	{
 		c %1
 	}
