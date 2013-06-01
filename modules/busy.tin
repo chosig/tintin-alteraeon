@@ -1,4 +1,4 @@
-#action {^The lock yields quickly to your skills.$}
+#action {^The lock {finally yields|yields quickly} to your skills.$}
 {
 #variable {busy} {false}
 }
