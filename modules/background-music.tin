@@ -7,15 +7,26 @@
 
 #ALIAS {^stop_background_music$}
 {
-	#script {if [[ "$musicPID" =~ [0-9].* ]] ; then kill $musicPID;echo "#unticker {backgroundMusic}";fi}
+	#if {"$bgmusic" == "true"}
+	{
+		#script {if [[ "$musicPID" =~ [0-9].* ]] ; then kill $musicPID;echo "#unticker {backgroundMusic}";fi};
+		#unvariable {bgmusic}
+	}
 }
 {9}
 
 #ALIAS {bgmusic}
 {
-	#variable {bgmusic} {true};
-	bgmPlay;
-	#showme {Background music is now on.}
+	#if {!&{bgmusic} || "$bgmusic" != "true"}
+	{
+		#variable {bgmusic} {true};
+		bgmPlay;
+		#showme {Background music is now on.}
+	};
+	#else
+	{
+		#showme {Background music is already playing. To disable it, type nobgmusic.}
+	}
 }
 {9}
 
