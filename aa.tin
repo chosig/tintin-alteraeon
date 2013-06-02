@@ -451,6 +451,12 @@
 }
 {9}
 
+#ACTION {^%S has given you a gift!$}
+{
+	#script {echo "tell %1 $(shuf -n 1 -e "thanks" "thank you")"}
+}
+{9}
+
 #ACTION {^%S sits down and rests.$}
 {
 	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
@@ -790,6 +796,18 @@
 	#unvariable {mobRepop};
 	#showme {%1->%2};
 	play repop
+}
+{9}
+
+#ACTION {^modkill %S$}
+{
+	#class {%1} {kill}
+}
+{9}
+
+#ACTION {^modload %S$}
+{
+	#class {%1} {read} {modules/%1.tin}
 }
 {9}
 
@@ -1338,6 +1356,13 @@
 }
 {9}
 
+#ALIAS {^autothank$}
+{
+	#variable {autothank} {true};
+	#showme {You will now thank people for newbie gifts automatically.}
+}
+{9}
+
 #ALIAS {^beeps$}
 {
 	#showme {beeps on};
@@ -1547,6 +1572,13 @@
 {
 	#unvariable {autoregen};
 	#showme {You will no longer automatically regen when your group leader does.}
+}
+{9}
+
+#ALIAS {^noautothank$}
+{
+	#unvariable {autothank};
+	#showme {You will no longer thank people for newbie gifts automatically.}
 }
 {9}
 
