@@ -1,7 +1,8 @@
 #ALIAS {^bgmPlay$}
 {
 	#script {musicPID} {if [ -f "sounds/bgm/$areaNumber.ogg" ]; then play -qV0 "sounds/bgm/$areaNumber.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/0.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
-	#variable {musicPID} {${musicPID[1]}}
+	#variable {musicPID} {${musicPID[1]}};
+#variable {bgmusic} {true}
 }
 {9}
 
@@ -17,9 +18,8 @@
 
 #ALIAS {bgmusic}
 {
-	#if {!&{bgmusic} || "$bgmusic" != "true"}
+	#if {"$bgmusic" != "true"}
 	{
-		#variable {bgmusic} {true};
 		bgmPlay;
 		#showme {Background music is now on.}
 	};
@@ -32,7 +32,6 @@
 
 #ALIAS {nobgmusic}
 {
-	stop_background_music;
 	#unvariable {bgmusic};
 	#showme {Background music is now off.}
 }
