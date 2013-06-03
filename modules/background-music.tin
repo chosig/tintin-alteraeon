@@ -32,7 +32,7 @@
 
 #ALIAS {nobgmusic}
 {
-	#unvariable {bgmusic};
+	stop_background_music;
 	#showme {Background music is now off.}
 }
 {9}
