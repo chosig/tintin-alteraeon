@@ -45,9 +45,11 @@ insult -weapon | prefix silent_%1_
 };
 #else
 {
-remove all | prefix silent_;
-put all $container | prefix silent_;
-#forall {${eq_%1}} {get &0 $container | prefix silent_;wear &0 | prefix silent_};
+set msp off | prefix silent_;
+remove all | grep nospam;
+put all $container | grep nospam;
+#forall {${eq_%1}} {get &0 $container | grep nospam;wear &0 | grep nospam};
+set msp on | prefix silent_;
 #showme {You are now wearing set %1.}
 }
 }
