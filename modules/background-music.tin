@@ -1,6 +1,8 @@
 #ALIAS {^bgmPlay$}
 {
-	#script {musicPID} {if [ -f "sounds/bgm/$areaNumber.ogg" ]; then play -qV0 "sounds/bgm/$areaNumber.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/0.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
+#script {backgroundMusicTrack} {echo "$areaName" | tr -d "[:punct:]" | tr "[:upper:]" "[:lower:]" | sed -e 's/ /_/g' -e 's/_$//'};
+#var {backgroundMusicTrack} {$backgroundMusicTrack[1]};
+	#script {musicPID} {if [ -f "sounds/bgm/$backgroundMusicTrack.ogg" ]; then play -qV0 "sounds/bgm/$backgroundMusicTrack.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/default.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
 	#variable {musicPID} {${musicPID[1]}};
 #variable {bgmusic} {true}
 }

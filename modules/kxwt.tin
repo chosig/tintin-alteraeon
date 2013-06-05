@@ -1,6 +1,7 @@
 #action {^kxwt_area -1}
 {
 	#variable {areaNumber} {-1};
+#variable {areaName} {default};
 	#if {$oldAreaNumber != $areaNumber}
 	{
 		play new_area;
@@ -91,6 +92,7 @@ bgmPlay
 #ACTION {^kxwt_area %d %2}
 {
 	#variable {areaNumber} {%1};
+#variable {areaName} {%2};
 	#if {$oldAreaNumber != $areaNumber}
 	{
 		play new_area;
