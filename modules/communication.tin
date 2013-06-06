@@ -82,6 +82,10 @@
 
 #ACTION {^%S has given you a gift!$}
 {
+	#if {"$autothank" == "true"}
+	{
+		#script {echo "tell %1 $(shuf -n 1 -e "thanks" "thank you")"}
+	};
 	Add_Event %0
 }
 {9}

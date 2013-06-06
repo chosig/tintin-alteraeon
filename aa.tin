@@ -451,12 +451,6 @@
 }
 {9}
 
-#ACTION {^%S has given you a gift!$}
-{
-	#script {echo "tell %1 $(shuf -n 1 -e "thanks" "thank you")"}
-}
-{9}
-
 #ACTION {^%S sits down and rests.$}
 {
 	#if {&{autoregen} && &{groupLeader} && "%1" == "$groupLeader"}
@@ -2144,6 +2138,10 @@
 	#else
 	{
 		#class {gameData} {open} {game_data.tin}
+	};
+	#if {"$bgmusic" == "true"}
+	{
+		bgmPlay
 	}
 }
 
