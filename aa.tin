@@ -2114,7 +2114,7 @@
 
 #EVENT {PROGRAM TERMINATION}
 {
-	#system {killall play}
+	#system {if [ -f ".backgroundMusicPID" ] ; then kill $(cat ".backgroundMusicPID");rm ".backgroundMusicPID" &> /dev/null;fi}
 }
 
 #EVENT {SESSION CONNECTED}
@@ -2147,7 +2147,8 @@
 
 #EVENT {SESSION DISCONNECTED}
 {
-	#unvariable {connected}
+	#unvariable {connected};
+stop_background_music
 }
 
 #GAG              {A ball of light flies idly in circles around your head.}

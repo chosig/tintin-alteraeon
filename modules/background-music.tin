@@ -4,6 +4,7 @@
 #var {backgroundMusicTrack} {$backgroundMusicTrack[1]};
 	#script {musicPID} {if [ -f "sounds/bgm/$backgroundMusicTrack.ogg" ]; then play -qV0 "sounds/bgm/$backgroundMusicTrack.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/default.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
 	#variable {musicPID} {${musicPID[1]}};
+#system {echo -n "$musicPID" > .backgroundMusicPID};
 #variable {bgmusic} {true}
 }
 {9}
@@ -13,6 +14,7 @@
 	#if {"$bgmusic" == "true"}
 	{
 		#script {if [[ "$musicPID" =~ [0-9].* ]] ; then kill $musicPID;echo "#unticker {backgroundMusic}";fi};
+#system {if [ -f ".backgroundMusicPID" ] ; then rm ".backgroundMusicPID" &> /dev/null;fi};
 		#unvariable {bgmusic}
 	}
 }
