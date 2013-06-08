@@ -1400,8 +1400,8 @@
 #ALIAS {^csave$}
 {
 	Clear_Variables;
-	#class {gameData} {write} {game_data.tin};
-	#showme {saving game_data.tin}
+	#script {echo "#class {gameData} {write} {$gameDataPath}"};
+	#showme {saving game data for $name.}
 }
 {9}
 
@@ -1860,7 +1860,7 @@
 #ALIAS {^{quit|logoff}$}
 {
 	Clear_Variables;
-	#class {gameData} {write} {game_data.tin};
+#script {echo "#class {gameData} {write} {$gameDataPath}"};
 	set ctrigger off | prefix silent_;
 	#send {quit}
 }
@@ -2098,14 +2098,11 @@
 #EVENT {PROGRAM START}
 {
 	#script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done};
-	#read {name.tin};
 	play intro;
 	#echo {TinTin Alter Aeon:};
 	#echo {By Storm Dragon and contributers. See the credits page for details:};
 	#echo {https://github.com/stormdragon2976/tintin-alteraeon/wiki/Credits};
 	#echo {-----------------------------------------------------------------------------------};
-	#echo {You should not run tintin-alteraeon from within the git directory itself.};
-	#echo {If you have not done so yet, please type #end then, at your prompt, type ./character-setup.sh};
 	#echo {Help is available in game on the cowsay channel or on the wiki:};
 	#echo {https://github.com/stormdragon2976/tintin-alteraeon/wiki};
 	#echo {-----------------------------------------------------------------------------------};
@@ -2119,30 +2116,12 @@
 
 #EVENT {SESSION CONNECTED}
 {
-	#class {gameData} {read} {game_data.tin};
 	#variable {connected} {true};
 	#variable {loggedIn} {false};
 	#script {logFilePath} {date +'log/%Y/%B/%d/'};
 	#script {logFileName} {date +'%I_%M%p.log'};
 	#system {mkdir -p ${logFilePath[1]}};
 	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
-	#if {&{personalFile}}
-	{
-		#class {personal} {read} {$personalFile};
-		#showme {Loading $personalFile}
-	};
-	#if {"$autocspam" == "true"}
-	{
-		cspam
-	};
-	#else
-	{
-		#class {gameData} {open} {game_data.tin}
-	};
-	#if {"$bgmusic" == "true"}
-	{
-		bgmPlay
-	}
 }
 
 #EVENT {SESSION DISCONNECTED}

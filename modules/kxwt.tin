@@ -1,20 +1,3 @@
-#action {^kxwt_area -1}
-{
-	#variable {areaNumber} {-1};
-#variable {areaName} {default};
-	#if {$oldAreaNumber != $areaNumber}
-	{
-		play new_area;
-		#variable {oldAreaNumber} {-1};
-#if {"$bgmusic" == "true"}
-{
-stop_background_music;
-bgmPlay
-}
-	}
-}
-{8}
-
 #ACTION {^kxwt_prompt %1 %2 %3 %4 %5 %6}
 {
 	#variable {currentHp} {%1};
@@ -89,19 +72,36 @@ bgmPlay
 }
 {5}
 
+#ACTION {^kxwt_area -1}
+{
+	#variable {areaNumber} {-1};
+	#variable {areaName} {default};
+	#if {$oldAreaNumber != $areaNumber}
+	{
+		play new_area;
+		#variable {oldAreaNumber} {-1};
+		#if {"$bgmusic" == "true"}
+		{
+			stop_background_music;
+			bgmPlay
+		}
+	}
+}
+{8}
+
 #ACTION {^kxwt_area %d %2}
 {
 	#variable {areaNumber} {%1};
-#variable {areaName} {%2};
+	#variable {areaName} {%2};
 	#if {$oldAreaNumber != $areaNumber}
 	{
 		play new_area;
 		#variable {oldAreaNumber} {%1};
-#if {"$bgmusic" == "true"}
-{
-stop_background_music;
-bgmPlay
-}
+		#if {"$bgmusic" == "true"}
+		{
+			stop_background_music;
+			bgmPlay
+		}
 	}
 }
 {9}
@@ -215,6 +215,30 @@ bgmPlay
 			#delay {0.5}{#if {"$autoconsume" == "true"}{control all consume corpse};#if {"$autobloodsacrifice" == "true" && !   &{inBattle}}{bsac corpse};#if {&{combat}}{#foreach {$combat} {spell}{$spell}};#unvariable {combat};#if {"$corpsecutter" ==      "true" && !&{inBattle}}{harvest components corpse};#if {"$autobrew" == "true" && &{brewContainer}}{#if {"$coldfire" == "true"   && !&{hasColdFire} && !&{inBattle}}{c coldfire self;#variable {hasColdFire} {true};#delay {7} {junk coldfire | prefix silent_;  #unvariable {hasColdFire}}};#delay {1d5} {brew p i | prefix silent_}};#if {"$autofleshbeast" == "true"}{#if                     {"$makeNewFleshBeast" == "true"}{c flesh corpse};#else {lowhp | prefix silent_}};#if {"$harvestTeeth" == "true" && !            &{inBattle}}{harvest teeth corpse};#if {&{lastReceivedExp}}{#unvariable {lastReceivedExp}};#if {&{position}}{$position}}
 		}
 	}
+}
+{9}
+
+#ACTION {^kxwt_myname %S}
+{
+	#script {gameDataPath} {echo "$HOME/.tintin-alteraeonrc.%1"};
+	#variable {gameDataPath} {$gameDataPath[1]};
+	#script {name} {echo "%1" | $sed -r 's/\<./\U&/g'};
+	#variable {name} {$name[1]};
+	#script {if ! [ -f "$gameDataPath" ] ; then echo -e "#CLASS {gameData} OPEN\n\n#VARIABLE         {autorecast}  {true}\n#VARIABLE         {beeps}  {true}\n#VARIABLE         {bgmusic}  {true}\n#VARIABLE         {boneMaterial}  {boneguardian}\n#VARIABLE         {brewContainer}  {bowl}\n#VARIABLE         {container}  {bag}\n #VARIABLE         {harmSpell}  {cause light wounds}\n#VARIABLE         {healSpell}  {cure light wounds}\n#VARIABLE         {metalMaterial}  {metalconstruct}\n#VARIABLE         {speechRate}  {80}\n#VARIABLE         {throwWeapon}  {shadow}\n#VARIABLE         {woadMaterial}  {deanimate}\n\n#CLASS {gameData} CLOSE" > "$gameDataPath";fi;echo "#class {gameData} {read} {$gameDataPath}"};
+	#if {&{personalFile}}
+	{
+		#class {personal} {read} {$personalFile};
+		#showme {Loading $personalFile}
+	};
+	#if {"$autocspam" == "true"}
+	{
+		cspam
+	};
+	#if {"$bgmusic" == "true"}
+	{
+		bgmPlay
+	};
+	#class {gameData} {open}
 }
 {9}
 
