@@ -1,0 +1,6 @@
+#action {^Cracks appear and spread slowly through the walls of the fortress.$}
+{
+play bone-fort-crack
+}
+{9}
+
