@@ -33,17 +33,29 @@
 
 #MACRO {\e+}
 {
-	#system {cmus-remote -v +10%}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q volume +10}};
+	#default {#system {cmus-remote -v +10%}}
+}
 }
 
 #MACRO {\eB}
 {
-	#system {cmus-remote -n}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q next}};
+	#default {#system {cmus-remote -n}}
+}
 }
 
 #MACRO {\eC}
 {
-	#system {cmus-remote -u}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q pause}};
+	#default {#system {cmus-remote -u}}
+}
 }
 
 #MACRO {\eM}
@@ -78,32 +90,56 @@
 
 #MACRO {\eV}
 {
-	#system {cmus-remote -s}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q stop}};
+	#default {#system {cmus-remote -s}}
+}
 }
 
 #MACRO {\eX}
 {
-	#system {cmus-remote -p}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q play}};
+	#default {#system {cmus-remote -p}}
+}
 }
 
 #MACRO {\eZ}
 {
-	#system {cmus-remote -r}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q prev}};
+	#default {#system {cmus-remote -r}}
+}
 }
 
 #MACRO {\e\x7B}
 {
-	#system {cmus-remote -k -5}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q seek -5}};
+	#default {#system {cmus-remote -k -5}}
+}
 }
 
 #MACRO {\e\x7D}
 {
-	#system {cmus-remote -k +5}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q seek +5}};
+	#default {#system {cmus-remote -k +5}}
+}
 }
 
 #MACRO {\e_}
 {
-	#system {cmus-remote -v -10%}
+#switch {"$musicPlayer}
+{
+#case {"mp{c|d}"} {#system {mpc -q volume -10}};
+	#default {#system {cmus-remote -v -10%}}
+}
 }
 
 #VARIABLE         {musicChannel}  {music}
