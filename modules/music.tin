@@ -33,27 +33,27 @@
 
 #MACRO {\e+}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q volume +10}};
+#case {"mp{c|d}"} {#system {mpc -q volume +10}};
 	#default {#system {cmus-remote -v +10%}}
 }
 }
 
 #MACRO {\eB}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q next}};
+#case {"mp{c|d}"} {#system {mpc -q next}};
 	#default {#system {cmus-remote -n}}
 }
 }
 
 #MACRO {\eC}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q pause}};
+#case {"mp{c|d}"} {#system {mpc -q pause}};
 	#default {#system {cmus-remote -u}}
 }
 }
@@ -90,54 +90,54 @@
 
 #MACRO {\eV}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q stop}};
+#case {"mp{c|d}"} {#system {mpc -q stop}};
 	#default {#system {cmus-remote -s}}
 }
 }
 
 #MACRO {\eX}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q play}};
+#case {"mp{c|d}"} {#system {mpc -q play}};
 	#default {#system {cmus-remote -p}}
 }
 }
 
 #MACRO {\eZ}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q prev}};
+#case {"mp{c|d}"} {#system {mpc -q prev}};
 	#default {#system {cmus-remote -r}}
 }
 }
 
 #MACRO {\e\x7B}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q seek -5}};
+#case {"mp{c|d}"} {#system {mpc -q seek -5}};
 	#default {#system {cmus-remote -k -5}}
 }
 }
 
 #MACRO {\e\x7D}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q seek +5}};
+#case {"mp{c|d}"} {#system {mpc -q seek +5}};
 	#default {#system {cmus-remote -k +5}}
 }
 }
 
 #MACRO {\e_}
 {
-#switch {"$musicPlayer}
+#switch {"$musicPlayer"}
 {
-#case {"mpd"} {#system {mpc -q volume -10}};
+#case {"mp{c|d}"} {#system {mpc -q volume -10}};
 	#default {#system {cmus-remote -v -10%}}
 }
 }
