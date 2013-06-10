@@ -68,24 +68,36 @@
 	{
 		#variable {musicProvider} {Last.fm}
 	};
-	#script {echo "$musicChannel *$($shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air$($shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
+	#script {echo "$musicChannel *$($shuf -n 1 -e "Breaks" "Gets" "Whips" "busts") out the air $($shuf -n 1 -e "bagpipes" "guitar" "armonica" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo")!* It's $(scripts/music.sh $musicURL $musicProvider)"}
 }
 
 #MACRO {\eR}
 {
-	#system {cmus-remote -R};
-	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
+#switch {"$musicPlayer"}
+{
+#case {"mp{c|d}"} {#system {mpc repeat | grep repeat: | tr -s " " | cut -d " " -f3- | cut -d " " -f-2}};
+	#default {#system {cmus-remote -R};
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}}
+}
 }
 
 #MACRO {\eS}
 {
-	#system {cmus-remote -S};
-	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}
+#switch {"$musicPlayer"}
+{
+#case {"mp{c|d}"} {#system {mpc random | grep random: | tr -s " " | cut -d " " -f5- | cut -d " " -f-2}};
+	#default {#system {cmus-remote -S};
+	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}}
+}
 }
 
 #MACRO {\eU}
 {
-	#script {echo "#showme {Playing: $(scripts/music.sh false)}"}
+#switch {"$musicPlayer"}
+{
+#case {"mp{c|d}"} {#script {echo "#showme {Playing: $(mpc current)}"}};
+	#default {#script {echo "#showme {Playing: $(scripts/music.sh false)}"}}
+}
 }
 
 #MACRO {\eV}

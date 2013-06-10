@@ -2,8 +2,23 @@
 #music status helper for TinTin++
 #Written by Storm Dragon
 
+mpd="$(mpc current)"
+if [ -n "$mpd" ] ; then
+mpd="true"
+fi
+
+#check for mpd
+if [ "$mpd" == "true" ] ; then
+musicURL="$1"
+musicProvider="$2"
+artist="$(mpc -f %artist% current)"
+title="$(mpc -f %title% current)"
+album="$(mpc -f %album% current)"
+if [ -n "$musicURL" -a "$musicURL" != false ] ; then
+url="$(curl -s "http://is.gd/create.php?format=simple&url=$(echo "${musicURL}${artist} ${title}" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g' -e 's/ /%20/g')")"
+fi
 #check for last.fm:
-if [ -f "$HOME/.shell-fm/nowplaying" ] ; then
+elif [ -f "$HOME/.shell-fm/nowplaying" ] ; then
 artist="$(cut -f 1 -d '\' "$HOME/.shell-fm/nowplaying")"
 title="$(cut -f 2 -d '\' "$HOME/.shell-fm/nowplaying")"
 album="$(cut -f 3 -d '\' "$HOME/.shell-fm/nowplaying")"
@@ -43,7 +58,11 @@ msg="$msg (Search results provided by $musicProvider)"
 fi
 msg=$(echo "$msg" | tr -d "\n")
 else
+if [ "$mpd" == "true" ] ; then
+fileName="$(mpc current)"
+else
 fileName="$(cmus-remote -Q | head -2 | tail -1 | rev)"
+fi
 if [ -z "$title" ] ; then
 title="$(echo "$fileName" | cut -f 1 -d '/' | cut -f 2 -d '.' | rev)"
 fi
