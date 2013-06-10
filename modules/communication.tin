@@ -69,6 +69,10 @@
 			};
 			#default
 			{
+				#if {"%2" == "tel{.*}" && &{awayMessage}}
+				{
+					reply $awayMessage
+				};
 				synth_play $defaultReceiveSound
 			}
 		};
@@ -210,6 +214,20 @@
 		#list {eventList} {delete} {11}
 	};
 	#unvariable {i}
+}
+{9}
+
+#ALIAS {^away %1}
+{
+	#variable {awayMessage} {%1};
+	#showme {Your away message is set to: $awayMessage}
+}
+{9}
+
+#ALIAS {^away$}
+{
+	#unvariable {awayMessage};
+	#showme {away message cleared.}
 }
 {9}
 
@@ -376,5 +394,6 @@
 	#showme {Channel buffer set to $channelBuffer[$channelBufferIndex]}
 }
 
+#VARIABLE         {awayMessage}  {}
 #VARIABLE         {channelBuffer}  {{0}{all}{1}{auction}{2}{cowsay}{3}{ct}{4}{events}{5}{friends}{6}{grouptells}{7}{tells}}
 #VARIABLE         {eventList}  {}
