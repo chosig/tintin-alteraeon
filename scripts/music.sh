@@ -59,7 +59,7 @@ fi
 msg=$(echo "$msg" | tr -d "\n")
 else
 if [ "$mpd" == "true" ] ; then
-fileName="$(mpc current)"
+fileName="$(mpc current | rev)"
 else
 fileName="$(cmus-remote -Q | head -2 | tail -1 | rev)"
 fi
