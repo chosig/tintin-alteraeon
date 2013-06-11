@@ -35,8 +35,8 @@
 {
 #switch {"$musicPlayer"}
 {
-#case {"mp{c|d}"} {#system {mpc -q volume +10}};
-	#default {#system {cmus-remote -v +10%}}
+#case {"mp{c|d}"} {#system {mpc -q volume +5}};
+	#default {#system {cmus-remote -v +5%}}
 }
 }
 
@@ -149,8 +149,8 @@
 {
 #switch {"$musicPlayer"}
 {
-#case {"mp{c|d}"} {#system {mpc -q volume -10}};
-	#default {#system {cmus-remote -v -10%}}
+#case {"mp{c|d}"} {#system {mpc -q volume -5}};
+	#default {#system {cmus-remote -v -5%}}
 }
 }
 
