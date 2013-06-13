@@ -51,7 +51,7 @@
 
 #ACTION {WARNING - {this is|you are now entering} a level %d area.$}
 {
-	#system {scripts/att.sh "You are now entering a level %2 area." &> /dev/null&}
+	play area-level-%2
 }
 {9}
 
