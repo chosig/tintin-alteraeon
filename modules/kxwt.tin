@@ -262,6 +262,12 @@
 }
 {9}
 
+#ACTION {^kxwt_terrain %d}
+{
+	#variable {terrainNumber} {%1}
+}
+{9}
+
 #ACTION {^kxwt_time%*}
 {
 	#delay {0.5}{#if {&{mobRepop}}{where $mobRepop | prefix mobrepop_};#if {"$autorecast" == "true"} {affect | prefix silent_}};
