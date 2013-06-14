@@ -607,12 +607,6 @@
 }
 {9}
 
-#ACTION {^The magic holding a flesh beast together suddenly fails, leaving%*}
-{
-	play flesh-beast-death
-}
-{9}
-
 #ACTION {^The physical reserve deep within you feels replenished.$}
 {
 	#unvariable {exhausted}
@@ -1400,7 +1394,7 @@
 #ALIAS {^csave$}
 {
 	Clear_Variables;
-	#script {echo "#class {gameData} {write} {$gameDataPath}"};
+	#class {gameData} {write} {$gameDataPath};
 	#showme {saving game data for $name.}
 }
 {9}
@@ -1860,7 +1854,7 @@
 #ALIAS {^{quit|logoff}$}
 {
 	Clear_Variables;
-#script {echo "#class {gameData} {write} {$gameDataPath}"};
+	#class {gameData} {write} {$gameDataPath};
 	set ctrigger off | prefix silent_;
 	#send {quit}
 }
