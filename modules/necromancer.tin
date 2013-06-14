@@ -45,7 +45,8 @@
 	};
 	#if {"$autofleshbeast" == "true"}
 	{
-		#variable {makeNewFleshBeast} {true}
+		#variable {makeNewFleshBeast} {true};
+		c flesh corpse | prefix autoflesh
 	};
 	#if {"$autometal" == "true"}
 	{
@@ -57,15 +58,6 @@
 	}
 }
 {4}
-
-#ACTION {^A flesh beast starts following you.$}
-{
-	#if {&{makeNewFleshBeast}}
-	{
-		#unvariable {makeNewFleshBeast}
-	}
-}
-{5}
 
 #ACTION {^A twisted bone shield fractures, splits, and abruptly crumbles to dust! (worn by you)$}
 {
@@ -79,6 +71,15 @@
 		{
 			Add_Cast bone shield
 		}
+	}
+}
+{5}
+
+#ACTION {^autofleshA flesh beast starts following you.$}
+{
+	#if {&{makeNewFleshBeast}}
+	{
+		#unvariable {makeNewFleshBeast}
 	}
 }
 {5}
@@ -236,6 +237,12 @@
 }
 {9}
 
+#ACTION {^autofleshYou want to cast the spell where?$}
+{
+	c clay
+}
+{9}
+
 #ACTION {^large chunks. (worn by you)$}
 {
 	#if {"$autobonearmor" == "true"}
@@ -247,7 +254,7 @@
 
 #ACTION {^silent_A flesh beast %d}
 {
-	c flesh corpse
+	c flesh corpse | prefix autoflesh
 }
 {9}
 
@@ -528,4 +535,5 @@
 	}
 }
 
+#SUBSTITUTE       {^autoflesh%1}  {%1}  {5}
 #VARIABLE         {demonfireStone}  {pale blue}
