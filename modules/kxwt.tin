@@ -126,9 +126,11 @@
 		#math {groupExperience} {$groupExperience + $expGained}
 	};
 	#variable {oldExp} {%1};
-	#if {&{autolevelClass}}
+	#if {&{autolevelClass} && "$checkedLevel" == "false"}
 	{
-		level | prefix silent_
+		level | prefix silent_;
+		#variable {checkedLevel} {true};
+		#delay {90} {#variable {checkedLevel} {false}}
 	};
 	#if {"$autobuypractice" == "true" && %1 >= $buyPracticeExperience}
 	{
@@ -277,3 +279,4 @@
 
 #GAG              {^kxwt_%*}
 #SUBSTITUTE       { ]$}  { ]${exploredRoomString}}  {1}
+#VARIABLE         {checkedLevel}  {false}
