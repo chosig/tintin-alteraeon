@@ -2,7 +2,7 @@
 {
 #script {backgroundMusicTrack} {echo "$areaName" | tr -d "[:punct:]" | tr "[:upper:]" "[:lower:]" | sed -e 's/ /_/g' -e 's/_$//'};
 #var {backgroundMusicTrack} {$backgroundMusicTrack[1]};
-	#script {musicPID} {if [ -f "sounds/bgm/$backgroundMusicTrack.ogg" ]; then play -qV0 "sounds/bgm/$backgroundMusicTrack.ogg" repeat 100000 gain $volume &> /dev/null& elif [[ $(echo "$backgroundMusicTrack" | grep -Ei "city|town|village") ]] ; then play -qV0 "sounds/bgm/town.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/default.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
+	#script {musicPID} {if [ -f "sounds/bgm/$backgroundMusicTrack.ogg" ]; then play -qV0 "sounds/bgm/$backgroundMusicTrack.ogg" repeat 100000 gain $volume &> /dev/null& elif [[ $(echo "$backgroundMusicTrack" | grep -Ei "city|town|village") ]] ; then play -qV0 "sounds/bgm/town.ogg" repeat 100000 gain $volume &> /dev/null& elif [[ $(echo "$backgroundMusicTrack" | grep -i ocean) ]] ; then play -qV0 "sounds/bgm/ocean.ogg" repeat 100000 gain $volume &> /dev/null& else play -qV0 "sounds/bgm/default.ogg" repeat 100000 gain $volume &> /dev/null& fi;echo "$!"};
 	#variable {musicPID} {${musicPID[1]}};
 #system {echo -n "$musicPID" > .backgroundMusicPID};
 #variable {bgmusic} {true}
