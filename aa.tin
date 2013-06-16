@@ -607,6 +607,12 @@
 }
 {9}
 
+#ACTION {^The gods penalize you for botting!$}
+{
+	play attention
+}
+{9}
+
 #ACTION {^The physical reserve deep within you feels replenished.$}
 {
 	#unvariable {exhausted}
@@ -2115,13 +2121,13 @@
 	#script {logFilePath} {date +'log/%Y/%B/%d/'};
 	#script {logFileName} {date +'%I_%M%p.log'};
 	#system {mkdir -p ${logFilePath[1]}};
-	#log {overwrite} {${logFilePath[1]}${logFileName[1]}};
+	#log {overwrite} {${logFilePath[1]}${logFileName[1]}}
 }
 
 #EVENT {SESSION DISCONNECTED}
 {
 	#unvariable {connected};
-stop_background_music
+	stop_background_music
 }
 
 #GAG              {A ball of light flies idly in circles around your head.}
