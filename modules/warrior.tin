@@ -5,8 +5,8 @@ tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | pref
 }
 {9}
 
-#alias {^rcombo$} {tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | wc -l | prefix silent_combo_} {9}
-#ALIAS {^r$}
+#alias {^combo$} {tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | wc -l | prefix silent_combo_} {9}
+#ALIAS {^randomattack}
 {
     #variable {randomAttack} { };
     #if {"$bash" == "true"}
@@ -75,13 +75,14 @@ tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | pref
 
 #action {^silent_ Length %d \x7c %2}
 {
-#script {echo "%2" | tr -d "[:space:]" | tr "|" ";" | sed -e 's/leapattack/leap/g' -e 's/x/r/g'}
+#script {echo "%2" | tr -s "[:space:]" | sed -e "s/|/ $target ;/" -e 's/leap attack/leap/g' -e 's/pommel strike/pommel/g' -e 's/x/randomattack/g' -e 's/|/;/g'};
+#variable {target} {}
 }
 {9}
 
 #alias {^xcombo %S %S}
 {
-target %2;
+#variable {target} {%2};
 tactics all | grep %1 | grep x | prefix silent_ | head -n 1
 }
 {8}
@@ -94,7 +95,7 @@ tactics all | grep %1 | grep x | prefix silent_ | head -n 1
 
 #alias {^combo %S %S}
 {
-target %2;
+#variable {target} {%2};
 tactics all | grep %1 | grep -v x | prefix silent_ | head -n 1
 }
 {8}
