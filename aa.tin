@@ -114,36 +114,6 @@
 }
 {5}
 
-#ACTION {^A ghoul bites %1 with diseased, razor sharp teeth!$}
-{
-	play ghoul-attack
-}
-{5}
-
-#ACTION {^A ghoul jumps at %1 clawing and biting!$}
-{
-	play ghoul-attack
-}
-{5}
-
-#ACTION {^A ghoul rips and tears into %1 with filthy, diseased claws!$}
-{
-	play ghoul-attack
-}
-{5}
-
-#ACTION {^A zombie gnaws hungrily on %1 with filthy, rotten teeth.$}
-{
-	play ghoul-attack
-}
-{5}
-
-#ACTION {^The light above the wizard's shop flickers for an instant, looks like it needs maintenance.$}
-{
-	play wizard-shop-light
-}
-{5}
-
 #ACTION {^You are %1, and currently %2 tall.$}
 {
 	#variable {sex} {%1}
@@ -199,12 +169,6 @@
 }
 {5}
 
-#ACTION {^You hear the loud -clang- *CLANG* of a hammer on anvil to the north.$}
-{
-	play hammer-on-anvil
-}
-{5}
-
 #ACTION {^[event] The pumpkin cannon operator: %1 shot a pumpkin a distance of %2 feet %3!$}
 {
 	#if {"%1" == "%i$name"}
@@ -252,12 +216,6 @@
 	#variable {necromancerLevel} {%5}
 }
 {7}
-
-#ACTION {%1 {reels|reel} in %2 line and {recasts|recast} it.$}
-{
-	play fishing-cast
-}
-{8}
 
 #ACTION {^Yo%1miss%2{tonberry|moogle}.$}
 {
@@ -345,39 +303,9 @@
 }
 {9}
 
-#ACTION {%1 (unique)$}
-{
-	play unique
-}
-{9}
-
-#ACTION {%1 cleaves through {its|her|his} enemies!$}
-{
-	play cleave
-}
-{9}
-
-#ACTION {%1 hook gets caught, forcing {him|her|it} to break the line.$}
-{
-	play fish-line-break
-}
-{9}
-
 #ACTION {%1 is ready to go, but you would be left behind!$}
 {
 	stand
-}
-{9}
-
-#ACTION {%1 seems to have dropped %2!  You'll surely return it later.$}
-{
-	play pickpocket
-}
-{9}
-
-#ACTION {%1 spell rips up out of the ground and explodes in a harmless shower of frost.$}
-{
-	play frostbite-harmless
 }
 {9}
 
@@ -391,30 +319,10 @@
 }
 {9}
 
-#ACTION {%1 {puts|put} one end of %1 to the ground and {begins casting|begin the spell}.$}
-{
-	play frostbite-launch
-}
-{9}
-
 #ACTION {%1 {reels|reel} in %3.$}
 {
 	play catch-fish;
 	#regexp {%3} {{.*} {.*}} {#if {"&2" != "{bushes|while}" && "$autojunk" == "true"} {junk &2};#if {"&2" == "{bushes|while}"} {#delay {1d3} {\!fis}}}
-}
-{9}
-
-#ACTION {%1 {struggles|struggle} with the spell, and the line of frost zips randomly across the ground...$}
-{
-	#math {leftChannel} {1d9};
-	#math {rightChannel} {1d9};
-	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
-}
-{9}
-
-#ACTION {%1 {throws out a line and starts|start} fishing.$}
-{
-	play fishing-cast
 }
 {9}
 
@@ -469,35 +377,11 @@
 }
 {9}
 
-#ACTION {^A %1 soulstone disappears in a puff of smoke, and you hear demonic laughter all around you.$}
-{
-	play demonic-laughter
-}
-{9}
-
-#ACTION {^A blood red winged demon explodes in fine haze of red mist!$}
-{
-	play bloodmist-death
-}
-{9}
-
-#ACTION {^A dark mist fills the room, and you suddenly can't breathe!$}
-{
-	play dying-breath-release
-}
-{9}
-
 #ACTION {^A dimly lit cavern$}
 {
 	set ctrigger on | prefix silent_;
 	set msp on | prefix silent_;
 	#showme {Pulseaudio does not work well with background music. for this reason it has been disabled by default. If you are not using pulseaudio, you can enable background music by typing bgmusic and turn it off again by typing nobgmusic.}
-}
-{9}
-
-#ACTION {^A fissure opens up in the ground beneath a %1 soulstone and swallows it up!$}
-{
-	play demonic-laughter
 }
 {9}
 
@@ -507,18 +391,6 @@
 	{
 		c spirit
 	}
-}
-{9}
-
-#ACTION {^A shadow fiend has left the group.$}
-{
-	play shadow-fiend-leave
-}
-{9}
-
-#ACTION {^A small clawed hand reaches up through the ground, grabs a %1 soulstone, and vanishes.$}
-{
-	play demonic-laughter
 }
 {9}
 
@@ -535,12 +407,6 @@
 	{
 		#regexp {%3} {{.*} {.*}} {junk &2}
 	}
-}
-{9}
-
-#ACTION {^It {starts|is} raining.$}
-{
-	play rain
 }
 {9}
 
@@ -600,18 +466,6 @@
 			Add_Cast bone blade
 		}
 	}
-}
-{9}
-
-#ACTION {^The bones splinter and shatter, leaving behind only broken pieces.$}
-{
-	play bone-guardian-death
-}
-{9}
-
-#ACTION {^The fish is too big for your line, and it snaps!$}
-{
-	play fish-line-break
 }
 {9}
 
@@ -698,21 +552,9 @@
 }
 {9}
 
-#ACTION {^You gain a practice!$}
-{
-	play train-practice
-}
-{9}
-
 #ACTION {^You guide the spell directly toward %1!$}
 {
 	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
-}
-{9}
-
-#ACTION {^You happen to find %d gold coins, how fortunate!$}
-{
-	play pickpocket
 }
 {9}
 
