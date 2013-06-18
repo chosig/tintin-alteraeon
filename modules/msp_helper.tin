@@ -1,3 +1,9 @@
+#action {^As you enter the shack, goroth throws a liquor bottle at your head and yells, %*}
+{
+play shack
+}
+{8}
+
 #ACTION {^You happen to find %d gold coins, how fortunate!$}
 {
     play pickpocket
