@@ -75,7 +75,7 @@ tactics all | grep -i length | grep -v x | grep -v charge | grep -v taunt | pref
 
 #action {^silent_ Length %d \x7c %2}
 {
-#script {echo "%2" | tr -s "[:space:]" | sed -e "s/|/ $target ;/" -e 's/leap attack/leap/g' -e 's/pommel strike/pommel/g' -e 's/x/randomattack/g' -e 's/|/;/g'};
+#script {echo "%2" | tr -s "[:space:]" | $sed -e "s/|/ $target ;/" -e 's/leap attack/leap/g' -e 's/pommel strike/pommel/g' -e 's/x/randomattack/g' -e 's/|/;/g'};
 #variable {target} {}
 }
 {9}
