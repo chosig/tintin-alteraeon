@@ -226,7 +226,7 @@
 	#variable {gameDataPath} {$gameDataPath[1]};
 	#script {name} {echo "%1" | $sed -r 's/\<./\U&/g'};
 	#variable {name} {$name[1]};
-	#script {if ! [ -f "$gameDataPath" ] ; then echo "#VARIABLE         {autorecast}  {true};#VARIABLE         {beeps}  {true};#VARIABLE         {bgmusic}  {false};#VARIABLE         {boneMaterial}  {boneguardian};#VARIABLE         {brewContainer}  {bowl};#VARIABLE         {container}  {bag};#VARIABLE         {harmSpell}  {cause light wounds};#VARIABLE         {healSpell}  {cure light wounds};#VARIABLE         {metalMaterial}  {metalconstruct};#VARIABLE         {musicPlayer}  {cmus};#VARIABLE         {speechRate}  {80};#VARIABLE         {throwWeapon}  {shadow};#VARIABLE         {woadMaterial}  {deanimate};#class {gameData} {write} {$gameDataPath}";fi};
+	#script {if ! [ -f "$gameDataPath" ] ; then echo "#class {gameData} {open};#VARIABLE         {autorecast}  {true};#VARIABLE         {beeps}  {true};#VARIABLE         {bgmusic}  {false};#VARIABLE         {boneMaterial}  {boneguardian};#VARIABLE         {brewContainer}  {bowl};#VARIABLE         {container}  {bag};#VARIABLE         {harmSpell}  {cause light wounds};#VARIABLE         {healSpell}  {cure light wounds};#VARIABLE         {metalMaterial}  {metalconstruct};#VARIABLE         {musicPlayer}  {cmus};#VARIABLE         {speechRate}  {80};#VARIABLE         {throwWeapon}  {shadow};#VARIABLE         {woadMaterial}  {deanimate};#class {gameData} {write} {$gameDataPath}";fi};
 #class {gameData} {read} {$gameDataPath};
 	#if {&{personalFile}}
 	{
