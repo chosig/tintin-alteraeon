@@ -1,0 +1,41 @@
+#ACTION {%1 {gets|get} a bite, and after a little effort {you manage|manages} to reel in %4.$}
+{
+	play catch-fish;
+	#if {"%1" == "You" && "$autojunk" == "true"}
+	{
+		#regexp {%4} {{.*} {.*}} {junk &2}
+	}
+}
+{9}
+
+#ACTION {%1 {reels|reel} in %3.$}
+{
+	play catch-fish;
+	#if {"%1" == "You"}
+	{
+		#regexp {%3} {{.*} {.*}} {#if {"&2" != "{bushes|while}" && "$autojunk" == "true"} {junk &2};#if {"&2" == "{bushes|while}"} {#delay {1d3} {\!fis}}}
+	}
+}
+{9}
+
+#ACTION {^After a big fight, %1 {reels|reel} in %3.$}
+{
+	play catch-fish;
+	#if {"%1" == "you" && "$autojunk" == "true"}
+	{
+		#regexp {%3} {{.*} {.*}} {junk &2}
+	}
+}
+{9}
+
+#ACTION {^You {decide to reel in your line and take a break for a while|finish reeling in your line and stop fishing|are no longer fishing}.$}
+{
+	play stop-fishing
+}
+{9}
+
+#ACTION {^{Something REALLY big catches your line, and breaks it!|Your hook gets stuck on something, and you have to break the line.}$}
+{
+	play fish-line-break
+}
+{9}
