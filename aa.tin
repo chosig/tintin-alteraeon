@@ -309,24 +309,6 @@
 }
 {9}
 
-#ACTION {%1 {traces|trace} fiery glowing symbols in the {air before you|air}...$}
-{
-	#system {play -qn -V0 synth 00:00:02 $($shuf -n 1 -e "pi" "br") 60 synth $($shuf -n 1 -e "wh" "pi") fmod 60.25 vol 0.2 gain $volume &> /dev/null &}
-}
-{9}
-
-#ACTION {%1 {traces|trace} symbols in the air, which briefly spark and crackle...$}
-{
-	#system {play -qn -V0 synth 00:00:02 $($shuf -n 1 -e "sq" "exp" "tri") 60 synth $($shuf -n 1 -e "sq" "exp") fmod 60.25 vol -.1 gain $volume &> /dev/null &}
-}
-{9}
-
-#ACTION {%1 {traces|trace} symbols of power, momentarily leaving trails of frost hanging in the air...$}
-{
-	#system {play -qn -V0 synth 2 $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 gain $volume &> /dev/null &}
-}
-{9}
-
 #ACTION {^       You receive a combat point!$}
 {
 	#delay {0.2} {#script {echo -n "gt "; $shuf -e -n 1 "I am Cornholio! I got CP for my bunghole!" "CP!" "I am Cornholio! My people they have much CP!" "Een thees battle, there was CP for my bunghole!" "My bunghole, it goes, 'blah blah blah pffft blah! CP!'" "I am Cornholio! You will give me all your Hoolio! and your CP!" "I done did get me one of them there combat points. I now have $cp available to spend! Woohoo!" "CPwn!"}}
@@ -377,12 +359,6 @@
 }
 {9}
 
-#ACTION {^A white line of frost zips across the ground away from %1 staff%2.$}
-{
-	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
-}
-{9}
-
 #ACTION {^Neebla encourages you to consider converting to Os.$}
 {
 	#script {echo "emot encourages Neebla to $($shuf -n 1 -e "shut the hell up" "go straight to hell" "'pull my finger'" "attempt reproduction with an electrical outlet")!"}
@@ -412,14 +388,6 @@
 }
 {9}
 
-#ACTION {^The %1 line of frost zips randomly across the ground...$}
-{
-	#math {leftChannel} {1d9};
-	#math {rightChannel} {1d9};
-	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.5 remix v0.$leftChannel v0.$rightChannel fade 0 1.19 0.2 &}
-}
-{9}
-
 #ACTION {^The Master Tonberry is DEAD!$}
 {
 	play ff-boss-death
@@ -439,12 +407,6 @@
 			Add_Cast bone blade
 		}
 	}
-}
-{9}
-
-#ACTION {^The gods penalize you for botting!$}
-{
-	play attention
 }
 {9}
 
@@ -525,12 +487,6 @@
 }
 {9}
 
-#ACTION {^You guide the spell directly toward %1!$}
-{
-	#system {play -qn -V0 synth $($shuf -n 1 -e "wh" "pi" "tp" ) $($shuf -n 1 -e "flanger" "phaser 0.8 0.74 0.5 0.4 0.5") vol 0.2 fade 0 1.19 0.3 gain $volume &> /dev/null &}
-}
-{9}
-
 #ACTION {^You receive %1 gold coins for your sacrifice.}
 {
 	split %1
@@ -559,24 +515,6 @@
 }
 {9}
 
-#ACTION {^You suddenly see your mistake, reverse the incantation and sacrifice a %1 soulstone.$}
-{
-	play demonic-laugh
-}
-{9}
-
-#ACTION {^You summon A shadow fiend, and your offering of %1 is accepted.$}
-{
-	play summon-shadow-fiend
-}
-{9}
-
-#ACTION {^You taunt %1, and {she|he|it} attacks you!$}
-{
-	play taunt
-}
-{9}
-
 #ACTION {^You try, but the blood fever remains just out of your reach!$}
 {
 	berserk
@@ -599,14 +537,6 @@
 #ACTION {^Your {chr|con|dex|int|str|wis} increases%*}
 {
 	show stats | prefix silent_
-}
-{9}
-
-#ACTION {^mobrepop_%1->%2}
-{
-	#unvariable {mobRepop};
-	#showme {%1->%2};
-	play repop
 }
 {9}
 
